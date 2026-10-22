@@ -20,6 +20,11 @@ without optional packages. The revised wheel is approximately 1.33 MB with
 zero base dependencies. The user selected the categorical direction;
 expanded-count visual review and H4's reviewed-default gate remain separate.
 
+All eight Windows/Linux CI jobs also pass at implementation commit `9e7d9d1`,
+including the six core Python 3.10/3.12/3.14 environments and both Python 3.12
+research environments:
+[validation run](https://github.com/clay-wood/huevat/actions/runs/39871485468).
+
 ## Measured costs
 
 Reproduce with `tools/profile_project.py`. Raw measurements, package versions,
@@ -129,6 +134,13 @@ while distinguishing implementation changes that reproduce the same mathematics
 from changed numerical methods. New engines still must reproduce or explicitly
 version the retained evidence.
 
+A separate code-level tooling observation: H1's `compare_studies` recursively
+calls scalar `numpy.isclose` for every numerical entry in the large nested
+report. This may contribute to slow research verification, but it was not
+profiled by the operational benchmarks above. Measure it independently before
+changing it. Batch numeric-array comparisons could help, while retaining the
+exact 1e-8 tolerance semantics and shape/type/decision checks.
+
 ## What would make Huevat easier to use
 
 1. **One-line plotting adapters.** Provide optional Matplotlib colormaps/color
@@ -180,9 +192,8 @@ practical failure.
 
 Then improve shared immutable objects/views, lazy audit loading, optional
 vectorized transforms and derivatives. Scalar sampling can wait until large
-images/animation justify attention. GPU/browser infrastructure does not address
-the measured JSON and object-copying costs.
+images/animation justify attention.
 
 For a distinctive next feature, prioritize a figure doctor plus coordinated
 color/marker/dash repair. That can help users who already have a favorite
-published palette, extending Huevat beyond another collection of named colors.
+published palette and want their actual figures checked and improved.

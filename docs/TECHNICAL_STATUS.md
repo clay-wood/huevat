@@ -179,6 +179,14 @@ review and reproducible measurements are in `PROJECT_REVIEW.md` and
 immutable-report/view copying and finite-difference constraints as the main
 measured costs; ordinary 4,096-point sampling takes about 14.5 ms on this host.
 
+Revision implementation commit: `9e7d9d19dc03f264f734e64b51beec9e460ad48a`.
+All eight cross-platform CI jobs passed: six core jobs on Windows/Linux with
+Python 3.10/3.12/3.14 and two research jobs with Python 3.12. The research jobs
+passed all 205 tests and reproduced H1, H2, original H3 and the revised Clearer
+evidence. Core jobs verified clean offline pip/uv installs of both categorical
+styles and all ordered families without optional dependencies:
+[Clearer validation run 39871485468](https://github.com/clay-wood/huevat/actions/runs/39871485468).
+
 H4 remains: reviewed and accepted defaults and the complete export/migration
 layer are later work. All construction families are now represented.
 H1 reference sampling remains an explicit finite-grid study adaptation. H2
