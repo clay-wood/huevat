@@ -1,0 +1,8 @@
+{
+  "version": "h1-resources-v1",
+  "sha256_lf": {
+    "references-v1.json": "6d6dacb6d826a2fc60abb8d217078c39fdf3184593912648254891273eb498bb",
+    "machado-v1.json": "c4d8e9ad439d572b37d2c6e6d3d490c2fd7ae290a180625c458c12c47a591444",
+    "profiles-v1.json": "0938561bf7e1551814a8ba58c4e883858bcc91a8c84e6051e20559c1e24f318a"
+  }
+}

@@ -1,3 +1,6 @@
 * text=auto eol=lf
 *.png binary
 *.pdf binary
+*.gz binary
+# Preserve the upstream snapshot byte-for-byte, including its whitespace.
+tools/sources/colorbrewer.json -whitespace

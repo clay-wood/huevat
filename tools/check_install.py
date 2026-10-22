@@ -24,7 +24,11 @@ assert hv.to_hex(hv.from_hex('#0072b2')) == '#0072b2'
 assert hv.in_gamut(hv.gamut_map((.65, .4, 30)), tolerance=0)
 assert abs(hv.contrast((0, 0, 0), (1, 1, 1)) - 21) < 1e-10
 hv.simulate((1, 0, 0), 'protan')
-for forbidden in ('numpy', 'scipy', 'matplotlib', 'PIL', 'playwright', 'sketchplot'):
+hv.simulate((1, 0, 0), 'deutan', severity=53.1)
+assert len(hv.references()) == 13
+assert hv.to_hex(hv.reference('okabe-ito').colors(8)[0]) == '#000000'
+assert hv.load_profile('filled-fields', 'dark')['background'] == '#121212'
+for forbidden in ('numpy', 'scipy', 'matplotlib', 'PIL', 'playwright', 'sketchplot', 'colorspacious', 'colorcet'):
     assert forbidden not in sys.modules, forbidden
     try:
         md.distribution('pillow' if forbidden == 'PIL' else forbidden)
@@ -60,13 +64,15 @@ def main():
         metadata = BytesParser().parsebytes(archive.read(next(n for n in names if n.endswith('.dist-info/METADATA'))))
         requirements = metadata.get_all("Requires-Dist", [])
         assert all("extra ==" in requirement for requirement in requirements), requirements
-        assert set(metadata.get_all("Provides-Extra", [])) == {"design"}
+        assert set(metadata.get_all("Provides-Extra", [])) == {"design", "research"}
         for filename in ("__init__.py", "space.py", "vision.py"):
             assert f"huevat/{filename}" in names
+        for filename in ("references-v1.json", "profiles-v1.json", "machado-v1.json", "manifest-v1.json"):
+            assert f"huevat/data/{filename}" in names
         for license_name in ("LICENSE", "sketchplot-MIT.txt", "colorspacious-MIT.txt"):
             assert any(n.endswith('/' + license_name) for n in names), license_name
         assert not any(any(part in n.lower() for part in
-                           ('renderer', 'playwright', '.js', '.venv', 'sketchplot/')) for n in names)
+                           ('renderer', 'playwright', '.venv', 'sketchplot/')) or n.endswith('.js') for n in names)
     with tarfile.open(sdist) as archive:
         names = archive.getnames()
         for required in ("pyproject.toml", "uv.lock", "project_plan.md", "docs/extraction.json",

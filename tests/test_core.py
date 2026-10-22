@@ -11,11 +11,15 @@ import importlib.abc
 import sys
 class BlockOptional(importlib.abc.MetaPathFinder):
     def find_spec(self, fullname, path=None, target=None):
-        if fullname.split('.')[0] in {'numpy', 'scipy', 'matplotlib', 'PIL', 'playwright', 'sketchplot'}:
+        if fullname.split('.')[0] in {'numpy', 'scipy', 'matplotlib', 'PIL', 'playwright', 'sketchplot', 'colorcet', 'colorspacious'}:
             raise AssertionError('Unexpected optional import: ' + fullname)
 sys.meta_path.insert(0, BlockOptional())
 import huevat
 assert huevat.to_hex(huevat.gamut_map((.5, .2, 30))).startswith('#')
+assert len(huevat.references()) == 13
+assert len(huevat.reference('okabe-ito').colors(8)) == 8
+huevat.simulate((1, 0, 0), 'deutan', severity=50)
+huevat.load_profile('filled-fields', 'dark')
 """
     subprocess.run([sys.executable, "-I", "-c", script], check=True)
 

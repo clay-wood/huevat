@@ -14,6 +14,7 @@ dependencies = []
 
 [project.optional-dependencies]
 design = ["numpy>=1.24", "scipy>=1.10"]
+research = ["numpy>=1.24", "matplotlib>=3.8", "colorspacious==1.1.2", "colorcet==3.2.1"]
 
 [dependency-groups]
 dev = ["pytest>=8", "build>=1", "pip>=24"]
@@ -24,3 +25,7 @@ where = ["src"]
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 addopts = "-ra"
+markers = ["research: optional reference study and independent-space audit"]
+
+[tool.setuptools.package-data]
+huevat = ["data/*.json"]

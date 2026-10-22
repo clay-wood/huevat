@@ -8,6 +8,12 @@ does not identify their content. `extraction.json` records SHA-256 hashes of
 the actual source snapshot and Huevat destinations, with CRLF normalized to LF.
 No sibling project is needed to install, import, or test Huevat.
 
+H1 adds the separately documented [reference corpus](REFERENCES_H1.md).
+`vision.py` now reads frozen Machado severity tables and interpolates between
+tabulated severities; default severity-100 behavior and its coefficients are
+retained. `extraction.json` preserves the H0 destination hash in addition to
+the current H1 hash and the unchanged original source hash.
+
 ## Extracted material and changes
 
 - `src/sketchplot/colors/space.py` to `src/huevat/space.py`: conversions,

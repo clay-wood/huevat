@@ -16,7 +16,9 @@
       "source": "src/sketchplot/colors/vision.py",
       "destination": "src/huevat/vision.py",
       "source_sha256_lf": "0dbaeb67e8024b8712452380491f6c57b9cb6699ad6ceadfe702974ace788133",
-      "destination_sha256_lf": "d7215a9ee47b059ace74a2701a903e36ebfbb51339428f5944380ef1f832a537"
+      "destination_sha256_lf": "14d85cdb532acc70d16a61bf92ca07bc31caa8643fe9a6cabd0444dc91741d77",
+      "h0_destination_sha256_lf": "d7215a9ee47b059ace74a2701a903e36ebfbb51339428f5944380ef1f832a537",
+      "subsequent_changes": "H1 adds hash-checked Machado severity tables and coefficient interpolation; severity-100 coefficients and default behavior retained."
     },
     {
       "source": "LICENSE",

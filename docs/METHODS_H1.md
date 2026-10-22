@@ -103,6 +103,15 @@ documented absolute/relative tolerances (1e-8), not platform PNG hashes.
 Rebuilding a frozen corpus is an explicit maintenance command; normal study
 generation reads local resources and requires no network.
 
+Implementation clarification from negative-control testing: the lightness
+ordering tolerance applies to maximum backward excursion from the running
+monotone envelope, not just one adjacent step. This prevents a broad reversal
+from accumulating many individually small steps. Both quantities are retained
+in reports. The profile values frozen in commit `90e7b60` are unchanged. The
+shared diverging center must be an extremum of both arms within the arithmetic
+1e-7 tolerance, including after 8-bit export; the separate 0.002 allowance
+for small accumulated export-order perturbations does not move the center.
+
 Negative controls must detect repeated categorical colors, red-green encoded
 RGB interpolation lightness artifacts, a lightness reversal, a broad flat
 region, a narrow contrast spike and an excessive discrete class count. Include

@@ -19,21 +19,56 @@ clean-install checks pass. The independent private repository is
 | Private repository | Created | `clay-wood/huevat`, created private on October 22, 2026 |
 | Cross-platform checks | Verified | Windows/Linux, Python 3.10/3.12/3.14; numerical tests, provenance, build, and offline pip/uv installation checks pass |
 
+## H1: reference study and provisional quality profiles
+
+Implemented and locally verified; remote CI verification is in progress.
+Thresholds were committed before evaluation in `90e7b60`.
+
+| Task | Evidence |
+| --- | --- |
+| Frozen reference corpus | 13 attributed references; native tables, exact Okabe-Ito values, source versions/hashes and retained licenses |
+| Versioned protocol and four profiles | `METHODS_H1.md`, `profiles-v1.json`; data marks / filled fields on light / dark backgrounds |
+| Screening and independent audit | Normal vision; Machado protan/deutan 50/80/100, tritan 100; Oklab and CAM02-UCS, grayscale and display-clipping records |
+| Matched baseline | 296 explicit cases, including float/u8 paths and discrete selections, both backgrounds, 12 negative-control cases |
+| Offline gallery | `research/baseline-v1/index.html`; 48 publication-size 300-DPI PNGs, summary JSON, full gzip JSON report and methods report |
+| Defect detection | Repeated colors, RGB-interpolation artifacts, lightness reversal, broad flats, narrow spikes and excessive class counts fail intended criteria |
+| Visual review | Artifacts and layout checked; human perceptual review remains pending in `review.json` |
+
+Local evidence (Windows, Python 3.12.14): 127 tests passed; frozen corpus
+reproduced byte-for-byte; all 296 study cases reproduced within 1e-8;
+retained artifact hashes passed; the final wheel built from the source
+distribution and passed offline clean pip and uv installation checks. The
+installed base package loaded references/profiles and intermediate-severity
+simulation without research, plotting or browser packages.
+
+The initial baseline retains all failures. In normal-vision floating-point
+paths, Spectral fails the neutral-center and arm-balance goals; ColorCET fire
+fails some local-speed/spike screens. The 8-bit ColorCET coolwarm study
+adaptation fails the exact-center-extremum requirement. Discrete and CVD
+conditions have additional context-specific failures recorded in the reports.
+These are results under Huevat's provisional goals, not a universal ranking.
+No thresholds were relaxed and no source palette was changed to pass them.
+
 ## Boundaries
 
-H1-H4 remain unimplemented. H0 exposes no approved palette, constructor,
-gradient object, optimization, or perceptual pass/fail profile. NumPy and SciPy
-are declared only in the optional `design` extra. Core imports and clean base
-installations must work without them or browser packages.
+H2-H4 remain unimplemented. There are no approved defaults, palette
+constructors, gradient objects or optimizers. H1 reference sampling is an
+explicit finite-grid study adaptation, not continuous-path certification.
+NumPy/SciPy generation dependencies remain in `design`; optional research
+evaluation/rendering uses `research`. The base package loads/samples reference
+tables and profiles and simulates severities without optional dependencies.
 
 The source color files were untracked in sketchplot. Their hashes identify the
 extraction; its base commit alone cannot reproduce that working-tree state.
 Huevat neither modifies sketchplot nor adopts its generated tables as defaults.
 
-Vision simulation currently uses only severity 100. The primary Machado
-supplement timed out during verification; the published colorspacious
-transcription supplied the matrix comparison. Intermediate severities,
-CAM02-UCS, quantitative profiles, galleries, and visual review belong to H1+.
+The primary Machado supplement timed out during H0 verification; the
+colorspacious 1.1.2 transcription supplies H1's frozen matrix tables. All
+tabulated severities and coefficient interpolation are tested against that
+independent implementation. CAM02-UCS uses fixed standard sRGB viewing
+conditions on both backgrounds; it does not model dark adaptation. Human
+discrimination, visual approval of defaults and optimizer deadlines remain
+later work.
 
 Gamut conversion and export tolerances are documented numerical conventions,
 not perceptual acceptance thresholds. Simulated displays clip out-of-range
@@ -49,6 +84,11 @@ uv run --locked pytest
 uv run --locked python tools/check_provenance.py
 uv build
 uv run --locked python tools/check_install.py
+# Optional H1 research environment and offline reproduction:
+uv sync --locked --extra research
+uv run --locked --extra research pytest
+uv run --locked --extra research python tools/freeze_references.py --check
+uv run --locked --extra research python tools/build_baseline.py --check
 ```
 
 `tools/check_install.py` checks distribution contents and installs the wheel
