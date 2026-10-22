@@ -466,6 +466,7 @@ source = { editable = "." }
 
 [package.optional-dependencies]
 design = [
+    { name = "colorspacious" },
     { name = "numpy", version = "2.2.6", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.11'" },
     { name = "numpy", version = "2.4.6", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version == '3.11.*'" },
     { name = "numpy", version = "2.5.4", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.12'" },
@@ -493,6 +494,7 @@ dev = [
 [package.metadata]
 requires-dist = [
     { name = "colorcet", marker = "extra == 'research'", specifier = "==3.2.1" },
+    { name = "colorspacious", marker = "extra == 'design'", specifier = "==1.1.2" },
     { name = "colorspacious", marker = "extra == 'research'", specifier = "==1.1.2" },
     { name = "matplotlib", marker = "extra == 'research'", specifier = ">=3.8" },
     { name = "numpy", marker = "extra == 'design'", specifier = ">=1.24" },

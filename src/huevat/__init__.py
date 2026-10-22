@@ -1,6 +1,7 @@
 """Huevat's dependency-free numerical foundation and published reference data.
 
-Palette constructors and reviewed defaults are scheduled for H2-H4.
+Sequential/diverging construction and immutable sampling are available.
+Categorical/multi-hue construction and reviewed defaults remain H3-H4.
 Importing this package never loads a renderer or runs optimization.
 """
 
@@ -20,6 +21,9 @@ from .space import (
 )
 from .vision import simulate
 from .references import reference, references, load_profile
+from .gradients import (Gradient, Palette, QualityReport, QualityError,
+                        SearchExhaustedError, ConstraintConflictError,
+                        sequential, diverging, load_recipe)
 
 __version__ = "0.1.0.dev0"
 
@@ -28,4 +32,6 @@ __all__ = [
     "linearize", "oklab_to_oklch", "oklab_to_srgb", "oklch_to_oklab",
     "srgb_to_oklab", "to_hex", "simulate",
     "reference", "references", "load_profile",
+    "Gradient", "Palette", "QualityReport", "QualityError", "SearchExhaustedError",
+    "ConstraintConflictError", "sequential", "diverging", "load_recipe",
 ]

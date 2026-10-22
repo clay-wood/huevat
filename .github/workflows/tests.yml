@@ -28,7 +28,8 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: astral-sh/setup-uv@v6
-      - run: uv sync --locked --extra research --python 3.12
-      - run: uv run --locked --extra research --python 3.12 pytest
-      - run: uv run --locked --extra research --python 3.12 python tools/freeze_references.py --check
-      - run: uv run --locked --extra research --python 3.12 python tools/build_baseline.py --check
+      - run: uv sync --locked --extra research --extra design --python 3.12
+      - run: uv run --locked --extra research --extra design --python 3.12 pytest
+      - run: uv run --locked --extra research --extra design --python 3.12 python tools/freeze_references.py --check
+      - run: uv run --locked --extra research --extra design --python 3.12 python tools/build_baseline.py --check
+      - run: uv run --locked --extra research --extra design --python 3.12 python tools/build_ordered.py --check

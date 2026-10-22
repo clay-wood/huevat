@@ -20,6 +20,17 @@ assert len(huevat.references()) == 13
 assert len(huevat.reference('okabe-ito').colors(8)) == 8
 huevat.simulate((1, 0, 0), 'deutan', severity=50)
 huevat.load_profile('filled-fields', 'dark')
+g = huevat.sequential(background='dark')
+assert g.report.screen_pass
+assert len(g.discrete(7)) == 7
+assert g.reversed().at(.25) == g.at(.75)
+assert huevat.load_recipe(g.to_json()).at(.25) == g.at(.25)
+assert huevat.diverging().report.screen_pass
+for n in range(2, 60):
+    try:
+        g.discrete(n)
+    except huevat.QualityError:
+        pass
 """
     subprocess.run([sys.executable, "-I", "-c", script], check=True)
 

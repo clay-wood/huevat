@@ -60,14 +60,53 @@ conditions have additional context-specific failures recorded in the reports.
 These are results under Huevat's provisional goals, not a universal ranking.
 No thresholds were relaxed and no source palette was changed to pass them.
 
+## H2: sequential/diverging construction and immutable sampling
+
+Implemented and locally verified; remote CI verification is in progress.
+The H1 reference study, evaluator and frozen thresholds remain unchanged.
+
+| Task | Evidence |
+| --- | --- |
+| Construction | Optional deterministic multi-start SciPy SLSQP; monotone cubic lightness and smooth Cartesian neutral joins; controlled chroma-reduction fallback |
+| Prepared operation | Four experimental sequential/diverging light/dark paths; lookup, `.at()`, reversal and cached discrete sampling use only the standard library |
+| Continuous numerical checks | Complete-segment Bernstein gamut bounds, derivative-extrema lightness checks and C1 continuity checks |
+| Perceptual screening | All four paths pass unchanged H1 float/u8 profiles and a 4,097-point CVD ordering audit |
+| Exact discrete selections | Every count below each prepared curve's arc-length bound audited for both contexts; even/odd counts handled explicitly; seven bins pass on every prepared path |
+| Failure semantics | Invalid input, measured selection failures, bounded count conflicts and search exhaustion have distinct outcomes and actionable reports |
+| Recipes and reports | Immutable nested reports, data-only JSON/fingerprints, tamper/schema rejection and revalidation of unknown recipes |
+| Review artifacts | `research/ordered-v1/index.html`, eight 300-DPI panels, source/artifact hashes, measured generation and core-operation benchmarks |
+
+Local tests: **159 passed** on Windows/Python 3.12.14. The H2 check reproduced
+every saved cubic recipe and repeated all continuous/grid/dense checks and
+all 151 cached discrete selections. Custom searches reproduced with completed
+starts; a forced deadline produced search exhaustion without claiming
+infeasibility. A custom background was independently evaluated and serialized.
+The dependency-blocking subprocess exercised prepared lookup, seven bins,
+reversal and recipe reload without NumPy, SciPy, colorspacious or plotting.
+Clean offline pip/uv installation checks also pass; the base wheel is
+approximately 272 KB with zero base requirements. The independent H1 check
+still reproduces all 296 original reference cases and their retained hashes.
+
+The complete two-start prepared builds, including discrete audits, measured
+approximately 1-4 seconds per design on this host. The regular custom budget
+is eight starts / 20 seconds; cooperative deadline and reproducibility limits
+are documented in `METHODS_H2.md`. Rejected bin counts are retained; for
+example, the light diverging path's 8-bin selection fails while its separate
+9-bin selection passes. No requested colors are silently removed.
+
+H2 rendering/layout has been checked. Human perceptual review of these new
+designs remains pending; `approved_default` stays false.
+
 ## Boundaries
 
-H2-H4 remain unimplemented. There are no approved defaults, palette
-constructors, gradient objects or optimizers. H1 reference sampling is an
-explicit finite-grid study adaptation, not continuous-path certification.
-NumPy/SciPy generation dependencies remain in `design`; optional research
-evaluation/rendering uses `research`. The base package loads/samples reference
-tables and profiles and simulates severities without optional dependencies.
+H3-H4 remain unimplemented: categorical and multi-hue/Spectral construction,
+accepted defaults and the complete export/migration layer are later work.
+H1 reference sampling remains an explicit finite-grid study adaptation. H2
+certifies numerical properties of complete cubic paths, while perceptual/CVD
+screening remains finite-grid evidence. `design` contains optional generation
+and audit dependencies; `research` contains optional rendering tools. Core
+loading/sampling of references, prepared gradients and profiles remains
+independent of these packages.
 
 The source color files were untracked in sketchplot. Their hashes identify the
 extraction; its base commit alone cannot reproduce that working-tree state.
@@ -78,8 +117,8 @@ colorspacious 1.1.2 transcription supplies H1's frozen matrix tables. All
 tabulated severities and coefficient interpolation are tested against that
 independent implementation. CAM02-UCS uses fixed standard sRGB viewing
 conditions on both backgrounds; it does not model dark adaptation. Human
-discrimination, visual approval of defaults and optimizer deadlines remain
-later work.
+discrimination and visual approval of defaults remain later work. H2 adds
+cooperative optimizer deadlines, with measured limitations recorded explicitly.
 
 Gamut conversion and export tolerances are documented numerical conventions,
 not perceptual acceptance thresholds. Simulated displays clip out-of-range
@@ -100,6 +139,9 @@ uv sync --locked --extra research
 uv run --locked --extra research pytest
 uv run --locked --extra research python tools/freeze_references.py --check
 uv run --locked --extra research python tools/build_baseline.py --check
+# H2 optional construction and prepared-evidence reproduction:
+uv sync --locked --extra design --extra research
+uv run --locked --extra design --extra research python tools/build_ordered.py --check
 ```
 
 `tools/check_install.py` checks distribution contents and installs the wheel

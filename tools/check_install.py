@@ -28,6 +28,10 @@ hv.simulate((1, 0, 0), 'deutan', severity=53.1)
 assert len(hv.references()) == 13
 assert hv.to_hex(hv.reference('okabe-ito').colors(8)[0]) == '#000000'
 assert hv.load_profile('filled-fields', 'dark')['background'] == '#121212'
+gradient = hv.diverging(background='dark')
+assert gradient.report.screen_pass
+assert len(gradient.discrete(7)) == 7
+assert hv.load_recipe(gradient.to_json()).at(.25) == gradient.at(.25)
 for forbidden in ('numpy', 'scipy', 'matplotlib', 'PIL', 'playwright', 'sketchplot', 'colorspacious', 'colorcet'):
     assert forbidden not in sys.modules, forbidden
     try:
@@ -67,7 +71,7 @@ def main():
         assert set(metadata.get_all("Provides-Extra", [])) == {"design", "research"}
         for filename in ("__init__.py", "space.py", "vision.py"):
             assert f"huevat/{filename}" in names
-        for filename in ("references-v1.json", "profiles-v1.json", "machado-v1.json", "manifest-v1.json"):
+        for filename in ("references-v1.json", "profiles-v1.json", "machado-v1.json", "manifest-v1.json", "ordered-v1.json"):
             assert f"huevat/data/{filename}" in names
         for license_name in ("LICENSE", "sketchplot-MIT.txt", "colorspacious-MIT.txt"):
             assert any(n.endswith('/' + license_name) for n in names), license_name

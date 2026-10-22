@@ -13,7 +13,7 @@ license-files = ["LICENSE", "licenses/*.txt"]
 dependencies = []
 
 [project.optional-dependencies]
-design = ["numpy>=1.24", "scipy>=1.10"]
+design = ["numpy>=1.24", "scipy>=1.10", "colorspacious==1.1.2"]
 research = ["numpy>=1.24", "matplotlib>=3.8", "colorspacious==1.1.2", "colorcet==3.2.1"]
 
 [dependency-groups]

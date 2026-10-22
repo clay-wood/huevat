@@ -3,7 +3,8 @@
 Huevat is an independent Python library under development for constrained
 scientific palettes and gradients. **H0 supplies the numerical foundation;
 H1 supplies published references, provisional quality profiles and a baseline
-study.** Palette generation and approved defaults remain H2-H4 in
+study; H2 adds sequential/diverging construction and immutable sampling.**
+Categorical/multi-hue generation and approved defaults remain H3-H4 in
 [project_plan.md](project_plan.md).
 
 The base package uses only the Python standard library. It needs no browser,
@@ -24,8 +25,9 @@ uv run --locked python tools/check_install.py
 `uv.lock` pins the development environment; `.python-version` selects Python
 3.12. Python 3.10 or newer is supported. `uv sync --locked --no-dev` installs
 only the base package. For an ordinary pip environment, use `python -m pip
-install .` or install the built wheel. The optional `huevat[design]` extra
-reserves NumPy/SciPy for future generation work; H0 does not implement optimizers.
+install .` or install the built wheel. Install `huevat[design]` for custom
+gradient construction and independent audits; normal prepared lookup and
+sampling need no optional dependencies.
 
 ## Numerical interface
 
@@ -100,3 +102,45 @@ and adaptation rules.
 See [provenance](docs/PROVENANCE.md) for source versions, hashes, numerical
 conventions, and licensing; see [technical status](docs/TECHNICAL_STATUS.md)
 for milestone evidence and limits.
+
+## Ordered gradients (H2)
+
+```python
+gradient = hv.sequential(color="#0072b2", background="dark")
+diverging = hv.diverging(colors=("#0072b2", "#d55e00"), background="light")
+rgb = gradient.at(0.35)
+colors = diverging.discrete(7)       # Immutable hex-color sequence
+reverse = gradient.reversed()
+report = gradient.report            # Immutable; report.to_dict() makes a copy
+restored = hv.load_recipe(gradient.to_json())
+```
+
+The standard preferences load four experimental prepared paths. Each passes
+the unchanged H1 float and 8-bit profiles, complete-segment numerical checks,
+and a denser CVD ordering audit. They have no accepted H4 default claim.
+`discrete(n)` validates that exact selection; even diverging counts omit the
+center. Some counts fail although a different count passes. A failed selection
+raises `QualityError` with its report and never drops colors.
+
+Custom preferences/backgrounds use optional deterministic SciPy construction:
+
+```powershell
+uv sync --locked --extra design --extra research
+uv run --locked --extra design --extra research python tools/build_ordered.py --check
+```
+
+```python
+custom = hv.sequential(color="#0066aa", background="#171d26",
+                       seed=4402, starts=2, max_seconds=60)
+```
+
+`SearchExhaustedError` means no passing design was found in the stated budget;
+it does not prove infeasibility. `ConstraintConflictError` includes an explicit
+bound for an excessive count on a particular fixed path. Both carry immutable
+reports. Inputs are checked before optional dependency loading.
+
+See the [H2 gallery](research/ordered-v1/index.html) and
+[construction methods](docs/METHODS_H2.md) for limits, count-specific results,
+serialization rules and measured budgets. Unknown custom recipes are
+revalidated by default; `load_recipe(data, validate=False)` permits lightweight
+inspection with an explicitly unvalidated screening status.
