@@ -108,8 +108,9 @@ prepared sampling and recipe reloading without optional dependencies.
 
 ## H3: categorical and multi-hue/Spectral construction
 
-H3 is implemented. Its numerical gates pass on both backgrounds; H1/H2
-sources, profiles and prepared designs remain frozen.
+H3 is complete at implementation commit
+`c58c9c89bf69c7b48249c84b8b2be3e835b97a4d`. Its numerical gates pass on both
+backgrounds; H1/H2 sources, profiles and prepared designs remain frozen.
 
 | Task | Evidence |
 | --- | --- |
@@ -149,6 +150,15 @@ together and 16 ms for 4,096 cubic samples. A separate traced-memory run peaked
 at approximately 27.5 MB for import, categorical lookup and Spectral lookup.
 These are host measurements, not performance guarantees. No optional numerical,
 rendering or browser modules loaded during the core benchmark.
+
+All eight CI jobs passed at the implementation commit: six core jobs on
+Windows/Linux with Python 3.10/3.12/3.14 and two design/research jobs with
+Python 3.12. The research jobs passed all 190 tests, reproduced the H1 corpus
+and 296 baseline cases, reproduced all H2 evidence and reaudited every H3
+categorical/path/discrete report and retained hash:
+[H3 validation run 39862188952](https://github.com/clay-wood/huevat/actions/runs/39862188952).
+Core jobs independently verified offline clean pip/uv installs and all-family
+prepared sampling/recipe reloads without optional dependencies.
 
 ## Boundaries
 
