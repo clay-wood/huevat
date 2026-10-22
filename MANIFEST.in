@@ -1,0 +1,7 @@
+include project_plan.md
+recursive-include docs *.md *.json
+recursive-include licenses *.txt
+recursive-include tests *.py
+recursive-include tools *.py
+include uv.lock
+include .python-version

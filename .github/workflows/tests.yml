@@ -1,0 +1,19 @@
+name: Numerical foundation
+on: [push, pull_request]
+
+jobs:
+  test:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+        python: ['3.10', '3.12', '3.14']
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+      - run: uv python install ${{ matrix.python }}
+      - run: uv sync --locked --python ${{ matrix.python }}
+      - run: uv run --locked --python ${{ matrix.python }} pytest
+      - run: uv run --locked --python ${{ matrix.python }} python tools/check_provenance.py
+      - run: uv build --python ${{ matrix.python }}
+      - run: uv run --locked --python ${{ matrix.python }} python tools/check_install.py
