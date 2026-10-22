@@ -162,6 +162,15 @@ prepared sampling/recipe reloads without optional dependencies.
 
 ## Boundaries
 
+Categorical aesthetic follow-up: the user rejected the original H3 categorical
+appearance despite its numerical passes. `CATEGORICAL_AESTHETICS.md` and
+`research/categorical-aesthetics-v1` compare three new target-preserving styles
+at counts 4/6/8 on both backgrounds. All 18 candidates pass unchanged float/u8
+screens. Balanced is the proposed aesthetic direction; package defaults remain
+the recorded experimental H3 baseline pending the user's visual selection.
+The study changes the priority from extra separation to preserving chosen
+aesthetic targets once separation requirements are met. H0–H2 remain unchanged.
+
 H4 remains: reviewed and accepted defaults and the complete export/migration
 layer are later work. All construction families are now represented.
 H1 reference sampling remains an explicit finite-grid study adaptation. H2

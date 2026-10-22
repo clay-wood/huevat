@@ -188,3 +188,10 @@ uv run --locked --extra design --extra research python tools/build_families.py -
 # Re-optimize and regenerate the experimental tables and offline gallery:
 uv run --locked --extra design --extra research python tools/build_families.py
 ```
+
+The original H3 categorical appearance was rejected during user review. The
+[categorical appearance study](research/categorical-aesthetics-v1/index.html)
+compares Balanced, Softer and Clearer alternatives at 4/6/8 colors on both
+backgrounds, all under the unchanged H1 screens. See
+[the design options and methods](docs/CATEGORICAL_AESTHETICS.md). These are
+review candidates; the existing prepared tables remain the recorded H3 baseline.
