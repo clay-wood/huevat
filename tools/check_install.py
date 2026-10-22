@@ -28,7 +28,7 @@ hv.simulate((1, 0, 0), 'protan')
 for forbidden in ('numpy', 'scipy', 'matplotlib', 'PIL', 'playwright', 'sketchplot'):
     assert forbidden not in sys.modules, forbidden
     try:
-        md.distribution(forbidden)
+        md.distribution('pillow' if forbidden == 'PIL' else forbidden)
     except md.PackageNotFoundError:
         pass
     else:
@@ -80,8 +80,11 @@ def main():
     with tempfile.TemporaryDirectory(prefix="huevat-install-") as temporary:
         work = Path(temporary)
         pip_env, uv_env = work / "pip-env", work / "uv-env"
-        venv.EnvBuilder(with_pip=True).create(pip_env)
-        run([python_at(pip_env), "-m", "pip", "install", "--no-index", "--no-deps", wheel], work)
+        # Target a pip-free environment rather than depending on ensurepip,
+        # which is not usable in every uv-managed Python distribution.
+        venv.EnvBuilder(with_pip=False).create(pip_env)
+        run([sys.executable, "-m", "pip", "--python", python_at(pip_env),
+             "install", "--no-index", "--no-deps", wheel], work)
         records["pip"] = json.loads(run([python_at(pip_env), "-I", "-c", SMOKE], work))
         run([uv, "venv", "--offline", "--python", sys.executable, uv_env], work)
         run([uv, "pip", "install", "--offline", "--no-deps", "--python", python_at(uv_env), wheel], work)

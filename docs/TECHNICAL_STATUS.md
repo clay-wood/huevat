@@ -62,3 +62,10 @@ The initial repository commit contains the implementation, plan, source hashes,
 tests, and this record of local verification. Refer to `git log --reverse` for
 that commit; the next status revision will cite it directly with remote CI
 results.
+
+The first CI run passed numerical tests on Python 3.10/3.12/3.14 but exposed
+an installation-check portability issue: uv's Python 3.10 could not bootstrap
+pip through `ensurepip`. The check now creates an empty environment and uses
+development pip's `--python` option to install the wheel into it offline.
+This change affects verification tooling only; pip remains a development
+dependency. A complete rerun is required before recording CI success.

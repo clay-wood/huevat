@@ -16,7 +16,7 @@ dependencies = []
 design = ["numpy>=1.24", "scipy>=1.10"]
 
 [dependency-groups]
-dev = ["pytest>=8", "build>=1"]
+dev = ["pytest>=8", "build>=1", "pip>=24"]
 
 [tool.setuptools.packages.find]
 where = ["src"]
