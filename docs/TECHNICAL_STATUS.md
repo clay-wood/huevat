@@ -4,8 +4,8 @@ Verification date: October 22, 2026.
 
 ## H0: independent numerical foundation
 
-H0 is implemented. Local numerical, packaging, provenance, and clean-install
-checks pass. The independent private repository is
+H0 is complete. Local and cross-platform numerical, packaging, provenance, and
+clean-install checks pass. The independent private repository is
 [clay-wood/huevat](https://github.com/clay-wood/huevat).
 
 | Task | Status | Evidence |
@@ -17,7 +17,7 @@ checks pass. The independent private repository is
 | Clean pip and uv installations | Verified | Source distribution builds its wheel; offline clean pip and uv installs pass on Python 3.12.14 |
 | Browser-free operation | Verified | Wheel has no base requirements; optional imports blocked in tests; clean installs have no browser/plotting/numerical packages |
 | Private repository | Created | `clay-wood/huevat`, created private on October 22, 2026 |
-| Cross-platform checks | Configured | Windows/Linux, Python 3.10/3.12/3.14 CI; remote results pending |
+| Cross-platform checks | Verified | Windows/Linux, Python 3.10/3.12/3.14; numerical tests, provenance, build, and offline pip/uv installation checks pass |
 
 ## Boundaries
 
@@ -58,10 +58,14 @@ optional dependencies are absent. Its local record is
 `artifacts/install-check.json` (ignored; regenerate instead of treating it as
 portable source data).
 
-The initial repository commit contains the implementation, plan, source hashes,
-tests, and this record of local verification. Refer to `git log --reverse` for
-that commit; the next status revision will cite it directly with remote CI
-results.
+Implementation commit: `bcefa27d5abbdf92030496f7b771224e97d53d16`.
+Portable installation-check fixes: `c722879` and `87575e0`.
+The full six-environment CI matrix passed at `87575e0` on October 22, 2026:
+[validation run 39824232437](https://github.com/clay-wood/huevat/actions/runs/39824232437).
+Each environment ran all 96 numerical/core tests, checked provenance, built
+the wheel from the source distribution, and verified offline clean pip and uv
+installations. The local Windows/Python 3.12.14 run independently passed the
+same checks, including optional comparison with the original source hashes.
 
 CI exposed an installation-check portability issue: copying uv's managed Linux
 Python 3.10 executable into a standard-library-created virtual environment
@@ -69,4 +73,4 @@ lost the standard-library path. The check now uses uv to provision both empty
 environments and development pip's `--python` option to install into the pip
 target offline. Package installation is still tested separately with pip and
 uv. This affects verification tooling only; pip remains a development
-dependency. A complete rerun is required before recording CI success.
+dependency. The complete rerun cited above passed.
