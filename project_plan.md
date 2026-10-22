@@ -43,6 +43,13 @@ Before optimizing published defaults, establish versioned quality profiles conta
 
 This distinction follows [ColorBrewer’s scheme semantics](https://colorbrewer2.org/learnmore/schemes_full.html).
 
+**H3 visual-review revision (October 22, 2026):** the user selected the
+Clearer categorical direction. Its default construction satisfies the frozen
+separation/contrast gates, then preserves coherent aesthetic targets. Additional
+separation beyond those gates is secondary to the chosen appearance. The
+original auxiliary-maximin categorical construction remains an explicit
+`style="max-separation"` option; its frozen tables and old recipes are retained.
+
 ### Implement constrained optimization
 
 - Represent ordered gradients with a small number of perceptual control points. Use monotone piecewise-cubic lightness profiles and smooth chromatic paths; handle neutral regions in Cartesian Oklab coordinates to avoid undefined hue.

@@ -162,14 +162,22 @@ prepared sampling/recipe reloads without optional dependencies.
 
 ## Boundaries
 
-Categorical aesthetic follow-up: the user rejected the original H3 categorical
-appearance despite its numerical passes. `CATEGORICAL_AESTHETICS.md` and
-`research/categorical-aesthetics-v1` compare three new target-preserving styles
-at counts 4/6/8 on both backgrounds. All 18 candidates pass unchanged float/u8
-screens. Balanced is the proposed aesthetic direction; package defaults remain
-the recorded experimental H3 baseline pending the user's visual selection.
-The study changes the priority from extra separation to preserving chosen
-aesthetic targets once separation requirements are met. H0–H2 remain unchanged.
+Categorical aesthetic revision: the user selected **Clearer** from the
+appearance study. `categorical()` now uses `h3-categorical-v2`: satisfy the
+original quality floors, then preserve the selected aesthetic targets. All 22
+prepared counts 2–12 pass on both backgrounds, and counts 4/6/8 reproduce the
+chosen study's hex colors exactly. Original H0–H3 sources/data are preserved;
+`style="max-separation"` and old recipes retain their original colors. See
+`METHODS_CATEGORICAL_V2.md` and `research/categorical-v2`. Expanded-count visual
+review and H4 adoption remain separate from the user's selection of direction.
+
+The Clearer revision passes **205 local tests** and all retained H1/H2/H3-v1,
+selection-study and v2 evidence checks. Offline clean pip/uv installations pass
+with zero base dependencies; the wheel is approximately 1.33 MB. The project
+review and reproducible measurements are in `PROJECT_REVIEW.md` and
+`research/project-review-v1/benchmarks.json`. They identify evidence loading,
+immutable-report/view copying and finite-difference constraints as the main
+measured costs; ordinary 4,096-point sampling takes about 14.5 ms on this host.
 
 H4 remains: reviewed and accepted defaults and the complete export/migration
 layer are later work. All construction families are now represented.

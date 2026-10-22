@@ -2,7 +2,7 @@
   "version": "categorical-aesthetics-study-v1",
   "profile_version": "h1-screening-v1",
   "source_sha256_lf": {
-    "tools/explore_categorical_styles.py": "9d267ee71a1d6b45c2bb296483da612dd9d16a4472bd5a219977340f55b9541c",
+    "tools/explore_categorical_styles.py": "ccf7635128b0c77db4e1303ab8e8fb84a43ed05104372194e2bedc66323ed130",
     "src/huevat/design_h3.py": "14ecfc90aa903b55634702f53ed0c20cfa062db1277e20ba796504336407f736",
     "src/huevat/evaluation.py": "9e422316b9c69b3e1810f144a281546f5574924fe3a22080ae02f6630b3461b4"
   },
@@ -2394,7 +2394,7 @@
           "message": "Optimization terminated successfully"
         }
       ],
-      "seconds": 0.4268664999981411,
+      "seconds": 0.4556284999998752,
       "visual_review": "pending",
       "approved_default": false
     },
@@ -5661,7 +5661,7 @@
           "message": "Optimization terminated successfully"
         }
       ],
-      "seconds": 0.6843591000069864,
+      "seconds": 0.7528158999921288,
       "visual_review": "pending",
       "approved_default": false
     },
@@ -10136,7 +10136,7 @@
           "message": "Optimization terminated successfully"
         }
       ],
-      "seconds": 0.9770781999977771,
+      "seconds": 1.0808253999857698,
       "visual_review": "pending",
       "approved_default": false
     },
@@ -12483,7 +12483,7 @@
           "message": "Optimization terminated successfully"
         }
       ],
-      "seconds": 0.5038997999799903,
+      "seconds": 0.42807880000327714,
       "visual_review": "pending",
       "approved_default": false
     },
@@ -15750,7 +15750,7 @@
           "message": "Optimization terminated successfully"
         }
       ],
-      "seconds": 0.8558825999789406,
+      "seconds": 0.6365742000052705,
       "visual_review": "pending",
       "approved_default": false
     },
@@ -20225,7 +20225,7 @@
           "message": "Optimization terminated successfully"
         }
       ],
-      "seconds": 1.1214157000067644,
+      "seconds": 0.9269651000213344,
       "visual_review": "pending",
       "approved_default": false
     },
@@ -22572,7 +22572,7 @@
           "message": "Optimization terminated successfully"
         }
       ],
-      "seconds": 0.4708755000028759,
+      "seconds": 0.38895390002289787,
       "visual_review": "pending",
       "approved_default": false
     },
@@ -25839,7 +25839,7 @@
           "message": "Optimization terminated successfully"
         }
       ],
-      "seconds": 0.8304226000036579,
+      "seconds": 0.6905905999883544,
       "visual_review": "pending",
       "approved_default": false
     },
@@ -30314,7 +30314,7 @@
           "message": "Optimization terminated successfully"
         }
       ],
-      "seconds": 1.0648412000155076,
+      "seconds": 0.8200687000062317,
       "visual_review": "pending",
       "approved_default": false
     },
@@ -32661,7 +32661,7 @@
           "message": "Optimization terminated successfully"
         }
       ],
-      "seconds": 0.5139149000169709,
+      "seconds": 0.36584849999053404,
       "visual_review": "pending",
       "approved_default": false
     },
@@ -35928,7 +35928,7 @@
           "message": "Optimization terminated successfully"
         }
       ],
-      "seconds": 0.8789651000115555,
+      "seconds": 0.6575995000021067,
       "visual_review": "pending",
       "approved_default": false
     },
@@ -40403,7 +40403,7 @@
           "message": "Optimization terminated successfully"
         }
       ],
-      "seconds": 1.067853999993531,
+      "seconds": 0.7744718999892939,
       "visual_review": "pending",
       "approved_default": false
     },
@@ -42750,7 +42750,7 @@
           "message": "Optimization terminated successfully"
         }
       ],
-      "seconds": 0.8127093000221066,
+      "seconds": 0.5908732999814674,
       "visual_review": "pending",
       "approved_default": false
     },
@@ -46017,7 +46017,7 @@
           "message": "Optimization terminated successfully"
         }
       ],
-      "seconds": 1.4835696999798529,
+      "seconds": 1.0523800000082701,
       "visual_review": "pending",
       "approved_default": false
     },
@@ -50492,7 +50492,7 @@
           "message": "Optimization terminated successfully"
         }
       ],
-      "seconds": 2.2161061999795493,
+      "seconds": 1.4803966999752447,
       "visual_review": "pending",
       "approved_default": false
     },
@@ -52839,7 +52839,7 @@
           "message": "Optimization terminated successfully"
         }
       ],
-      "seconds": 0.690121799998451,
+      "seconds": 0.4674835999903735,
       "visual_review": "pending",
       "approved_default": false
     },
@@ -56106,7 +56106,7 @@
           "message": "Optimization terminated successfully"
         }
       ],
-      "seconds": 1.0878135000239126,
+      "seconds": 0.6992931999848224,
       "visual_review": "pending",
       "approved_default": false
     },
@@ -60581,7 +60581,7 @@
           "message": "Optimization terminated successfully"
         }
       ],
-      "seconds": 1.6494825000117999,
+      "seconds": 1.0267717000097036,
       "visual_review": "pending",
       "approved_default": false
     }

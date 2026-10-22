@@ -1,5 +1,10 @@
 # Categorical appearance study
 
+Follow-up: the user selected **Clearer**, which is now implemented as the
+public categorical default. See [the versioned revision](METHODS_CATEGORICAL_V2.md)
+and [the revised gallery](../research/categorical-v2/index.html). The study and
+initial recommendation below are retained as the selection record.
+
 October 22, 2026. This study responds to the user's rejection of the original
 H3 categorical appearance and preference for balanced scientific colors:
 blue, teal, ochre, coral and purple. H0–H2 and the multi-hue/Spectral methods

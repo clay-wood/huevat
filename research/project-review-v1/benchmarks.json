@@ -1,0 +1,896 @@
+{
+  "date": "2026-10-22",
+  "host": {
+    "platform": "Windows-11-10.0.26300-SP0",
+    "python": "3.12.14"
+  },
+  "versions": {
+    "numpy": "2.5.4",
+    "scipy": "1.18.1",
+    "colorspacious": "1.1.2",
+    "matplotlib": "3.11.2"
+  },
+  "method": "Fresh isolated processes for cold timings (3 runs); separate tracemalloc processes; warmed medians; profiled timing is not an absolute benchmark.",
+  "cold": {
+    "import": {
+      "import_median_seconds": 0.07105549998232163,
+      "operation_median_seconds": 6.00004568696022e-07,
+      "runs": [
+        {
+          "import_seconds": 0.06592279998585582,
+          "operation_seconds": 6.00004568696022e-07,
+          "optional_modules_loaded": []
+        },
+        {
+          "import_seconds": 0.07504379999591038,
+          "operation_seconds": 5.00003807246685e-07,
+          "optional_modules_loaded": []
+        },
+        {
+          "import_seconds": 0.07105549998232163,
+          "operation_seconds": 6.00004568696022e-07,
+          "optional_modules_loaded": []
+        }
+      ]
+    },
+    "clearer8": {
+      "import_median_seconds": 0.06931869999971241,
+      "operation_median_seconds": 0.031763400009367615,
+      "runs": [
+        {
+          "import_seconds": 0.06931869999971241,
+          "operation_seconds": 0.03178800002206117,
+          "optional_modules_loaded": []
+        },
+        {
+          "import_seconds": 0.06009379998431541,
+          "operation_seconds": 0.02803800001856871,
+          "optional_modules_loaded": []
+        },
+        {
+          "import_seconds": 0.06982340000104159,
+          "operation_seconds": 0.031763400009367615,
+          "optional_modules_loaded": []
+        }
+      ]
+    },
+    "legacy8": {
+      "import_median_seconds": 0.06978069999604486,
+      "operation_median_seconds": 0.04317369998898357,
+      "runs": [
+        {
+          "import_seconds": 0.06978069999604486,
+          "operation_seconds": 0.043414499989012256,
+          "optional_modules_loaded": []
+        },
+        {
+          "import_seconds": 0.07165870000608265,
+          "operation_seconds": 0.04317369998898357,
+          "optional_modules_loaded": []
+        },
+        {
+          "import_seconds": 0.06556129999808036,
+          "operation_seconds": 0.042687200009822845,
+          "optional_modules_loaded": []
+        }
+      ]
+    },
+    "sequential": {
+      "import_median_seconds": 0.06513750000158325,
+      "operation_median_seconds": 0.028242800006410107,
+      "runs": [
+        {
+          "import_seconds": 0.06513750000158325,
+          "operation_seconds": 0.026560300000710413,
+          "optional_modules_loaded": []
+        },
+        {
+          "import_seconds": 0.06563130000722595,
+          "operation_seconds": 0.03255689999787137,
+          "optional_modules_loaded": []
+        },
+        {
+          "import_seconds": 0.06343280000146478,
+          "operation_seconds": 0.028242800006410107,
+          "optional_modules_loaded": []
+        }
+      ]
+    },
+    "spectral": {
+      "import_median_seconds": 0.06791410001460463,
+      "operation_median_seconds": 0.05010229998151772,
+      "runs": [
+        {
+          "import_seconds": 0.06556639997870661,
+          "operation_seconds": 0.04976100000203587,
+          "optional_modules_loaded": []
+        },
+        {
+          "import_seconds": 0.06897630001185462,
+          "operation_seconds": 0.05010229998151772,
+          "optional_modules_loaded": []
+        },
+        {
+          "import_seconds": 0.06791410001460463,
+          "operation_seconds": 0.05015630001435056,
+          "optional_modules_loaded": []
+        }
+      ]
+    },
+    "all_families": {
+      "import_median_seconds": 0.06989650000468828,
+      "operation_median_seconds": 0.08886170000187121,
+      "runs": [
+        {
+          "import_seconds": 0.05360559999826364,
+          "operation_seconds": 0.08566559999599122,
+          "optional_modules_loaded": []
+        },
+        {
+          "import_seconds": 0.06989650000468828,
+          "operation_seconds": 0.08886170000187121,
+          "optional_modules_loaded": []
+        },
+        {
+          "import_seconds": 0.07374890000210144,
+          "operation_seconds": 0.09287049999693409,
+          "optional_modules_loaded": []
+        }
+      ]
+    },
+    "first_custom4_one_start": {
+      "import_median_seconds": 0.06889229998341762,
+      "operation_median_seconds": 0.7872905000112951,
+      "runs": [
+        {
+          "import_seconds": 0.06889229998341762,
+          "operation_seconds": 0.8061633000033908,
+          "optional_modules_loaded": [
+            "numpy",
+            "scipy",
+            "colorspacious"
+          ]
+        },
+        {
+          "import_seconds": 0.06501479999860749,
+          "operation_seconds": 0.7872905000112951,
+          "optional_modules_loaded": [
+            "numpy",
+            "scipy",
+            "colorspacious"
+          ]
+        },
+        {
+          "import_seconds": 0.06961750000482425,
+          "operation_seconds": 0.7856286999885924,
+          "optional_modules_loaded": [
+            "numpy",
+            "scipy",
+            "colorspacious"
+          ]
+        }
+      ]
+    }
+  },
+  "memory": {
+    "clearer8": {
+      "retained_traced_bytes": 7719742,
+      "peak_traced_bytes": 14285670
+    },
+    "spectral": {
+      "retained_traced_bytes": 15224816,
+      "peak_traced_bytes": 27410602
+    },
+    "all_families": {
+      "retained_traced_bytes": 27868896,
+      "peak_traced_bytes": 39557660
+    }
+  },
+  "warm": {
+    "clearer8_lookup": {
+      "median_seconds": 0.00048108000046340746,
+      "min_seconds": 0.0004681749996962026,
+      "max_seconds": 0.0008363750006537884,
+      "repeats": 5,
+      "operations_per_repeat": 20
+    },
+    "spectral_lookup": {
+      "median_seconds": 0.005641109999851323,
+      "min_seconds": 0.005164109999896027,
+      "max_seconds": 0.006043680000584572,
+      "repeats": 5,
+      "operations_per_repeat": 10
+    },
+    "palette_report_access": {
+      "median_seconds": 2.7399975806474686e-08,
+      "min_seconds": 2.7000001864507793e-08,
+      "max_seconds": 3.03999986499548e-08,
+      "repeats": 5,
+      "operations_per_repeat": 1000
+    },
+    "spectral_report_access": {
+      "median_seconds": 0.002736549999099225,
+      "min_seconds": 0.0024168400006601585,
+      "max_seconds": 0.0031890499987639485,
+      "repeats": 5,
+      "operations_per_repeat": 10
+    },
+    "palette_recipe": {
+      "median_seconds": 0.0011297899996861815,
+      "min_seconds": 0.0010981100000208243,
+      "max_seconds": 0.0012554500004625878,
+      "repeats": 5,
+      "operations_per_repeat": 20
+    },
+    "palette_json": {
+      "median_seconds": 0.0033153399999719113,
+      "min_seconds": 0.0032462300005136058,
+      "max_seconds": 0.0033843799988972022,
+      "repeats": 5,
+      "operations_per_repeat": 10
+    },
+    "spectral_json": {
+      "median_seconds": 0.0032551800017245115,
+      "min_seconds": 0.0031368600029964,
+      "max_seconds": 0.0035374400031287223,
+      "repeats": 5,
+      "operations_per_repeat": 5
+    },
+    "spectral_reversal": {
+      "median_seconds": 0.010220649998518638,
+      "min_seconds": 0.00960854000004474,
+      "max_seconds": 0.011204099998576567,
+      "repeats": 5,
+      "operations_per_repeat": 10
+    },
+    "spectral_7_bins": {
+      "median_seconds": 0.011701619997620583,
+      "min_seconds": 0.010124910000013188,
+      "max_seconds": 0.012038239999674261,
+      "repeats": 5,
+      "operations_per_repeat": 10
+    },
+    "sequential_4096_samples": {
+      "median_seconds": 0.01450039999326691,
+      "min_seconds": 0.014184599975124002,
+      "max_seconds": 0.0167451000015717,
+      "repeats": 5,
+      "operations_per_repeat": 1
+    },
+    "clearer_recipe_reload": {
+      "median_seconds": 0.0007135899999411776,
+      "min_seconds": 0.0007048600004054606,
+      "max_seconds": 0.0008979600010206923,
+      "repeats": 5,
+      "operations_per_repeat": 10
+    }
+  },
+  "profiles": {
+    "cold_clearer": [
+      {
+        "file": "C:\\Users\\local.cw43566\\Documents\\OtherResearch\\huevat\\src\\huevat\\categorical.py",
+        "line": 49,
+        "name": "categorical",
+        "calls": 1,
+        "self_seconds": 2.11e-05,
+        "cumulative_seconds": 0.0322427
+      },
+      {
+        "file": "C:\\Users\\local.cw43566\\Documents\\OtherResearch\\huevat\\src\\huevat\\categorical.py",
+        "line": 17,
+        "name": "_data",
+        "calls": 1,
+        "self_seconds": 0.0001061,
+        "cumulative_seconds": 0.029560700000000002
+      },
+      {
+        "file": "C:\\Users\\local.cw43566\\Documents\\OtherResearch\\huevat\\src\\huevat\\_data.py",
+        "line": 7,
+        "name": "load_data",
+        "calls": 1,
+        "self_seconds": 0.00014010000000000002,
+        "cumulative_seconds": 0.0294546
+      },
+      {
+        "file": "C:\\Users\\local.cw43566\\AppData\\Roaming\\uv\\python\\cpython-3.12-windows-x86_64-none\\Lib\\json\\__init__.py",
+        "line": 299,
+        "name": "loads",
+        "calls": 2,
+        "self_seconds": 1.3700000000000001e-05,
+        "cumulative_seconds": 0.013157400000000001
+      },
+      {
+        "file": "C:\\Users\\local.cw43566\\AppData\\Roaming\\uv\\python\\cpython-3.12-windows-x86_64-none\\Lib\\json\\decoder.py",
+        "line": 333,
+        "name": "decode",
+        "calls": 2,
+        "self_seconds": 1.6100000000000002e-05,
+        "cumulative_seconds": 0.012454400000000001
+      },
+      {
+        "file": "C:\\Users\\local.cw43566\\AppData\\Roaming\\uv\\python\\cpython-3.12-windows-x86_64-none\\Lib\\json\\decoder.py",
+        "line": 344,
+        "name": "raw_decode",
+        "calls": 2,
+        "self_seconds": 0.0124279,
+        "cumulative_seconds": 0.0124279
+      },
+      {
+        "file": "C:\\Users\\local.cw43566\\Documents\\OtherResearch\\huevat\\src\\huevat\\gradients.py",
+        "line": 53,
+        "name": "__post_init__",
+        "calls": 1,
+        "self_seconds": 7.100000000000001e-06,
+        "cumulative_seconds": 0.0024172
+      },
+      {
+        "file": "C:\\Users\\local.cw43566\\Documents\\OtherResearch\\huevat\\src\\huevat\\gradients.py",
+        "line": 14,
+        "name": "_freeze",
+        "calls": 3968,
+        "self_seconds": 0.0011817000000000002,
+        "cumulative_seconds": 0.0020272000000000003
+      },
+      {
+        "file": "C:\\Users\\local.cw43566\\Documents\\OtherResearch\\huevat\\src\\huevat\\gradients.py",
+        "line": 18,
+        "name": "<genexpr>",
+        "calls": 3322,
+        "self_seconds": 0.0003977,
+        "cumulative_seconds": 0.0017446
+      },
+      {
+        "file": "C:\\Users\\local.cw43566\\Documents\\OtherResearch\\huevat\\src\\huevat\\gradients.py",
+        "line": 22,
+        "name": "_thaw",
+        "calls": 357,
+        "self_seconds": 0.0001354,
+        "cumulative_seconds": 0.00038290000000000004
+      },
+      {
+        "file": "C:\\Users\\local.cw43566\\Documents\\OtherResearch\\huevat\\src\\huevat\\space.py",
+        "line": 112,
+        "name": "from_hex",
+        "calls": 9,
+        "self_seconds": 1.45e-05,
+        "cumulative_seconds": 0.0002221
+      },
+      {
+        "file": "C:\\Users\\local.cw43566\\Documents\\OtherResearch\\huevat\\src\\huevat\\gradients.py",
+        "line": 109,
+        "name": "background_rgb",
+        "calls": 1,
+        "self_seconds": 1.2000000000000002e-06,
+        "cumulative_seconds": 0.00018920000000000002
+      },
+      {
+        "file": "C:\\Users\\local.cw43566\\Documents\\OtherResearch\\huevat\\src\\huevat\\gradients.py",
+        "line": 82,
+        "name": "__post_init__",
+        "calls": 1,
+        "self_seconds": 4.3e-06,
+        "cumulative_seconds": 3.85e-05
+      },
+      {
+        "file": "C:\\Users\\local.cw43566\\Documents\\OtherResearch\\huevat\\src\\huevat\\space.py",
+        "line": 116,
+        "name": "<genexpr>",
+        "calls": 36,
+        "self_seconds": 1.09e-05,
+        "cumulative_seconds": 1.09e-05
+      },
+      {
+        "file": "C:\\Users\\local.cw43566\\AppData\\Roaming\\uv\\python\\cpython-3.12-windows-x86_64-none\\Lib\\json\\__init__.py",
+        "line": 244,
+        "name": "detect_encoding",
+        "calls": 1,
+        "self_seconds": 5e-06,
+        "cumulative_seconds": 6.8e-06
+      },
+      {
+        "file": "C:\\Users\\local.cw43566\\Documents\\OtherResearch\\huevat\\src\\huevat\\gradients.py",
+        "line": 122,
+        "name": "_request_options",
+        "calls": 1,
+        "self_seconds": 2.4000000000000003e-06,
+        "cumulative_seconds": 5.8e-06
+      },
+      {
+        "file": "C:\\Users\\local.cw43566\\Documents\\OtherResearch\\huevat\\.venv\\Lib\\site-packages\\_virtualenv.py",
+        "line": 51,
+        "name": "find_spec",
+        "calls": 12,
+        "self_seconds": 4.3e-06,
+        "cumulative_seconds": 4.3e-06
+      },
+      {
+        "file": "C:\\Users\\local.cw43566\\Documents\\OtherResearch\\huevat\\src\\huevat\\gradients.py",
+        "line": 103,
+        "name": "_finite",
+        "calls": 1,
+        "self_seconds": 2.0000000000000003e-06,
+        "cumulative_seconds": 3e-06
+      },
+      {
+        "file": "C:\\Users\\local.cw43566\\Documents\\OtherResearch\\huevat\\src\\huevat\\families.py",
+        "line": 30,
+        "name": "_count",
+        "calls": 1,
+        "self_seconds": 1.6000000000000001e-06,
+        "cumulative_seconds": 2.4000000000000003e-06
+      }
+    ],
+    "spectral_report": [
+      {
+        "function": "C:/Users/local.cw43566/Documents/OtherResearch/huevat/tools/profile_project.py:86:<lambda>",
+        "primitive_calls": 1,
+        "total_calls": 1,
+        "self_seconds": 0.00023080000000000003,
+        "cumulative_seconds": 0.11527390000000001
+      },
+      {
+        "function": "huevat/families.py:99:report",
+        "primitive_calls": 10,
+        "total_calls": 10,
+        "self_seconds": 0.0004001,
+        "cumulative_seconds": 0.11504310000000001
+      },
+      {
+        "function": "huevat/gradients.py:22:_thaw",
+        "primitive_calls": 70,
+        "total_calls": 97350,
+        "self_seconds": 0.030277300000000004,
+        "cumulative_seconds": 0.0739663
+      },
+      {
+        "function": "huevat/gradients.py:65:to_dict",
+        "primitive_calls": 20,
+        "total_calls": 20,
+        "self_seconds": 8.200000000000001e-06,
+        "cumulative_seconds": 0.06596310000000001
+      },
+      {
+        "function": "huevat/gradients.py:191:report",
+        "primitive_calls": 10,
+        "total_calls": 10,
+        "self_seconds": 2.4e-05,
+        "cumulative_seconds": 0.055331700000000004
+      },
+      {
+        "function": "huevat/gradients.py:53:__post_init__",
+        "primitive_calls": 20,
+        "total_calls": 20,
+        "self_seconds": 5.7100000000000006e-05,
+        "cumulative_seconds": 0.0442337
+      },
+      {
+        "function": "huevat/gradients.py:14:_freeze",
+        "primitive_calls": 40,
+        "total_calls": 89590,
+        "self_seconds": 0.028258000000000002,
+        "cumulative_seconds": 0.0404911
+      },
+      {
+        "function": "huevat/gradients.py:18:<genexpr>",
+        "primitive_calls": 10120,
+        "total_calls": 13160,
+        "self_seconds": 0.0017965000000000001,
+        "cumulative_seconds": 0.0354649
+      },
+      {
+        "function": "huevat/families.py:35:proxy_recipe",
+        "primitive_calls": 10,
+        "total_calls": 10,
+        "self_seconds": 2.71e-05,
+        "cumulative_seconds": 0.0024362000000000003
+      },
+      {
+        "function": "huevat/gradients.py:154:__post_init__",
+        "primitive_calls": 10,
+        "total_calls": 10,
+        "self_seconds": 2.18e-05,
+        "cumulative_seconds": 0.0019394000000000002
+      },
+      {
+        "function": "huevat/gradients.py:160:family",
+        "primitive_calls": 10,
+        "total_calls": 10,
+        "self_seconds": 5.9e-06,
+        "cumulative_seconds": 5.9e-06
+      }
+    ],
+    "clearer8_generation": [
+      {
+        "function": "C:/Users/local.cw43566/Documents/OtherResearch/huevat/tools/profile_project.py:88:<lambda>",
+        "primitive_calls": 1,
+        "total_calls": 1,
+        "self_seconds": 3.71e-05,
+        "cumulative_seconds": 0.5425564
+      },
+      {
+        "function": "huevat/design_categorical.py:79:generate",
+        "primitive_calls": 1,
+        "total_calls": 1,
+        "self_seconds": 0.0001359,
+        "cumulative_seconds": 0.5425193
+      },
+      {
+        "function": "scipy/optimize/_minimize.py:54:minimize",
+        "primitive_calls": 1,
+        "total_calls": 1,
+        "self_seconds": 8.510000000000001e-05,
+        "cumulative_seconds": 0.5213934
+      },
+      {
+        "function": "scipy/optimize/_slsqp_py.py:220:_minimize_slsqp",
+        "primitive_calls": 1,
+        "total_calls": 1,
+        "self_seconds": 0.0002561,
+        "cumulative_seconds": 0.5210162
+      },
+      {
+        "function": "scipy/optimize/_minimize.py:1074:__call__",
+        "primitive_calls": 1021,
+        "total_calls": 1021,
+        "self_seconds": 0.003562,
+        "cumulative_seconds": 0.49146530000000005
+      },
+      {
+        "function": "scipy/optimize/_numdiff.py:288:approx_derivative",
+        "primitive_calls": 40,
+        "total_calls": 40,
+        "self_seconds": 0.0011530000000000002,
+        "cumulative_seconds": 0.48488980000000004
+      },
+      {
+        "function": "scipy/optimize/_numdiff.py:904:__call__",
+        "primitive_calls": 980,
+        "total_calls": 980,
+        "self_seconds": 0.0021275,
+        "cumulative_seconds": 0.4775667
+      },
+      {
+        "function": "scipy/optimize/_numdiff.py:683:_dense_difference",
+        "primitive_calls": 40,
+        "total_calls": 40,
+        "self_seconds": 0.0023513,
+        "cumulative_seconds": 0.46180360000000004
+      },
+      {
+        "function": "huevat/design_categorical.py:99:constraints",
+        "primitive_calls": 523,
+        "total_calls": 523,
+        "self_seconds": 0.007094400000000001,
+        "cumulative_seconds": 0.4593901
+      },
+      {
+        "function": "scipy/optimize/_slsqp_py.py:599:_eval_con_normals",
+        "primitive_calls": 20,
+        "total_calls": 20,
+        "self_seconds": 0.00023170000000000002,
+        "cumulative_seconds": 0.4492278
+      },
+      {
+        "function": "scipy/optimize/_slsqp_py.py:354:cjac",
+        "primitive_calls": 20,
+        "total_calls": 20,
+        "self_seconds": 7.86e-05,
+        "cumulative_seconds": 0.44895850000000004
+      },
+      {
+        "function": "huevat/design_h3.py:88:_pair_data",
+        "primitive_calls": 523,
+        "total_calls": 523,
+        "self_seconds": 0.011503900000000001,
+        "cumulative_seconds": 0.4329945
+      },
+      {
+        "function": "huevat/evaluation.py:66:_lab",
+        "primitive_calls": 1045,
+        "total_calls": 1045,
+        "self_seconds": 0.0084997,
+        "cumulative_seconds": 0.2179522
+      },
+      {
+        "function": "huevat/space.py:32:srgb_to_oklab",
+        "primitive_calls": 37664,
+        "total_calls": 37664,
+        "self_seconds": 0.039025500000000005,
+        "cumulative_seconds": 0.2037951
+      },
+      {
+        "function": "huevat/evaluation.py:49:condition_colors",
+        "primitive_calls": 4200,
+        "total_calls": 4200,
+        "self_seconds": 0.0227739,
+        "cumulative_seconds": 0.1118259
+      },
+      {
+        "function": "huevat/space.py:12:_triple",
+        "primitive_calls": 37962,
+        "total_calls": 37962,
+        "self_seconds": 0.0362405,
+        "cumulative_seconds": 0.1077902
+      },
+      {
+        "function": "colorspacious/conversion.py:222:cspace_convert",
+        "primitive_calls": 541,
+        "total_calls": 541,
+        "self_seconds": 0.0004532,
+        "cumulative_seconds": 0.09736370000000001
+      },
+      {
+        "function": "colorspacious/transform_graph.py:579:__call__",
+        "primitive_calls": 541,
+        "total_calls": 541,
+        "self_seconds": 0.0020612,
+        "cumulative_seconds": 0.07924980000000001
+      },
+      {
+        "function": "colorspacious/conversion.py:85:_XYZ100_to_CIECAM02",
+        "primitive_calls": 541,
+        "total_calls": 541,
+        "self_seconds": 0.0005527,
+        "cumulative_seconds": 0.0554339
+      },
+      {
+        "function": "colorspacious/ciecam02.py:143:XYZ100_to_CIECAM02",
+        "primitive_calls": 541,
+        "total_calls": 541,
+        "self_seconds": 0.0235307,
+        "cumulative_seconds": 0.054881200000000005
+      },
+      {
+        "function": "scipy/optimize/_differentiable_functions.py:371:_update_grad",
+        "primitive_calls": 21,
+        "total_calls": 21,
+        "self_seconds": 6.340000000000001e-05,
+        "cumulative_seconds": 0.0362735
+      },
+      {
+        "function": "scipy/optimize/_differentiable_functions.py:35:__call__",
+        "primitive_calls": 20,
+        "total_calls": 20,
+        "self_seconds": 9.5e-05,
+        "cumulative_seconds": 0.036207800000000005
+      }
+    ]
+  },
+  "generation_seconds": {
+    "4": [
+      {
+        "wall_seconds": 0.5511048999906052,
+        "search_seconds": 0.5464852000004612,
+        "screen_pass": true,
+        "optimizer_runs": [
+          {
+            "start": 0,
+            "phase": "aesthetic-targets",
+            "success": true,
+            "iterations": 17,
+            "message": "Optimization terminated successfully",
+            "minimum_constraint_residual": -1.2346776379068558e-11,
+            "auxiliary_minimum": 0.043
+          },
+          {
+            "start": 1,
+            "phase": "aesthetic-targets",
+            "success": true,
+            "iterations": 36,
+            "message": "Optimization terminated successfully",
+            "minimum_constraint_residual": -9.027958242091572e-11,
+            "auxiliary_minimum": 0.043
+          },
+          {
+            "start": 2,
+            "phase": "aesthetic-targets",
+            "success": true,
+            "iterations": 31,
+            "message": "Optimization terminated successfully",
+            "minimum_constraint_residual": -3.053009234310622e-12,
+            "auxiliary_minimum": 0.043
+          }
+        ]
+      },
+      {
+        "wall_seconds": 0.5569899999827612,
+        "search_seconds": 0.5523919000115711,
+        "screen_pass": true,
+        "optimizer_runs": [
+          {
+            "start": 0,
+            "phase": "aesthetic-targets",
+            "success": true,
+            "iterations": 17,
+            "message": "Optimization terminated successfully",
+            "minimum_constraint_residual": -1.2346776379068558e-11,
+            "auxiliary_minimum": 0.043
+          },
+          {
+            "start": 1,
+            "phase": "aesthetic-targets",
+            "success": true,
+            "iterations": 36,
+            "message": "Optimization terminated successfully",
+            "minimum_constraint_residual": -9.027958242091572e-11,
+            "auxiliary_minimum": 0.043
+          },
+          {
+            "start": 2,
+            "phase": "aesthetic-targets",
+            "success": true,
+            "iterations": 31,
+            "message": "Optimization terminated successfully",
+            "minimum_constraint_residual": -3.053009234310622e-12,
+            "auxiliary_minimum": 0.043
+          }
+        ]
+      }
+    ],
+    "8": [
+      {
+        "wall_seconds": 1.361430199991446,
+        "search_seconds": 1.3566360999830067,
+        "screen_pass": true,
+        "optimizer_runs": [
+          {
+            "start": 0,
+            "phase": "aesthetic-targets",
+            "success": true,
+            "iterations": 20,
+            "message": "Optimization terminated successfully",
+            "minimum_constraint_residual": 1.0928757898653885e-12,
+            "auxiliary_minimum": 0.043
+          },
+          {
+            "start": 1,
+            "phase": "aesthetic-targets",
+            "success": true,
+            "iterations": 37,
+            "message": "Optimization terminated successfully",
+            "minimum_constraint_residual": -3.7848335576740055e-12,
+            "auxiliary_minimum": 0.043
+          },
+          {
+            "start": 2,
+            "phase": "aesthetic-targets",
+            "success": true,
+            "iterations": 46,
+            "message": "Optimization terminated successfully",
+            "minimum_constraint_residual": -1.20570220474292e-13,
+            "auxiliary_minimum": 0.043
+          }
+        ]
+      },
+      {
+        "wall_seconds": 1.413737900002161,
+        "search_seconds": 1.4087773000064772,
+        "screen_pass": true,
+        "optimizer_runs": [
+          {
+            "start": 0,
+            "phase": "aesthetic-targets",
+            "success": true,
+            "iterations": 20,
+            "message": "Optimization terminated successfully",
+            "minimum_constraint_residual": 1.0928757898653885e-12,
+            "auxiliary_minimum": 0.043
+          },
+          {
+            "start": 1,
+            "phase": "aesthetic-targets",
+            "success": true,
+            "iterations": 37,
+            "message": "Optimization terminated successfully",
+            "minimum_constraint_residual": -3.7848335576740055e-12,
+            "auxiliary_minimum": 0.043
+          },
+          {
+            "start": 2,
+            "phase": "aesthetic-targets",
+            "success": true,
+            "iterations": 46,
+            "message": "Optimization terminated successfully",
+            "minimum_constraint_residual": -1.20570220474292e-13,
+            "auxiliary_minimum": 0.043
+          }
+        ]
+      }
+    ],
+    "12": [
+      {
+        "wall_seconds": 4.238864099985221,
+        "search_seconds": 4.233273999998346,
+        "screen_pass": true,
+        "optimizer_runs": [
+          {
+            "start": 0,
+            "phase": "aesthetic-targets",
+            "success": true,
+            "iterations": 50,
+            "message": "Optimization terminated successfully",
+            "minimum_constraint_residual": -1.7191109646930158e-13,
+            "auxiliary_minimum": 0.043
+          },
+          {
+            "start": 1,
+            "phase": "aesthetic-targets",
+            "success": true,
+            "iterations": 65,
+            "message": "Optimization terminated successfully",
+            "minimum_constraint_residual": -9.381329046931342e-12,
+            "auxiliary_minimum": 0.043
+          },
+          {
+            "start": 2,
+            "phase": "aesthetic-targets",
+            "success": true,
+            "iterations": 43,
+            "message": "Optimization terminated successfully",
+            "minimum_constraint_residual": -3.771198631152828e-12,
+            "auxiliary_minimum": 0.043
+          }
+        ]
+      },
+      {
+        "wall_seconds": 4.126085700001568,
+        "search_seconds": 4.1195757999958005,
+        "screen_pass": true,
+        "optimizer_runs": [
+          {
+            "start": 0,
+            "phase": "aesthetic-targets",
+            "success": true,
+            "iterations": 50,
+            "message": "Optimization terminated successfully",
+            "minimum_constraint_residual": -1.7191109646930158e-13,
+            "auxiliary_minimum": 0.043
+          },
+          {
+            "start": 1,
+            "phase": "aesthetic-targets",
+            "success": true,
+            "iterations": 65,
+            "message": "Optimization terminated successfully",
+            "minimum_constraint_residual": -9.381329046931342e-12,
+            "auxiliary_minimum": 0.043
+          },
+          {
+            "start": 2,
+            "phase": "aesthetic-targets",
+            "success": true,
+            "iterations": 43,
+            "message": "Optimization terminated successfully",
+            "minimum_constraint_residual": -3.771198631152828e-12,
+            "auxiliary_minimum": 0.043
+          }
+        ]
+      }
+    ]
+  },
+  "resource_sizes_bytes": {
+    "categorical-v2.json": 3338863,
+    "families-v1.json": 6832504,
+    "machado-v1.json": 8960,
+    "manifest-v1.json": 611,
+    "ordered-v1.json": 3526803,
+    "profiles-v1.json": 3014,
+    "references-v1.json": 158326
+  },
+  "resource_sha256_lf": {
+    "references-v1.json": "6d6dacb6d826a2fc60abb8d217078c39fdf3184593912648254891273eb498bb",
+    "machado-v1.json": "c4d8e9ad439d572b37d2c6e6d3d490c2fd7ae290a180625c458c12c47a591444",
+    "profiles-v1.json": "0938561bf7e1551814a8ba58c4e883858bcc91a8c84e6051e20559c1e24f318a",
+    "ordered-v1.json": "1e0a971c5602f457dd569eab0dbace461214e1b8f6148fb528eafafba45147ab",
+    "families-v1.json": "79bb585eceb238f61ba454c5e7e7f5c8195d413077e7aa93d873994c0efddcc0",
+    "categorical-v2.json": "f690180199f065391752e550ca5ac605c9f1909019570fb67835b66bfdd9e390"
+  },
+  "distribution_sizes_bytes": {
+    "huevat-0.1.0.dev0-py3-none-any.whl": 1334062,
+    "huevat-0.1.0.dev0.tar.gz": 1451472
+  },
+  "json_sizes_bytes": {
+    "palette8_envelope": 142683,
+    "spectral_envelope": 161309
+  }
+}

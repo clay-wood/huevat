@@ -21,7 +21,7 @@ def test_joint_categorical_search_is_repeatable_and_records_auxiliary_variable(b
 
 
 def test_preferences_are_adjustable_and_custom_background_is_audited():
-    p=hv.categorical(4,colors=['#0072b2']*4,background='#202a30',starts=2,max_seconds=60)
+    p=hv.categorical(4,colors=['#0072b2']*4,background='#202a30',style='max-separation',starts=2,max_seconds=60)
     assert p.report.screen_pass and len(set(p))==4
     assert len(p.report['preferred_changes'])==4
     assert all(hv.contrast(c,hv.from_hex('#202a30'))>=3 for c in p.rgb)

@@ -5,7 +5,8 @@ scientific palettes and gradients. **H0 supplies the numerical foundation;
 H1 supplies published references, provisional quality profiles and a baseline
 study; H2 adds sequential/diverging construction; H3 adds count-specific
 categorical, multi-hue sequential and Spectral-like construction.**
-Prepared designs are experimental; approved defaults remain H4 in
+The categorical default uses the user-selected **Clearer** design. Prepared
+designs remain experimental; approved defaults remain H4 in
 [project_plan.md](project_plan.md).
 
 The base package uses only the Python standard library. It needs no browser,
@@ -157,7 +158,9 @@ restored = hv.load_recipe(signed.to_json())
 ```
 
 Categorical counts 2–12 on each standard background are independently optimized
-prepared designs. A different count can change every color. Multi-hue sequential
+Clearer prepared designs. They satisfy the numerical requirements, then preserve
+coherent blue/teal/ochre/coral/purple targets. A different count can adjust colors.
+Multi-hue sequential
 and Spectral-like paths pass the same H1 screens as their H2 counterparts; each
 chromatic arm also follows an ordered hue route. Spectral paths have two
 multi-hue arms and a shared neutral at `t=.5`.
@@ -189,9 +192,26 @@ uv run --locked --extra design --extra research python tools/build_families.py -
 uv run --locked --extra design --extra research python tools/build_families.py
 ```
 
-The original H3 categorical appearance was rejected during user review. The
-[categorical appearance study](research/categorical-aesthetics-v1/index.html)
-compares Balanced, Softer and Clearer alternatives at 4/6/8 colors on both
-backgrounds, all under the unchanged H1 screens. See
-[the design options and methods](docs/CATEGORICAL_AESTHETICS.md). These are
-review candidates; the existing prepared tables remain the recorded H3 baseline.
+The user selected **Clearer** after the
+[categorical appearance study](research/categorical-aesthetics-v1/index.html).
+See the [revised H3 gallery](research/categorical-v2/index.html) and
+[Clearer methods and migration notes](docs/METHODS_CATEGORICAL_V2.md).
+The original categorical construction remains available explicitly:
+
+```python
+current = hv.categorical(6)  # Clearer, h3-categorical-v2
+original = hv.categorical(6, style="max-separation")
+```
+
+Saved H2/H3 recipes still load with their original colors. New categorical
+recipes carry a separate algorithm version and immutable identifier. This
+revision preserves all H1 screening thresholds and all H0–H2 implementation/data.
+
+```powershell
+uv run --locked --extra design --extra research python tools/build_clearer.py --check
+```
+
+The [project review](docs/PROJECT_REVIEW.md) records measured bottlenecks,
+usability improvements and proposed features. Reproduce its operational
+measurements with `tools/profile_project.py`; raw results are retained in
+`research/project-review-v1/benchmarks.json`.

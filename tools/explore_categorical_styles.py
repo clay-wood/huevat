@@ -119,7 +119,7 @@ def render(data):
             for col,n in enumerate((4,6,8)):
                 ax=axes[row,col]
                 if style=='original':
-                    rgb=np.array(hv.categorical(n,background=background).rgb)
+                    rgb=np.array(hv.categorical(n,background=background,style='max-separation').rgb)
                     passing=True
                 else:
                     entry=data['candidates'][f'{style}/{background}/{n}']

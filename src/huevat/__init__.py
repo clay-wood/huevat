@@ -24,7 +24,8 @@ from .references import reference, references, load_profile
 from .gradients import (Gradient, Palette, QualityReport, QualityError,
                         SearchExhaustedError, ConstraintConflictError,
                         sequential, diverging)
-from .families import categorical, multihue, spectral, load_recipe
+from .families import multihue, spectral
+from .categorical import categorical, load_recipe
 
 __version__ = "0.1.0.dev0"
 
