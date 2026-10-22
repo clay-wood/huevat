@@ -21,8 +21,9 @@ clean-install checks pass. The independent private repository is
 
 ## H1: reference study and provisional quality profiles
 
-Implemented and locally verified; remote CI verification is in progress.
-Thresholds were committed before evaluation in `90e7b60`.
+H1 is complete. Thresholds were committed before evaluation in `90e7b60`;
+the implementation and baseline artifacts are in
+`b67534618da9eb8ec38a98b51f9abc7041ca9943`.
 
 | Task | Evidence |
 | --- | --- |
@@ -40,6 +41,16 @@ retained artifact hashes passed; the final wheel built from the source
 distribution and passed offline clean pip and uv installation checks. The
 installed base package loaded references/profiles and intermediate-severity
 simulation without research, plotting or browser packages.
+
+All eight CI jobs passed at `b675346`: six core jobs on Windows/Linux with
+Python 3.10/3.12/3.14, and two research jobs on Windows/Linux with Python 3.12.
+The research jobs ran all 127 tests, reproduced the frozen corpus and all
+296 numerical cases, and verified the retained artifact hashes:
+[H1 validation run 39828793418](https://github.com/clay-wood/huevat/actions/runs/39828793418).
+The code/source corpus is reproducible across these environments; rendered
+PNG byte identity is not asserted across different graphics-tool versions.
+The baseline resource wheel is approximately 68 KB; gallery assets remain
+separate from the lightweight installed package.
 
 The initial baseline retains all failures. In normal-vision floating-point
 paths, Spectral fails the neutral-center and arm-balance goals; ColorCET fire
