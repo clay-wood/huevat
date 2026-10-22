@@ -62,7 +62,8 @@ No thresholds were relaxed and no source palette was changed to pass them.
 
 ## H2: sequential/diverging construction and immutable sampling
 
-Implemented and locally verified; remote CI verification is in progress.
+H2 is complete at implementation commit
+`8fa85029432c0118e6a5ab30802f091b2b17a6dc`.
 The H1 reference study, evaluator and frozen thresholds remain unchanged.
 
 | Task | Evidence |
@@ -96,6 +97,14 @@ example, the light diverging path's 8-bin selection fails while its separate
 
 H2 rendering/layout has been checked. Human perceptual review of these new
 designs remains pending; `approved_default` stays false.
+
+All eight CI jobs passed at the implementation commit: six core jobs on
+Windows/Linux with Python 3.10/3.12/3.14 and two design/research jobs with
+Python 3.12. The research jobs passed all 159 tests, reproduced the original
+H1 corpus/baseline and reproduced all H2 cubic and discrete evidence:
+[H2 validation run 39842172702](https://github.com/clay-wood/huevat/actions/runs/39842172702).
+Core jobs independently checked browser-free offline wheel installation,
+prepared sampling and recipe reloading without optional dependencies.
 
 ## Boundaries
 
