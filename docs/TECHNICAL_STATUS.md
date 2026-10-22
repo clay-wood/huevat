@@ -63,9 +63,10 @@ tests, and this record of local verification. Refer to `git log --reverse` for
 that commit; the next status revision will cite it directly with remote CI
 results.
 
-The first CI run passed numerical tests on Python 3.10/3.12/3.14 but exposed
-an installation-check portability issue: uv's Python 3.10 could not bootstrap
-pip through `ensurepip`. The check now creates an empty environment and uses
-development pip's `--python` option to install the wheel into it offline.
-This change affects verification tooling only; pip remains a development
+CI exposed an installation-check portability issue: copying uv's managed Linux
+Python 3.10 executable into a standard-library-created virtual environment
+lost the standard-library path. The check now uses uv to provision both empty
+environments and development pip's `--python` option to install into the pip
+target offline. Package installation is still tested separately with pip and
+uv. This affects verification tooling only; pip remains a development
 dependency. A complete rerun is required before recording CI success.

@@ -11,7 +11,6 @@ import subprocess
 import sys
 import tarfile
 import tempfile
-import venv
 import zipfile
 from email.parser import BytesParser
 
@@ -80,9 +79,9 @@ def main():
     with tempfile.TemporaryDirectory(prefix="huevat-install-") as temporary:
         work = Path(temporary)
         pip_env, uv_env = work / "pip-env", work / "uv-env"
-        # Target a pip-free environment rather than depending on ensurepip,
-        # which is not usable in every uv-managed Python distribution.
-        venv.EnvBuilder(with_pip=False).create(pip_env)
+        # uv preserves the managed interpreter's library paths on all platforms.
+        # Install with development pip into this otherwise empty environment.
+        run([uv, "venv", "--offline", "--python", sys.executable, pip_env], work)
         run([sys.executable, "-m", "pip", "--python", python_at(pip_env),
              "install", "--no-index", "--no-deps", wheel], work)
         records["pip"] = json.loads(run([python_at(pip_env), "-I", "-c", SMOKE], work))
