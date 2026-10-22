@@ -3,8 +3,9 @@
 Huevat is an independent Python library under development for constrained
 scientific palettes and gradients. **H0 supplies the numerical foundation;
 H1 supplies published references, provisional quality profiles and a baseline
-study; H2 adds sequential/diverging construction and immutable sampling.**
-Categorical/multi-hue generation and approved defaults remain H3-H4 in
+study; H2 adds sequential/diverging construction; H3 adds count-specific
+categorical, multi-hue sequential and Spectral-like construction.**
+Prepared designs are experimental; approved defaults remain H4 in
 [project_plan.md](project_plan.md).
 
 The base package uses only the Python standard library. It needs no browser,
@@ -26,7 +27,7 @@ uv run --locked python tools/check_install.py
 3.12. Python 3.10 or newer is supported. `uv sync --locked --no-dev` installs
 only the base package. For an ordinary pip environment, use `python -m pip
 install .` or install the built wheel. Install `huevat[design]` for custom
-gradient construction and independent audits; normal prepared lookup and
+palette/gradient construction and independent audits; normal prepared lookup and
 sampling need no optional dependencies.
 
 ## Numerical interface
@@ -144,3 +145,46 @@ See the [H2 gallery](research/ordered-v1/index.html) and
 serialization rules and measured budgets. Unknown custom recipes are
 revalidated by default; `load_recipe(data, validate=False)` permits lightweight
 inspection with an explicitly unvalidated screening status.
+
+## Categorical and multi-hue designs (H3)
+
+```python
+colors = hv.categorical(6, background="light")
+gradient = hv.multihue(background="dark")
+signed = hv.spectral(background="light")
+colors = signed.discrete(5)  # This exact count is independently screened
+restored = hv.load_recipe(signed.to_json())
+```
+
+Categorical counts 2–12 on each standard background are independently optimized
+prepared designs. A different count can change every color. Multi-hue sequential
+and Spectral-like paths pass the same H1 screens as their H2 counterparts; each
+chromatic arm also follows an ordered hue route. Spectral paths have two
+multi-hue arms and a shared neutral at `t=.5`.
+
+These lookups, sampling, reversal, cached bin validation and recipe round trips
+need only the base package. Custom categorical counts (supported search sizes
+2–64), preferences, backgrounds, contexts or search options require `huevat[design]`:
+
+```python
+custom = hv.categorical(4, colors=("#0072b2", "#009e73", "#e69f00", "#d55e00"),
+                        background="#202a30", starts=2, max_seconds=60)
+route = hv.multihue(colors=("#0072b2", "#009e73"), starts=2, max_seconds=60)
+```
+
+Supplied colors are adjustable preferences. Reports record every change, all
+screening criteria, numerical versions, seed and completed optimizer runs.
+Spectral preferences form an even-length sequence: the first half belongs to
+the left arm, the second to the right, in traversal order. A search can fail;
+it never returns an unapproved candidate as a passing design.
+
+The [H3 gallery](research/families-v1/index.html) includes every prepared count,
+matched thin-line/small-marker panels, distance matrices, all screened CVD
+conditions, grayscale and known spatial fields on both backgrounds. See
+[H3 methods](docs/METHODS_H3.md) for construction limits and reproduction:
+
+```powershell
+uv run --locked --extra design --extra research python tools/build_families.py --check
+# Re-optimize and regenerate the experimental tables and offline gallery:
+uv run --locked --extra design --extra research python tools/build_families.py
+```

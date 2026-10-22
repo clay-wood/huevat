@@ -106,10 +106,54 @@ H1 corpus/baseline and reproduced all H2 cubic and discrete evidence:
 Core jobs independently checked browser-free offline wheel installation,
 prepared sampling and recipe reloading without optional dependencies.
 
+## H3: categorical and multi-hue/Spectral construction
+
+H3 is implemented. Its numerical gates pass on both backgrounds; H1/H2
+sources, profiles and prepared designs remain frozen.
+
+| Task | Evidence |
+| --- | --- |
+| Count-specific categorical search | Joint 3n RGB coordinates plus auxiliary minimum-distance variable; deterministic multistart SLSQP with explicit contrast, range, Oklab and CAM02-UCS constraints |
+| Prepared categories | 22 independently optimized palettes: every count 2–12, light and dark; full float/u8 pair matrices and grayscale audits |
+| Multi-hue sequential | Smooth rotating cubic spine; ordered hue and lightness, H1 local-contrast/spatial-feature gates and dense CVD order audit |
+| Spectral-like construction | Two multi-hue arms with one shared Cartesian neutral and C1 join; unchanged H1 center, arm-order, span, balance and separation criteria |
+| Exact discrete counts | All counts below conservative path-length bounds audited in both contexts, including failures; no silent dropping of classes |
+| Lightweight operation | All new prepared lookups, sampling, reversal and JSON reloads work with every optional import blocked |
+| Reproduction and failures | Completed count/path searches repeat; custom backgrounds/preferences are audited; exhausted budgets never claim infeasibility |
+| Complete gallery | `research/families-v1/index.html`; 18 300-DPI panels, all count legends, matched lines/marks, CVD, grayscale, distance matrices and spatial/signed fields; links to H1/H2 comparisons |
+
+Local test suite: **190 passed** on Windows/Python 3.12.14. H1's 296 cases
+and all H2 numerical/discrete evidence independently reproduce. H3's final
+resource/source/artifact checks reproduce all 22 categorical reports and all
+four ordered recipes, continuous/dense audits and cached bin selections.
+Clean offline pip and uv installs pass outside the checkout with no optional
+packages installed. The wheel is approximately 895 KB and has zero base
+requirements. Full recipes, reports, source hashes and
+per-count generation timings are retained in `families-v1.json` and the gallery
+results. Human perceptual review remains pending; every approved-default flag
+is false.
+
+The custom H3 budget is four starts / 30 seconds. Prepared tables were built
+with two completed starts and a 120-second safety budget, with actual measured
+times retained per family/count. Deadlines are cooperative and may overrun by
+one audit call. Search bounds restrict the route family and background contrast
+branch; failed searches do not prove that a different parameterization is
+impossible. H3 adds a declared 20-degree hue-route construction rule while
+leaving every H1 profile threshold unchanged. See `METHODS_H3.md`.
+
+On this host the two-start categorical searches measured approximately
+.13–4.2 seconds by count/background; multi-hue sequential searches measured
+4.5–4.7 seconds and Spectral searches 7.6–10.6 seconds. A separate clean process
+measured approximately 76 ms core import, 75 ms for the three H3 cold lookups
+together and 16 ms for 4,096 cubic samples. A separate traced-memory run peaked
+at approximately 27.5 MB for import, categorical lookup and Spectral lookup.
+These are host measurements, not performance guarantees. No optional numerical,
+rendering or browser modules loaded during the core benchmark.
+
 ## Boundaries
 
-H3-H4 remain unimplemented: categorical and multi-hue/Spectral construction,
-accepted defaults and the complete export/migration layer are later work.
+H4 remains: reviewed and accepted defaults and the complete export/migration
+layer are later work. All construction families are now represented.
 H1 reference sampling remains an explicit finite-grid study adaptation. H2
 certifies numerical properties of complete cubic paths, while perceptual/CVD
 screening remains finite-grid evidence. `design` contains optional generation
@@ -151,6 +195,8 @@ uv run --locked --extra research python tools/build_baseline.py --check
 # H2 optional construction and prepared-evidence reproduction:
 uv sync --locked --extra design --extra research
 uv run --locked --extra design --extra research python tools/build_ordered.py --check
+# H3 optional construction and prepared-evidence reproduction:
+uv run --locked --extra design --extra research python tools/build_families.py --check
 ```
 
 `tools/check_install.py` checks distribution contents and installs the wheel

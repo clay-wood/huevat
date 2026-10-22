@@ -32,6 +32,14 @@ gradient = hv.diverging(background='dark')
 assert gradient.report.screen_pass
 assert len(gradient.discrete(7)) == 7
 assert hv.load_recipe(gradient.to_json()).at(.25) == gradient.at(.25)
+palette = hv.categorical(8, background='dark')
+assert len(palette) == 8 and palette.report.screen_pass
+assert hv.load_recipe(palette.to_json()).colors == palette.colors
+for factory in (hv.multihue, hv.spectral):
+    gradient = factory(background='dark')
+    assert gradient.report.screen_pass
+    assert hv.load_recipe(gradient.to_json()).at(.25) == gradient.at(.25)
+    assert gradient.reversed().at(.25) == gradient.at(.75)
 for forbidden in ('numpy', 'scipy', 'matplotlib', 'PIL', 'playwright', 'sketchplot', 'colorspacious', 'colorcet'):
     assert forbidden not in sys.modules, forbidden
     try:
@@ -71,7 +79,7 @@ def main():
         assert set(metadata.get_all("Provides-Extra", [])) == {"design", "research"}
         for filename in ("__init__.py", "space.py", "vision.py"):
             assert f"huevat/{filename}" in names
-        for filename in ("references-v1.json", "profiles-v1.json", "machado-v1.json", "manifest-v1.json", "ordered-v1.json"):
+        for filename in ("references-v1.json", "profiles-v1.json", "machado-v1.json", "manifest-v1.json", "ordered-v1.json", "families-v1.json"):
             assert f"huevat/data/{filename}" in names
         for license_name in ("LICENSE", "sketchplot-MIT.txt", "colorspacious-MIT.txt"):
             assert any(n.endswith('/' + license_name) for n in names), license_name

@@ -1,7 +1,7 @@
 """Huevat's dependency-free numerical foundation and published reference data.
 
-Sequential/diverging construction and immutable sampling are available.
-Categorical/multi-hue construction and reviewed defaults remain H3-H4.
+All construction families and immutable sampling are available.
+Prepared designs remain experimental pending H4 visual review.
 Importing this package never loads a renderer or runs optimization.
 """
 
@@ -23,7 +23,8 @@ from .vision import simulate
 from .references import reference, references, load_profile
 from .gradients import (Gradient, Palette, QualityReport, QualityError,
                         SearchExhaustedError, ConstraintConflictError,
-                        sequential, diverging, load_recipe)
+                        sequential, diverging)
+from .families import categorical, multihue, spectral, load_recipe
 
 __version__ = "0.1.0.dev0"
 
@@ -33,5 +34,6 @@ __all__ = [
     "srgb_to_oklab", "to_hex", "simulate",
     "reference", "references", "load_profile",
     "Gradient", "Palette", "QualityReport", "QualityError", "SearchExhaustedError",
-    "ConstraintConflictError", "sequential", "diverging", "load_recipe",
+    "ConstraintConflictError", "sequential", "diverging", "categorical", "multihue",
+    "spectral", "load_recipe",
 ]

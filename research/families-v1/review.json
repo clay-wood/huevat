@@ -1,0 +1,95 @@
+{
+  "status": "pending",
+  "panels": [
+    {
+      "file": "categorical-dark-4-distances.png",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "file": "categorical-dark-4.png",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "file": "categorical-dark-6-distances.png",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "file": "categorical-dark-6.png",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "file": "categorical-dark-8-distances.png",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "file": "categorical-dark-8.png",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "file": "categorical-dark-counts.png",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "file": "categorical-light-4-distances.png",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "file": "categorical-light-4.png",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "file": "categorical-light-6-distances.png",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "file": "categorical-light-6.png",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "file": "categorical-light-8-distances.png",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "file": "categorical-light-8.png",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "file": "categorical-light-counts.png",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "file": "multihue-dark.png",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "file": "multihue-light.png",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "file": "spectral-dark.png",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "file": "spectral-light.png",
+      "status": "pending",
+      "notes": ""
+    }
+  ]
+}
