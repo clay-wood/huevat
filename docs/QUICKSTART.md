@@ -33,6 +33,7 @@ for i, label in enumerate(labels):
     ax.plot(x, np.sin(x/2+i/3), color=colors[label], label=label)
 ax.legend()
 fig.savefig("six-series.png", dpi=180)
+series_fig = fig
 ```
 
 Clearer is the retained categorical default. Changing the category count can
@@ -125,11 +126,11 @@ unvalidated inspection. Imported report claims never grant a numerical pass.
 
 ```python
 from huevat import doctor
-scene = doctor.inspect(fig)
+scene = doctor.inspect(series_fig)
 closer, separation, simple = doctor.propose(scene)
 preview = doctor.preview(fig, separation, condition="grayscale")
 preview.savefig("proof.png")   # original untouched; no hidden pyplot windows
-change = doctor.apply(fig, separation)
+change = doctor.apply(series_fig, separation)
 change.undo()
 ```
 

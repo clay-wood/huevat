@@ -59,6 +59,17 @@ delivered contract and limitations. Browser rendering/interaction remains
 unverified. Frozen reports keep their original review flags; the explicit
 release registry role records the user's v0.1 policy separately.
 
+Implementation commit: `33891a53b0de6a8ad369d41168af16ae040be75e`.
+All eight cross-platform jobs passed:
+[v0.1.0 validation run 40033917895](https://github.com/clay-wood/huevat/actions/runs/40033917895).
+All six Windows/Linux Python 3.10/3.12/3.14 core jobs reproduce the release
+registry/exports, build the distributions and pass clean offline pip/uv installs.
+Both Python 3.12 research jobs passed all 301 tests, every retained milestone
+check, the release CSS/recipe checks and all three runnable native examples.
+Committed raw registry, implementation and release artifact hashes match their
+manifest, including JSON/CSS/HTML line endings. The working tree is clean after
+the final verification record; local distribution checksums are in `dist/`.
+
 ## H0: independent numerical foundation
 
 H0 is complete. Local and cross-platform numerical, packaging, provenance, and

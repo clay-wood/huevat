@@ -34,6 +34,11 @@ See [quick start](QUICKSTART.md), [API](API.md), [migration](MIGRATION.md),
 [verification status](TECHNICAL_STATUS.md) and the
 [release overview](../research/release-v1/index.html).
 
+Verification: 301 local tests and all eight Windows/Linux CI jobs passed at
+`33891a5`, including clean offline installs, every earlier evidence check,
+compact export/immutable-ID reproduction and the three native examples:
+[v0.1.0 validation](https://github.com/clay-wood/huevat/actions/runs/40033917895).
+
 Remaining research/extension work is explicit: human comparative studies and
 expanded collection adoption; complex layering, scalar-map/neighboring-region
 repairs; cyclic palettes; large-figure audit scaling and lazy historical
