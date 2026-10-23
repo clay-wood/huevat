@@ -26,7 +26,7 @@ dev = ["pytest>=8", "build>=1", "pip>=24"]
 where = ["src"]
 
 [tool.pytest.ini_options]
-testpaths = ["tests"]
+testpaths = ["tests/test_core.py", "tests/test_space.py", "tests/test_release.py", "tests/test_doctor.py"]
 addopts = "-ra"
 markers = ["research: optional reference study and independent-space audit"]
 

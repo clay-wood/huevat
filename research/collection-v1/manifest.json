@@ -15,7 +15,7 @@
     "estuary-light-conditions.png": "f14b2e0191892395a686d94836b5beb20b1fe6076c02482a54b75aac10f7e985",
     "highland-dark-conditions.png": "49382930354ce3eb2ee3a1e0c702b8ee969008b221e72d12bad923e2b510d525",
     "highland-light-conditions.png": "10983e5ee9966688088b2b5f741eec34664e7b1d06afb83e8f04cfbc8c09ad19",
-    "index.html": "0a2fe4453c8d647b36198afb542545bb3992dfe6d882424f5ce4cea52c28bbc8",
+    "index.html": "d84504f212ed06ec7b35b8329318b81793d834589745382df8441fffb120796e",
     "ink-dark-conditions.png": "54dce21c3d0d02b4bc19e953a1b7dcdb6e75bc568f757f1b317a14ecde7d735a",
     "ink-light-conditions.png": "40d2716a46ff19313616286841a5e0f113727c2c0fe33228845d264c7bbbd5df",
     "lagoon-dark-conditions.png": "f69a5c88d24877c1819318360214d52a984d298b808a621125439a99ee9c0a0c",
@@ -24,8 +24,8 @@
     "mineral-light-conditions.png": "52b60e671f83a125eb95b2cca25d67932545d07f10e49e948cb89389a80aa80b",
     "negative-controls.json": "8a281a7e1dc77ff8dc1a1820342a0a96137254e1058dd9785b0a4f4cb0f88687",
     "negative-controls.png": "c57fc26dee459cd541c067a34707c28d901513b0927089cb664361cdbe4ca5c6",
-    "overview-dark.png": "52ae898a19d7647746c167a082ae1a5c35d72218f9369bfffb88d7277ffc7f90",
-    "overview-light.png": "6f1bbc292946d54335a5a56fe043635a246fd9403ff0bdb55d5179c3ff6b7304",
+    "overview-dark.png": "2ed3f12baf03b6d26b96ddd7311f6abb4159bbc0c5f724148e3bd8399a6227a2",
+    "overview-light.png": "96be4b6778afe6d5daa7e53e955f5c62a53cc437869e854fab6d8ac07d4b42a3",
     "review.json": "e57ad067bb55df384df604b9c302f389bc72336b66a11d6674e3ba4e21e626e3",
     "rosewood-dark-conditions.png": "18d5d795321b5283c8a6b7710e0e5162fba0bb96e6605e86ac0bbea7ad1e925a",
     "rosewood-light-conditions.png": "da58935be71791bf4fc5a3e5824e8343b289408b0fba5155d505ffa2597ab041",
@@ -45,9 +45,16 @@
     "_collection_specs.py": "803f6c5213035cd59ce198f63d6f93aac5c11e677808fb1033f8c8d18780abd0",
     "catalog.py": "2cd75cebb823f786fa40735f654fa33a176e77d4bb90d595bade01cd6cd46279"
   },
+  "render_revisions": [
+    {
+      "previous_builder_sha256_lf": "3d1fd642023be37eb69c27bc94c6fdf6f91dc13e0424dec9cdee9c51242cee54",
+      "reason": "remove gray midpoint overlays; sampled colors and numerical evidence unchanged"
+    }
+  ],
   "resource_sha256_lf": "730943253b054d8103f2678c09b714151b6131a5436ef12b26b1413e41d2a4dd",
   "tool_sha256_lf": {
-    "build_collection.py": "3d1fd642023be37eb69c27bc94c6fdf6f91dc13e0424dec9cdee9c51242cee54",
-    "collection_fields.py": "4bbe1f129a1f96071aeae3c8baffd7e8c618b822b4b9807961253600785c0470"
+    "build_collection.py": "1bfa973e93d82c41a0ece2a499be4962f3505519ad5403fb4aa8602ea709ac0a",
+    "collection_fields.py": "4bbe1f129a1f96071aeae3c8baffd7e8c618b822b4b9807961253600785c0470",
+    "verify.py": "59b592da764c8447f444f2638d23950210c2074d397341cf401d745c57091059"
   }
 }

@@ -3,6 +3,12 @@
 The base package imports only the standard library. All generation, native
 rendering and figure edits are explicit. For first use see [QUICKSTART.md](QUICKSTART.md).
 
+Prepared factory requests reuse immutable runtime views. Reversal shares frozen
+source/evidence, and oriented `.report` reads are cached on that view. Calling
+`.to_dict()` still returns an independent mutable copy. Custom search requests
+and all numerical methods/recipe formats retain their original behavior. See
+[maintenance and profiling](MAINTENANCE.md).
+
 | Operation | Interface | Dependency/behavior |
 | --- | --- | --- |
 | Categorical | `categorical(n, background="light", style="clearer")` | Prepared counts 2–12 on both backgrounds; original style is `max-separation` |

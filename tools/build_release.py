@@ -81,7 +81,7 @@ def cases():
 
 
 def sources():
-    names = ('src/huevat/library.py','src/huevat/exports.py','src/huevat/__init__.py',
+    names = ('src/huevat/library.py','src/huevat/exports.py','src/huevat/__init__.py','src/huevat/_prepared.py',
              'tools/build_release.py','docs/METHODS_H4D.md')
     return {n:digest(ROOT/n) for n in names}
 

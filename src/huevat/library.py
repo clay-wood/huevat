@@ -47,16 +47,16 @@ def get_design(identifier):
     info = design_info(identifier)
     factory, background = info["factory"], info["background"]
     if factory == "categorical":
-        from .categorical import categorical
+        from . import categorical
         result = categorical(info["count"], background=background, style=info["style"])
     elif factory in ("sequential", "diverging"):
-        from .gradients import sequential, diverging
+        from . import sequential, diverging
         result = {"sequential": sequential, "diverging": diverging}[factory](background=background)
     elif factory in ("multihue", "spectral"):
-        from .families import multihue, spectral
+        from . import multihue, spectral
         result = {"multihue": multihue, "spectral": spectral}[factory](background=background)
     elif factory == "gradient":
-        from .catalog import gradient
+        from . import gradient
         result = gradient(info["name"], background=background)
     else: raise ValueError("Unsupported registry factory")
     body = result._recipe if hasattr(result, "_recipe") else result.report["recipe"]

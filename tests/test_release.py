@@ -15,6 +15,52 @@ HAS_DESIGN = importlib.util.find_spec('colorspacious') is not None
 research = pytest.mark.skipif(not HAS_DESIGN, reason='requires huevat[design]')
 
 
+def test_reusable_views_preserve_validation_and_nested_immutability():
+    for factory in (hv.sequential,hv.diverging,hv.multihue,hv.spectral):
+        source=factory();assert factory() is source
+        assert source.report is source.report
+        with pytest.raises(FrozenInstanceError):source.report=QualityReport({'screen_pass':False})
+        with pytest.raises(FrozenInstanceError):source.extra_setting=True
+        reverse=source.reversed()
+        assert reverse._recipe is source._recipe and reverse._discrete_records is source._discrete_records
+        assert reverse._report is source._report and reverse.report['reversed'] != source.report['reversed']
+        assert reverse.reversed().at(.27)==source.at(.27)
+        for context in ('filled-fields','data-marks'):
+            for n in hv.known_counts(source,context=context):
+                assert reverse.discrete(n,context=context).colors==source.discrete(n,context=context).colors[::-1]
+        with pytest.raises(TypeError):reverse._recipe['knots'][0]=.1
+        copy=source.report.to_dict();copy['screen_pass']=False
+        assert source.report.screen_pass
+        with pytest.raises(TypeError):source.report['checks'][0]['passed']=False
+    # A cache hit for integer defaults must not admit invalid float/bool types.
+    hv.spectral(starts=4)
+    with pytest.raises(ValueError):hv.spectral(starts=4.)
+    hv.categorical(4)
+    with pytest.raises(ValueError):hv.categorical(True)
+    from huevat.gradients import Gradient
+    g=hv.diverging();recipe=g.to_recipe()['recipe'];recipe.pop('reversed')
+    direct=Gradient(recipe,g._report,g._discrete_records);before=direct.at(.1)
+    recipe['segments'][0][0][0]=99
+    assert direct.at(.1)==before
+
+
+@research
+def test_collection_previews_have_no_overlay_lines(monkeypatch):
+    pytest.importorskip('matplotlib')
+    import importlib
+    tools=str(Path(__file__).resolve().parents[1]/'tools')
+    sys.path.insert(0,tools)
+    try:builder=importlib.import_module('build_collection')
+    finally:sys.path.remove(tools)
+    import matplotlib.pyplot as plt
+    def inspect_figure(fig,name):
+        assert len(fig.axes)==12
+        assert all(not ax.lines and len(ax.images)==1 for ax in fig.axes)
+        plt.close(fig)
+    monkeypatch.setattr(builder,'save',inspect_figure)
+    builder.overview('light');builder.overview('dark')
+
+
 def test_registry_roles_exact_hashes_and_immutable_cached_objects():
     assert len(hv.design_ids()) == 76
     assert {role:len(hv.design_ids(role=role)) for role in ('default','legacy','experimental')} == {'default':30,'legacy':22,'experimental':24}

@@ -21,7 +21,7 @@ from huevat.gradients import Gradient, QualityReport, fingerprint
 from huevat._discrete import screen_discrete
 from huevat.design import validate_gradient
 from huevat.evaluation import evaluate, condition_colors, gray_rgb
-from build_ordered import compact_compare
+from verify import compare as compact_compare
 from collection_fields import seismic,structure,terrain,atmosphere
 
 
@@ -167,9 +167,10 @@ def overview(bg):
         rgb=np.array([g.at(i/512) for i in range(513)])
         ax.imshow(shown(rgb[None,:,:],'normal'),aspect='auto',interpolation='nearest')
         ax.set_ylabel(name,rotation=0,ha='right',va='center',color=fg,fontsize=9)
-        if g.family=='diverging':ax.axvline(256,color='#888888',lw=.7)
+        # The neutral is part of the sampled colors; an overlaid reference
+        # line looks like a defect in the palette, especially in the overview.
         ax.set_xticks([]);ax.set_yticks([])
-    fig.suptitle(f'Twelve candidate routes · {bg} background · appearance review pending',color=fg,fontsize=12)
+    fig.suptitle(f'Twelve candidate routes Â· {bg} background Â· appearance review pending',color=fg,fontsize=12)
     save(fig,f'overview-{bg}.png')
 
 
@@ -186,7 +187,7 @@ def diagnostics(name,bg):
         display=ListedColormap(shown(np.array([g.at(i/512) for i in range(513)]),condition)/255)
         bar=fig.colorbar(__import__('matplotlib').cm.ScalarMappable(norm=norm,cmap=display),ax=ax,orientation='horizontal',fraction=.12,pad=.04)
         bar.ax.tick_params(colors=fg,labelsize=6)
-    fig.suptitle(f'{name.title()} · {bg} · {label}\nSame synthetic field/range; 8-bit output; numeric screens pass / visual review pending',color=fg,fontsize=10)
+    fig.suptitle(f'{name.title()} Â· {bg} Â· {label}\nSame synthetic field/range; 8-bit output; numeric screens pass / visual review pending',color=fg,fontsize=10)
     save(fig,f'{name}-{bg}-conditions.png')
 
 
@@ -200,7 +201,7 @@ def applications(bg):
     for ax,name in zip(axes[:2],('balance','strata')):
         g=hv.gradient(name,background=bg);rgb,cmap,norm=map_values(g,f['data'],-1,1,0)
         ax.imshow(shown(rgb,'normal'),extent=(0,12,2.4,0),aspect='auto',interpolation='nearest')
-        ax.set_title(name.title()+' · signed raster',fontsize=10);ax.set_xlabel('Distance (km)');ax.set_ylabel('Two-way time (s)')
+        ax.set_title(name.title()+' Â· signed raster',fontsize=10);ax.set_xlabel('Distance (km)');ax.set_ylabel('Two-way time (s)')
         bar=fig.colorbar(ScalarMappable(norm=norm,cmap=cmap),ax=ax,orientation='horizontal',fraction=.06)
         bar.set_label('Amplitude (a.u.)',color=fg,fontsize=8);bar.ax.tick_params(colors=fg,labelsize=7)
     ax=axes[2];g=hv.gradient('balance',background=bg)
@@ -210,8 +211,8 @@ def applications(bg):
         ax.fill_betweenx(f['time'],x,line,where=v>=0,color=g.at(.8),linewidth=0)
         ax.fill_betweenx(f['time'],x,line,where=v<0,color=g.at(.2),linewidth=0)
     ax.set_ylim(2.4,0);ax.set_xlim(0,12);ax.set_xlabel('Distance (km)');ax.set_ylabel('Two-way time (s)')
-    ax.set_title('Wiggles · positive / negative fill',fontsize=10)
-    fig.suptitle('Synthetic seismic · 25 Hz Ricker · dipping/faulted horizons · 18 ms thin bed · weak reflector\nPositive central lobe is positive reflectivity; downward time does not reverse polarity',color=fg,fontsize=10)
+    ax.set_title('Wiggles Â· positive / negative fill',fontsize=10)
+    fig.suptitle('Synthetic seismic Â· 25 Hz Ricker Â· dipping/faulted horizons Â· 18 ms thin bed Â· weak reflector\nPositive central lobe is positive reflectivity; downward time does not reverse polarity',color=fg,fontsize=10)
     save(fig,f'seismic-{bg}.png')
 
     f=terrain();z=f['data'];land=hv.gradient('highland',background=bg);water=hv.gradient('bathymetry',background=bg)
@@ -225,14 +226,14 @@ def applications(bg):
     shaded=LightSource(azdeg=315,altdeg=45).shade_rgb(rgb,lighting_surface,dx=80000/(z.shape[1]-1),dy=60000/(z.shape[0]-1),vert_exag=8,blend_mode='soft')
     shaded[~np.isfinite(z)]=.55
     fig,axes=plt.subplots(1,2,figsize=(10,5),layout='constrained');fg=style(fig,axes,bg)
-    for ax,image,title in zip(axes,(rgb,shaded),('Unshaded branches','Hillshade composite · separate review')):
+    for ax,image,title in zip(axes,(rgb,shaded),('Unshaded branches','Hillshade composite Â· separate review')):
         ax.imshow(shown(image,'normal'),origin='lower',extent=(0,80,0,60),interpolation='nearest')
         ax.contour(f['x'],f['y'],z,levels=[0],colors=fg,linewidths=.6)
         ax.set_title(title,fontsize=10);ax.set_xlabel('Distance (km)');ax.set_ylabel('Distance (km)')
     for cmap,norm,label in ((wc,wn,'Water depth (m below sea level)'),(lc,ln,'Land elevation (m above sea level)')):
         bar=fig.colorbar(ScalarMappable(norm=norm,cmap=cmap),ax=list(axes),orientation='horizontal',fraction=.055,pad=.06)
         bar.set_label(label,color=fg,fontsize=8);bar.ax.tick_params(colors=fg,labelsize=7)
-    fig.suptitle('Synthetic terrain · explicit sea level at 0 m · two independent sequential branches\nGray patch: missing data. Shading uses 8× vertical exaggeration; combined/shaded colors have no palette-profile pass.',color=fg,fontsize=10)
+    fig.suptitle('Synthetic terrain Â· explicit sea level at 0 m Â· two independent sequential branches\nGray patch: missing data. Shading uses 8Ã— vertical exaggeration; combined/shaded colors have no palette-profile pass.',color=fg,fontsize=10)
     save(fig,f'terrain-{bg}.png')
 
     f=atmosphere();fig,axes=plt.subplots(1,3,figsize=(11,4),layout='constrained');fg=style(fig,axes,bg)
@@ -246,8 +247,8 @@ def applications(bg):
         ax.set_title(label,fontsize=9);ax.set_xlabel('Distance (km)');ax.set_ylabel('Distance (km)')
         bar=fig.colorbar(ScalarMappable(norm=norm,cmap=cmap),ax=ax,orientation='horizontal',fraction=.10)
         bar.ax.tick_params(colors=fg,labelsize=7)
-    axes[1].legend(handles=[Patch(facecolor=(.9,.84,.7),label='No signal (≤0; outside log)'),Patch(facecolor='.55',label='Missing')],fontsize=6,loc='upper right',facecolor='#ffffff' if bg=='light' else '#121212',labelcolor=fg)
-    fig.suptitle('Synthetic atmosphere · same original units and explicitly stated normalization\nNo-signal and missing cells remain distinct; these fields are illustrative.',color=fg,fontsize=10)
+    axes[1].legend(handles=[Patch(facecolor=(.9,.84,.7),label='No signal (â‰¤0; outside log)'),Patch(facecolor='.55',label='Missing')],fontsize=6,loc='upper right',facecolor='#ffffff' if bg=='light' else '#121212',labelcolor=fg)
+    fig.suptitle('Synthetic atmosphere Â· same original units and explicitly stated normalization\nNo-signal and missing cells remain distinct; these fields are illustrative.',color=fg,fontsize=10)
     save(fig,f'atmosphere-{bg}.png')
 
     f=structure();fig,axes=plt.subplots(2,2,figsize=(9,6),layout='constrained');fg=style(fig,axes,bg)
@@ -257,7 +258,7 @@ def applications(bg):
         ax.set_title(name.title(),fontsize=10);ax.set_xlabel('Distance (km)');ax.set_ylabel('Depth (km)')
         bar=fig.colorbar(ScalarMappable(norm=norm,cmap=cmap),ax=ax,orientation='horizontal',fraction=.09)
         bar.set_label('Velocity (km/s)',color=fg,fontsize=8);bar.ax.tick_params(colors=fg,labelsize=7)
-    fig.suptitle('Synthetic structure · identical 2–5 km/s range · weak 0.04 km/s anomaly',color=fg,fontsize=10)
+    fig.suptitle('Synthetic structure Â· identical 2â€“5 km/s range Â· weak 0.04 km/s anomaly',color=fg,fontsize=10)
     save(fig,f'structure-{bg}.png')
 
 
@@ -266,14 +267,14 @@ def negative_panel():
     fig,axes=plt.subplots(3,2,figsize=(9,6),layout='constrained');fg=style(fig,axes,'light')
     for row,(name,rgb,family) in enumerate(control_arrays()):
         axes[row,0].imshow(shown(rgb[None,:,:],'normal'),aspect='auto',interpolation='nearest')
-        axes[row,0].set_title(name+' · rejected',fontsize=10)
+        axes[row,0].set_title(name+' Â· rejected',fontsize=10)
         data=seismic()['data'] if family=='diverging' else (structure()['data']-2)/3
         if family=='diverging':data=(data+1)/2
         colors=rgb[np.rint(np.clip(data,0,1)*256).astype(int)]
         axes[row,1].imshow(shown(colors,'normal'),aspect='auto',interpolation='nearest')
-        axes[row,1].set_title('Same reference field · normal vision',fontsize=9)
+        axes[row,1].set_title('Same reference field Â· normal vision',fontsize=9)
         for ax in axes[row]:ax.set_xticks([]);ax.set_yticks([])
-    fig.suptitle('Deliberately bad controls · retained failures under the unchanged profiles',color=fg,fontsize=11)
+    fig.suptitle('Deliberately bad controls Â· retained failures under the unchanged profiles',color=fg,fontsize=11)
     save(fig,'negative-controls.png')
 
 
@@ -290,9 +291,9 @@ def render(data):
     for name,entry in data['candidates'].items():
         m=entry['metadata'];thumbs=''.join(f'<a href="{name}-{bg}-conditions.png">{bg}: all CVD and grayscale</a> ' for bg in entry['variants'])
         counts={bg:[int(k.split('/')[1]) for k,r in v['discrete'].items() if k.startswith('filled-fields/') and r['screen_pass']] for bg,v in entry['variants'].items()}
-        cards.append(f'<article data-family="{m["family"]}" data-domains="{" ".join(m["domains"])}"><h3>{m["label"]}</h3><p>{m["route"]}</p><p>{m["family"]} · {", ".join(m["domains"])} · {m["orientation"]}</p><p>{thumbs}</p><p>Prepared passing uniform counts: {counts}</p><code>hv.gradient("{name}", background="light")</code></article>')
+        cards.append(f'<article data-family="{m["family"]}" data-domains="{" ".join(m["domains"])}"><h3>{m["label"]}</h3><p>{m["route"]}</p><p>{m["family"]} Â· {", ".join(m["domains"])} Â· {m["orientation"]}</p><p>{thumbs}</p><p>Prepared passing uniform counts: {counts}</p><code>hv.gradient("{name}", background="light")</code></article>')
     apps=''.join(f'<section><h2>{label}</h2><div class="pair"><img src="{kind}-light.png" alt="{label}, light background" loading="lazy"><img src="{kind}-dark.png" alt="{label}, dark background" loading="lazy"></div></section>' for kind,label in [('seismic','Seismic polarity and weak features'),('structure','Structural properties and weak anomalies'),('terrain','Sea level, terrain and separate hillshade review'),('atmosphere','Moisture, concentration and anomalies')])
-    page='''<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Huevat · gradient collection</title><style>body{font:16px/1.55 system-ui;background:#eef0f3;color:#26313d;margin:auto;max-width:1350px;padding:30px}h1{font-size:38px;letter-spacing:-1px}h2{font-size:25px}section,article{background:white;padding:22px;border-radius:12px;margin:20px 0}img{max-width:100%;height:auto}.pair{display:grid;grid-template-columns:1fr 1fr;gap:14px}.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(330px,1fr));gap:16px}article{margin:0;overflow-wrap:anywhere}a{color:#27658f}select{font:inherit;padding:8px;margin:6px}code{font-size:13px}@media(max-width:850px){.pair{grid-template-columns:1fr}}</style><h1>Twelve new routes for scientific figures</h1><p>H4b candidate collection · screened numerically · appearance review pending</p><p>Eight sequential routes and four diverging routes, each shown on light and dark backgrounds. Existing palettes and defaults are unchanged. Select the appearances you prefer before these become reviewed defaults.</p><section><h2>Compare the complete collection</h2><p>Each row uses its stated low-to-high direction. Diverging centers are marked. Bathymetry darkens with depth; Highland lightens with elevation across both backgrounds.</p><div class="pair"><img src="overview-light.png" alt="All twelve routes, light background"><img src="overview-dark.png" alt="All twelve routes, dark background"></div></section>'''+apps+'''<section><h2>Find a route and inspect its evidence</h2><label>Family <select id="family"><option value="">All</option><option>sequential</option><option>diverging</option></select></label><label>Application <select id="domain"><option value="">All</option><option>general</option><option>seismic</option><option>structure</option><option>geography</option><option>atmosphere</option></select></label></section><div class="cards">'''+''.join(cards)+'''</div><section><h2>Methods and limits</h2><p>Every shipped variant passes unchanged normal/CVD float/8-bit Oklab and CAM02-UCS profiles, complete-segment numerical checks and the denser ordering audit. Sampling counts are screened individually; uniform and optimized sampling remain distinct. A plotted view, shaded composite or domain label has no universal accessibility or scientific-validity guarantee.</p><p><a href="../../docs/METHODS_H4B.md">Construction and application protocol</a> · <a href="../../src/huevat/data/collection-v1.json">Full recipes, searches and numeric reports</a> · <a href="negative-controls.json">Deliberately bad controls and failed criteria</a> · <a href="review.json">Review inventory</a></p></section><script>function filter(){const f=document.getElementById('family').value,d=document.getElementById('domain').value;document.querySelectorAll('article').forEach(a=>a.hidden=Boolean((f&&a.dataset.family!==f)||(d&&!a.dataset.domains.split(' ').includes(d))))}document.querySelectorAll('select').forEach(s=>s.addEventListener('change',filter));</script></html>'''
+    page='''<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Huevat Â· gradient collection</title><style>body{font:16px/1.55 system-ui;background:#eef0f3;color:#26313d;margin:auto;max-width:1350px;padding:30px}h1{font-size:38px;letter-spacing:-1px}h2{font-size:25px}section,article{background:white;padding:22px;border-radius:12px;margin:20px 0}img{max-width:100%;height:auto}.pair{display:grid;grid-template-columns:1fr 1fr;gap:14px}.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(330px,1fr));gap:16px}article{margin:0;overflow-wrap:anywhere}a{color:#27658f}select{font:inherit;padding:8px;margin:6px}code{font-size:13px}@media(max-width:850px){.pair{grid-template-columns:1fr}}</style><h1>Twelve new routes for scientific figures</h1><p>H4b candidate collection Â· screened numerically Â· appearance review pending</p><p>Eight sequential routes and four diverging routes, each shown on light and dark backgrounds. Existing palettes and defaults are unchanged. Select the appearances you prefer before these become reviewed defaults.</p><section><h2>Compare the complete collection</h2><p>Each row uses its stated low-to-high direction. Diverging neutrals are at the midpoint; the ramps have no marker overlays. Bathymetry darkens with depth; Highland lightens with elevation across both backgrounds.</p><div class="pair"><img src="overview-light.png" alt="All twelve routes, light background"><img src="overview-dark.png" alt="All twelve routes, dark background"></div></section>'''+apps+'''<section><h2>Find a route and inspect its evidence</h2><label>Family <select id="family"><option value="">All</option><option>sequential</option><option>diverging</option></select></label><label>Application <select id="domain"><option value="">All</option><option>general</option><option>seismic</option><option>structure</option><option>geography</option><option>atmosphere</option></select></label></section><div class="cards">'''+''.join(cards)+'''</div><section><h2>Methods and limits</h2><p>Every shipped variant passes unchanged normal/CVD float/8-bit Oklab and CAM02-UCS profiles, complete-segment numerical checks and the denser ordering audit. Sampling counts are screened individually; uniform and optimized sampling remain distinct. A plotted view, shaded composite or domain label has no universal accessibility or scientific-validity guarantee.</p><p><a href="../../docs/METHODS_H4B.md">Construction and application protocol</a> Â· <a href="../../src/huevat/data/collection-v1.json">Full recipes, searches and numeric reports</a> Â· <a href="negative-controls.json">Deliberately bad controls and failed criteria</a> Â· <a href="review.json">Review inventory</a></p></section><script>function filter(){const f=document.getElementById('family').value,d=document.getElementById('domain').value;document.querySelectorAll('article').forEach(a=>a.hidden=Boolean((f&&a.dataset.family!==f)||(d&&!a.dataset.domains.split(' ').includes(d))))}document.querySelectorAll('select').forEach(s=>s.addEventListener('change',filter));</script></html>'''
     page=page.replace('<section><h2>Methods and limits</h2>','<section><h2>Deliberately bad controls</h2><img src="negative-controls.png" alt="Three rejected negative controls" loading="lazy"><p>These failures remain visible; they are not candidate palettes.</p></section><section><h2>Methods and limits</h2>')
     (OUTPUT/'index.html').write_text(page,encoding='utf-8',newline='\n')
     write_json(OUTPUT/'review.json',{'status':'pending','approved_defaults':[],
@@ -301,7 +302,7 @@ def render(data):
         'data':'deterministic synthetic illustrations; no external field observations',
         'shading':'separate review; combined terrain and hillshade receive no palette-profile pass'})
     write_json(OUTPUT/'manifest.json',{'implementation_sha256_lf':implementation_hashes(),
-        'tool_sha256_lf':{n:digest(ROOT/'tools'/n) for n in ('build_collection.py','collection_fields.py')},
+        'tool_sha256_lf':{n:digest(ROOT/'tools'/n) for n in ('build_collection.py','collection_fields.py','verify.py')},
         'resource_sha256_lf':digest(RESOURCE),
         'files':{p.name:hashlib.sha256(p.read_bytes()).hexdigest() for p in sorted(OUTPUT.iterdir()) if p.is_file() and p.name!='manifest.json'}})
 

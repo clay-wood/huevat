@@ -30,6 +30,17 @@ from .sampling import SampledPalette, optimized_discrete, known_counts, summariz
 from .catalog import gradient, gradient_names, gradient_info, load_recipe
 from .library import design_ids, design_info, get_design, nearby_counts
 from .exports import Export, LoadedExport, export, load_export
+from ._prepared import prepared as _prepared, loader as _loader
+
+# Fast immutable runtime views; the original construction/audit modules remain
+# independently reproducible and unchanged.
+categorical = _prepared(categorical)
+sequential = _prepared(sequential)
+diverging = _prepared(diverging)
+multihue = _prepared(multihue)
+spectral = _prepared(spectral)
+gradient = _prepared(gradient)
+load_recipe = _loader(load_recipe)
 
 __version__ = "0.1.0"
 

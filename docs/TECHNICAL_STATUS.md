@@ -2,6 +2,40 @@
 
 Verification date: October 23, 2026. Historical sections retain their milestone records.
 
+## Post-release preview correction, cleanup and runtime views
+
+The collection's gray center line was an overlaid reference marker, not a color
+discontinuity. Both light/dark overviews now omit it, including the image
+embedded in the release page. All recipes, colors, source hashes, centers and
+numerical thresholds are unchanged. A regression check examines the rendered
+overview's artist layers so center lines cannot reappear as palette content.
+
+The runtime view layer reuses deeply frozen state and caches prepared requests,
+oriented reports and the H3 selection proxy. The original numerical modules are
+unchanged. Five warmed medians on this host reduced Spectral lookup from about
+4.7 ms to .004 ms and seven-color selection from about 9.4 ms to .50 ms.
+Twenty-five reversed views retained about 3.3 KB of traced allocations instead
+of 32.5 MB. First access/cold resource loading and scalar sampling remain
+separate costs. Details and reproduction are in `MAINTENANCE.md`.
+
+The user requested that most testing/development material be ignored. The
+repository now tracks four focused test files and nine maintenance commands,
+plus current galleries. Fifteen historical test files, older scripts and
+historical galleries (135 files, about 60.8 MiB) remain locally but are removed
+from the index and ignored. The old snapshot is recoverable at `6f8fc02`.
+The sdist excludes these files even if present locally. Packaged numerical data,
+licenses, recipes and certificates remain part of the distribution. CI checks
+the maintained suite, all 76 designs/continuous certificates/prepared counts,
+independent research audits, current galleries and all three backend examples.
+
+The full historical local suite passed all 303 tests (301 pre-existing plus
+two targeted tests for immutable-view reuse and the no-overlay requirement).
+The maintained suite passes 123 tests. An isolated archive of only the staged
+files passed that suite, all scientific audits, collection/release checks and
+clean offline pip/uv installations. Thus ignored files are not needed by the
+current checkout or distribution. Historical milestone test counts and paths
+in the following sections refer to their original snapshots.
+
 ## Private v0.1.0: scoped implementation complete
 
 The user selected retention of the current defaults, including Clearer, with

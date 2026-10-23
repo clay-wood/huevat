@@ -193,7 +193,7 @@ def load_export(value, *, validate=True):
     if not isinstance(body, dict) or set(body) != {"version", "created_with", "source", "selection", "labels", "hex"} or body["version"] != VERSION:
         raise ValueError("Unsupported export schema/version")
     if not isinstance(body["created_with"], str) or not body["created_with"]: raise ValueError("Missing source version")
-    from .catalog import load_recipe
+    from . import load_recipe
     source = load_recipe(body["source"], validate=validate)
     selection = body["selection"]
     design = source

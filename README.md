@@ -109,8 +109,7 @@ A failed color screen remains failed when markers/dashes offer redundancy.
 - [Release overview and portable examples](research/release-v1/index.html)
 - [Geoscience, geography and atmospheric collection](research/collection-v1/index.html)
 - [Three plotting backends and optimized sampling](research/adapters-v1/index.html)
-- [Original study](research/baseline-v1/index.html), [ordered designs](research/ordered-v1/index.html),
-  [categorical revision](research/categorical-v2/index.html)
+- [Maintenance, archived studies and performance](docs/MAINTENANCE.md)
 - [Technical status](docs/TECHNICAL_STATUS.md), [release notes](docs/RELEASE_NOTES.md),
   [project plan](project_plan.md), [provenance](docs/PROVENANCE.md)
 
@@ -123,6 +122,7 @@ separate. Browser rendering/interaction has not been verified by automation.
 ```powershell
 uv sync --locked --all-extras
 uv run --locked --all-extras pytest
+uv run --locked --all-extras python tools/verify.py --research
 uv run --locked --all-extras python tools/build_release.py --check
 uv build
 uv run --locked --all-extras python tools/check_install.py
@@ -131,3 +131,5 @@ uv run --locked --all-extras python tools/check_install.py
 CI repeats the core on Windows/Linux with Python 3.10/3.12/3.14 and actual-backend
 research checks on both platforms. Historical data, recipes and numerical
 thresholds remain frozen. The source repository remains independent and private.
+Older test suites and development galleries remain local/ignored and recoverable
+from Git history; the maintained suite and current galleries stay in the repository.

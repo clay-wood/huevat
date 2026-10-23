@@ -113,7 +113,7 @@ def main():
         assert set(metadata.get_all("Provides-Extra", [])) == {"design", "research", "matplotlib", "plotly", "ultraplot"}
         for filename in ("__init__.py", "space.py", "vision.py"):
             assert f"huevat/{filename}" in names
-        for filename in ("library.py", "exports.py"):
+        for filename in ("library.py", "exports.py", "_prepared.py"):
             assert f"huevat/{filename}" in names
         for filename in ("matplotlib.py", "plotly.py", "ultraplot.py"):
             assert f"huevat/adapters/{filename}" in names
@@ -127,6 +127,9 @@ def main():
                            ('renderer', 'playwright', '.venv', 'sketchplot/')) or n.endswith('.js') for n in names)
     with tarfile.open(sdist) as archive:
         names = archive.getnames()
+        allowed_tests={'test_space.py','test_core.py','test_release.py','test_doctor.py'}
+        assert all(Path(n).name in allowed_tests for n in names if '/tests/' in n and n.endswith('.py'))
+        assert not any('/research/' in n or '/artifacts/' in n for n in names)
         for required in ("pyproject.toml", "uv.lock", "project_plan.md", "docs/extraction.json",
                          "tools/check_install.py", "tests/test_space.py", "examples/quickstart.py",
                          "docs/QUICKSTART.md", "docs/MIGRATION.md"):

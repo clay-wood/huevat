@@ -10,3 +10,30 @@ build/
 dist/
 artifacts/
 .tools/
+
+# Keep the focused runtime suite; historical studies stay local and in Git history.
+/tests/*
+!/tests/test_core.py
+!/tests/test_space.py
+!/tests/test_release.py
+!/tests/test_doctor.py
+
+# Current maintenance commands only. Old builders/profilers are reproducible
+# from the pre-cleanup snapshot and remain available as ignored local files.
+/tools/*
+!/tools/check_install.py
+!/tools/check_provenance.py
+!/tools/verify.py
+!/tools/profile_runtime.py
+!/tools/build_adapters.py
+!/tools/build_collection.py
+!/tools/collection_fields.py
+!/tools/build_doctor.py
+!/tools/build_release.py
+
+# Keep the current product galleries; bulky historical trials are local artifacts.
+/research/*
+!/research/adapters-v1/
+!/research/collection-v1/
+!/research/doctor-v1/
+!/research/release-v1/

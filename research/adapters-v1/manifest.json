@@ -9,6 +9,11 @@
       "change": "v0.1 version and additive release registry/export APIs; H4a numerical sources and retained artifacts unchanged",
       "milestone": "H4d",
       "previous_init_sha256_lf": "681a747c11fd0ead5ffc0dd0ecda17cbb1eecdcfebc4027f5a524068f1ed3dc3"
+    },
+    {
+      "change": "cache immutable prepared views and reports; original numerical sources, recipes and audits unchanged",
+      "milestone": "post-release performance",
+      "previous_init_sha256_lf": "ea5e0c9739cfc34103bf521033ea170976d7839b6d45c5bacb4cef5a6e159ff6"
     }
   ],
   "files": {
@@ -22,7 +27,7 @@
     "ultraplot-light.png": "c1505f3d0cccb470f7bf3df26051e4e1bbb5db66e1e4dc56697b908609177906"
   },
   "implementation_sha256_lf": {
-    "__init__.py": "ea5e0c9739cfc34103bf521033ea170976d7839b6d45c5bacb4cef5a6e159ff6",
+    "__init__.py": "20f6a156340c9f9f93d87b60104a9b7e9d1e3761d5cc84cbbfcc6f8163b41e07",
     "_sampling_design.py": "0243b8bcd4432aee4fde3acc25dccd84ea89c7f239b15fd069424640e55db82c",
     "adapters/__init__.py": "61e5e39e6eb7cff30871c3c7c3a3f4aaead4e1a0a166a15c7765aec0f928e56d",
     "adapters/_common.py": "55979449da82232ab4fd36381e50e9c626ad7163fb4c5b9ca5cf76e89b66def3",
