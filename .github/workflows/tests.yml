@@ -36,3 +36,4 @@ jobs:
       - run: uv run --locked --all-extras --python 3.12 python tools/build_families.py --check
       - run: uv run --locked --all-extras --python 3.12 python tools/build_clearer.py --check
       - run: uv run --locked --all-extras --python 3.12 python tools/build_adapters.py --check
+      - run: uv run --locked --all-extras --python 3.12 python tools/build_collection.py --check

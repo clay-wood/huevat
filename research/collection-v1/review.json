@@ -1,0 +1,194 @@
+{
+  "approved_defaults": [],
+  "data": "deterministic synthetic illustrations; no external field observations",
+  "layout_review": {
+    "method": "all 35 panels in contact sheets; representative overviews, terrain, seismic and atmosphere at full size",
+    "perceptual_approval": false,
+    "status": "checked"
+  },
+  "panels": [
+    {
+      "file": "aerosol-dark-conditions.png",
+      "layout": "checked in contact sheet",
+      "perceptual_review": "pending"
+    },
+    {
+      "file": "aerosol-light-conditions.png",
+      "layout": "checked in contact sheet",
+      "perceptual_review": "pending"
+    },
+    {
+      "file": "atmosphere-dark.png",
+      "layout": "checked in contact sheet",
+      "perceptual_review": "pending"
+    },
+    {
+      "file": "atmosphere-light.png",
+      "layout": "checked in contact sheet",
+      "perceptual_review": "pending"
+    },
+    {
+      "file": "balance-dark-conditions.png",
+      "layout": "checked in contact sheet",
+      "perceptual_review": "pending"
+    },
+    {
+      "file": "balance-light-conditions.png",
+      "layout": "checked in contact sheet",
+      "perceptual_review": "pending"
+    },
+    {
+      "file": "bathymetry-dark-conditions.png",
+      "layout": "checked in contact sheet",
+      "perceptual_review": "pending"
+    },
+    {
+      "file": "bathymetry-light-conditions.png",
+      "layout": "checked in contact sheet",
+      "perceptual_review": "pending"
+    },
+    {
+      "file": "ember-dark-conditions.png",
+      "layout": "checked in contact sheet",
+      "perceptual_review": "pending"
+    },
+    {
+      "file": "ember-light-conditions.png",
+      "layout": "checked in contact sheet",
+      "perceptual_review": "pending"
+    },
+    {
+      "file": "estuary-dark-conditions.png",
+      "layout": "checked in contact sheet",
+      "perceptual_review": "pending"
+    },
+    {
+      "file": "estuary-light-conditions.png",
+      "layout": "checked in contact sheet",
+      "perceptual_review": "pending"
+    },
+    {
+      "file": "highland-dark-conditions.png",
+      "layout": "checked in contact sheet",
+      "perceptual_review": "pending"
+    },
+    {
+      "file": "highland-light-conditions.png",
+      "layout": "checked in contact sheet",
+      "perceptual_review": "pending"
+    },
+    {
+      "file": "ink-dark-conditions.png",
+      "layout": "checked in contact sheet",
+      "perceptual_review": "pending"
+    },
+    {
+      "file": "ink-light-conditions.png",
+      "layout": "checked in contact sheet",
+      "perceptual_review": "pending"
+    },
+    {
+      "file": "lagoon-dark-conditions.png",
+      "layout": "checked in contact sheet",
+      "perceptual_review": "pending"
+    },
+    {
+      "file": "lagoon-light-conditions.png",
+      "layout": "checked in contact sheet",
+      "perceptual_review": "pending"
+    },
+    {
+      "file": "mineral-dark-conditions.png",
+      "layout": "checked in contact sheet",
+      "perceptual_review": "pending"
+    },
+    {
+      "file": "mineral-light-conditions.png",
+      "layout": "checked in contact sheet",
+      "perceptual_review": "pending"
+    },
+    {
+      "file": "negative-controls.png",
+      "layout": "checked in contact sheet",
+      "perceptual_review": "pending"
+    },
+    {
+      "file": "overview-dark.png",
+      "layout": "checked in contact sheet",
+      "perceptual_review": "pending"
+    },
+    {
+      "file": "overview-light.png",
+      "layout": "checked in contact sheet",
+      "perceptual_review": "pending"
+    },
+    {
+      "file": "rosewood-dark-conditions.png",
+      "layout": "checked in contact sheet",
+      "perceptual_review": "pending"
+    },
+    {
+      "file": "rosewood-light-conditions.png",
+      "layout": "checked in contact sheet",
+      "perceptual_review": "pending"
+    },
+    {
+      "file": "seismic-dark.png",
+      "layout": "checked in contact sheet",
+      "perceptual_review": "pending"
+    },
+    {
+      "file": "seismic-light.png",
+      "layout": "checked in contact sheet",
+      "perceptual_review": "pending"
+    },
+    {
+      "file": "strata-dark-conditions.png",
+      "layout": "checked in contact sheet",
+      "perceptual_review": "pending"
+    },
+    {
+      "file": "strata-light-conditions.png",
+      "layout": "checked in contact sheet",
+      "perceptual_review": "pending"
+    },
+    {
+      "file": "structure-dark.png",
+      "layout": "checked in contact sheet",
+      "perceptual_review": "pending"
+    },
+    {
+      "file": "structure-light.png",
+      "layout": "checked in contact sheet",
+      "perceptual_review": "pending"
+    },
+    {
+      "file": "terrain-dark.png",
+      "layout": "checked in contact sheet",
+      "perceptual_review": "pending"
+    },
+    {
+      "file": "terrain-light.png",
+      "layout": "checked in contact sheet",
+      "perceptual_review": "pending"
+    },
+    {
+      "file": "thermal-dark-conditions.png",
+      "layout": "checked in contact sheet",
+      "perceptual_review": "pending"
+    },
+    {
+      "file": "thermal-light-conditions.png",
+      "layout": "checked in contact sheet",
+      "perceptual_review": "pending"
+    }
+  ],
+  "shading": "separate review; combined terrain and hillshade receive no palette-profile pass",
+  "status": "pending",
+  "versions": {
+    "colorspacious": "1.1.2",
+    "matplotlib": "3.11.2",
+    "numpy": "2.5.4",
+    "scipy": "1.18.1"
+  }
+}

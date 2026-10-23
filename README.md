@@ -266,3 +266,42 @@ and [H4a usage, methods and backend limits](docs/METHODS_H4A.md).
 uv run --locked --all-extras pytest
 uv run --locked --all-extras python tools/build_adapters.py --check
 ```
+
+## Named gradient candidates (H4b)
+
+```python
+hv.gradient_names(domain="seismic")     # Metadata filters; no optional packages.
+hv.gradient_names(family="sequential")
+g = hv.gradient("lagoon", background="dark")
+info = hv.gradient_info("lagoon")
+restored = hv.load_recipe(g.to_json())
+
+# The same native adapters and explicit optimized sampling apply:
+cmap = hmpl.colormap(g)
+p = hv.optimized_discrete(g, 7)
+```
+
+Twelve independent routes add eight sequential and four diverging choices,
+with screened light/dark variants. They cover general fields, seismic polarity,
+structural properties, water depth, land elevation, atmospheric moisture,
+concentrations and anomalies. Named lookup, metadata, prepared uniform counts
+and recipe reloads use only the standard library.
+
+These are **experimental candidates awaiting appearance review**. Existing
+defaults remain unchanged. Bathymetry darkens with positive depth; Highland
+lightens with elevation on both backgrounds. Domain labels describe the
+illustrated use; choose physical ranges, centers, class boundaries and log/linear
+normalization explicitly.
+
+The [collection gallery](research/collection-v1/index.html) compares all routes,
+normal/CVD/grayscale fields, seismic rasters/wiggles, structural properties,
+terrain with a separate hillshade comparison, atmospheric examples and rejected
+controls. See the [H4b protocol and usage](docs/METHODS_H4B.md).
+
+```powershell
+uv run --locked --all-extras python tools/build_collection.py --check
+# Rebuild gallery images from retained paths:
+uv run --locked --all-extras python tools/build_collection.py
+# Reconstruct the finite searches as well:
+uv run --locked --all-extras python tools/build_collection.py --construct
+```

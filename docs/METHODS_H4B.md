@@ -39,6 +39,27 @@ rejections, numerical versions and source hashes. Construction uses the
 optional design stack; prepared named lookup and recipe loading remain
 standard-library-only.
 
+Pilot refinements keep those thresholds unchanged. The final finite grid uses
+chroma scales `[1, .9, .8, .7, .675, .65]`; sequential endpoint shifts
+`[0, -.0125, .0125, -.025, .025]`, lightness-skew adjustments
+`[0, .06, .12, .18, .24, .30, .36]` and four declared endpoint ranges. The
+fourth range makes the counterpart background's passing interior range
+available; background variants need not have different physical color paths.
+Near-black/near-white sequential endpoint chroma is deliberately tapered to
+20% of the interior envelope. The 65% search floor applies to this declared
+background envelope, rather than to those untapered endpoint controls.
+
+Diverging variants use three endpoint shifts, two lightness ranges/skews,
+arm strength ratios `[1, .85, 1.15]` and differential lightness offsets
+`[0, -.01, .01, -.0175, .0175]`. Offsets grow with the declared first or second
+power of arm radius; the Hermite center derivative remains zero. Light centers/endpoints are .965/.38 or
+.98/.42; dark centers/endpoints are .12/.86 or .19/.80, before endpoint shifts.
+The source records the exact sequential ranges, hues and chroma controls.
+Dark endpoint chroma tapers are route-specific for gamut and arm balance.
+Estuary's plum arm and Thermal's rose endpoint were refined after pilot
+failures. Retained rejection records describe the final declared search;
+the original controls remain in protocol commit `5c101d3`.
+
 The delivered paths reuse the stable `h2-ordered-v1` **cubic recipe encoding**;
 the separate construction provenance is `h4b-free-knots-v1`. This does not
 assert that the new paths were constructed by the old H2 optimizer. New
@@ -102,3 +123,57 @@ Primary methodological references:
 [ColorCET user guide](https://www.colorcet.com/userguide/index.html),
 [Scientific colour maps](https://www.fabiocrameri.ch/colourmaps/), and
 [Matplotlib hillshading example](https://matplotlib.org/stable/gallery/specialty_plots/topographic_hillshading.html).
+
+## Delivered interface and reproduction
+
+```python
+import huevat as hv
+from huevat.adapters import matplotlib as hmpl
+
+names = hv.gradient_names(domain="geography")
+info = hv.gradient_info("bathymetry")
+g = hv.gradient("bathymetry", background="light")
+restored = hv.load_recipe(g.to_json())
+cmap = hmpl.colormap(g)
+```
+
+`gradient_names` accepts `family="sequential"`/`"diverging"` and domains
+`general`, `seismic`, `structure`, `geography` and `atmosphere`. Names and
+immutable metadata describe screened experimental candidates, not an automatic
+recommendation for arbitrary data. `gradient` supports the two declared
+backgrounds and preserves normal reversal, sampling, adapters and serialization.
+Use the existing constructors for custom backgrounds or preferences.
+
+Prepared canonical paths reuse the H2 cubic representation and have new
+`h4b-{name}-{background}-v1` IDs. Known recipe hashes reload from shipped
+evidence without optional packages; forged evidence is ignored. Modified
+recipes get full independent validation by default or explicitly unvalidated
+inspection with `validate=False`. Earlier H0–H4a paths/recipes remain intact.
+The H4a manifest updates only its public-import fingerprint for the added lazy
+catalog exports; its samplers, numerical evidence and figures remain unchanged.
+
+Fourteen context/count combinations per variant retain both passing and failing
+uniform selections (counts 2, 3, 5, 7, 8, 9 and 11). `known_counts` lists the
+prepared passing uniform counts; `optimized_discrete` remains an explicit
+alternative. The optimized positions do not define physical class boundaries.
+
+Full rejected search trials are retained in
+`research/collection-v1/construction.json.gz`, separate from the lightweight
+runtime resource. Runtime reports retain construction parameters, search
+statistics and the reference to that evidence. Numerical reports make no
+claim that field semantics, hillshade or human readability were validated.
+
+```powershell
+uv run --locked --all-extras python tools/build_collection.py --check
+uv run --locked --all-extras python tools/build_collection.py
+uv run --locked --all-extras python tools/build_collection.py --construct
+```
+
+The checker rebuilds each path from its recorded controls (numeric comparison
+within 1e-8 across platforms; retained recipe/resource bytes remain hash-checked), independently
+repeats its full audit and every prepared discrete report, reproduces bad
+controls and verifies source/resource/gallery hashes. Re-rendering is separate
+from checks because raster bytes need not match across graphics environments.
+All application fields are deterministic synthetic arrays in
+`tools/collection_fields.py`; scientific units and boundaries are explicit
+illustration conventions. The local HTML has filters without external assets.

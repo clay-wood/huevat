@@ -203,15 +203,50 @@ distribution builds and clean offline installs. Both Python 3.12 research jobs
 exercise all three native backends, reproduce the frozen milestones and
 revalidate the ten optimized selections and H4a gallery hashes.
 
+## H4b: named gradient candidates and application gallery
+
+Implemented October 23, 2026. Twelve independent free-knot routes provide
+eight sequential and four diverging choices, with 24 screened light/dark
+variants. `gradient_names` filters by family/domain, `gradient_info` returns
+immutable route/direction metadata, and `gradient(name, background=...)` loads
+prepared paths without optional dependencies. Known recipe hashes reload from
+shipped evidence; modified recipes receive the established independent audit.
+
+All 24 variants pass the unchanged H1 float/u8 normal/CVD Oklab/CAM02-UCS
+profiles, continuous numerical certificates and denser ordering audit. The
+checker reproduces their exact construction from retained parameters, all 336
+prepared context/count reports and three deliberately bad controls. The 24
+construction records retain 3,956 rejected trials in a separate 202 KB gzip
+archive, keeping trial history out of runtime lookup data. The base remains
+dependency-free. Existing H0–H3 data and all H4a numerical sources are unchanged;
+H4a's public-import fingerprint records the added lazy catalog exports.
+
+Local verification: all 256 tests pass, including 13 new collection tests;
+all earlier milestone evidence reproduces. Clean offline pip/uv installations
+load all 24 variants without optional packages; the wheel is approximately
+1.90 MB. The 35-panel gallery includes
+normal/CVD/grayscale comparisons, seismic rasters and wiggles, weak structural
+features, separate land/water mappings, explicitly separate hillshade review,
+and linear/log atmospheric examples. Original physical units, sign conventions,
+centers and missing/no-signal distinctions remain explicit. Synthetic wavelets
+are exactly centered and symmetric. Hillshade derivative filling preserves
+the displayed missing mask and does not replace source values.
+
+The gallery is `research/collection-v1/index.html`; API, construction protocol,
+pilot refinements and reproduction are in `METHODS_H4B.md`. All panels were
+inspected in contact sheets, with representative panels checked at full size.
+Appearance review is pending and no reviewed default is adopted. Browser
+filter interaction remains untested under the local-file browser restriction.
+
 ## Boundaries
 
 Roadmap update, October 23, 2026: the user accepted figure doctor with
 coordinated encodings, figure-aware assignment and palette negotiation;
 optimized discrete sampling; more general and application-specific gradients;
 and required Matplotlib, Plotly and UltraPlot adapters. `NEXT_STEPS.md` defines
-the expanded H4 slices and acceptance gates. H4a is implemented; the broader
-gradient collection (H4b), figure doctor (H4c) and final adoption/release gates
-(H4d) remain planned. H0–H3 numerical implementation/data and the existing
+the expanded H4 slices and acceptance gates. H4a and the H4b candidate collection
+are implemented; H4b appearance review is pending. Figure doctor (H4c) and final
+adoption/release gates (H4d) remain planned. H0–H3 numerical implementation/data and the existing
 uniform sampling API remain unchanged.
 
 Categorical aesthetic revision: the user selected **Clearer** from the

@@ -1,9 +1,10 @@
 # Next implementation requirements
 
 Updated October 23, 2026. This document records the user's approved direction
-after the Clearer H3 revision. H4a is implemented; H4b–H4d remain the next
-slices. See [H4a usage and methods](METHODS_H4A.md) for the delivered API,
-evidence and limits. The remaining sections are implementation specifications.
+after the Clearer H3 revision. H4a and the H4b candidate collection are
+implemented; H4c and H4d remain next. H4b appearance review is pending. See
+[H4a usage and methods](METHODS_H4A.md) and [H4b protocol/usage](METHODS_H4B.md)
+for delivered APIs, evidence and limits.
 
 ## Approved scope and design direction
 
@@ -98,6 +99,13 @@ search remain follow-up usability work; current results are generated explicitly
 and can be saved by the user.
 
 ## H4b: a broader gradient collection
+
+Implemented as twelve experimental named routes and 24 background variants,
+with unchanged numerical gates. `hv.gradient_names(...)` discovers candidates;
+`hv.gradient(name, background=...)` loads them; `hv.gradient_info(name)` provides
+immutable domain/direction metadata. The offline application gallery is in
+`research/collection-v1`. Appearance review is pending; no existing default was
+replaced. The following design requirements describe the delivered scope.
 
 Start with approximately 10–14 independent candidate paths, selected for
 coverage and appearance rather than a large name count. Reversals and alternate

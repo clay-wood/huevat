@@ -1,0 +1,1777 @@
+{
+  "gray-plateau": {
+    "failed_criteria": [
+      {
+        "condition": "normal",
+        "level": "engineering",
+        "measured": 3.107236286292871,
+        "name": "arm_0/speed_cv",
+        "passed": false,
+        "reason": "outside stated criterion",
+        "relation": "<=",
+        "threshold": 0.35
+      },
+      {
+        "condition": "normal",
+        "level": "engineering",
+        "measured": null,
+        "name": "arm_0/lightness_step_ratio",
+        "passed": false,
+        "reason": "undefined or non-finite metric",
+        "relation": "<=",
+        "threshold": 4.0
+      },
+      {
+        "condition": "normal",
+        "level": "engineering",
+        "measured": 0.296875,
+        "name": "arm_0/flat_run_fraction",
+        "passed": false,
+        "reason": "outside stated criterion",
+        "relation": "<=",
+        "threshold": 0.03
+      },
+      {
+        "condition": "normal",
+        "level": "engineering",
+        "measured": 43.7688372363318,
+        "name": "arm_0/spike_ratio",
+        "passed": false,
+        "reason": "outside stated criterion",
+        "relation": "<=",
+        "threshold": 4.0
+      },
+      {
+        "condition": "normal",
+        "level": "engineering",
+        "measured": 0.13586866157634434,
+        "name": "arm_0/maximum_step",
+        "passed": false,
+        "reason": "outside stated criterion",
+        "relation": "<=",
+        "threshold": 0.025
+      },
+      {
+        "condition": "normal",
+        "level": "engineering",
+        "measured": 0.0,
+        "name": "arm_0/feature_gain",
+        "passed": false,
+        "reason": "outside stated criterion",
+        "relation": ">=",
+        "threshold": 0.2
+      },
+      {
+        "condition": "normal",
+        "level": "engineering",
+        "measured": 0.0,
+        "name": "arm_0/grayscale_feature_gain",
+        "passed": false,
+        "reason": "outside stated criterion",
+        "relation": ">=",
+        "threshold": 0.2
+      },
+      {
+        "condition": "protan-50",
+        "level": "engineering",
+        "measured": 3.107236286292871,
+        "name": "arm_0/speed_cv",
+        "passed": false,
+        "reason": "outside stated criterion",
+        "relation": "<=",
+        "threshold": 0.35
+      },
+      {
+        "condition": "protan-50",
+        "level": "engineering",
+        "measured": null,
+        "name": "arm_0/lightness_step_ratio",
+        "passed": false,
+        "reason": "undefined or non-finite metric",
+        "relation": "<=",
+        "threshold": 4.0
+      },
+      {
+        "condition": "protan-50",
+        "level": "engineering",
+        "measured": 0.296875,
+        "name": "arm_0/flat_run_fraction",
+        "passed": false,
+        "reason": "outside stated criterion",
+        "relation": "<=",
+        "threshold": 0.03
+      },
+      {
+        "condition": "protan-50",
+        "level": "engineering",
+        "measured": 43.7688372363318,
+        "name": "arm_0/spike_ratio",
+        "passed": false,
+        "reason": "outside stated criterion",
+        "relation": "<=",
+        "threshold": 4.0
+      },
+      {
+        "condition": "protan-50",
+        "level": "engineering",
+        "measured": 0.13586866157634434,
+        "name": "arm_0/maximum_step",
+        "passed": false,
+        "reason": "outside stated criterion",
+        "relation": "<=",
+        "threshold": 0.025
+      },
+      {
+        "condition": "protan-50",
+        "level": "engineering",
+        "measured": 0.0,
+        "name": "arm_0/feature_gain",
+        "passed": false,
+        "reason": "outside stated criterion",
+        "relation": ">=",
+        "threshold": 0.2
+      },
+      {
+        "condition": "protan-50",
+        "level": "engineering",
+        "measured": 0.0,
+        "name": "arm_0/grayscale_feature_gain",
+        "passed": false,
+        "reason": "outside stated criterion",
+        "relation": ">=",
+        "threshold": 0.2
+      },
+      {
+        "condition": "protan-80",
+        "level": "engineering",
+        "measured": 3.107236286292869,
+        "name": "arm_0/speed_cv",
+        "passed": false,
+        "reason": "outside stated criterion",
+        "relation": "<=",
+        "threshold": 0.35
+      },
+      {
+        "condition": "protan-80",
+        "level": "engineering",
+        "measured": null,
+        "name": "arm_0/lightness_step_ratio",
+        "passed": false,
+        "reason": "undefined or non-finite metric",
+        "relation": "<=",
+        "threshold": 4.0
+      },
+      {
+        "condition": "protan-80",
+        "level": "engineering",
+        "measured": 0.296875,
+        "name": "arm_0/flat_run_fraction",
+        "passed": false,
+        "reason": "outside stated criterion",
+        "relation": "<=",
+        "threshold": 0.03
+      },
+      {
+        "condition": "protan-80",
+        "level": "engineering",
+        "measured": 43.76883723633064,
+        "name": "arm_0/spike_ratio",
+        "passed": false,
+        "reason": "outside stated criterion",
+        "relation": "<=",
+        "threshold": 4.0
+      },
+      {
+        "condition": "protan-80",
+        "level": "engineering",
+        "measured": 0.13586865004722784,
+        "name": "arm_0/maximum_step",
+        "passed": false,
+        "reason": "outside stated criterion",
+        "relation": "<=",
+        "threshold": 0.025
+      },
+      {
+        "condition": "protan-80",
+        "level": "engineering",
+        "measured": 0.0,
+        "name": "arm_0/feature_gain",
+        "passed": false,
+        "reason": "outside stated criterion",
+        "relation": ">=",
+        "threshold": 0.2
+      },
+      {
+        "condition": "protan-80",
+        "level": "engineering",
+        "measured": 0.0,
+        "name": "arm_0/grayscale_feature_gain",
+        "passed": false,
+        "reason": "outside stated criterion",
+        "relation": ">=",
+        "threshold": 0.2
+      },
+      {
+        "condition": "protan-100",
+        "level": "engineering",
+        "measured": 3.107236556461489,
+        "name": "arm_0/speed_cv",
+        "passed": false,
+        "reason": "outside stated criterion",
+        "relation": "<=",
+        "threshold": 0.35
+      },
+      {
+        "condition": "protan-100",
+        "level": "engineering",
+        "measured": null,
+        "name": "arm_0/lightness_step_ratio",
+        "passed": false,
+        "reason": "undefined or non-finite metric",
+        "relation": "<=",
+        "threshold": 4.0
+      },
+      {
+        "condition": "protan-100",
+        "level": "engineering",
+        "measured": 0.296875,
+        "name": "arm_0/flat_run_fraction",
+        "passed": false,
+        "reason": "outside stated criterion",
+        "relation": "<=",
+        "threshold": 0.03
+      },
+      {
+        "condition": "protan-100",
+        "level": "engineering",
+        "measured": 43.76883723633067,
+        "name": "arm_0/spike_ratio",
+        "passed": false,
+        "reason": "outside stated criterion",
+        "relation": "<=",
+        "threshold": 4.0
+      },
+      {
+        "condition": "protan-100",
+        "level": "engineering",
+        "measured": 0.1358686731054605,
+        "name": "arm_0/maximum_step",
+        "passed": false,
+        "reason": "outside stated criterion",
+        "relation": "<=",
+        "threshold": 0.025
+      },
+      {
+        "condition": "protan-100",
+        "level": "engineering",
+        "measured": 0.0,
+        "name": "arm_0/feature_gain",
+        "passed": false,
+        "reason": "outside stated criterion",
+        "relation": ">=",
+        "threshold": 0.2
+      },
+      {
+        "condition": "protan-100",
+        "level": "engineering",
+        "measured": 0.0,
+        "name": "arm_0/grayscale_feature_gain",
+        "passed": false,
+        "reason": "outside stated criterion",
+        "relation": ">=",
+        "threshold": 0.2
+      },
+      {
+        "condition": "deutan-50",
+        "level": "engineering",
+        "measured": 3.107236385508751,
+        "name": "arm_0/speed_cv",
+        "passed": false,
+        "reason": "outside stated criterion",
+        "relation": "<=",
+        "threshold": 0.35
+      },
+      {
+        "condition": "deutan-50",
+        "level": "engineering",
+        "measured": null,
+        "name": "arm_0/lightness_step_ratio",
+        "passed": false,
+        "reason": "undefined or non-finite metric",
+        "relation": "<=",
+        "threshold": 4.0
+      },
+      {
+        "condition": "deutan-50",
+        "level": "engineering",
+        "measured": 0.296875,
+        "name": "arm_0/flat_run_fraction",
+        "passed": false,
+        "reason": "outside stated criterion",
+        "relation": "<=",
+        "threshold": 0.03
+      },
+      {
+        "condition": "deutan-50",
+        "level": "engineering",
+        "measured": 43.768837236331905,
+        "name": "arm_0/spike_ratio",
+        "passed": false,
+        "reason": "outside stated criterion",
+        "relation": "<=",
+        "threshold": 4.0
+      },
+      {
+        "condition": "deutan-50",
+        "level": "engineering",
+        "measured": 0.13586866581064014,
+        "name": "arm_0/maximum_step",
+        "passed": false,
+        "reason": "outside stated criterion",
+        "relation": "<=",
+        "threshold": 0.025
+      },
+      {
+        "condition": "deutan-50",
+        "level": "engineering",
+        "measured": 0.0,
+        "name": "arm_0/feature_gain",
+        "passed": false,
+        "reason": "outside stated criterion",
+        "relation": ">=",
+        "threshold": 0.2
+      },
+      {
+        "condition": "deutan-50",
+        "level": "engineering",
+        "measured": 0.0,
+        "name": "arm_0/grayscale_feature_gain",
+        "passed": false,
+        "reason": "outside stated criterion",
+        "relation": ">=",
+        "threshold": 0.2
+      },
+      {
+        "condition": "deutan-80",
+        "level": "engineering",
+        "measured": 3.1072363855087755,
+        "name": "arm_0/speed_cv",
+        "passed": false,
+        "reason": "outside stated criterion",
+        "relation": "<=",
+        "threshold": 0.35
+      },
+      {
+        "condition": "deutan-80",
+        "level": "engineering",
+        "measured": null,
+        "name": "arm_0/lightness_step_ratio",
+        "passed": false,
+        "reason": "undefined or non-finite metric",
+        "relation": "<=",
+        "threshold": 4.0
+      },
+      {
+        "condition": "deutan-80",
+        "level": "engineering",
+        "measured": 0.296875,
+        "name": "arm_0/flat_run_fraction",
+        "passed": false,
+        "reason": "outside stated criterion",
+        "relation": "<=",
+        "threshold": 0.03
+      },
+      {
+        "condition": "deutan-80",
+        "level": "engineering",
+        "measured": 43.76883723633099,
+        "name": "arm_0/spike_ratio",
+        "passed": false,
+        "reason": "outside stated criterion",
+        "relation": "<=",
+        "threshold": 4.0
+      },
+      {
+        "condition": "deutan-80",
+        "level": "engineering",
+        "measured": 0.13586865428152445,
+        "name": "arm_0/maximum_step",
+        "passed": false,
+        "reason": "outside stated criterion",
+        "relation": "<=",
+        "threshold": 0.025
+      },
+      {
+        "condition": "deutan-80",
+        "level": "engineering",
+        "measured": 0.0,
+        "name": "arm_0/feature_gain",
+        "passed": false,
+        "reason": "outside stated criterion",
+        "relation": ">=",
+        "threshold": 0.2
+      },
+      {
+        "condition": "deutan-80",
+        "level": "engineering",
+        "measured": 0.0,
+        "name": "arm_0/grayscale_feature_gain",
+        "passed": false,
+        "reason": "outside stated criterion",
+        "relation": ">=",
+        "threshold": 0.2
+      },
+      {
+        "condition": "deutan-100",
+        "level": "engineering",
+        "measured": 3.1072363855088865,
+        "name": "arm_0/speed_cv",
+        "passed": false,
+        "reason": "outside stated criterion",
+        "relation": "<=",
+        "threshold": 0.35
+      },
+      {
+        "condition": "deutan-100",
+        "level": "engineering",
+        "measured": null,
+        "name": "arm_0/lightness_step_ratio",
+        "passed": false,
+        "reason": "undefined or non-finite metric",
+        "relation": "<=",
+        "threshold": 4.0
+      },
+      {
+        "condition": "deutan-100",
+        "level": "engineering",
+        "measured": 0.296875,
+        "name": "arm_0/flat_run_fraction",
+        "passed": false,
+        "reason": "outside stated criterion",
+        "relation": "<=",
+        "threshold": 0.03
+      },
+      {
+        "condition": "deutan-100",
+        "level": "engineering",
+        "measured": 43.768837236331656,
+        "name": "arm_0/spike_ratio",
+        "passed": false,
+        "reason": "outside stated criterion",
+        "relation": "<=",
+        "threshold": 4.0
+      },
+      {
+        "condition": "deutan-100",
+        "level": "engineering",
+        "measured": 0.1358686362844981,
+        "name": "arm_0/maximum_step",
+        "passed": false,
+        "reason": "outside stated criterion",
+        "relation": "<=",
+        "threshold": 0.025
+      },
+      {
+        "condition": "deutan-100",
+        "level": "engineering",
+        "measured": 0.0,
+        "name": "arm_0/feature_gain",
+        "passed": false,
+        "reason": "outside stated criterion",
+        "relation": ">=",
+        "threshold": 0.2
+      },
+      {
+        "condition": "deutan-100",
+        "level": "engineering",
+        "measured": 0.0,
+        "name": "arm_0/grayscale_feature_gain",
+        "passed": false,
+        "reason": "outside stated criterion",
+        "relation": ">=",
+        "threshold": 0.2
+      },
+      {
+        "condition": "tritan-100",
+        "level": "engineering",
+        "measured": 3.1072362862928706,
+        "name": "arm_0/speed_cv",
+        "passed": false,
+        "reason": "outside stated criterion",
+        "relation": "<=",
+        "threshold": 0.35
+      },
+      {
+        "condition": "tritan-100",
+        "level": "engineering",
+        "measured": null,
+        "name": "arm_0/lightness_step_ratio",
+        "passed": false,
+        "reason": "undefined or non-finite metric",
+        "relation": "<=",
+        "threshold": 4.0
+      },
+      {
+        "condition": "tritan-100",
+        "level": "engineering",
+        "measured": 0.296875,
+        "name": "arm_0/flat_run_fraction",
+        "passed": false,
+        "reason": "outside stated criterion",
+        "relation": "<=",
+        "threshold": 0.03
+      },
+      {
+        "condition": "tritan-100",
+        "level": "engineering",
+        "measured": 43.7688372363318,
+        "name": "arm_0/spike_ratio",
+        "passed": false,
+        "reason": "outside stated criterion",
+        "relation": "<=",
+        "threshold": 4.0
+      },
+      {
+        "condition": "tritan-100",
+        "level": "engineering",
+        "measured": 0.13586866157634434,
+        "name": "arm_0/maximum_step",
+        "passed": false,
+        "reason": "outside stated criterion",
+        "relation": "<=",
+        "threshold": 0.025
+      },
+      {
+        "condition": "tritan-100",
+        "level": "engineering",
+        "measured": 0.0,
+        "name": "arm_0/feature_gain",
+        "passed": false,
+        "reason": "outside stated criterion",
+        "relation": ">=",
+        "threshold": 0.2
+      },
+      {
+        "condition": "tritan-100",
+        "level": "engineering",
+        "measured": 0.0,
+        "name": "arm_0/grayscale_feature_gain",
+        "passed": false,
+        "reason": "outside stated criterion",
+        "relation": ">=",
+        "threshold": 0.2
+      }
+    ],
+    "screen_pass": false
+  },
+  "hue-rainbow": {
+    "failed_criteria": [
+      {
+        "condition": "normal",
+        "level": "mathematical",
+        "measured": 0.5781074671910288,
+        "name": "arm_0/lightness_order",
+        "passed": false,
+        "reason": "outside stated criterion",
+        "relation": "<=",
+        "threshold": 0.002
+      },
+      {
+        "condition": "normal",
+        "level": "engineering",
+        "measured": 0.10554225466651895,
+        "name": "arm_0/lightness_span",
+        "passed": false,
+        "reason": "outside stated criterion",
+        "relation": ">=",
+        "threshold": 0.4
+      },
+      {
+        "condition": "normal",
+        "level": "engineering",
+        "measured": 0.4622847057433578,
+        "name": "arm_0/speed_cv",
+        "passed": false,
+        "reason": "outside stated criterion",
+        "relation": "<=",
+        "threshold": 0.35
+      },
+      {
+        "condition": "normal",
+        "level": "engineering",
+        "measured": 39.858446228454106,
+        "name": "arm_0/lightness_step_ratio",
+        "passed": false,
+        "reason": "outside stated criterion",
+        "relation": "<=",
+        "threshold": 4.0
+      },
+      {
+        "condition": "normal",
+        "level": "engineering",
+        "measured": 0.07892131336683847,
+        "name": "arm_0/feature_gain",
+        "passed": false,
+        "reason": "outside stated criterion",
+        "relation": ">=",
+        "threshold": 0.2
+      },
+      {
+        "condition": "normal",
+        "level": "engineering",
+        "measured": 0.10431338568547427,
+        "name": "arm_0/grayscale_feature_gain",
+        "passed": false,
+        "reason": "outside stated criterion",
+        "relation": ">=",
+        "threshold": 0.2
+      },
+      {
+        "condition": "protan-50",
+        "level": "engineering",
+        "measured": 0.6145340567246627,
+        "name": "arm_0/lightness_order",
+        "passed": false,
+        "reason": "outside stated criterion",
+        "relation": "<=",
+        "threshold": 0.002
+      },
+      {
+        "condition": "protan-50",
+        "level": "engineering",
+        "measured": 0.028655272062504178,
+        "name": "arm_0/lightness_span",
+        "passed": false,
+        "reason": "outside stated criterion",
+        "relation": ">=",
+        "threshold": 0.4
+      },
+      {
+        "condition": "protan-50",
+        "level": "engineering",
+        "measured": 0.5248839258334137,
+        "name": "arm_0/speed_cv",
+        "passed": false,
+        "reason": "outside stated criterion",
+        "relation": "<=",
+        "threshold": 0.35
+      },
+      {
+        "condition": "protan-50",
+        "level": "engineering",
+        "measured": 62.38343485023503,
+        "name": "arm_0/lightness_step_ratio",
+        "passed": false,
+        "reason": "outside stated criterion",
+        "relation": "<=",
+        "threshold": 4.0
+      },
+      {
+        "condition": "protan-80",
+        "level": "engineering",
+        "measured": 0.6238971724879518,
+        "name": "arm_0/lightness_order",
+        "passed": false,
+        "reason": "outside stated criterion",
+        "relation": "<=",
+        "threshold": 0.002
+      },
+      {
+        "condition": "protan-80",
+        "level": "engineering",
+        "measured": 0.010305045595695062,
+        "name": "arm_0/lightness_span",
+        "passed": false,
+        "reason": "outside stated criterion",
+        "relation": ">=",
+        "threshold": 0.4
+      },
+      {
+        "condition": "protan-80",
+        "level": "engineering",
+        "measured": 0.5461045517627117,
+        "name": "arm_0/speed_cv",
+        "passed": false,
+        "reason": "outside stated criterion",
+        "relation": "<=",
+        "threshold": 0.35
+      },
+      {
+        "condition": "protan-80",
+        "level": "engineering",
+        "measured": 95.88728277994454,
+        "name": "arm_0/lightness_step_ratio",
+        "passed": false,
+        "reason": "outside stated criterion",
+        "relation": "<=",
+        "threshold": 4.0
+      },
+      {
+        "condition": "protan-100",
+        "level": "engineering",
+        "measured": 0.6242425943425789,
+        "name": "arm_0/lightness_order",
+        "passed": false,
+        "reason": "outside stated criterion",
+        "relation": "<=",
+        "threshold": 0.002
+      },
+      {
+        "condition": "protan-100",
+        "level": "engineering",
+        "measured": 0.036530367263527874,
+        "name": "arm_0/lightness_span",
+        "passed": false,
+        "reason": "outside stated criterion",
+        "relation": ">=",
+        "threshold": 0.4
+      },
+      {
+        "condition": "protan-100",
+        "level": "engineering",
+        "measured": 0.5510397608387124,
+        "name": "arm_0/speed_cv",
+        "passed": false,
+        "reason": "outside stated criterion",
+        "relation": "<=",
+        "threshold": 0.35
+      },
+      {
+        "condition": "protan-100",
+        "level": "engineering",
+        "measured": 64.07888401734701,
+        "name": "arm_0/lightness_step_ratio",
+        "passed": false,
+        "reason": "outside stated criterion",
+        "relation": "<=",
+        "threshold": 4.0
+      },
+      {
+        "condition": "deutan-50",
+        "level": "engineering",
+        "measured": 0.5726381525705735,
+        "name": "arm_0/lightness_order",
+        "passed": false,
+        "reason": "outside stated criterion",
+        "relation": "<=",
+        "threshold": 0.002
+      },
+      {
+        "condition": "deutan-50",
+        "level": "engineering",
+        "measured": 0.08978137331032432,
+        "name": "arm_0/lightness_span",
+        "passed": false,
+        "reason": "outside stated criterion",
+        "relation": ">=",
+        "threshold": 0.4
+      },
+      {
+        "condition": "deutan-50",
+        "level": "engineering",
+        "measured": 0.531588054268747,
+        "name": "arm_0/speed_cv",
+        "passed": false,
+        "reason": "outside stated criterion",
+        "relation": "<=",
+        "threshold": 0.35
+      },
+      {
+        "condition": "deutan-50",
+        "level": "engineering",
+        "measured": 55.34139162856175,
+        "name": "arm_0/lightness_step_ratio",
+        "passed": false,
+        "reason": "outside stated criterion",
+        "relation": "<=",
+        "threshold": 4.0
+      },
+      {
+        "condition": "deutan-80",
+        "level": "engineering",
+        "measured": 0.5634384355641552,
+        "name": "arm_0/lightness_order",
+        "passed": false,
+        "reason": "outside stated criterion",
+        "relation": "<=",
+        "threshold": 0.002
+      },
+      {
+        "condition": "deutan-80",
+        "level": "engineering",
+        "measured": 0.09138082173045009,
+        "name": "arm_0/lightness_span",
+        "passed": false,
+        "reason": "outside stated criterion",
+        "relation": ">=",
+        "threshold": 0.4
+      },
+      {
+        "condition": "deutan-80",
+        "level": "engineering",
+        "measured": 0.5541716370353899,
+        "name": "arm_0/speed_cv",
+        "passed": false,
+        "reason": "outside stated criterion",
+        "relation": "<=",
+        "threshold": 0.35
+      },
+      {
+        "condition": "deutan-80",
+        "level": "engineering",
+        "measured": 55.40865617637041,
+        "name": "arm_0/lightness_step_ratio",
+        "passed": false,
+        "reason": "outside stated criterion",
+        "relation": "<=",
+        "threshold": 4.0
+      },
+      {
+        "condition": "deutan-100",
+        "level": "engineering",
+        "measured": 0.5576954430584733,
+        "name": "arm_0/lightness_order",
+        "passed": false,
+        "reason": "outside stated criterion",
+        "relation": "<=",
+        "threshold": 0.002
+      },
+      {
+        "condition": "deutan-100",
+        "level": "engineering",
+        "measured": 0.09437822958881709,
+        "name": "arm_0/lightness_span",
+        "passed": false,
+        "reason": "outside stated criterion",
+        "relation": ">=",
+        "threshold": 0.4
+      },
+      {
+        "condition": "deutan-100",
+        "level": "engineering",
+        "measured": 0.563398381237725,
+        "name": "arm_0/speed_cv",
+        "passed": false,
+        "reason": "outside stated criterion",
+        "relation": "<=",
+        "threshold": 0.35
+      },
+      {
+        "condition": "deutan-100",
+        "level": "engineering",
+        "measured": 52.39479130256113,
+        "name": "arm_0/lightness_step_ratio",
+        "passed": false,
+        "reason": "outside stated criterion",
+        "relation": "<=",
+        "threshold": 4.0
+      },
+      {
+        "condition": "tritan-100",
+        "level": "engineering",
+        "measured": 0.5524431932730876,
+        "name": "arm_0/lightness_order",
+        "passed": false,
+        "reason": "outside stated criterion",
+        "relation": "<=",
+        "threshold": 0.002
+      },
+      {
+        "condition": "tritan-100",
+        "level": "engineering",
+        "measured": 0.10744154518523202,
+        "name": "arm_0/lightness_span",
+        "passed": false,
+        "reason": "outside stated criterion",
+        "relation": ">=",
+        "threshold": 0.4
+      },
+      {
+        "condition": "tritan-100",
+        "level": "engineering",
+        "measured": 0.5494537341238397,
+        "name": "arm_0/speed_cv",
+        "passed": false,
+        "reason": "outside stated criterion",
+        "relation": "<=",
+        "threshold": 0.35
+      },
+      {
+        "condition": "tritan-100",
+        "level": "engineering",
+        "measured": 61.850982911934345,
+        "name": "arm_0/lightness_step_ratio",
+        "passed": false,
+        "reason": "outside stated criterion",
+        "relation": "<=",
+        "threshold": 4.0
+      }
+    ],
+    "screen_pass": false
+  },
+  "misplaced-neutral": {
+    "failed_criteria": [
+      {
+        "condition": "normal",
+        "level": "engineering",
+        "measured": 0.2839206396485863,
+        "name": "arm_0/lightness_span",
+        "passed": false,
+        "reason": "outside stated criterion",
+        "relation": ">=",
+        "threshold": 0.3
+      },
+      {
+        "condition": "normal",
+        "level": "engineering",
+        "measured": 0.5465559155830239,
+        "name": "arm_0/speed_cv",
+        "passed": false,
+        "reason": "outside stated criterion",
+        "relation": "<=",
+        "threshold": 0.35
+      },
+      {
+        "condition": "normal",
+        "level": "engineering",
+        "measured": null,
+        "name": "arm_0/lightness_step_ratio",
+        "passed": false,
+        "reason": "undefined or non-finite metric",
+        "relation": "<=",
+        "threshold": 4.0
+      },
+      {
+        "condition": "normal",
+        "level": "engineering",
+        "measured": 0.0703125,
+        "name": "arm_0/flat_run_fraction",
+        "passed": false,
+        "reason": "outside stated criterion",
+        "relation": "<=",
+        "threshold": 0.03
+      },
+      {
+        "condition": "normal",
+        "level": "engineering",
+        "measured": 0.0,
+        "name": "arm_0/feature_gain",
+        "passed": false,
+        "reason": "outside stated criterion",
+        "relation": ">=",
+        "threshold": 0.2
+      },
+      {
+        "condition": "normal",
+        "level": "engineering",
+        "measured": 0.0,
+        "name": "arm_0/grayscale_feature_gain",
+        "passed": false,
+        "reason": "outside stated criterion",
+        "relation": ">=",
+        "threshold": 0.2
+      },
+      {
+        "condition": "normal",
+        "level": "mathematical",
+        "measured": 0.2826854031673167,
+        "name": "arm_1/lightness_order",
+        "passed": false,
+        "reason": "outside stated criterion",
+        "relation": "<=",
+        "threshold": 0.002
+      },
+      {
+        "condition": "normal",
+        "level": "engineering",
+        "measured": 0.28428864544465715,
+        "name": "arm_1/lightness_span",
+        "passed": false,
+        "reason": "outside stated criterion",
+        "relation": ">=",
+        "threshold": 0.3
+      },
+      {
+        "condition": "normal",
+        "level": "mathematical",
+        "measured": 0,
+        "name": "center_is_lightness_extreme",
+        "passed": false,
+        "reason": "outside stated criterion",
+        "relation": ">=",
+        "threshold": 1
+      },
+      {
+        "condition": "normal",
+        "level": "engineering",
+        "measured": 0.05487526536748802,
+        "name": "center_chroma",
+        "passed": false,
+        "reason": "outside stated criterion",
+        "relation": "<=",
+        "threshold": 0.03
+      },
+      {
+        "condition": "normal",
+        "level": "engineering",
+        "measured": 0.47012458241741695,
+        "name": "lightness_difference_max",
+        "passed": false,
+        "reason": "outside stated criterion",
+        "relation": "<=",
+        "threshold": 0.04
+      },
+      {
+        "condition": "normal",
+        "level": "engineering",
+        "measured": 0.5853252824671625,
+        "name": "distance_relative_difference_max",
+        "passed": false,
+        "reason": "outside stated criterion",
+        "relation": "<=",
+        "threshold": 0.2
+      },
+      {
+        "condition": "protan-50",
+        "level": "engineering",
+        "measured": 0.282558746933305,
+        "name": "arm_0/lightness_span",
+        "passed": false,
+        "reason": "outside stated criterion",
+        "relation": ">=",
+        "threshold": 0.3
+      },
+      {
+        "condition": "protan-50",
+        "level": "engineering",
+        "measured": 0.6045302272221971,
+        "name": "arm_0/speed_cv",
+        "passed": false,
+        "reason": "outside stated criterion",
+        "relation": "<=",
+        "threshold": 0.35
+      },
+      {
+        "condition": "protan-50",
+        "level": "engineering",
+        "measured": null,
+        "name": "arm_0/lightness_step_ratio",
+        "passed": false,
+        "reason": "undefined or non-finite metric",
+        "relation": "<=",
+        "threshold": 4.0
+      },
+      {
+        "condition": "protan-50",
+        "level": "engineering",
+        "measured": 0.0703125,
+        "name": "arm_0/flat_run_fraction",
+        "passed": false,
+        "reason": "outside stated criterion",
+        "relation": "<=",
+        "threshold": 0.03
+      },
+      {
+        "condition": "protan-50",
+        "level": "engineering",
+        "measured": 0.0,
+        "name": "arm_0/feature_gain",
+        "passed": false,
+        "reason": "outside stated criterion",
+        "relation": ">=",
+        "threshold": 0.2
+      },
+      {
+        "condition": "protan-50",
+        "level": "engineering",
+        "measured": 0.0,
+        "name": "arm_0/grayscale_feature_gain",
+        "passed": false,
+        "reason": "outside stated criterion",
+        "relation": ">=",
+        "threshold": 0.2
+      },
+      {
+        "condition": "protan-50",
+        "level": "engineering",
+        "measured": 0.276658278135247,
+        "name": "arm_1/lightness_order",
+        "passed": false,
+        "reason": "outside stated criterion",
+        "relation": "<=",
+        "threshold": 0.002
+      },
+      {
+        "condition": "protan-50",
+        "level": "engineering",
+        "measured": 0.05244152237872965,
+        "name": "center_chroma",
+        "passed": false,
+        "reason": "outside stated criterion",
+        "relation": "<=",
+        "threshold": 0.03
+      },
+      {
+        "condition": "protan-50",
+        "level": "engineering",
+        "measured": 0.46301994726017526,
+        "name": "lightness_difference_max",
+        "passed": false,
+        "reason": "outside stated criterion",
+        "relation": "<=",
+        "threshold": 0.04
+      },
+      {
+        "condition": "protan-50",
+        "level": "engineering",
+        "measured": 0.6039539288603355,
+        "name": "distance_relative_difference_max",
+        "passed": false,
+        "reason": "outside stated criterion",
+        "relation": "<=",
+        "threshold": 0.2
+      },
+      {
+        "condition": "protan-80",
+        "level": "engineering",
+        "measured": 0.28177456316024996,
+        "name": "arm_0/lightness_span",
+        "passed": false,
+        "reason": "outside stated criterion",
+        "relation": ">=",
+        "threshold": 0.3
+      },
+      {
+        "condition": "protan-80",
+        "level": "engineering",
+        "measured": 0.6166574608578669,
+        "name": "arm_0/speed_cv",
+        "passed": false,
+        "reason": "outside stated criterion",
+        "relation": "<=",
+        "threshold": 0.35
+      },
+      {
+        "condition": "protan-80",
+        "level": "engineering",
+        "measured": null,
+        "name": "arm_0/lightness_step_ratio",
+        "passed": false,
+        "reason": "undefined or non-finite metric",
+        "relation": "<=",
+        "threshold": 4.0
+      },
+      {
+        "condition": "protan-80",
+        "level": "engineering",
+        "measured": 0.0703125,
+        "name": "arm_0/flat_run_fraction",
+        "passed": false,
+        "reason": "outside stated criterion",
+        "relation": "<=",
+        "threshold": 0.03
+      },
+      {
+        "condition": "protan-80",
+        "level": "engineering",
+        "measured": 0.0,
+        "name": "arm_0/feature_gain",
+        "passed": false,
+        "reason": "outside stated criterion",
+        "relation": ">=",
+        "threshold": 0.2
+      },
+      {
+        "condition": "protan-80",
+        "level": "engineering",
+        "measured": 0.0,
+        "name": "arm_0/grayscale_feature_gain",
+        "passed": false,
+        "reason": "outside stated criterion",
+        "relation": ">=",
+        "threshold": 0.2
+      },
+      {
+        "condition": "protan-80",
+        "level": "engineering",
+        "measured": 0.2733771770082605,
+        "name": "arm_1/lightness_order",
+        "passed": false,
+        "reason": "outside stated criterion",
+        "relation": "<=",
+        "threshold": 0.002
+      },
+      {
+        "condition": "protan-80",
+        "level": "engineering",
+        "measured": 0.05144452060593973,
+        "name": "center_chroma",
+        "passed": false,
+        "reason": "outside stated criterion",
+        "relation": "<=",
+        "threshold": 0.03
+      },
+      {
+        "condition": "protan-80",
+        "level": "engineering",
+        "measured": 0.4591181579680482,
+        "name": "lightness_difference_max",
+        "passed": false,
+        "reason": "outside stated criterion",
+        "relation": "<=",
+        "threshold": 0.04
+      },
+      {
+        "condition": "protan-80",
+        "level": "engineering",
+        "measured": 0.6095713056199238,
+        "name": "distance_relative_difference_max",
+        "passed": false,
+        "reason": "outside stated criterion",
+        "relation": "<=",
+        "threshold": 0.2
+      },
+      {
+        "condition": "protan-100",
+        "level": "engineering",
+        "measured": 0.28127446231891645,
+        "name": "arm_0/lightness_span",
+        "passed": false,
+        "reason": "outside stated criterion",
+        "relation": ">=",
+        "threshold": 0.3
+      },
+      {
+        "condition": "protan-100",
+        "level": "engineering",
+        "measured": 0.6205674671280004,
+        "name": "arm_0/speed_cv",
+        "passed": false,
+        "reason": "outside stated criterion",
+        "relation": "<=",
+        "threshold": 0.35
+      },
+      {
+        "condition": "protan-100",
+        "level": "engineering",
+        "measured": null,
+        "name": "arm_0/lightness_step_ratio",
+        "passed": false,
+        "reason": "undefined or non-finite metric",
+        "relation": "<=",
+        "threshold": 4.0
+      },
+      {
+        "condition": "protan-100",
+        "level": "engineering",
+        "measured": 0.0703125,
+        "name": "arm_0/flat_run_fraction",
+        "passed": false,
+        "reason": "outside stated criterion",
+        "relation": "<=",
+        "threshold": 0.03
+      },
+      {
+        "condition": "protan-100",
+        "level": "engineering",
+        "measured": 0.0,
+        "name": "arm_0/feature_gain",
+        "passed": false,
+        "reason": "outside stated criterion",
+        "relation": ">=",
+        "threshold": 0.2
+      },
+      {
+        "condition": "protan-100",
+        "level": "engineering",
+        "measured": 0.0,
+        "name": "arm_0/grayscale_feature_gain",
+        "passed": false,
+        "reason": "outside stated criterion",
+        "relation": ">=",
+        "threshold": 0.2
+      },
+      {
+        "condition": "protan-100",
+        "level": "engineering",
+        "measured": 0.27127944522542713,
+        "name": "arm_1/lightness_order",
+        "passed": false,
+        "reason": "outside stated criterion",
+        "relation": "<=",
+        "threshold": 0.002
+      },
+      {
+        "condition": "protan-100",
+        "level": "engineering",
+        "measured": 0.05084699093099842,
+        "name": "center_chroma",
+        "passed": false,
+        "reason": "outside stated criterion",
+        "relation": "<=",
+        "threshold": 0.03
+      },
+      {
+        "condition": "protan-100",
+        "level": "engineering",
+        "measured": 0.45662212231915067,
+        "name": "lightness_difference_max",
+        "passed": false,
+        "reason": "outside stated criterion",
+        "relation": "<=",
+        "threshold": 0.04
+      },
+      {
+        "condition": "protan-100",
+        "level": "engineering",
+        "measured": 0.6126536624645126,
+        "name": "distance_relative_difference_max",
+        "passed": false,
+        "reason": "outside stated criterion",
+        "relation": "<=",
+        "threshold": 0.2
+      },
+      {
+        "condition": "deutan-50",
+        "level": "engineering",
+        "measured": 0.28517947102558666,
+        "name": "arm_0/lightness_span",
+        "passed": false,
+        "reason": "outside stated criterion",
+        "relation": ">=",
+        "threshold": 0.3
+      },
+      {
+        "condition": "deutan-50",
+        "level": "engineering",
+        "measured": 0.5952236334313729,
+        "name": "arm_0/speed_cv",
+        "passed": false,
+        "reason": "outside stated criterion",
+        "relation": "<=",
+        "threshold": 0.35
+      },
+      {
+        "condition": "deutan-50",
+        "level": "engineering",
+        "measured": null,
+        "name": "arm_0/lightness_step_ratio",
+        "passed": false,
+        "reason": "undefined or non-finite metric",
+        "relation": "<=",
+        "threshold": 4.0
+      },
+      {
+        "condition": "deutan-50",
+        "level": "engineering",
+        "measured": 0.0703125,
+        "name": "arm_0/flat_run_fraction",
+        "passed": false,
+        "reason": "outside stated criterion",
+        "relation": "<=",
+        "threshold": 0.03
+      },
+      {
+        "condition": "deutan-50",
+        "level": "engineering",
+        "measured": 0.0,
+        "name": "arm_0/feature_gain",
+        "passed": false,
+        "reason": "outside stated criterion",
+        "relation": ">=",
+        "threshold": 0.2
+      },
+      {
+        "condition": "deutan-50",
+        "level": "engineering",
+        "measured": 0.0,
+        "name": "arm_0/grayscale_feature_gain",
+        "passed": false,
+        "reason": "outside stated criterion",
+        "relation": ">=",
+        "threshold": 0.2
+      },
+      {
+        "condition": "deutan-50",
+        "level": "engineering",
+        "measured": 0.28496200028801666,
+        "name": "arm_1/lightness_order",
+        "passed": false,
+        "reason": "outside stated criterion",
+        "relation": "<=",
+        "threshold": 0.002
+      },
+      {
+        "condition": "deutan-50",
+        "level": "engineering",
+        "measured": 0.2798135124904259,
+        "name": "arm_1/lightness_span",
+        "passed": false,
+        "reason": "outside stated criterion",
+        "relation": ">=",
+        "threshold": 0.3
+      },
+      {
+        "condition": "deutan-50",
+        "level": "engineering",
+        "measured": 0.05483237758932429,
+        "name": "center_chroma",
+        "passed": false,
+        "reason": "outside stated criterion",
+        "relation": "<=",
+        "threshold": 0.03
+      },
+      {
+        "condition": "deutan-50",
+        "level": "engineering",
+        "measured": 0.47328437103116444,
+        "name": "lightness_difference_max",
+        "passed": false,
+        "reason": "outside stated criterion",
+        "relation": "<=",
+        "threshold": 0.04
+      },
+      {
+        "condition": "deutan-50",
+        "level": "engineering",
+        "measured": 0.5896513372683626,
+        "name": "distance_relative_difference_max",
+        "passed": false,
+        "reason": "outside stated criterion",
+        "relation": "<=",
+        "threshold": 0.2
+      },
+      {
+        "condition": "deutan-80",
+        "level": "engineering",
+        "measured": 0.28589514443407255,
+        "name": "arm_0/lightness_span",
+        "passed": false,
+        "reason": "outside stated criterion",
+        "relation": ">=",
+        "threshold": 0.3
+      },
+      {
+        "condition": "deutan-80",
+        "level": "engineering",
+        "measured": 0.5987595831360223,
+        "name": "arm_0/speed_cv",
+        "passed": false,
+        "reason": "outside stated criterion",
+        "relation": "<=",
+        "threshold": 0.35
+      },
+      {
+        "condition": "deutan-80",
+        "level": "engineering",
+        "measured": null,
+        "name": "arm_0/lightness_step_ratio",
+        "passed": false,
+        "reason": "undefined or non-finite metric",
+        "relation": "<=",
+        "threshold": 4.0
+      },
+      {
+        "condition": "deutan-80",
+        "level": "engineering",
+        "measured": 0.0703125,
+        "name": "arm_0/flat_run_fraction",
+        "passed": false,
+        "reason": "outside stated criterion",
+        "relation": "<=",
+        "threshold": 0.03
+      },
+      {
+        "condition": "deutan-80",
+        "level": "engineering",
+        "measured": 0.0,
+        "name": "arm_0/feature_gain",
+        "passed": false,
+        "reason": "outside stated criterion",
+        "relation": ">=",
+        "threshold": 0.2
+      },
+      {
+        "condition": "deutan-80",
+        "level": "engineering",
+        "measured": 0.0,
+        "name": "arm_0/grayscale_feature_gain",
+        "passed": false,
+        "reason": "outside stated criterion",
+        "relation": ">=",
+        "threshold": 0.2
+      },
+      {
+        "condition": "deutan-80",
+        "level": "engineering",
+        "measured": 0.2866111765196546,
+        "name": "arm_1/lightness_order",
+        "passed": false,
+        "reason": "outside stated criterion",
+        "relation": "<=",
+        "threshold": 0.002
+      },
+      {
+        "condition": "deutan-80",
+        "level": "engineering",
+        "measured": 0.2762100955512226,
+        "name": "arm_1/lightness_span",
+        "passed": false,
+        "reason": "outside stated criterion",
+        "relation": ">=",
+        "threshold": 0.3
+      },
+      {
+        "condition": "deutan-80",
+        "level": "engineering",
+        "measured": 0.05528412419975323,
+        "name": "center_chroma",
+        "passed": false,
+        "reason": "outside stated criterion",
+        "relation": "<=",
+        "threshold": 0.03
+      },
+      {
+        "condition": "deutan-80",
+        "level": "engineering",
+        "measured": 0.47544363052277355,
+        "name": "lightness_difference_max",
+        "passed": false,
+        "reason": "outside stated criterion",
+        "relation": "<=",
+        "threshold": 0.04
+      },
+      {
+        "condition": "deutan-80",
+        "level": "engineering",
+        "measured": 0.5874819570471799,
+        "name": "distance_relative_difference_max",
+        "passed": false,
+        "reason": "outside stated criterion",
+        "relation": "<=",
+        "threshold": 0.2
+      },
+      {
+        "condition": "deutan-100",
+        "level": "engineering",
+        "measured": 0.28637439781259943,
+        "name": "arm_0/lightness_span",
+        "passed": false,
+        "reason": "outside stated criterion",
+        "relation": ">=",
+        "threshold": 0.3
+      },
+      {
+        "condition": "deutan-100",
+        "level": "engineering",
+        "measured": 0.5973098062651292,
+        "name": "arm_0/speed_cv",
+        "passed": false,
+        "reason": "outside stated criterion",
+        "relation": "<=",
+        "threshold": 0.35
+      },
+      {
+        "condition": "deutan-100",
+        "level": "engineering",
+        "measured": null,
+        "name": "arm_0/lightness_step_ratio",
+        "passed": false,
+        "reason": "undefined or non-finite metric",
+        "relation": "<=",
+        "threshold": 4.0
+      },
+      {
+        "condition": "deutan-100",
+        "level": "engineering",
+        "measured": 0.0703125,
+        "name": "arm_0/flat_run_fraction",
+        "passed": false,
+        "reason": "outside stated criterion",
+        "relation": "<=",
+        "threshold": 0.03
+      },
+      {
+        "condition": "deutan-100",
+        "level": "engineering",
+        "measured": 0.0,
+        "name": "arm_0/feature_gain",
+        "passed": false,
+        "reason": "outside stated criterion",
+        "relation": ">=",
+        "threshold": 0.2
+      },
+      {
+        "condition": "deutan-100",
+        "level": "engineering",
+        "measured": 0.0,
+        "name": "arm_0/grayscale_feature_gain",
+        "passed": false,
+        "reason": "outside stated criterion",
+        "relation": ">=",
+        "threshold": 0.2
+      },
+      {
+        "condition": "deutan-100",
+        "level": "engineering",
+        "measured": 0.2877734082681409,
+        "name": "arm_1/lightness_order",
+        "passed": false,
+        "reason": "outside stated criterion",
+        "relation": "<=",
+        "threshold": 0.002
+      },
+      {
+        "condition": "deutan-100",
+        "level": "engineering",
+        "measured": 0.27362345262023835,
+        "name": "arm_1/lightness_span",
+        "passed": false,
+        "reason": "outside stated criterion",
+        "relation": ">=",
+        "threshold": 0.3
+      },
+      {
+        "condition": "deutan-100",
+        "level": "engineering",
+        "measured": 0.0556408267061239,
+        "name": "center_chroma",
+        "passed": false,
+        "reason": "outside stated criterion",
+        "relation": "<=",
+        "threshold": 0.03
+      },
+      {
+        "condition": "deutan-100",
+        "level": "engineering",
+        "measured": 0.47694782892471266,
+        "name": "lightness_difference_max",
+        "passed": false,
+        "reason": "outside stated criterion",
+        "relation": "<=",
+        "threshold": 0.04
+      },
+      {
+        "condition": "deutan-100",
+        "level": "engineering",
+        "measured": 0.5854775985688553,
+        "name": "distance_relative_difference_max",
+        "passed": false,
+        "reason": "outside stated criterion",
+        "relation": "<=",
+        "threshold": 0.2
+      },
+      {
+        "condition": "tritan-100",
+        "level": "engineering",
+        "measured": 0.2853800534166934,
+        "name": "arm_0/lightness_span",
+        "passed": false,
+        "reason": "outside stated criterion",
+        "relation": ">=",
+        "threshold": 0.3
+      },
+      {
+        "condition": "tritan-100",
+        "level": "engineering",
+        "measured": 0.6021552602413319,
+        "name": "arm_0/speed_cv",
+        "passed": false,
+        "reason": "outside stated criterion",
+        "relation": "<=",
+        "threshold": 0.35
+      },
+      {
+        "condition": "tritan-100",
+        "level": "engineering",
+        "measured": null,
+        "name": "arm_0/lightness_step_ratio",
+        "passed": false,
+        "reason": "undefined or non-finite metric",
+        "relation": "<=",
+        "threshold": 4.0
+      },
+      {
+        "condition": "tritan-100",
+        "level": "engineering",
+        "measured": 0.0703125,
+        "name": "arm_0/flat_run_fraction",
+        "passed": false,
+        "reason": "outside stated criterion",
+        "relation": "<=",
+        "threshold": 0.03
+      },
+      {
+        "condition": "tritan-100",
+        "level": "engineering",
+        "measured": 0.0,
+        "name": "arm_0/feature_gain",
+        "passed": false,
+        "reason": "outside stated criterion",
+        "relation": ">=",
+        "threshold": 0.2
+      },
+      {
+        "condition": "tritan-100",
+        "level": "engineering",
+        "measured": 0.0,
+        "name": "arm_0/grayscale_feature_gain",
+        "passed": false,
+        "reason": "outside stated criterion",
+        "relation": ">=",
+        "threshold": 0.2
+      },
+      {
+        "condition": "tritan-100",
+        "level": "engineering",
+        "measured": 0.28554221184013584,
+        "name": "arm_1/lightness_order",
+        "passed": false,
+        "reason": "outside stated criterion",
+        "relation": "<=",
+        "threshold": 0.002
+      },
+      {
+        "condition": "tritan-100",
+        "level": "engineering",
+        "measured": 0.27860991902854565,
+        "name": "arm_1/lightness_span",
+        "passed": false,
+        "reason": "outside stated criterion",
+        "relation": ">=",
+        "threshold": 0.3
+      },
+      {
+        "condition": "tritan-100",
+        "level": "engineering",
+        "measured": 0.04812436620747252,
+        "name": "center_chroma",
+        "passed": false,
+        "reason": "outside stated criterion",
+        "relation": "<=",
+        "threshold": 0.03
+      },
+      {
+        "condition": "tritan-100",
+        "level": "engineering",
+        "measured": 0.47398584138995514,
+        "name": "lightness_difference_max",
+        "passed": false,
+        "reason": "outside stated criterion",
+        "relation": "<=",
+        "threshold": 0.04
+      },
+      {
+        "condition": "tritan-100",
+        "level": "engineering",
+        "measured": 0.6461477420312206,
+        "name": "distance_relative_difference_max",
+        "passed": false,
+        "reason": "outside stated criterion",
+        "relation": "<=",
+        "threshold": 0.2
+      }
+    ],
+    "screen_pass": false
+  }
+}

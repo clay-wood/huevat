@@ -1,0 +1,53 @@
+{
+  "files": {
+    "aerosol-dark-conditions.png": "3076286b0cc0fb898fd82c7df12379229a8d36d6e01770076f5087e4bbb384f2",
+    "aerosol-light-conditions.png": "ae68576f64084f2e89d074005b877c3d0f11c129ee932902a7f7d630274d4f2e",
+    "atmosphere-dark.png": "0fdb1decf8c032dc5f5482edf15f9ec47bbf96d132f809c8a7f7648f7bb5e233",
+    "atmosphere-light.png": "a7bafd37c3faf09b341e7b2df3ebca41af74ae77d9036ec1903af4dacbad6ffc",
+    "balance-dark-conditions.png": "706a4d420bc8b08503dfb3d0ef0ebebf85cecd45d4402290dd8c16b338a10ae5",
+    "balance-light-conditions.png": "861bdedeaac0df3aa907cb391edb328e44e5b03bd9d3b04466ca17862983edd2",
+    "bathymetry-dark-conditions.png": "a03cd216a505a4da5a141fc616c199b251073a27caa73c3509bdfd1bce7015d3",
+    "bathymetry-light-conditions.png": "f5bd714a976bdb965cbc27d0896e465068a8c7b59e4914b1e348eab8970fb652",
+    "construction.json.gz": "672cf8792e1d478d0633db9ff4aa91e6f63f3104f4df5fbc79f25724ce7fe13b",
+    "ember-dark-conditions.png": "2fa2e0dc1983c1897332b40a53e40c775cc31e0d65f84fdc56b685f204968f74",
+    "ember-light-conditions.png": "a08ee4299de483edc634cdf1293d9cc3cc3145c3737b56713868241f66990426",
+    "estuary-dark-conditions.png": "49178740acf59028e257754c983461ed98cd2064ff4722b4adf6f8352ec2307e",
+    "estuary-light-conditions.png": "f14b2e0191892395a686d94836b5beb20b1fe6076c02482a54b75aac10f7e985",
+    "highland-dark-conditions.png": "49382930354ce3eb2ee3a1e0c702b8ee969008b221e72d12bad923e2b510d525",
+    "highland-light-conditions.png": "10983e5ee9966688088b2b5f741eec34664e7b1d06afb83e8f04cfbc8c09ad19",
+    "index.html": "0a2fe4453c8d647b36198afb542545bb3992dfe6d882424f5ce4cea52c28bbc8",
+    "ink-dark-conditions.png": "54dce21c3d0d02b4bc19e953a1b7dcdb6e75bc568f757f1b317a14ecde7d735a",
+    "ink-light-conditions.png": "40d2716a46ff19313616286841a5e0f113727c2c0fe33228845d264c7bbbd5df",
+    "lagoon-dark-conditions.png": "f69a5c88d24877c1819318360214d52a984d298b808a621125439a99ee9c0a0c",
+    "lagoon-light-conditions.png": "852998abcb089356785cb2f5c4a79df21974d7131b7faa607aeebccfab4ea5f4",
+    "mineral-dark-conditions.png": "d65471703d7fc5600ab2c3307bf15dfc151fc3e77371146ef6cffbcf72eb8b0d",
+    "mineral-light-conditions.png": "52b60e671f83a125eb95b2cca25d67932545d07f10e49e948cb89389a80aa80b",
+    "negative-controls.json": "8a281a7e1dc77ff8dc1a1820342a0a96137254e1058dd9785b0a4f4cb0f88687",
+    "negative-controls.png": "c57fc26dee459cd541c067a34707c28d901513b0927089cb664361cdbe4ca5c6",
+    "overview-dark.png": "52ae898a19d7647746c167a082ae1a5c35d72218f9369bfffb88d7277ffc7f90",
+    "overview-light.png": "6f1bbc292946d54335a5a56fe043635a246fd9403ff0bdb55d5179c3ff6b7304",
+    "review.json": "e57ad067bb55df384df604b9c302f389bc72336b66a11d6674e3ba4e21e626e3",
+    "rosewood-dark-conditions.png": "18d5d795321b5283c8a6b7710e0e5162fba0bb96e6605e86ac0bbea7ad1e925a",
+    "rosewood-light-conditions.png": "da58935be71791bf4fc5a3e5824e8343b289408b0fba5155d505ffa2597ab041",
+    "seismic-dark.png": "af87a3f1082eeb7a66355f5d0b7327914017d13acbd0bb3bd66dd67f4d2976a3",
+    "seismic-light.png": "513eeeb37c5ca85f0b4280a68ca6a2df81700763ebeafb5efbb3d810806bc035",
+    "strata-dark-conditions.png": "e998dd8337c4901b3dd464b5d3c2969951debb6c9399dfcdff14fc85da501699",
+    "strata-light-conditions.png": "16a28b848a19ac4e4798009e7ffeee8cbced3908b81957e5c86fec702d302933",
+    "structure-dark.png": "4713e07dc48ca3c05ee04eb4f18b131df2823f41f6160352e424c683fdfee425",
+    "structure-light.png": "da2d29e79c17cdc0612b118455b254247ee4c52c5d9047bb8914e653df54715f",
+    "terrain-dark.png": "3ea495489488e8f8d9aa0409d1acb575e8f211c44bc6bd2601b5131c52413694",
+    "terrain-light.png": "152c8f668a113a509aba619d915920b42bbe74d906da0eb1ea92d983803feeae",
+    "thermal-dark-conditions.png": "d112b3b89cd6d622ba31246b18397e049d1cd470a1adcc8471963690c163a2ed",
+    "thermal-light-conditions.png": "4c47ae4fd4bf8d3c8a3b40433c76884e5ca7cdd2800e06085ead4f9feb0f5fd0"
+  },
+  "implementation_sha256_lf": {
+    "_collection_design.py": "e15c79b6f060c1f842b1ebb72537525d6fc48ddb829ddd11ffad499245d4ba5b",
+    "_collection_specs.py": "803f6c5213035cd59ce198f63d6f93aac5c11e677808fb1033f8c8d18780abd0",
+    "catalog.py": "2cd75cebb823f786fa40735f654fa33a176e77d4bb90d595bade01cd6cd46279"
+  },
+  "resource_sha256_lf": "730943253b054d8103f2678c09b714151b6131a5436ef12b26b1413e41d2a4dd",
+  "tool_sha256_lf": {
+    "build_collection.py": "3d1fd642023be37eb69c27bc94c6fdf6f91dc13e0424dec9cdee9c51242cee54",
+    "collection_fields.py": "4bbe1f129a1f96071aeae3c8baffd7e8c618b822b4b9807961253600785c0470"
+  }
+}

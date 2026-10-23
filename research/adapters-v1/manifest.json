@@ -1,4 +1,11 @@
 {
+  "compatible_api_extensions": [
+    {
+      "change": "lazy named-gradient exports and recipe dispatch; H4a algorithms and retained evidence unchanged",
+      "milestone": "H4b",
+      "previous_init_sha256_lf": "30735d94b44e8dd569a4640d095fa28511bd9e5cd721f0c0f628289d2d41f91f"
+    }
+  ],
   "files": {
     "evidence.json": "a92c978d4d0d8551539a3cb6ecf3ea75004605025f75bb0341a97629069f195d",
     "index.html": "1054cea2297664e4b7792b0035bc9a4c0c19141f6b12f9d93c2042c2fab2fcf1",
@@ -10,7 +17,7 @@
     "ultraplot-light.png": "c1505f3d0cccb470f7bf3df26051e4e1bbb5db66e1e4dc56697b908609177906"
   },
   "implementation_sha256_lf": {
-    "__init__.py": "30735d94b44e8dd569a4640d095fa28511bd9e5cd721f0c0f628289d2d41f91f",
+    "__init__.py": "681a747c11fd0ead5ffc0dd0ecda17cbb1eecdcfebc4027f5a524068f1ed3dc3",
     "_sampling_design.py": "0243b8bcd4432aee4fde3acc25dccd84ea89c7f239b15fd069424640e55db82c",
     "adapters/__init__.py": "61e5e39e6eb7cff30871c3c7c3a3f4aaead4e1a0a166a15c7765aec0f928e56d",
     "adapters/_common.py": "55979449da82232ab4fd36381e50e9c626ad7163fb4c5b9ca5cf76e89b66def3",

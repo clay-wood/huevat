@@ -1,11 +1,12 @@
 {
-  "version": "h1-resources-v1",
   "sha256_lf": {
-    "references-v1.json": "6d6dacb6d826a2fc60abb8d217078c39fdf3184593912648254891273eb498bb",
-    "machado-v1.json": "c4d8e9ad439d572b37d2c6e6d3d490c2fd7ae290a180625c458c12c47a591444",
-    "profiles-v1.json": "0938561bf7e1551814a8ba58c4e883858bcc91a8c84e6051e20559c1e24f318a",
-    "ordered-v1.json": "1e0a971c5602f457dd569eab0dbace461214e1b8f6148fb528eafafba45147ab",
+    "categorical-v2.json": "f690180199f065391752e550ca5ac605c9f1909019570fb67835b66bfdd9e390",
+    "collection-v1.json": "730943253b054d8103f2678c09b714151b6131a5436ef12b26b1413e41d2a4dd",
     "families-v1.json": "79bb585eceb238f61ba454c5e7e7f5c8195d413077e7aa93d873994c0efddcc0",
-    "categorical-v2.json": "f690180199f065391752e550ca5ac605c9f1909019570fb67835b66bfdd9e390"
-  }
+    "machado-v1.json": "c4d8e9ad439d572b37d2c6e6d3d490c2fd7ae290a180625c458c12c47a591444",
+    "ordered-v1.json": "1e0a971c5602f457dd569eab0dbace461214e1b8f6148fb528eafafba45147ab",
+    "profiles-v1.json": "0938561bf7e1551814a8ba58c4e883858bcc91a8c84e6051e20559c1e24f318a",
+    "references-v1.json": "6d6dacb6d826a2fc60abb8d217078c39fdf3184593912648254891273eb498bb"
+  },
+  "version": "h1-resources-v1"
 }
