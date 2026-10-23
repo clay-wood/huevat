@@ -238,6 +238,13 @@ inspected in contact sheets, with representative panels checked at full size.
 Appearance review is pending and no reviewed default is adopted. Browser
 filter interaction remains untested under the local-file browser restriction.
 
+Implementation commit: `04f011b31fce65a233681ecba3ca85beced8134e`.
+All eight Windows/Linux jobs passed:
+[H4b validation run 39997861638](https://github.com/clay-wood/huevat/actions/runs/39997861638).
+The six Python 3.10/3.12/3.14 core jobs include clean offline installation;
+both Python 3.12 research jobs test actual backends, reproduce all earlier
+milestones and revalidate the H4b paths, counts, controls and retained hashes.
+
 ## Boundaries
 
 Roadmap update, October 23, 2026: the user accepted figure doctor with
