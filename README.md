@@ -12,6 +12,24 @@ designs remain experimental; approved defaults remain H4 in
 The base package uses only the Python standard library. It needs no browser,
 renderer, NumPy, SciPy, or plotting package.
 
+H4 now includes native Matplotlib/Plotly/UltraPlot adapters, optimized discrete
+sampling, twelve additional gradient candidates, and **figure doctor**:
+
+```python
+from huevat import doctor
+scene = doctor.inspect(fig)
+closer, separation, simple = doctor.propose(scene)
+copy = doctor.preview(fig, separation)   # original untouched
+change = doctor.apply(fig, separation)  # explicit edit; change.undo() restores
+```
+
+Figure doctor coordinates colors, markers and dashes, respects locked choices
+and stable category labels, and preserves data/scales/colorbars. It reports
+unsupported content and retains failed color-only screens. Numerical audits need
+`[design]` plus the chosen plotting backend. See the
+[usage and coverage guide](docs/FIGURE_DOCTOR.md) and
+[offline before/after gallery](research/doctor-v1/index.html).
+
 ## Install and develop
 
 From a checkout with [uv](https://docs.astral.sh/uv/) installed:

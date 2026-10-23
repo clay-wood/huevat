@@ -1,0 +1,1318 @@
+{
+  "proposal": {
+    "assignments": {
+      "Deep": {
+        "color": "#bc9bd0",
+        "dash": "solid",
+        "marker": "circle"
+      },
+      "Middle": {
+        "color": "#49b3a9",
+        "dash": "dash",
+        "marker": "square"
+      },
+      "Reference": {
+        "color": "#ef8b7c",
+        "dash": "dot",
+        "marker": "triangle"
+      },
+      "Shallow": {
+        "color": "#daac4d",
+        "dash": "dashdot",
+        "marker": "diamond"
+      },
+      "Transient": {
+        "color": "#5b99d2",
+        "dash": "solid",
+        "marker": "cross"
+      }
+    },
+    "name": "separation",
+    "report": {
+      "approved_default": false,
+      "changes": [
+        {
+          "after": {
+            "color": "#bc9bd0",
+            "dash": "solid",
+            "marker": "circle"
+          },
+          "before": [
+            "#7c9aab",
+            "#7c9aab"
+          ],
+          "category": "Deep"
+        },
+        {
+          "after": {
+            "color": "#49b3a9",
+            "dash": "dash",
+            "marker": "square"
+          },
+          "before": [
+            "#638ca7",
+            "#638ca7"
+          ],
+          "category": "Middle"
+        },
+        {
+          "after": {
+            "color": "#ef8b7c",
+            "dash": "dot",
+            "marker": "triangle"
+          },
+          "before": [
+            "#4477aa",
+            "#4477aa"
+          ],
+          "category": "Reference"
+        },
+        {
+          "after": {
+            "color": "#daac4d",
+            "dash": "dashdot",
+            "marker": "diamond"
+          },
+          "before": [
+            "#4c7fa9"
+          ],
+          "category": "Shallow"
+        },
+        {
+          "after": {
+            "color": "#5b99d2",
+            "dash": "solid",
+            "marker": "cross"
+          },
+          "before": [
+            "#779fac",
+            "#779fac"
+          ],
+          "category": "Transient"
+        }
+      ],
+      "color_scope": "supported visible mark channels over solid axes backgrounds",
+      "color_screen_pass": true,
+      "complete_figure_screen_pass": false,
+      "coverage": {
+        "complete": false,
+        "editable_marks": 9,
+        "read_only": 3,
+        "scope": "modeled Cartesian marks over solid backgrounds; no occlusion model",
+        "unsupported": 0
+      },
+      "criteria": [
+        {
+          "condition": "normal",
+          "encoding": "float",
+          "measured": 6.183849592903493,
+          "name": "background_contrast",
+          "pair": null,
+          "panel": "axes/0",
+          "passed": true,
+          "threshold": 3.0
+        },
+        {
+          "condition": "normal",
+          "encoding": "float",
+          "measured": 0.11116775643027797,
+          "name": "oklab_minimum_pair",
+          "pair": null,
+          "panel": "axes/0",
+          "passed": true,
+          "threshold": 0.08
+        },
+        {
+          "condition": "normal",
+          "encoding": "float",
+          "measured": 21.07401576592601,
+          "name": "cam02_minimum_pair",
+          "pair": null,
+          "panel": "axes/0",
+          "passed": true,
+          "threshold": 8.0
+        },
+        {
+          "condition": "protan-50",
+          "encoding": "float",
+          "measured": 0.06874151856079123,
+          "name": "oklab_minimum_pair",
+          "pair": null,
+          "panel": "axes/0",
+          "passed": true,
+          "threshold": 0.04
+        },
+        {
+          "condition": "protan-50",
+          "encoding": "float",
+          "measured": 11.75595136653255,
+          "name": "cam02_minimum_pair",
+          "pair": null,
+          "panel": "axes/0",
+          "passed": true,
+          "threshold": 4.0
+        },
+        {
+          "condition": "protan-80",
+          "encoding": "float",
+          "measured": 0.049556284548473904,
+          "name": "oklab_minimum_pair",
+          "pair": null,
+          "panel": "axes/0",
+          "passed": true,
+          "threshold": 0.04
+        },
+        {
+          "condition": "protan-80",
+          "encoding": "float",
+          "measured": 7.311054352697936,
+          "name": "cam02_minimum_pair",
+          "pair": null,
+          "panel": "axes/0",
+          "passed": true,
+          "threshold": 4.0
+        },
+        {
+          "condition": "protan-100",
+          "encoding": "float",
+          "measured": 0.040283980074152015,
+          "name": "oklab_minimum_pair",
+          "pair": null,
+          "panel": "axes/0",
+          "passed": true,
+          "threshold": 0.04
+        },
+        {
+          "condition": "protan-100",
+          "encoding": "float",
+          "measured": 5.492831954630043,
+          "name": "cam02_minimum_pair",
+          "pair": null,
+          "panel": "axes/0",
+          "passed": true,
+          "threshold": 4.0
+        },
+        {
+          "condition": "deutan-50",
+          "encoding": "float",
+          "measured": 0.07096997892826178,
+          "name": "oklab_minimum_pair",
+          "pair": null,
+          "panel": "axes/0",
+          "passed": true,
+          "threshold": 0.04
+        },
+        {
+          "condition": "deutan-50",
+          "encoding": "float",
+          "measured": 13.223652971285988,
+          "name": "cam02_minimum_pair",
+          "pair": null,
+          "panel": "axes/0",
+          "passed": true,
+          "threshold": 4.0
+        },
+        {
+          "condition": "deutan-80",
+          "encoding": "float",
+          "measured": 0.05452454145432038,
+          "name": "oklab_minimum_pair",
+          "pair": null,
+          "panel": "axes/0",
+          "passed": true,
+          "threshold": 0.04
+        },
+        {
+          "condition": "deutan-80",
+          "encoding": "float",
+          "measured": 10.801588531289195,
+          "name": "cam02_minimum_pair",
+          "pair": null,
+          "panel": "axes/0",
+          "passed": true,
+          "threshold": 4.0
+        },
+        {
+          "condition": "deutan-100",
+          "encoding": "float",
+          "measured": 0.05238402995480233,
+          "name": "oklab_minimum_pair",
+          "pair": null,
+          "panel": "axes/0",
+          "passed": true,
+          "threshold": 0.04
+        },
+        {
+          "condition": "deutan-100",
+          "encoding": "float",
+          "measured": 9.819317431331038,
+          "name": "cam02_minimum_pair",
+          "pair": null,
+          "panel": "axes/0",
+          "passed": true,
+          "threshold": 4.0
+        },
+        {
+          "condition": "tritan-100",
+          "encoding": "float",
+          "measured": 0.048109700947313976,
+          "name": "oklab_minimum_pair",
+          "pair": null,
+          "panel": "axes/0",
+          "passed": true,
+          "threshold": 0.04
+        },
+        {
+          "condition": "tritan-100",
+          "encoding": "float",
+          "measured": 6.669434166028433,
+          "name": "cam02_minimum_pair",
+          "pair": null,
+          "panel": "axes/0",
+          "passed": true,
+          "threshold": 4.0
+        },
+        {
+          "condition": "normal",
+          "encoding": "u8",
+          "measured": 6.183849592903493,
+          "name": "background_contrast",
+          "pair": null,
+          "panel": "axes/0",
+          "passed": true,
+          "threshold": 3.0
+        },
+        {
+          "condition": "normal",
+          "encoding": "u8",
+          "measured": 0.11116775643027797,
+          "name": "oklab_minimum_pair",
+          "pair": null,
+          "panel": "axes/0",
+          "passed": true,
+          "threshold": 0.08
+        },
+        {
+          "condition": "normal",
+          "encoding": "u8",
+          "measured": 21.07401576592601,
+          "name": "cam02_minimum_pair",
+          "pair": null,
+          "panel": "axes/0",
+          "passed": true,
+          "threshold": 8.0
+        },
+        {
+          "condition": "protan-50",
+          "encoding": "u8",
+          "measured": 0.06874151856079123,
+          "name": "oklab_minimum_pair",
+          "pair": null,
+          "panel": "axes/0",
+          "passed": true,
+          "threshold": 0.04
+        },
+        {
+          "condition": "protan-50",
+          "encoding": "u8",
+          "measured": 11.75595136653255,
+          "name": "cam02_minimum_pair",
+          "pair": null,
+          "panel": "axes/0",
+          "passed": true,
+          "threshold": 4.0
+        },
+        {
+          "condition": "protan-80",
+          "encoding": "u8",
+          "measured": 0.049556284548473904,
+          "name": "oklab_minimum_pair",
+          "pair": null,
+          "panel": "axes/0",
+          "passed": true,
+          "threshold": 0.04
+        },
+        {
+          "condition": "protan-80",
+          "encoding": "u8",
+          "measured": 7.311054352697936,
+          "name": "cam02_minimum_pair",
+          "pair": null,
+          "panel": "axes/0",
+          "passed": true,
+          "threshold": 4.0
+        },
+        {
+          "condition": "protan-100",
+          "encoding": "u8",
+          "measured": 0.040283980074152015,
+          "name": "oklab_minimum_pair",
+          "pair": null,
+          "panel": "axes/0",
+          "passed": true,
+          "threshold": 0.04
+        },
+        {
+          "condition": "protan-100",
+          "encoding": "u8",
+          "measured": 5.492831954630043,
+          "name": "cam02_minimum_pair",
+          "pair": null,
+          "panel": "axes/0",
+          "passed": true,
+          "threshold": 4.0
+        },
+        {
+          "condition": "deutan-50",
+          "encoding": "u8",
+          "measured": 0.07096997892826178,
+          "name": "oklab_minimum_pair",
+          "pair": null,
+          "panel": "axes/0",
+          "passed": true,
+          "threshold": 0.04
+        },
+        {
+          "condition": "deutan-50",
+          "encoding": "u8",
+          "measured": 13.223652971285988,
+          "name": "cam02_minimum_pair",
+          "pair": null,
+          "panel": "axes/0",
+          "passed": true,
+          "threshold": 4.0
+        },
+        {
+          "condition": "deutan-80",
+          "encoding": "u8",
+          "measured": 0.05452454145432038,
+          "name": "oklab_minimum_pair",
+          "pair": null,
+          "panel": "axes/0",
+          "passed": true,
+          "threshold": 0.04
+        },
+        {
+          "condition": "deutan-80",
+          "encoding": "u8",
+          "measured": 10.801588531289195,
+          "name": "cam02_minimum_pair",
+          "pair": null,
+          "panel": "axes/0",
+          "passed": true,
+          "threshold": 4.0
+        },
+        {
+          "condition": "deutan-100",
+          "encoding": "u8",
+          "measured": 0.05238402995480233,
+          "name": "oklab_minimum_pair",
+          "pair": null,
+          "panel": "axes/0",
+          "passed": true,
+          "threshold": 0.04
+        },
+        {
+          "condition": "deutan-100",
+          "encoding": "u8",
+          "measured": 9.819317431331038,
+          "name": "cam02_minimum_pair",
+          "pair": null,
+          "panel": "axes/0",
+          "passed": true,
+          "threshold": 4.0
+        },
+        {
+          "condition": "tritan-100",
+          "encoding": "u8",
+          "measured": 0.048109700947313976,
+          "name": "oklab_minimum_pair",
+          "pair": null,
+          "panel": "axes/0",
+          "passed": true,
+          "threshold": 0.04
+        },
+        {
+          "condition": "tritan-100",
+          "encoding": "u8",
+          "measured": 6.669434166028433,
+          "name": "cam02_minimum_pair",
+          "pair": null,
+          "panel": "axes/0",
+          "passed": true,
+          "threshold": 4.0
+        },
+        {
+          "condition": "normal",
+          "encoding": "float",
+          "measured": 6.183849592903493,
+          "name": "background_contrast",
+          "pair": null,
+          "panel": "axes/1",
+          "passed": true,
+          "threshold": 3.0
+        },
+        {
+          "condition": "normal",
+          "encoding": "float",
+          "measured": 0.11116775643027797,
+          "name": "oklab_minimum_pair",
+          "pair": null,
+          "panel": "axes/1",
+          "passed": true,
+          "threshold": 0.08
+        },
+        {
+          "condition": "normal",
+          "encoding": "float",
+          "measured": 22.17228933514011,
+          "name": "cam02_minimum_pair",
+          "pair": null,
+          "panel": "axes/1",
+          "passed": true,
+          "threshold": 8.0
+        },
+        {
+          "condition": "protan-50",
+          "encoding": "float",
+          "measured": 0.06874151856079123,
+          "name": "oklab_minimum_pair",
+          "pair": null,
+          "panel": "axes/1",
+          "passed": true,
+          "threshold": 0.04
+        },
+        {
+          "condition": "protan-50",
+          "encoding": "float",
+          "measured": 11.75595136653255,
+          "name": "cam02_minimum_pair",
+          "pair": null,
+          "panel": "axes/1",
+          "passed": true,
+          "threshold": 4.0
+        },
+        {
+          "condition": "protan-80",
+          "encoding": "float",
+          "measured": 0.049556284548473904,
+          "name": "oklab_minimum_pair",
+          "pair": null,
+          "panel": "axes/1",
+          "passed": true,
+          "threshold": 0.04
+        },
+        {
+          "condition": "protan-80",
+          "encoding": "float",
+          "measured": 7.311054352697936,
+          "name": "cam02_minimum_pair",
+          "pair": null,
+          "panel": "axes/1",
+          "passed": true,
+          "threshold": 4.0
+        },
+        {
+          "condition": "protan-100",
+          "encoding": "float",
+          "measured": 0.040283980074152015,
+          "name": "oklab_minimum_pair",
+          "pair": null,
+          "panel": "axes/1",
+          "passed": true,
+          "threshold": 0.04
+        },
+        {
+          "condition": "protan-100",
+          "encoding": "float",
+          "measured": 5.492831954630043,
+          "name": "cam02_minimum_pair",
+          "pair": null,
+          "panel": "axes/1",
+          "passed": true,
+          "threshold": 4.0
+        },
+        {
+          "condition": "deutan-50",
+          "encoding": "float",
+          "measured": 0.07096997892826178,
+          "name": "oklab_minimum_pair",
+          "pair": null,
+          "panel": "axes/1",
+          "passed": true,
+          "threshold": 0.04
+        },
+        {
+          "condition": "deutan-50",
+          "encoding": "float",
+          "measured": 14.37673171076071,
+          "name": "cam02_minimum_pair",
+          "pair": null,
+          "panel": "axes/1",
+          "passed": true,
+          "threshold": 4.0
+        },
+        {
+          "condition": "deutan-80",
+          "encoding": "float",
+          "measured": 0.05452454145432038,
+          "name": "oklab_minimum_pair",
+          "pair": null,
+          "panel": "axes/1",
+          "passed": true,
+          "threshold": 0.04
+        },
+        {
+          "condition": "deutan-80",
+          "encoding": "float",
+          "measured": 10.801588531289195,
+          "name": "cam02_minimum_pair",
+          "pair": null,
+          "panel": "axes/1",
+          "passed": true,
+          "threshold": 4.0
+        },
+        {
+          "condition": "deutan-100",
+          "encoding": "float",
+          "measured": 0.05238402995480233,
+          "name": "oklab_minimum_pair",
+          "pair": null,
+          "panel": "axes/1",
+          "passed": true,
+          "threshold": 0.04
+        },
+        {
+          "condition": "deutan-100",
+          "encoding": "float",
+          "measured": 9.819317431331038,
+          "name": "cam02_minimum_pair",
+          "pair": null,
+          "panel": "axes/1",
+          "passed": true,
+          "threshold": 4.0
+        },
+        {
+          "condition": "tritan-100",
+          "encoding": "float",
+          "measured": 0.048109700947313976,
+          "name": "oklab_minimum_pair",
+          "pair": null,
+          "panel": "axes/1",
+          "passed": true,
+          "threshold": 0.04
+        },
+        {
+          "condition": "tritan-100",
+          "encoding": "float",
+          "measured": 6.669434166028433,
+          "name": "cam02_minimum_pair",
+          "pair": null,
+          "panel": "axes/1",
+          "passed": true,
+          "threshold": 4.0
+        },
+        {
+          "condition": "normal",
+          "encoding": "u8",
+          "measured": 6.183849592903493,
+          "name": "background_contrast",
+          "pair": null,
+          "panel": "axes/1",
+          "passed": true,
+          "threshold": 3.0
+        },
+        {
+          "condition": "normal",
+          "encoding": "u8",
+          "measured": 0.11116775643027797,
+          "name": "oklab_minimum_pair",
+          "pair": null,
+          "panel": "axes/1",
+          "passed": true,
+          "threshold": 0.08
+        },
+        {
+          "condition": "normal",
+          "encoding": "u8",
+          "measured": 22.17228933514011,
+          "name": "cam02_minimum_pair",
+          "pair": null,
+          "panel": "axes/1",
+          "passed": true,
+          "threshold": 8.0
+        },
+        {
+          "condition": "protan-50",
+          "encoding": "u8",
+          "measured": 0.06874151856079123,
+          "name": "oklab_minimum_pair",
+          "pair": null,
+          "panel": "axes/1",
+          "passed": true,
+          "threshold": 0.04
+        },
+        {
+          "condition": "protan-50",
+          "encoding": "u8",
+          "measured": 11.75595136653255,
+          "name": "cam02_minimum_pair",
+          "pair": null,
+          "panel": "axes/1",
+          "passed": true,
+          "threshold": 4.0
+        },
+        {
+          "condition": "protan-80",
+          "encoding": "u8",
+          "measured": 0.049556284548473904,
+          "name": "oklab_minimum_pair",
+          "pair": null,
+          "panel": "axes/1",
+          "passed": true,
+          "threshold": 0.04
+        },
+        {
+          "condition": "protan-80",
+          "encoding": "u8",
+          "measured": 7.311054352697936,
+          "name": "cam02_minimum_pair",
+          "pair": null,
+          "panel": "axes/1",
+          "passed": true,
+          "threshold": 4.0
+        },
+        {
+          "condition": "protan-100",
+          "encoding": "u8",
+          "measured": 0.040283980074152015,
+          "name": "oklab_minimum_pair",
+          "pair": null,
+          "panel": "axes/1",
+          "passed": true,
+          "threshold": 0.04
+        },
+        {
+          "condition": "protan-100",
+          "encoding": "u8",
+          "measured": 5.492831954630043,
+          "name": "cam02_minimum_pair",
+          "pair": null,
+          "panel": "axes/1",
+          "passed": true,
+          "threshold": 4.0
+        },
+        {
+          "condition": "deutan-50",
+          "encoding": "u8",
+          "measured": 0.07096997892826178,
+          "name": "oklab_minimum_pair",
+          "pair": null,
+          "panel": "axes/1",
+          "passed": true,
+          "threshold": 0.04
+        },
+        {
+          "condition": "deutan-50",
+          "encoding": "u8",
+          "measured": 14.37673171076071,
+          "name": "cam02_minimum_pair",
+          "pair": null,
+          "panel": "axes/1",
+          "passed": true,
+          "threshold": 4.0
+        },
+        {
+          "condition": "deutan-80",
+          "encoding": "u8",
+          "measured": 0.05452454145432038,
+          "name": "oklab_minimum_pair",
+          "pair": null,
+          "panel": "axes/1",
+          "passed": true,
+          "threshold": 0.04
+        },
+        {
+          "condition": "deutan-80",
+          "encoding": "u8",
+          "measured": 10.801588531289195,
+          "name": "cam02_minimum_pair",
+          "pair": null,
+          "panel": "axes/1",
+          "passed": true,
+          "threshold": 4.0
+        },
+        {
+          "condition": "deutan-100",
+          "encoding": "u8",
+          "measured": 0.05238402995480233,
+          "name": "oklab_minimum_pair",
+          "pair": null,
+          "panel": "axes/1",
+          "passed": true,
+          "threshold": 0.04
+        },
+        {
+          "condition": "deutan-100",
+          "encoding": "u8",
+          "measured": 9.819317431331038,
+          "name": "cam02_minimum_pair",
+          "pair": null,
+          "panel": "axes/1",
+          "passed": true,
+          "threshold": 4.0
+        },
+        {
+          "condition": "tritan-100",
+          "encoding": "u8",
+          "measured": 0.048109700947313976,
+          "name": "oklab_minimum_pair",
+          "pair": null,
+          "panel": "axes/1",
+          "passed": true,
+          "threshold": 0.04
+        },
+        {
+          "condition": "tritan-100",
+          "encoding": "u8",
+          "measured": 6.669434166028433,
+          "name": "cam02_minimum_pair",
+          "pair": null,
+          "panel": "axes/1",
+          "passed": true,
+          "threshold": 4.0
+        }
+      ],
+      "limits": [
+        "Finite geometry screen; occlusion and display size are not modeled",
+        "Marker/dash differences are structural hints, not human readability certification",
+        "Unsupported content and layering are excluded from the color screen"
+      ],
+      "locked": {},
+      "multichannel_screen_pass": null,
+      "objective": "separation",
+      "pairs": [
+        {
+          "categories": [
+            "Deep",
+            "Middle"
+          ],
+          "color_confusable": false,
+          "distinct_secondary_encoding": true,
+          "grayscale_confusable": true,
+          "minimum_ratio": 1.3096007488700583
+        },
+        {
+          "categories": [
+            "Deep",
+            "Reference"
+          ],
+          "color_confusable": false,
+          "distinct_secondary_encoding": true,
+          "grayscale_confusable": true,
+          "minimum_ratio": 1.6670842548891416
+        },
+        {
+          "categories": [
+            "Deep",
+            "Shallow"
+          ],
+          "color_confusable": false,
+          "distinct_secondary_encoding": true,
+          "grayscale_confusable": true,
+          "minimum_ratio": 1.9963408477727138
+        },
+        {
+          "categories": [
+            "Deep",
+            "Transient"
+          ],
+          "color_confusable": false,
+          "distinct_secondary_encoding": true,
+          "grayscale_confusable": true,
+          "minimum_ratio": 1.0070995018538003
+        },
+        {
+          "categories": [
+            "Middle",
+            "Reference"
+          ],
+          "color_confusable": false,
+          "distinct_secondary_encoding": true,
+          "grayscale_confusable": true,
+          "minimum_ratio": 1.6383813931024704
+        },
+        {
+          "categories": [
+            "Middle",
+            "Shallow"
+          ],
+          "color_confusable": false,
+          "distinct_secondary_encoding": true,
+          "grayscale_confusable": true,
+          "minimum_ratio": 2.341643892956294
+        },
+        {
+          "categories": [
+            "Middle",
+            "Transient"
+          ],
+          "color_confusable": false,
+          "distinct_secondary_encoding": true,
+          "grayscale_confusable": true,
+          "minimum_ratio": 1.2027425236828493
+        },
+        {
+          "categories": [
+            "Reference",
+            "Shallow"
+          ],
+          "color_confusable": false,
+          "distinct_secondary_encoding": true,
+          "grayscale_confusable": true,
+          "minimum_ratio": 1.4466458088988996
+        },
+        {
+          "categories": [
+            "Reference",
+            "Transient"
+          ],
+          "color_confusable": false,
+          "distinct_secondary_encoding": true,
+          "grayscale_confusable": true,
+          "minimum_ratio": 2.8913378540821086
+        },
+        {
+          "categories": [
+            "Shallow",
+            "Transient"
+          ],
+          "color_confusable": false,
+          "distinct_secondary_encoding": true,
+          "grayscale_confusable": false,
+          "minimum_ratio": 3.141291744143113
+        }
+      ],
+      "panels": [
+        {
+          "background": [
+            0.07058823529411765,
+            0.07058823529411765,
+            0.07058823529411765
+          ],
+          "displayed": [
+            {
+              "alpha": 1.0,
+              "category": "Reference",
+              "channel": "line",
+              "hex": "#ef8b7c",
+              "mark": "axes/0/line/0",
+              "rgb": [
+                0.9372549019607843,
+                0.5450980392156862,
+                0.48627450980392156
+              ]
+            },
+            {
+              "alpha": 1.0,
+              "category": "Reference",
+              "channel": "face",
+              "hex": "#ef8b7c",
+              "mark": "axes/0/line/0",
+              "rgb": [
+                0.9372549019607843,
+                0.5450980392156862,
+                0.48627450980392156
+              ]
+            },
+            {
+              "alpha": 1.0,
+              "category": "Shallow",
+              "channel": "line",
+              "hex": "#daac4d",
+              "mark": "axes/0/line/1",
+              "rgb": [
+                0.8549019607843137,
+                0.6745098039215687,
+                0.30196078431372547
+              ]
+            },
+            {
+              "alpha": 1.0,
+              "category": "Shallow",
+              "channel": "face",
+              "hex": "#daac4d",
+              "mark": "axes/0/line/1",
+              "rgb": [
+                0.8549019607843137,
+                0.6745098039215687,
+                0.30196078431372547
+              ]
+            },
+            {
+              "alpha": 1.0,
+              "category": "Middle",
+              "channel": "line",
+              "hex": "#49b3a9",
+              "mark": "axes/0/line/2",
+              "rgb": [
+                0.28627450980392155,
+                0.7019607843137254,
+                0.6627450980392157
+              ]
+            },
+            {
+              "alpha": 1.0,
+              "category": "Middle",
+              "channel": "face",
+              "hex": "#49b3a9",
+              "mark": "axes/0/line/2",
+              "rgb": [
+                0.28627450980392155,
+                0.7019607843137254,
+                0.6627450980392157
+              ]
+            },
+            {
+              "alpha": 1.0,
+              "category": "Deep",
+              "channel": "line",
+              "hex": "#bc9bd0",
+              "mark": "axes/0/line/3",
+              "rgb": [
+                0.7372549019607844,
+                0.6078431372549019,
+                0.8156862745098039
+              ]
+            },
+            {
+              "alpha": 1.0,
+              "category": "Deep",
+              "channel": "face",
+              "hex": "#bc9bd0",
+              "mark": "axes/0/line/3",
+              "rgb": [
+                0.7372549019607844,
+                0.6078431372549019,
+                0.8156862745098039
+              ]
+            },
+            {
+              "alpha": 1.0,
+              "category": "Transient",
+              "channel": "line",
+              "hex": "#5b99d2",
+              "mark": "axes/0/line/4",
+              "rgb": [
+                0.3568627450980392,
+                0.6,
+                0.8235294117647058
+              ]
+            },
+            {
+              "alpha": 1.0,
+              "category": "Transient",
+              "channel": "face",
+              "hex": "#5b99d2",
+              "mark": "axes/0/line/4",
+              "rgb": [
+                0.3568627450980392,
+                0.6,
+                0.8235294117647058
+              ]
+            }
+          ],
+          "panel": "axes/0"
+        },
+        {
+          "background": [
+            0.07058823529411765,
+            0.07058823529411765,
+            0.07058823529411765
+          ],
+          "displayed": [
+            {
+              "alpha": 1.0,
+              "category": "Deep",
+              "channel": "line",
+              "hex": "#bc9bd0",
+              "mark": "axes/1/line/0",
+              "rgb": [
+                0.7372549019607844,
+                0.6078431372549019,
+                0.8156862745098039
+              ]
+            },
+            {
+              "alpha": 1.0,
+              "category": "Deep",
+              "channel": "face",
+              "hex": "#bc9bd0",
+              "mark": "axes/1/line/0",
+              "rgb": [
+                0.7372549019607844,
+                0.6078431372549019,
+                0.8156862745098039
+              ]
+            },
+            {
+              "alpha": 1.0,
+              "category": "Reference",
+              "channel": "line",
+              "hex": "#ef8b7c",
+              "mark": "axes/1/line/1",
+              "rgb": [
+                0.9372549019607843,
+                0.5450980392156862,
+                0.48627450980392156
+              ]
+            },
+            {
+              "alpha": 1.0,
+              "category": "Reference",
+              "channel": "face",
+              "hex": "#ef8b7c",
+              "mark": "axes/1/line/1",
+              "rgb": [
+                0.9372549019607843,
+                0.5450980392156862,
+                0.48627450980392156
+              ]
+            },
+            {
+              "alpha": 1.0,
+              "category": "Transient",
+              "channel": "line",
+              "hex": "#5b99d2",
+              "mark": "axes/1/line/2",
+              "rgb": [
+                0.3568627450980392,
+                0.6,
+                0.8235294117647058
+              ]
+            },
+            {
+              "alpha": 1.0,
+              "category": "Transient",
+              "channel": "face",
+              "hex": "#5b99d2",
+              "mark": "axes/1/line/2",
+              "rgb": [
+                0.3568627450980392,
+                0.6,
+                0.8235294117647058
+              ]
+            },
+            {
+              "alpha": 1.0,
+              "category": "Middle",
+              "channel": "line",
+              "hex": "#49b3a9",
+              "mark": "axes/1/line/3",
+              "rgb": [
+                0.28627450980392155,
+                0.7019607843137254,
+                0.6627450980392157
+              ]
+            },
+            {
+              "alpha": 1.0,
+              "category": "Middle",
+              "channel": "face",
+              "hex": "#49b3a9",
+              "mark": "axes/1/line/3",
+              "rgb": [
+                0.28627450980392155,
+                0.7019607843137254,
+                0.6627450980392157
+              ]
+            }
+          ],
+          "panel": "axes/1"
+        }
+      ],
+      "profile": "h1-screening-v1/data-marks/actual-background",
+      "redundant_pairs": [
+        [
+          "Deep",
+          "Middle"
+        ],
+        [
+          "Deep",
+          "Reference"
+        ],
+        [
+          "Deep",
+          "Shallow"
+        ],
+        [
+          "Deep",
+          "Transient"
+        ],
+        [
+          "Middle",
+          "Reference"
+        ],
+        [
+          "Middle",
+          "Shallow"
+        ],
+        [
+          "Middle",
+          "Transient"
+        ],
+        [
+          "Reference",
+          "Shallow"
+        ],
+        [
+          "Reference",
+          "Transient"
+        ]
+      ],
+      "relationships": [
+        {
+          "categories": [
+            "Deep",
+            "Middle"
+          ],
+          "crossing": true,
+          "nearby": true,
+          "panels": [
+            "axes/0",
+            "axes/1"
+          ],
+          "weight": 3
+        },
+        {
+          "categories": [
+            "Deep",
+            "Reference"
+          ],
+          "crossing": true,
+          "nearby": true,
+          "panels": [
+            "axes/0",
+            "axes/1"
+          ],
+          "weight": 3
+        },
+        {
+          "categories": [
+            "Deep",
+            "Shallow"
+          ],
+          "crossing": true,
+          "nearby": true,
+          "panels": [
+            "axes/0"
+          ],
+          "weight": 3
+        },
+        {
+          "categories": [
+            "Deep",
+            "Transient"
+          ],
+          "crossing": false,
+          "nearby": false,
+          "panels": [
+            "axes/0",
+            "axes/1"
+          ],
+          "weight": 1
+        },
+        {
+          "categories": [
+            "Middle",
+            "Reference"
+          ],
+          "crossing": true,
+          "nearby": true,
+          "panels": [
+            "axes/0",
+            "axes/1"
+          ],
+          "weight": 3
+        },
+        {
+          "categories": [
+            "Middle",
+            "Shallow"
+          ],
+          "crossing": true,
+          "nearby": true,
+          "panels": [
+            "axes/0"
+          ],
+          "weight": 3
+        },
+        {
+          "categories": [
+            "Middle",
+            "Transient"
+          ],
+          "crossing": false,
+          "nearby": false,
+          "panels": [
+            "axes/0",
+            "axes/1"
+          ],
+          "weight": 1
+        },
+        {
+          "categories": [
+            "Reference",
+            "Shallow"
+          ],
+          "crossing": true,
+          "nearby": true,
+          "panels": [
+            "axes/0"
+          ],
+          "weight": 3
+        },
+        {
+          "categories": [
+            "Reference",
+            "Transient"
+          ],
+          "crossing": true,
+          "nearby": true,
+          "panels": [
+            "axes/0",
+            "axes/1"
+          ],
+          "weight": 3
+        },
+        {
+          "categories": [
+            "Shallow",
+            "Transient"
+          ],
+          "crossing": true,
+          "nearby": true,
+          "panels": [
+            "axes/0"
+          ],
+          "weight": 3
+        }
+      ],
+      "reserved_categories": [
+        "Deep",
+        "Middle",
+        "Reference",
+        "Shallow",
+        "Transient"
+      ],
+      "search": "deterministic prepared-palette permutations; at most 12 local-swap passes",
+      "status": "color-screen-passing; visual review pending",
+      "unresolved_pairs": [],
+      "version": "h4c-doctor-v1",
+      "visual_review": "pending"
+    },
+    "scene_sha256": "dbe2598632dc5932f1b5c93bd300f88e01ae4adc691e440a08d5a463a29e36de",
+    "version": "h4c-doctor-v1"
+  },
+  "sha256": "a762bf5ebac465b82bfa96a6de6a8cac86d385ba4ad467a85e5b8ba88250bb62"
+}

@@ -155,6 +155,14 @@ method/version/count details rather than an unsupported universal ranking.
 
 ## H4c: one figure-doctor workflow
 
+Implemented for supported native Cartesian line/scatter figures in all three
+backends. `huevat.doctor` supplies immutable inspection/proposals, exact
+mark-color diagnostics, three negotiation objectives, locked/retained category
+assignments, copied native previews, explicit transactional apply and guarded
+undo. See `FIGURE_DOCTOR.md` and `research/doctor-v1`. Neighboring-region edits,
+scalar-map repair and general complex layering remain outside v1 coverage;
+they are inventoried and retained. The requirements below define this workflow.
+
 The workflow is **inspect → propose → preview → explicitly apply**.
 
 1. Extract a backend-neutral figure description: series/labels, actual displayed

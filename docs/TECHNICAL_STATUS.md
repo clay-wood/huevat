@@ -245,6 +245,57 @@ The six Python 3.10/3.12/3.14 core jobs include clean offline installation;
 both Python 3.12 research jobs test actual backends, reproduce all earlier
 milestones and revalidate the H4b paths, counts, controls and retained hashes.
 
+## H4c: figure doctor
+
+Implemented October 23, 2026, following protocol commit `6e3aa13`.
+`huevat.doctor` provides immutable backend-neutral inspection and data-only
+proposals; actual-background float/u8 normal/CVD Oklab/CAM02-UCS diagnostics;
+grayscale and finite crossing/nearby geometry hints; and three negotiation
+objectives using Clearer colors plus coordinated markers/dashes. Exact labels
+coordinate repeated panels; locks remain exact and explicit retained maps
+reserve absent categories. The first version edits ordinary native Cartesian
+line/scatter styles in Matplotlib, UltraPlot and Plotly.
+
+Inspection and preview leave the source figure untouched, including lazy
+autoscaling and pyplot's active figure/window registry. Native preview copies
+are unmanaged. Explicit apply rehearses native setters on a copy, verifies the
+scene fingerprint, repeats the native color audit and returns before/after
+metadata plus guarded undo. Failed setters roll supported styles back.
+Saved evidence cannot promote fabricated pass claims: apply re-extracts and
+re-audits. Data, units, scales, limits and scalar color mappings are preserved.
+
+Coverage is explicit: bands, scalar maps/colorbars and unsupported artists
+remain unchanged. Complex layering, general occlusion and neighboring-region
+repair are outside v1. Numerical mark-color screens and structural marker/dash
+differences do not imply a full-figure or human-readability pass. Identical
+locked colors retain their color failure despite useful redundant encodings.
+Plotly renderer-dependent defaults are reported rather than guessed.
+
+Local verification: **279 tests pass**, including 23 figure-doctor tests with
+native copies, repeated/absent/reordered labels, locks, mixed backgrounds,
+transparency, crossing/gap geometry, error bars, colorbars, template inheritance,
+transaction rollback, stale guards, undo and untrusted report claims. All frozen
+H0–H4b numerical sources/data and their evidence checks remain unchanged and
+reproduce. Offline clean pip/uv installs pass with zero base dependencies,
+including a doctor import; the wheel is approximately 1.92 MB.
+
+`research/doctor-v1` retains eight native example cases, 24 passing scoped
+tradeoffs, eight deliberately failed locked-color cases, 44 rendered PNGs,
+native Plotly JSON previews, hashed proposal recipes and machine-readable
+criteria. The checker independently repeats native apply/undo and retained
+artifact/source hashes. Gallery layouts were checked in contact sheets and
+representative full-size previews; human appearance/readability review remains
+pending. Browser selector interaction and native Plotly browser rendering are
+unverified under the local-file browser restriction.
+
+Three warmed local timings on the small examples gave approximately 10 ms
+Matplotlib/Plotly inspection and 29 ms UltraPlot inspection; three proposals
+took approximately 36–64 ms. Native copy/preview costs vary by backend and
+garbage collection (roughly 36–185 ms in that sample). These host measurements
+are illustrative, not a large-figure performance guarantee. Full copying/data
+hashing and repeated-channel pair audits remain scaling costs. Usage, coverage
+and reproduction are in `FIGURE_DOCTOR.md` and `METHODS_H4C.md`.
+
 ## Boundaries
 
 Roadmap update, October 23, 2026: the user accepted figure doctor with
@@ -252,8 +303,8 @@ coordinated encodings, figure-aware assignment and palette negotiation;
 optimized discrete sampling; more general and application-specific gradients;
 and required Matplotlib, Plotly and UltraPlot adapters. `NEXT_STEPS.md` defines
 the expanded H4 slices and acceptance gates. H4a and the H4b candidate collection
-are implemented; H4b appearance review is pending. Figure doctor (H4c) and final
-adoption/release gates (H4d) remain planned. H0–H3 numerical implementation/data and the existing
+and the figure-doctor workflow are implemented; H4b appearance review is pending.
+Final adoption/release gates (H4d) remain. H0–H3 numerical implementation/data and the existing
 uniform sampling API remain unchanged.
 
 Categorical aesthetic revision: the user selected **Clearer** from the

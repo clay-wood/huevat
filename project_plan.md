@@ -197,8 +197,11 @@ H4a is implemented: three optional native adapters, explicit optimized sampling,
 compact status summaries and prepared uniform-count discovery. See
 `docs/METHODS_H4A.md` and `research/adapters-v1`. H4b adds twelve named candidate
 routes with light/dark variants, free-knot construction and the application
-gallery in `research/collection-v1`; appearance review is pending. H4c (figure
-doctor) is the next implementation slice. Existing H0–H3 numerical baselines and the selected Clearer categorical
+gallery in `research/collection-v1`; appearance review is pending. H4c adds the
+explicit figure-doctor workflow, coordinated encodings, stable identities/locks,
+audited tradeoffs and guarded apply/undo for supported native line/scatter
+figures. See `docs/FIGURE_DOCTOR.md` and `research/doctor-v1`. H4d default adoption,
+exports and migration remain. Existing H0–H3 numerical baselines and the selected Clearer categorical
 direction remain the foundation. Prepared optimized caches and nearby-count
 search remain follow-up usability work.
 

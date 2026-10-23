@@ -1,0 +1,40 @@
+<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Huevat · Figure doctor</title><style>
+    *{box-sizing:border-box}body{margin:0;background:#f2f0eb;color:#29323b;font:16px/1.55 system-ui,sans-serif}
+    main{max-width:1400px;margin:auto;padding:50px 28px}h1{font-size:44px;line-height:1.15;letter-spacing:-1.5px}
+    h2{font-size:28px}p{max-width:900px}header{margin-bottom:36px}section{margin:30px 0 55px}
+    .eyebrow{color:#397c78;font-weight:650;letter-spacing:2px;text-transform:uppercase;font-size:12px}
+    .grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}figure{margin:0;background:white;border-radius:10px;overflow:hidden}
+    img{display:block;width:100%;height:auto}figcaption{padding:12px 18px;font-weight:550}.simulation{margin-top:14px;border-radius:10px}
+    select{padding:9px 14px;background:white;border:1px solid #b8b9b4;border-radius:6px;font:inherit}
+    details{margin-top:18px;background:#fff;border-radius:8px;padding:15px}summary{cursor:pointer;font-weight:600}
+    code,pre{font:14px/1.6 ui-monospace,monospace}pre{background:#e7e7e1;padding:22px;border-radius:8px;overflow:auto}
+    a{color:#246b7c}footer{font-size:13px;color:#5e6870}@media(max-width:850px){.grid{grid-template-columns:1fr}h1{font-size:34px}}
+    </style><main><header><div class="eyebrow">Huevat · H4c</div><h1>Give a figure a clearer voice.</h1>
+    <p>Inspect the existing plot. Compare three color, marker and dash choices. Preview on a copy. Apply only when you choose.</p>
+    <p>Repeated labels keep their identity across panels, including when categories are reordered or absent. The selected Clearer palette remains the starting point.</p></header>
+    <pre>from huevat import doctor
+scene = doctor.inspect(fig)
+closer, separation, simple = doctor.propose(scene)
+copy = doctor.preview(fig, separation)
+change = doctor.apply(fig, separation)  # explicit edit
+change.undo()</pre><section><h2>Light background</h2><div class="grid"><figure><img loading="lazy" src="matplotlib-light-before.png"><figcaption>Before · ambiguous colors</figcaption></figure><figure><img loading="lazy" src="matplotlib-light-closer.png"><figcaption>Closer · retain the original feel</figcaption></figure><figure><img loading="lazy" src="matplotlib-light-separation.png"><figcaption>Separation · prioritize crossings</figcaption></figure><figure><img loading="lazy" src="matplotlib-light-simple.png"><figcaption>Simple · fewer extra encodings</figcaption></figure></div>
+        <h3>Review the actual figure under simulated conditions</h3><select data-bg="light"><option value="normal">normal</option><option value="protan-50">protan-50</option><option value="protan-80">protan-80</option><option value="protan-100">protan-100</option><option value="deutan-50">deutan-50</option><option value="deutan-80">deutan-80</option><option value="deutan-100">deutan-100</option><option value="tritan-100">tritan-100</option><option value="grayscale">grayscale</option></select>
+        <img class="simulation" id="light" src="matplotlib-light-separation.png">
+        <details><summary>Locked identical colors: color screen still fails</summary><p>Distinct markers and dashes help track labels. The failed color-only result remains a failure.</p><img src="matplotlib-light-locked-failure.png"></details>
+        <details><summary>Mixed content: bands and colorbar preserved</summary><p>This is partial coverage: uncertainty bands, scalar maps and colorbars are retained and excluded from the mark-color screen.</p><img src="matplotlib-light-mixed-separation.png"></details>
+        <details><summary>Native UltraPlot preview</summary><img src="ultraplot-light-separation.png"></details></section><section><h2>Dark background</h2><div class="grid"><figure><img loading="lazy" src="matplotlib-dark-before.png"><figcaption>Before · ambiguous colors</figcaption></figure><figure><img loading="lazy" src="matplotlib-dark-closer.png"><figcaption>Closer · retain the original feel</figcaption></figure><figure><img loading="lazy" src="matplotlib-dark-separation.png"><figcaption>Separation · prioritize crossings</figcaption></figure><figure><img loading="lazy" src="matplotlib-dark-simple.png"><figcaption>Simple · fewer extra encodings</figcaption></figure></div>
+        <h3>Review the actual figure under simulated conditions</h3><select data-bg="dark"><option value="normal">normal</option><option value="protan-50">protan-50</option><option value="protan-80">protan-80</option><option value="protan-100">protan-100</option><option value="deutan-50">deutan-50</option><option value="deutan-80">deutan-80</option><option value="deutan-100">deutan-100</option><option value="tritan-100">tritan-100</option><option value="grayscale">grayscale</option></select>
+        <img class="simulation" id="dark" src="matplotlib-dark-separation.png">
+        <details><summary>Locked identical colors: color screen still fails</summary><p>Distinct markers and dashes help track labels. The failed color-only result remains a failure.</p><img src="matplotlib-dark-locked-failure.png"></details>
+        <details><summary>Mixed content: bands and colorbar preserved</summary><p>This is partial coverage: uncertainty bands, scalar maps and colorbars are retained and excluded from the mark-color screen.</p><img src="matplotlib-dark-mixed-separation.png"></details>
+        <details><summary>Native UltraPlot preview</summary><img src="ultraplot-dark-separation.png"></details></section>
+    <section><h2>Use your own constraints</h2><pre>options = doctor.propose(scene, locked={"Reference": {"color": "#4379a3"}})
+next_options = doctor.propose(next_scene, assignments=options[0].assignments)
+saved = options[0].to_json()
+restored = doctor.load_proposal(saved)</pre>
+    <p>Retained assignments reserve absent categories. Hard locks remain exact, including when they cause a failed screen. Data, units, axis scales, physical limits and scalar color mappings are preserved.</p></section>
+    <footer>Model screens are not human-readability certificates. Marker/dash differences are structural hints. Review at the intended figure size.
+    <a href="results.json">Numerical results</a> · <a href="review.json">Review status</a> · <a href="../../docs/METHODS_H4C.md">Methods and supported coverage</a> ·
+    <a href="plotly-light-separation.json">Native Plotly preview JSON</a>. No network required. Native Plotly rendering is tested through serialization; browser interaction remains unverified.</footer></main>
+    <script>document.querySelectorAll('select').forEach(s=>s.onchange=()=>{let c=s.value;document.getElementById(s.dataset.bg).src='matplotlib-'+s.dataset.bg+'-separation'+(c==='normal'?'':'-'+c)+'.png'})</script></html>
