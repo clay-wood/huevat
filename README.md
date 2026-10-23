@@ -219,5 +219,50 @@ measurements with `tools/profile_project.py`; raw results are retained in
 The [next implementation specification](docs/NEXT_STEPS.md) records the
 October 23 requirements: required Matplotlib/Plotly/UltraPlot adapters,
 optimized discrete sampling, a broader general/seismic/terrain/atmospheric
-gradient collection, and an integrated figure doctor. These are planned H4
-features; the document distinguishes their proposed API from current behavior.
+gradient collection, and an integrated figure doctor. H4a is implemented;
+expanded gradients and figure doctor remain later slices.
+
+## Plotting adapters and optimized sampling (H4a)
+
+```powershell
+uv sync --locked --all-extras
+```
+
+```python
+import huevat as hv
+from huevat.adapters import matplotlib as hmpl
+from huevat.adapters import plotly as hplotly
+from huevat.adapters import ultraplot as huplt
+
+g = hv.diverging()
+p = hv.optimized_discrete(g, 8)  # Explicit positions; requires huevat[design].
+print(p.positions, hv.summarize(p))
+print(hv.known_counts(g))        # Prepared passing UNIFORM counts only.
+
+cmap = hmpl.colormap(g)
+norm = hmpl.normalizer(-2, 8, center=0)
+plotly_axis = hplotly.coloraxis(g, -2, 8, center=0)
+ultraplot_cmap = huplt.colormap(g)
+```
+
+Install just the extras you need: `huevat[matplotlib]`, `huevat[plotly]` or
+`huevat[ultraplot]`. The base package still has zero dependencies. Adapters
+return native objects, with approximation evidence attached as `huevat_report`.
+Asymmetric signed ranges keep the declared physical center at the neutral.
+Categorical sequences, stable label maps and explicit data-bin mapping are
+supported. Matplotlib and UltraPlot cycles also accept specified markers and
+dashes; automatic coordination remains part of the planned figure doctor.
+
+Optimized sampling preserves the source path, endpoints and diverging arm
+correspondence. The light diverging eight-color selection passes when its
+uniform counterpart fails. `.discrete(n)` retains its existing uniform
+behavior. Optimized positions are color sample locations; supply data class
+boundaries separately. Recipes round-trip with independent revalidation.
+
+See the [native examples and offline Plotly gallery](research/adapters-v1/index.html)
+and [H4a usage, methods and backend limits](docs/METHODS_H4A.md).
+
+```powershell
+uv run --locked --all-extras pytest
+uv run --locked --all-extras python tools/build_adapters.py --check
+```

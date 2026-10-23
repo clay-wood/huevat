@@ -69,6 +69,13 @@ CAM02-UCS audits, or scientific gradient quality.
 
 ## Recheck
 
+The H4a offline gallery embeds Plotly.js v4.1.1 from the locked Plotly Python
+7.1.0 distribution. Its copyright header and third-party notices remain in
+`research/adapters-v1/plotly.html`; the upstream versioned MIT license is retained
+in `research/adapters-v1/plotly-js-MIT.txt`. The gallery manifest fingerprints
+these artifacts. This JavaScript is excluded from the Python distributions and
+is used only for the optional offline example.
+
 ```powershell
 uv run --locked python tools/check_provenance.py
 # Optional comparison with the original source snapshot:

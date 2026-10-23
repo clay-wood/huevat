@@ -42,7 +42,16 @@ for factory in (hv.multihue, hv.spectral):
     assert gradient.report.screen_pass
     assert hv.load_recipe(gradient.to_json()).at(.25) == gradient.at(.25)
     assert gradient.reversed().at(.25) == gradient.at(.75)
-for forbidden in ('numpy', 'scipy', 'matplotlib', 'PIL', 'playwright', 'sketchplot', 'colorspacious', 'colorcet'):
+import huevat.adapters.matplotlib
+import huevat.adapters.plotly
+import huevat.adapters.ultraplot
+try:
+    hv.optimized_discrete(hv.sequential(), 10000)
+except hv.ConstraintConflictError:
+    pass
+else:
+    raise AssertionError('Expected a dependency-free fixed-path count bound')
+for forbidden in ('numpy', 'scipy', 'matplotlib', 'plotly', 'ultraplot', 'PIL', 'playwright', 'sketchplot', 'colorspacious', 'colorcet'):
     assert forbidden not in sys.modules, forbidden
     try:
         md.distribution('pillow' if forbidden == 'PIL' else forbidden)
@@ -78,9 +87,11 @@ def main():
         metadata = BytesParser().parsebytes(archive.read(next(n for n in names if n.endswith('.dist-info/METADATA'))))
         requirements = metadata.get_all("Requires-Dist", [])
         assert all("extra ==" in requirement for requirement in requirements), requirements
-        assert set(metadata.get_all("Provides-Extra", [])) == {"design", "research"}
+        assert set(metadata.get_all("Provides-Extra", [])) == {"design", "research", "matplotlib", "plotly", "ultraplot"}
         for filename in ("__init__.py", "space.py", "vision.py"):
             assert f"huevat/{filename}" in names
+        for filename in ("matplotlib.py", "plotly.py", "ultraplot.py"):
+            assert f"huevat/adapters/{filename}" in names
         for filename in ("references-v1.json", "profiles-v1.json", "machado-v1.json", "manifest-v1.json", "ordered-v1.json", "families-v1.json", "categorical-v2.json"):
             assert f"huevat/data/{filename}" in names
         for license_name in ("LICENSE", "sketchplot-MIT.txt", "colorspacious-MIT.txt"):

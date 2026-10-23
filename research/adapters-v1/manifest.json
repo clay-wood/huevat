@@ -1,0 +1,22 @@
+{
+  "files": {
+    "evidence.json": "a92c978d4d0d8551539a3cb6ecf3ea75004605025f75bb0341a97629069f195d",
+    "index.html": "1054cea2297664e4b7792b0035bc9a4c0c19141f6b12f9d93c2042c2fab2fcf1",
+    "matplotlib-dark.png": "c3459fe5f57a2ff21377a7c68217b3f628a8766633920cdb3867e5b73c077445",
+    "matplotlib-light.png": "f786659468eabde151aed7f32c8b1869a7d399ea12c81a225f99a82f3ad7e4ba",
+    "plotly-js-MIT.txt": "3674e014a0e102ed72e929e2b157e47e690528a27ef2f65532f6493f498ed917",
+    "plotly.html": "1558bc90428402c185bfa434d035407dcf1afab4edbe50042b42f27592604181",
+    "ultraplot-dark.png": "531d04fde39a0e0aa42ad4a643f08392f960669ea421de851a5476e8e43b27a9",
+    "ultraplot-light.png": "c1505f3d0cccb470f7bf3df26051e4e1bbb5db66e1e4dc56697b908609177906"
+  },
+  "implementation_sha256_lf": {
+    "__init__.py": "30735d94b44e8dd569a4640d095fa28511bd9e5cd721f0c0f628289d2d41f91f",
+    "_sampling_design.py": "0243b8bcd4432aee4fde3acc25dccd84ea89c7f239b15fd069424640e55db82c",
+    "adapters/__init__.py": "61e5e39e6eb7cff30871c3c7c3a3f4aaead4e1a0a166a15c7765aec0f928e56d",
+    "adapters/_common.py": "55979449da82232ab4fd36381e50e9c626ad7163fb4c5b9ca5cf76e89b66def3",
+    "adapters/matplotlib.py": "e565fba7460c6b67a45da3c7fd69c26a03aecf8bb0787a47d752dccb38be4772",
+    "adapters/plotly.py": "9605967ebf04f1999dd5a6c6cc8f737b91a8f5324da5f5342c59dd4d780127f8",
+    "adapters/ultraplot.py": "819a5e46ca07f82dbd6e84bf85c4400893d6c49386221e8ffb91b98f7c8adb79",
+    "sampling.py": "404a912eb0bfb407e5cfab1712c82610d8f03c62b173f003a8447bc43a344908"
+  }
+}

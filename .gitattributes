@@ -4,3 +4,5 @@
 *.gz binary
 # Preserve the upstream snapshot byte-for-byte, including its whitespace.
 tools/sources/colorbrewer.json -whitespace
+# Generated offline figure includes the upstream Plotly.js bundle.
+research/adapters-v1/plotly.html -diff -whitespace

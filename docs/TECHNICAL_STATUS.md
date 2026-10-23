@@ -1,6 +1,6 @@
 # Huevat technical status
 
-Verification date: October 22, 2026.
+Verification date: October 23, 2026. Historical sections retain their milestone records.
 
 ## H0: independent numerical foundation
 
@@ -160,16 +160,51 @@ categorical/path/discrete report and retained hash:
 Core jobs independently verified offline clean pip/uv installs and all-family
 prepared sampling/recipe reloads without optional dependencies.
 
+## H4a: adapters and optimized discrete sampling
+
+Implemented October 23, 2026. All three adapters return native plotting objects:
+Matplotlib colormaps/property cycles/normalizers, Plotly scales/color axes and
+label maps, and UltraPlot continuous/discrete colormaps and native property
+cycles. Registration is explicit. Asymmetric ranges, exact centers, masks,
+under/over policies and explicit physical class boundaries are covered.
+
+`optimized_discrete` returns immutable colors, normalized positions and a
+count-specific float/u8 normal/CVD Oklab/CAM02-UCS report. Filled fields use
+adjacent maximin dynamic programming; data marks use all-pair compatibility
+search. Source paths/endpoints remain fixed, with mirrored diverging arms.
+The light diverging eight-color optimized selection passes while its unchanged
+uniform selection fails. Recipes revalidate on load. `known_counts` discovers
+prepared passing uniform counts; `summarize` gives compact status information.
+
+The base remains dependency-free, with deferred imports and separate
+`matplotlib`, `plotly` and `ultraplot` extras. Native backend checks used
+Matplotlib 3.11.2, Plotly 7.1.0 and UltraPlot 2.7.3 on Windows/Python 3.12.14.
+All 243 local tests pass, including 38 new sampling/adapter tests. All H0
+fingerprints and H1/H2/H3/Clearer evidence reproduced unchanged. Local offline
+clean pip and uv base installations pass.
+
+The native gallery and ten audited selections are in `research/adapters-v1`;
+usage and limitations are in `METHODS_H4A.md`. Native PNGs were visually
+checked; Plotly figures/serialization were tested. Browser interaction review
+of local HTML was blocked by the browser tool's file-URL policy.
+
+Approximation evidence covers dense finite grids and explicitly makes no new
+H1 approval claim for rendered figures. Mutations invalidate that evidence.
+Optimized selections use cooperative budgets; failure is finite-search
+exhaustion, except for explicit fixed-path count bounds. Prepared optimized
+caches and nearby-count suggestions remain follow-up work. The source and
+artifact hashes can be verified with `tools/build_adapters.py --check`.
+
 ## Boundaries
 
 Roadmap update, October 23, 2026: the user accepted figure doctor with
 coordinated encodings, figure-aware assignment and palette negotiation;
 optimized discrete sampling; more general and application-specific gradients;
 and required Matplotlib, Plotly and UltraPlot adapters. `NEXT_STEPS.md` defines
-the expanded H4 slices and acceptance gates. These features are specified,
-not yet implemented. H4a (three adapters plus optimized sampling) is the
-proposed next implementation slice. Numerical verification above remains the
-October 22 record; no numerical or runtime code changed in this roadmap update.
+the expanded H4 slices and acceptance gates. H4a is implemented; the broader
+gradient collection (H4b), figure doctor (H4c) and final adoption/release gates
+(H4d) remain planned. H0–H3 numerical implementation/data and the existing
+uniform sampling API remain unchanged.
 
 Categorical aesthetic revision: the user selected **Clearer** from the
 appearance study. `categorical()` now uses `h3-categorical-v2`: satisfy the

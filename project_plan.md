@@ -193,8 +193,12 @@ The expanded H4 work is divided into reviewable slices:
 | H4c | Figure doctor with coordinated encodings, figure-aware assignment and palette negotiation | Explicit inspection/preview/apply stages; supported/unsupported coverage; stable labels/locks; original figure/data unchanged until apply; model screens and human review kept separate |
 | H4d | Final default adoption, exports, packaging and migration | Cross-backend regression checks, reviewed defaults/identifiers, clean installations and retained old recipes |
 
-H4a is the proposed next implementation slice. Existing H0–H3 numerical
-baselines and the selected Clearer categorical direction remain the foundation.
+H4a is implemented: three optional native adapters, explicit optimized sampling,
+compact status summaries and prepared uniform-count discovery. See
+`docs/METHODS_H4A.md` and `research/adapters-v1`. H4b is the next implementation
+slice. Existing H0–H3 numerical baselines and the selected Clearer categorical
+direction remain the foundation. Prepared optimized caches and nearby-count
+search remain follow-up usability work.
 
 All families belong to the first release; the ordering above allows earlier methods to inform the harder constructions. A family remains experimental if its gates fail. Record that result explicitly instead of weakening its criteria to declare completion.
 

@@ -1,8 +1,9 @@
 # Next implementation requirements
 
 Updated October 23, 2026. This document records the user's approved direction
-after the Clearer H3 revision. It is an implementation specification; the
-interfaces and features described below are not yet implemented.
+after the Clearer H3 revision. H4a is implemented; H4b–H4d remain the next
+slices. See [H4a usage and methods](METHODS_H4A.md) for the delivered API,
+evidence and limits. The remaining sections are implementation specifications.
 
 ## Approved scope and design direction
 
@@ -48,7 +49,7 @@ compatibility. The UltraPlot docs expose separate continuous/discrete classes
 and property cycles, making classification and normalization meaningful parts
 of the adapter contract.
 
-Proposed module layout (not committed API):
+Implemented module layout:
 
 ```python
 from huevat.adapters import matplotlib as hmpl
@@ -61,9 +62,11 @@ Do not put NumPy, plotting libraries or browsers in the base dependency set.
 
 ### Optimized sampling has explicit positions
 
-Keep `.discrete(n)` uniform for compatibility. A proposed explicit alternative
-is `.discrete(n, spacing="optimized")`, with generation budgets separate from
-ordinary prepared lookup. The exact public shape should be settled during H4a.
+`.discrete(n)` remains uniform for compatibility. The implemented explicit
+alternative is `hv.optimized_discrete(gradient, n, ...)`, with generation
+budgets separate from ordinary prepared lookup. `hv.known_counts(gradient)`
+discovers prepared passing uniform counts; `hv.summarize(source)` gives a small
+status view. Optimized selections can be retained as audited JSON recipes.
 
 Required returned data: immutable colors, selected normalized positions,
 source identity/hash, spacing algorithm/version and the count-specific report.
@@ -90,7 +93,9 @@ Acceptance: include cases where uniform sampling fails but optimized selection
 passes, cases where it still fails honestly, repeatable completed searches,
 zero-centered asymmetric data examples, reversal/serialization and unchanged
 uniform results. Cache prepared optimized selections separately by algorithm,
-profile, context and count.
+profile, context and count. A packaged prepared optimized cache and nearby-count
+search remain follow-up usability work; current results are generated explicitly
+and can be saved by the user.
 
 ## H4b: a broader gradient collection
 

@@ -25,7 +25,8 @@ from .gradients import (Gradient, Palette, QualityReport, QualityError,
                         SearchExhaustedError, ConstraintConflictError,
                         sequential, diverging)
 from .families import multihue, spectral
-from .categorical import categorical, load_recipe
+from .categorical import categorical
+from .sampling import SampledPalette, optimized_discrete, known_counts, summarize, load_recipe
 
 __version__ = "0.1.0.dev0"
 
@@ -37,4 +38,5 @@ __all__ = [
     "Gradient", "Palette", "QualityReport", "QualityError", "SearchExhaustedError",
     "ConstraintConflictError", "sequential", "diverging", "categorical", "multihue",
     "spectral", "load_recipe",
+    "SampledPalette", "optimized_discrete", "known_counts", "summarize",
 ]
