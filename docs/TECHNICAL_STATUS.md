@@ -195,6 +195,14 @@ exhaustion, except for explicit fixed-path count bounds. Prepared optimized
 caches and nearby-count suggestions remain follow-up work. The source and
 artifact hashes can be verified with `tools/build_adapters.py --check`.
 
+Implementation commit: `34ba2f2d022ebde66e544292ee612688c6f1291e`.
+All eight cross-platform jobs passed:
+[H4a validation run 39990104341](https://github.com/clay-wood/huevat/actions/runs/39990104341).
+The six core jobs cover Windows/Linux with Python 3.10/3.12/3.14, including
+distribution builds and clean offline installs. Both Python 3.12 research jobs
+exercise all three native backends, reproduce the frozen milestones and
+revalidate the ten optimized selections and H4a gallery hashes.
+
 ## Boundaries
 
 Roadmap update, October 23, 2026: the user accepted figure doctor with
