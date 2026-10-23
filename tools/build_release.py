@@ -122,7 +122,7 @@ def render(results):
     write_json(OUTPUT/'exports.json', {'designs':results, 'css':css_evidence}); assets.append('exports.json')
     pcss = hv.export(p, format='css').text.strip()
     page = '''<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Huevat 0.1 · Ready to plot</title><style>
+    <title>Huevat · Colors for scientific figures</title><style>
     *{box-sizing:border-box}body{margin:0;background:#f2f0eb;color:#29323b;font:16px/1.6 system-ui,sans-serif}
     main{max-width:1120px;margin:auto;padding:50px 30px}h1{font-size:48px;line-height:1.1;letter-spacing:-1.8px}
     h2{margin-top:44px;font-size:27px}a{color:#236f7a}p{max-width:850px}.kicker{color:#367d76;letter-spacing:2px;font-size:12px;font-weight:700;text-transform:uppercase}
@@ -131,25 +131,24 @@ def render(results):
     pre{font:14px/1.6 ui-monospace,monospace;background:#e6e7e2;padding:22px;border-radius:8px;overflow:auto}
     img{width:100%;height:auto;display:block;border-radius:8px}small{color:#59646a}.swatch{height:64px;border-radius:8px}
     @media(max-width:750px){.grid{grid-template-columns:1fr}h1{font-size:36px}}
-    </style><main><div class="kicker">Huevat · Private v0.1.0</div><h1>Ready to plot.</h1>
-    <p>Screened scientific colors, native plotting adapters and a figure doctor. The base package stays independent of browsers and plotting libraries.</p>
+    </style><main><div class="kicker">Huevat</div><h1>Colors for scientific figures.</h1>
+    <p>Palettes and gradients for Matplotlib, Plotly and UltraPlot, with a figure doctor for coordinated colors, markers and dashes.</p>
     <div class="swatch" style="background:''' + html.escape(pcss, quote=True) + '''"></div>
-    <p><b>The release keeps the current defaults, including Clearer.</b> The twelve new named gradients remain available as experimental alternatives. Numerical screens, appearance choices and human readability remain distinct.</p>
+    <p><b>Clearer is the default categorical palette.</b> Choose light or dark variants to suit your figure. The twelve additional named gradients are experimental alternatives.</p>
     <pre>import huevat as hv
 palette = hv.categorical(6)
 gradient = hv.diverging()
 hv.export(palette, labels=["Control", "A", "B", "C", "D", "E"]).write("palette.json")
 restored = hv.load_export(open("palette.json", encoding="utf-8").read()).design</pre>
-    <div class="grid"><div class="card"><b>Choose a design</b><p>Discover immutable IDs and prepared counts. Standard lookups never start an optimizer.</p><a href="../../docs/QUICKSTART.md">Quick start</a> · <a href="../../docs/API.md">API guide</a></div>
-    <div class="card"><b>Use the existing figure</b><p>Compare coordinated colors, markers and dashes. Apply explicitly and keep an undo handle.</p><a href="../doctor-v1/index.html">Figure doctor gallery</a></div></div>
+    <div class="grid"><div class="card"><b>Make a plot</b><p>Pick a palette, choose your plotting library and follow a short example.</p><a href="../../docs/QUICKSTART.md">Quick start</a> · <a href="../../examples/README.md">Plotting examples</a></div>
+    <div class="card"><b>Improve an existing figure</b><p>Compare colors, markers and dashes on a copy, then apply the option you prefer.</p><a href="../../docs/FIGURE_DOCTOR.md">Figure doctor guide</a></div></div>
     <h2>Current gradient defaults</h2><div class="grid">''' + ''.join(routes) + '''</div>
-    <small>These CSS previews use explicitly requested sRGB interpolation and measured approximation error. View the established native galleries for CVD diagnostics and application fields. Unsupported CSS syntax fails visibly; browser rendering is not certified.</small>
-    <h2>More routes, with explicit status</h2><a href="../collection-v1/index.html"><img src="../collection-v1/overview-light.png" alt="The twelve experimental gradient routes"></a>
-    <p><a href="../collection-v1/index.html">Geoscience, geography and atmosphere collection</a> · <a href="../adapters-v1/index.html">Three native plotting backends</a></p>
-    <h2>Portable files</h2><p>Compact JSON retains recipes, source hashes, exact selections and labels. CSV and hex export the exact colors. CSS gradients use checked stop refinement; swatches preserve discrete colors.</p>
+    <h2>More gradients</h2><img src="../../docs/images/gradients.png" alt="The twelve experimental gradients on light and dark backgrounds">
+    <p>Additional choices for general plots, seismic data, terrain, depth and atmospheric fields.</p>
+    <h2>Save and reuse</h2><p>JSON saves a design and its labels for reuse. CSV and hex give you color lists; CSS gradients are also available.</p>
     <p><a href="clearer.json">Six labeled Clearer colors</a> · <a href="signed.json">Exact signed gradient</a> · <a href="signed-seven.csv">Seven-color CSV</a> · <a href="signed-seven.json">Seven-color recipe</a> · <a href="sequential-light.css">Continuous CSS</a></p>
-    <p><a href="../../docs/MIGRATION.md">Migration and compatibility</a> · <a href="../../docs/RELEASE_NOTES.md">v0.1 release notes</a> · <a href="exports.json">Export evidence</a> · <a href="../../docs/TECHNICAL_STATUS.md">Verification record</a></p>
-    <small>Local release artifacts are built from source. Nothing has been published to PyPI or released publicly.</small></main></html>'''
+    <p><a href="../../README.md">Palette gallery</a> · <a href="../../docs/API.md">API guide</a> · <a href="../../docs/RELEASE_NOTES.md">Release notes</a></p>
+    <small>Review your figures at their intended size.</small></main></html>'''
     (OUTPUT/'index.html').write_text(page, encoding='utf-8', newline='\n'); assets.append('index.html')
     write_json(OUTPUT/'manifest.json', {'version':'h4-release-v1','implementation_sha256_lf':sources(),
         'registry_sha256_lf':digest(RESOURCE),'artifacts':{name:digest(OUTPUT/name) for name in sorted(assets)}})

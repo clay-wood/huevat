@@ -130,9 +130,13 @@ def main():
         allowed_tests={'test_space.py','test_core.py','test_release.py','test_doctor.py'}
         assert all(Path(n).name in allowed_tests for n in names if '/tests/' in n and n.endswith('.py'))
         assert not any('/research/' in n or '/artifacts/' in n for n in names)
+        assert not any(n.endswith(('/MIGRATION.md', '/MAINTENANCE.md', '/TECHNICAL_STATUS.md',
+                                   '/PROJECT_REVIEW.md', '/NEXT_STEPS.md', '/profile_runtime.py'))
+                       for n in names)
         for required in ("pyproject.toml", "uv.lock", "project_plan.md", "docs/extraction.json",
                          "tools/check_install.py", "tests/test_space.py", "examples/quickstart.py",
-                         "docs/QUICKSTART.md", "docs/MIGRATION.md"):
+                         "docs/QUICKSTART.md", "examples/README.md", "examples/gallery.py",
+                         "docs/images/palettes.png", "docs/images/gradients.png"):
             assert any(n.endswith('/' + required) for n in names), required
     uv = shutil.which("uv")
     if uv is None:

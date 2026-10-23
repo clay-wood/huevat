@@ -1,4 +1,4 @@
-# H1 reference provenance and attribution
+# H1 references and attribution
 
 Frozen October 22, 2026. Full versions and source/table hashes are retained in
 `src/huevat/data/references-v1.json`, `machado-v1.json`, and `manifest-v1.json`.

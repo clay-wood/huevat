@@ -1,57 +1,94 @@
-# v0.1 API guide
+# API guide
 
-The base package imports only the standard library. All generation, native
-rendering and figure edits are explicit. For first use see [QUICKSTART.md](QUICKSTART.md).
+```python
+import huevat as hv
+```
 
-Prepared factory requests reuse immutable runtime views. Reversal shares frozen
-source/evidence, and oriented `.report` reads are cached on that view. Calling
-`.to_dict()` still returns an independent mutable copy. Custom search requests
-and all numerical methods/recipe formats retain their original behavior. See
-[maintenance and profiling](MAINTENANCE.md).
+Start with the [quick start](QUICKSTART.md) or the [palette gallery](../README.md).
 
-| Operation | Interface | Dependency/behavior |
-| --- | --- | --- |
-| Categorical | `categorical(n, background="light", style="clearer")` | Prepared counts 2–12 on both backgrounds; original style is `max-separation` |
-| Ordered constructors | `sequential()`, `diverging()`, `multihue()`, `spectral()` | Existing prepared defaults retained; custom requests need `[design]` |
-| Named alternatives | `gradient_names(family=None, domain=None)`, `gradient_info(name)`, `gradient(name, background=...)` | Twelve experimental routes, 24 variants |
-| Release discovery | `design_ids(family=None, background=None, role=None)` | Reads only the small registry; roles `default`, `legacy`, `experimental` |
-| Exact identity | `design_info(id)`, `get_design(id)` | Metadata includes recipe hash/review scope; prepared immutable objects cached, at most 16 |
-| Sampling | `g.at(t)`, `g.reversed()`, `g.discrete(n, context=None)` | Uniform discrete sampling unchanged; exact count must pass |
-| Count advice | `known_counts(g)`, `nearby_counts(g, n, context=None)` | Prepared passing uniform counts only; no search or exhaustive claim |
-| Positioned sampling | `optimized_discrete(g, n, context=None, grid=257, max_seconds=10)` | Explicit optional search; returns colors, positions and independent audit |
-| Compact status | `summarize(source)` | Small status view; full `.report` remains available |
-| Exact recipes | `.to_recipe()`, `.to_json()`, `load_recipe(value, validate=True)` | Existing formats retained, including old categorical colors |
-| Export | `export(design, format="json", n=None, context=None, labels=None, source=None, tolerance=.002, max_stops=1025)` | Returns immutable `Export(text, format, report)` with `.sha256`, `.write(path)` |
-| Import compact JSON | `load_export(value, validate=True)` | Returns `LoadedExport(design, source, labels)`; `.color_map` requires labeled palette |
-| Native adapters | `huevat.adapters.matplotlib`, `.plotly`, `.ultraplot` | Explicit imports and operations; no global registration on import |
-| Figure doctor | `inspect`, `diagnose`, `propose`, `preview`, `apply`, `load_proposal` | Lazy backend imports; audits/proposals need `[design]`; explicit apply/guarded undo |
+## Choose colors
 
-The export format names are `json`, `csv`, `hex`, `css`. JSON retains exact
-recipes, source orientation, selected count/positions and labels, without
-copying the full audit history. Hex/CSV encode exact exported colors; CSS
-continuous ramps are adaptive sRGB approximations, while discrete CSS is an
-equal-width swatch view. Source-independent tables do not acquire a continuous
-recipe or physical data boundaries. Loaded source evidence is recovered from
-known hashes or independently revalidated, never trusted from input claims.
+| Function | Use |
+| --- | --- |
+| `categorical(n, background="light", style="clearer")` | Distinct categories; default palettes cover 2–12 colors |
+| `sequential(background="light")` | Ordered values from low to high |
+| `diverging(background="light")` | Values on either side of a center |
+| `multihue(background="light")` | Ordered values with a wider hue range |
+| `spectral(background="light")` | A diverging gradient with several hues |
+| `gradient(name, background="light")` | One of the twelve experimental named gradients |
+| `gradient_names(family=None, domain=None)` | List named gradients, optionally filtered |
+| `gradient_info(name)` | Read a named gradient's intended uses and direction |
 
-`export(g, n=...)` and `export(p, source=g)` retain uniform selection provenance.
-Only the latter needs an explicit parent because an ordinary `Palette` from
-`.discrete()` does not itself contain the source path. Positioned and categorical
-palettes contain their own recipes. Continuous JSON has no category labels.
-Unknown positioned imports need `[design]`; `validate=False` retains their
-explicitly unvalidated status.
+Use `background="dark"` for dark figures. A categorical palette provides hex
+strings in `.colors`. A gradient provides RGB tuples through `.at(t)`.
 
-`Export.report` states whether an output is lossless, its source/exported-color
-hash, source version, interpolation/selection scope and any CSS approximation
-measurement. Export evidence never grants human approval. `LoadedExport.source`
-retains the original gradient when `.design` is a selected palette.
+## Sample and inspect
 
-Failures distinguish invalid inputs (`ValueError`), an audited selection failure
-(`QualityError`), a proved fixed-path count conflict (`ConstraintConflictError`)
-and a finite search that found no passing design (`SearchExhaustedError`). All
-quality errors retain immutable reports. Nearby prepared counts can be higher
-as well as lower than the requested number.
+| Operation | Use |
+| --- | --- |
+| `g.at(t)` | Read a color at a position from 0 to 1 |
+| `g.reversed()` | Reverse a gradient |
+| `g.discrete(n, context=None)` | Select evenly spaced colors and check that count |
+| `known_counts(g)` | List prepared counts that passed the checks |
+| `nearby_counts(g, n, context=None)` | Find tested counts near the one requested |
+| `optimized_discrete(g, n, context=None, grid=257, max_seconds=10)` | Search for better-spaced positions; requires `design` |
+| `summarize(source)` | Read a short summary of the color checks |
+| `source.report` | Read the full numerical results |
 
-See [adapter methods](METHODS_H4A.md), [collection methods](METHODS_H4B.md),
-[figure doctor](FIGURE_DOCTOR.md), [export/release protocol](METHODS_H4D.md) and
-[migration notes](MIGRATION.md) for the relevant scope and limitations.
+Some counts fail the color checks; an unlisted count has not necessarily failed.
+Sample positions do not set physical data-bin boundaries.
+
+## Save and load
+
+```python
+hv.export(palette, labels=labels).write("palette.json")
+saved = hv.load_export(open("palette.json", encoding="utf-8").read())
+palette = saved.design
+colors_by_label = saved.color_map
+
+hv.export(gradient, n=7, format="csv").write("colors.csv")
+```
+
+`export(design, format="json", n=None, context=None, labels=None, source=None)`
+supports `json`, `csv`, `hex` and `css`. The result has `.text`, `.report` and
+`.write(path)`. JSON preserves the design and labels; CSV and hex provide color
+lists. CSS approximates continuous gradients with checked color stops.
+Its optional `tolerance=.002` and `max_stops=1025` control that approximation.
+
+For JSON, export a gradient with `n=7` or supply its original gradient as
+`export(palette, source=gradient)`. Categorical palettes and palettes from
+`optimized_discrete` already contain the information needed to save them.
+Labels must be unique and match the number of colors.
+
+`load_export(value, validate=True)` returns `.design`, `.source`, `.labels`
+and, for labeled palettes, `.color_map`. Loading unfamiliar designs can require
+`design` to repeat the checks. `validate=False` skips those checks and leaves
+the result unvalidated.
+
+You can also save with `.to_recipe()` or `.to_json()` and restore with
+`load_recipe(value, validate=True)`.
+
+## Find a particular design
+
+`design_ids(family=None, background=None, role=None)` lists saved designs.
+`design_info(id)` describes one; `get_design(id)` loads it. Roles are `default`,
+`legacy` and `experimental`. Saving an ID lets you request the same design later.
+
+## Plotting and Figure doctor
+
+Adapters live in `huevat.adapters.matplotlib`, `.plotly` and `.ultraplot`.
+See the [complete plotting examples](../examples/README.md).
+
+Figure doctor provides `inspect`, `diagnose`, `propose`, `preview`, `apply` and
+`load_proposal`. Its suggestions require the `design` extra. See the
+[Figure doctor guide](FIGURE_DOCTOR.md).
+
+## Errors
+
+`ValueError` indicates an invalid argument. `QualityError` means a color check
+failed. `ConstraintConflictError` means the fixed gradient cannot meet the
+requested count under the selected rules. `SearchExhaustedError` means the
+search ended without finding a passing result. Color-check errors include
+their numerical report.
+
+The [methods notes](METHODS_H1.md) describe the checks and their limits.

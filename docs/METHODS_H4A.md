@@ -3,7 +3,8 @@
 Implemented October 23, 2026. The existing H0–H3 numerical implementations,
 prepared designs and uniform `.discrete(n)` behavior remain frozen. This pass
 adds explicit sampling and optional plotting adapters. Expanded gradients and
-figure doctor remain H4b and H4c in [the specification](NEXT_STEPS.md).
+figure doctor are described in [collection methods](METHODS_H4B.md) and the
+[figure doctor guide](FIGURE_DOCTOR.md).
 
 ## Installation and public interface
 

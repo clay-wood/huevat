@@ -35,8 +35,8 @@ with general and application-specific aesthetics, and made all three plotting
 adapters required. ColorCET and Fabio Crameri's Scientific colour maps are
 methodological/comparison references. Their exact tables retain attribution;
 new Huevat defaults should develop an independently reviewed appearance rather
-than inherit their aesthetics automatically. Detailed requirements, proposed
-API shapes and acceptance gates are in [NEXT_STEPS.md](docs/NEXT_STEPS.md).
+than inherit their aesthetics automatically. The public interface is described
+in the [API guide](docs/API.md).
 
 ## 2. Mathematical design and quality criteria
 
@@ -44,7 +44,7 @@ API shapes and acceptance gates are in [NEXT_STEPS.md](docs/NEXT_STEPS.md).
 
 Use the exact Wong/Okabe–Ito colors as an attributed categorical reference. Preserve those reference values; generated adaptations receive different names. Include ColorBrewer categorical, sequential, diverging, and Spectral schemes, plus viridis, cividis, and representative ColorCET maps.
 
-The attached Wong article and its correction supply the provenance for the Okabe–Ito reference. :codex-file-citation{path="C:/Users/local.cw43566/Downloads/nmeth.1618.pdf" purpose="source"} [Attribution correction](https://www.nature.com/articles/s41592-023-01974-0)
+The attached Wong article and its correction identify the source of the Okabe–Ito reference. :codex-file-citation{path="C:/Users/local.cw43566/Downloads/nmeth.1618.pdf" purpose="source"} [Attribution correction](https://www.nature.com/articles/s41592-023-01974-0)
 
 Evaluate references under matched conditions: category count, background, mark size, gradient resolution, and output encoding. Record limitations rather than assigning one universal “best palette” score.
 
@@ -170,19 +170,17 @@ Build four independent validation layers:
 
 Include deliberately defective examples: repeated colors, RGB interpolation artifacts, lightness reversals, broad flat regions, narrow contrast spikes, and excessive requested class counts. Tests must detect these failures.
 
-Generate an offline HTML gallery, publication-size PNG comparisons, machine-readable results, and a methods report. Publish tradeoffs and failing conditions alongside successful results.
-
-Benchmark core import, default lookup, gradient sampling, generation by family/count, peak memory, and installation footprint. Set generation budgets from measured prototypes; preserve a lightweight core without browser or plotting dependencies.
+Show the palette gallery and plotting examples directly in the README using images that GitHub can display. Keep numerical results and scientific methods available separately.
 
 ## 5. Delivery sequence and acceptance
 
 | Stage | Deliverable | Completion gate |
 |---|---|---|
-| H0 | Independent private repository, uv workflow, extracted numerical foundation, provenance | Clean installation; no browser dependency|
+| H0 | Independent private repository, uv workflow, numerical foundation and sources | Clean installation; no browser dependency|
 | H1 | Reference corpus, methods protocol, quality profiles, baseline gallery | Reproducible evaluations; numerical thresholds documented before default optimization |
 | H2 | Sequential and diverging construction, continuous/discrete API | Numerical and screening gates pass on both backgrounds; failures are actionable |
 | H3 | Categorical and multi-hue/Spectral construction | Count-specific validation, arm/order checks, repeatable optimization, complete gallery |
-| H4 | Reviewed defaults, exports, packaging | All families represented; independent audits and visual review complete; frozen identifiers and migration documentation |
+| H4 | Reviewed defaults, exports, packaging | All families represented; independent audits and visual review complete; saved identifiers and usage guides |
 
 The expanded H4 work is divided into reviewable slices:
 
@@ -191,7 +189,7 @@ The expanded H4 work is divided into reviewable slices:
 | H4a | Matplotlib, Plotly and UltraPlot adapters; optimized discrete sampling; concise summaries and count discovery | Real-backend examples/tests; approximation error and normalization verified; exact optimized samples audited; no optional imports during base lookup |
 | H4b | Broader sequential/diverging collection and application gallery | Distinct reviewed hue routes; light/dark variants; seismic, terrain and atmospheric test fields; profiles declared before any new-family optimization |
 | H4c | Figure doctor with coordinated encodings, figure-aware assignment and palette negotiation | Explicit inspection/preview/apply stages; supported/unsupported coverage; stable labels/locks; original figure/data unchanged until apply; model screens and human review kept separate |
-| H4d | Final default adoption, exports, packaging and migration | Cross-backend regression checks, reviewed defaults/identifiers, clean installations and retained old recipes |
+| H4d | Final default adoption, exports, packaging and usage guides | Cross-backend regression checks, reviewed defaults/identifiers, clean installations and retained old recipes |
 
 H4a is implemented: three optional native adapters, explicit optimized sampling,
 compact status summaries and prepared uniform-count discovery. See
@@ -205,7 +203,7 @@ private v0.1.0 release with the user's chosen policy: retain the current default
 including Clearer and keep all twelve new named routes experimental. It adds
 immutable-ID discovery/cached loading, compact validated JSON exchange, exact
 CSV/hex and audited CSS exports, nearby prepared counts, quick-start/native
-examples and migration documentation. Release role is distinct from the frozen
+examples and usage guides. Release role is distinct from the frozen
 reports' original review flags; no human-discrimination certificate is claimed.
 No package or public release is published. Existing H0–H3 numerical baselines and the selected Clearer categorical
 direction remain the foundation. Prepared optimized caches and nearby-count
@@ -213,4 +211,4 @@ search remain follow-up usability work.
 
 All families belong to the first release; the ordering above allows earlier methods to inform the harder constructions. A family remains experimental if its gates fail. Record that result explicitly instead of weakening its criteria to declare completion.
 
-Maintain a living technical document with task status, evidence, verification date, limitations, and relevant commits. Do not publish to PyPI or change either repository’s privacy as part of this work.
+Keep user guides focused on choosing colors and making figures. Do not publish to PyPI or change either repository’s privacy as part of this work.

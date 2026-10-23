@@ -100,7 +100,7 @@ The machine report includes the corpus/profile/protocol hashes, source and
 algorithm versions, dependency versions, parameters, measured values,
 individual criteria and reasons. Numeric reproduction compares within
 documented absolute/relative tolerances (1e-8), not platform PNG hashes.
-Rebuilding a frozen corpus is an explicit maintenance command; normal study
+Rebuilding a frozen corpus is a separate command; normal study
 generation reads local resources and requires no network.
 
 Implementation clarification from negative-control testing: the lightness

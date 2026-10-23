@@ -1,14 +1,13 @@
 include project_plan.md
-recursive-include docs *.md *.json
+recursive-include docs *.md *.json *.png
 recursive-include licenses *.txt
 prune tests
 prune tools
 include tests/test_core.py tests/test_space.py tests/test_release.py tests/test_doctor.py
 include tools/check_install.py tools/check_provenance.py tools/verify.py
-include tools/profile_runtime.py
 include tools/build_adapters.py tools/build_collection.py tools/collection_fields.py
 include tools/build_doctor.py tools/build_release.py
-recursive-include examples *.py
+recursive-include examples *.py *.md
 prune research
 prune artifacts
 recursive-include src/huevat/data *.json

@@ -99,11 +99,6 @@ different hosts, so reports record completed optimizations, candidate counts,
 elapsed time and whether the deadline was reached. The returned recipe is
 itself an exact data record of the selected result.
 
-Core operation timings come from a fresh process without optional imports.
-Peak traced Python allocations are measured in a separate instrumented run;
-they exclude native allocations and are not total process RSS. These host
-measurements are operational evidence rather than portable performance limits.
-
 ## Continuous numerical checks and finite-grid screening
 
 Lightness derivative extrema certify monotonicity of each cubic arm, and
@@ -193,4 +188,4 @@ check remains independent and unchanged.
 - [SciPy PCHIP](https://docs.scipy.org/doc/scipy/reference/generated/scipy.interpolate.PchipInterpolator.html)
 - [SciPy SLSQP](https://docs.scipy.org/doc/scipy/reference/optimize.minimize-slsqp.html)
 - [H1 protocol and fixed thresholds](METHODS_H1.md)
-- [Reference and model provenance](REFERENCES_H1.md)
+- [References and model sources](REFERENCES_H1.md)

@@ -1,22 +1,16 @@
-# Huevat 0.1 quick start
+# Quick start
 
-From this private checkout:
+Install from the project folder with your plotting library:
 
-```powershell
-python -m pip install .
-# Choose the plotting backend you use:
+```sh
 python -m pip install ".[matplotlib]"
-python -m pip install ".[plotly]"
-python -m pip install ".[ultraplot]"
-# Figure doctor and custom generation also need [design].
-python -m pip install ".[design,matplotlib]"
 ```
 
-The base install has no dependencies. Prepared palettes, gradients, immutable
-ID discovery, compact JSON/CSV/hex/CSS exports and known recipe loading work
-offline. The local wheel is in `dist/`; no package has been published to PyPI.
+Use `plotly` or `ultraplot` instead of `matplotlib` for those libraries.
+Python 3.10+ is required. See the [gallery](../README.md) and
+[plotting examples](../examples/README.md) to compare the colors.
 
-## Six series, with stable labels
+## Colors for categories
 
 ```python
 import numpy as np
@@ -27,73 +21,64 @@ from huevat.adapters import matplotlib as hmpl
 labels = ["Control", "A", "B", "C", "D", "E"]
 palette = hv.categorical(len(labels))
 colors = hmpl.color_map(palette, labels)
+
 x = np.linspace(0, 10, 100)
-fig, ax = plt.subplots()
+series_fig, ax = plt.subplots()
 for i, label in enumerate(labels):
-    ax.plot(x, np.sin(x/2+i/3), color=colors[label], label=label)
+    ax.plot(x, np.sin(x / 2 + i / 3), color=colors[label], label=label)
 ax.legend()
-fig.savefig("six-series.png", dpi=180)
-series_fig = fig
+series_fig.savefig("six-series.png", dpi=180)
 ```
 
-Clearer is the retained categorical default. Changing the category count can
-change every color: save the label mapping or use figure doctor's retained
-assignments when categories appear/disappear across figures.
+Clearer is the default style, with palettes for 2–12 categories. Changing the
+category count can change all the colors. Save your labels with the palette
+when you want to use the same colors in another figure.
 
-## An ordered field and a signed field
+## Gradients for fields
 
 ```python
 fig, axes = plt.subplots(1, 2, figsize=(9, 3))
 field = np.linspace(0, 1, 120).reshape(10, 12)
+
 ordered = hv.sequential()
 axes[0].imshow(field, cmap=hmpl.colormap(ordered), vmin=0, vmax=1)
+
 signed = hv.diverging()
-image = axes[1].imshow(10*field-2, cmap=hmpl.colormap(signed),
+image = axes[1].imshow(10 * field - 2, cmap=hmpl.colormap(signed),
                        norm=hmpl.normalizer(-2, 8, center=0))
 fig.colorbar(image, ax=axes[1], label="Anomaly (K)")
 fig.savefig("fields.png", dpi=180)
 ```
 
-The explicit normalizer keeps zero at the neutral even though the negative and
-positive extents differ. Missing and out-of-range policies are backend-specific;
-see [adapter details](METHODS_H4A.md). Data thresholds never follow perceptual
-sampling positions automatically.
+The normalizer places zero at the neutral color, even when the range extends
+farther in one direction. The other defaults are `hv.multihue()` and
+`hv.spectral()`. Pass `background="dark"` to any palette or gradient factory
+when plotting on a dark background.
 
-For Plotly use `huevat.adapters.plotly.coloraxis(gradient, -2, 8, center=0)`
-and attach the returned dictionary with `fig.update_layout(coloraxis=...)`.
-For UltraPlot use its dedicated adapter and pass `discrete=False` for continuous
-`pcolormesh` fields. The runnable example covers all three backends:
-
-```powershell
-python examples/quickstart.py --backend matplotlib
-python examples/quickstart.py --backend plotly
-python examples/quickstart.py --backend ultraplot
-```
-
-## Discover exact designs and useful counts
+The twelve named alternatives are experimental:
 
 ```python
-ids = hv.design_ids(family="diverging", background="light", role="default")
-info = hv.design_info(ids[0])
-same_design = hv.get_design(ids[0])   # cached immutable prepared object
-passing = hv.known_counts(same_design)
-near_eight = hv.nearby_counts(same_design, 8)  # includes 7 and 9
-print(hv.summarize(same_design))
-```
-
-Unlisted counts are unknown, not demonstrated failures. `.discrete(n)` retains
-uniform sampling; `hv.optimized_discrete(g, n)` explicitly searches sample
-positions and needs `[design]`. Exact IDs preserve old colors across releases.
-
-The twelve additional named routes remain experimental:
-
-```python
-hv.gradient_names(domain="geography")
 depth = hv.gradient("bathymetry")
-hv.gradient_info("bathymetry")
+print(hv.gradient_names(domain="atmosphere"))
 ```
 
-## Save colors with their provenance
+Use `.reversed()` to change direction and `.at(0.5)` to read an individual
+RGB color. Positions run from 0 to 1.
+
+## Choose separate colors from a gradient
+
+```python
+print(hv.known_counts(signed))
+print(hv.nearby_counts(signed, 8))
+seven_colors = signed.discrete(7)
+```
+
+`discrete(n)` samples evenly and checks the requested count. Not every count
+passes. With `python -m pip install ".[design,matplotlib]"`, you can also use
+`hv.optimized_discrete(signed, 8)` to search for better-spaced colors.
+Choose the data-bin boundaries separately from the color sample positions.
+
+## Save and reuse
 
 ```python
 hv.export(palette, labels=labels).write("palette.json")
@@ -101,44 +86,35 @@ saved = hv.load_export(open("palette.json", encoding="utf-8").read())
 restored_palette = saved.design
 restored_label_map = saved.color_map
 
-hv.export(signed).write("signed-gradient.json")  # exact continuous recipe
-hv.export(signed, n=7).write("seven-colors.json")
+hv.export(signed).write("gradient.json")
 hv.export(signed, n=7, format="csv").write("seven-colors.csv")
 hv.export(palette, format="hex").write("colors.txt")
-css = hv.export(signed, format="css")
-css.write("gradient.css")
-print(css.report["maximum_float_error_oklab"])
 ```
 
-CSV/hex require an explicit passing count when the source is continuous. JSON
-is the lossless exchange format. CSV/hex/CSS are display exports, not recipe
-files. CSS explicitly requests sRGB interpolation and has a measured finite-grid
-error; `.text` is the CSS gradient value to use in a declaration such as
-`background: ...`. Discrete CSS gives equal-width swatches, not physical bins.
+JSON saves the design, labels and any selected positions for reuse. CSV and
+hex save color lists. Use `format="css"` for a CSS gradient value.
+If you already selected `p = signed.discrete(7)`, use
+`hv.export(p, source=signed)` to save its original gradient too.
 
-If you already have `p = g.discrete(7)`, use `hv.export(p, source=g)` for JSON
-provenance, or export directly with `hv.export(g, n=7)`. Save positioned palettes
-from `optimized_discrete` directly; the JSON retains their exact positions.
-Unknown imports need independent validation; `validate=False` is for explicitly
-unvalidated inspection. Imported report claims never grant a numerical pass.
+## Improve an existing figure
 
-## Repair an existing figure
+Figure doctor needs the `design` extra and your plotting library.
 
 ```python
 from huevat import doctor
+
 scene = doctor.inspect(series_fig)
 closer, separation, simple = doctor.propose(scene)
-preview = doctor.preview(fig, separation, condition="grayscale")
-preview.savefig("proof.png")   # original untouched; no hidden pyplot windows
+preview = doctor.preview(series_fig, separation, condition="grayscale")
+preview.savefig("preview.png")
+
 change = doctor.apply(series_fig, separation)
 change.undo()
 ```
 
-Figure doctor currently edits supported Cartesian lines/scatter. It inventories
-and preserves bands, scalar maps/colorbars and unsupported content. Marker/dash
-differences do not promote failed color screens. See [coverage and locks](FIGURE_DOCTOR.md).
+Figure doctor suggests colors, markers and dashes for line and scatter plots.
+It keeps images, colorbars and uncertainty bands as they are. See the
+[Figure doctor guide](FIGURE_DOCTOR.md) for fixed colors and shared labels.
 
-Start with the [release overview](../research/release-v1/index.html), then browse
-the [application collection](../research/collection-v1/index.html) or
-[figure doctor comparisons](../research/doctor-v1/index.html). Model screens do
-not certify universal human readability; review at your intended figure size.
+Palettes are checked with color-vision simulations. Review your figure at its
+intended size, especially when using many categories or overlapping marks.

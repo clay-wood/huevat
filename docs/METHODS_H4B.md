@@ -61,7 +61,7 @@ failures. Retained rejection records describe the final declared search;
 the original controls remain in protocol commit `5c101d3`.
 
 The delivered paths reuse the stable `h2-ordered-v1` **cubic recipe encoding**;
-the separate construction provenance is `h4b-free-knots-v1`. This does not
+the separate construction record is `h4b-free-knots-v1`. This does not
 assert that the new paths were constructed by the old H2 optimizer. New
 identifiers begin `h4b-` and retain version/background. Unknown recipes undergo
 the existing full revalidation. Known shipped recipes ignore supplied evidence

@@ -24,7 +24,6 @@ artifacts/
 !/tools/check_install.py
 !/tools/check_provenance.py
 !/tools/verify.py
-!/tools/profile_runtime.py
 !/tools/build_adapters.py
 !/tools/build_collection.py
 !/tools/collection_fields.py

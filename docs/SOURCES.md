@@ -1,4 +1,4 @@
-# Numerical foundation provenance
+# Numerical sources and attribution
 
 Extraction date: October 22, 2026. Huevat H0 is derived from the local
 `sketchplot` working tree at <https://github.com/clay-wood/sketchplot>, based on

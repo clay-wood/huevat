@@ -23,7 +23,7 @@ supplied pass claims. Known shipped recipes use their frozen evidence, unknown
 recipes need the existing independent audit, and `validate=False` is explicitly
 unvalidated where evidence is unavailable. Positioned palettes retain their
 exact source and positions. Naked discrete palettes require their source for
-lossless JSON provenance; hex/CSV remain available as color-table exports.
+complete JSON files; hex/CSV remain available as color-table exports.
 
 Text/CSV exports preserve exact hex colors and declared sample positions.
 Positions are normalized sample locations, never inferred physical boundaries.
@@ -45,10 +45,10 @@ duplicate labels and exhausted CSS tolerances. Exercise export colors and
 signed centers through all three actual backends. Repeat all H0–H4c checks,
 clean wheel/sdist installs, and Windows/Linux Python 3.10/3.12/3.14 CI.
 
-Provide a short quick start, API/migration/release notes, an offline release
-overview, machine-readable release checks and measured size/lookup costs.
-Archive only the intended v0.1 wheel/sdist in the local distribution directory.
-Record remaining research limitations separately from completed v0.1 scope.
+Provide a short quick start, API guide, release notes and plotting examples.
+Show the palette gallery directly in the README using ordinary images that
+GitHub can display. Keep numerical checks and scientific limitations available
+in the methods notes.
 
 CSS interpolation contract:
 [CSS Images 4 linear gradients](https://www.w3.org/TR/css-images-4/#linear-gradients)

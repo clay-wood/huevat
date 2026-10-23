@@ -7,7 +7,7 @@
     "diverging-dark.css": "c4d30bdaf260a50b0f7bbda445dfb620b55c8b348dd287b169ff39d7a5c974d2",
     "diverging-light.css": "f766ace49d25f85ddaf1e1d45fd3a04c7de298219fd9973b214ec4805f76ede0",
     "exports.json": "b0473138a60dd4a03a7e2091d893c0a8ec309cb9fe4b5efd74c94cc3fcadea95",
-    "index.html": "3296be17c1f916e9653b301ff8a161107f7c2d3a36100dff94cdee43fdfe065d",
+    "index.html": "ff76c62ddf05f2415977ee1bbdca96e006c7fcc53105fb7a427b808cc0f823c0",
     "multihue-dark.css": "5ec5ee148ef552d1b45c0e0ac8c6899537633964d0dd8333050bd5f3de0548af",
     "multihue-light.css": "fbbb79c1c227846b1d915524b406bbf6444df21cf113fa771e8ff7bfc065f171",
     "sequential-dark.css": "c5bbe31030efba1eec1b40682a1f9a2a4a3fd99728f0ee80effc02129e7050f8",
@@ -21,12 +21,12 @@
     "spectral-light.css": "91ab0620e60f0b2413186ae07a431bc05bb694d625aebf0fa4f89da22d7facad"
   },
   "implementation_sha256_lf": {
-    "docs/METHODS_H4D.md": "c5f6280237ea7ad3c85fa31ebc4d8cae90c30adc1973f6e2c80bc8f6e1f4135c",
+    "docs/METHODS_H4D.md": "3a4a14f5b54d7b16adc07117644c3d33f624ae170ba9a42d2d320851c9400969",
     "src/huevat/__init__.py": "20f6a156340c9f9f93d87b60104a9b7e9d1e3761d5cc84cbbfcc6f8163b41e07",
     "src/huevat/_prepared.py": "3714183a3804d7e2f3d0beb1c6de2a7c215576ac5adae1ee0bfebb7f27e9e06d",
     "src/huevat/exports.py": "554acb1179d580aa36adcf0975ed945ba94d8b2ccf5a58ffbf67ea01923c525e",
     "src/huevat/library.py": "24e6ba58447eee5ec3b620b1310fc990f2e5feab9669c63f690027f20139a1a5",
-    "tools/build_release.py": "a5737386323c36a6c83b21de8a97d22ee3224f07d008a93dbf192bcd6b0f4624"
+    "tools/build_release.py": "eba7252aea92d16485172ccba33b015f09e245f4819a336d1e5171de24026143"
   },
   "registry_sha256_lf": "34fbe87da03fef12e487c3141a34a35e2a421ec06362eceb4e8e6349ec688d6d",
   "version": "h4-release-v1"
