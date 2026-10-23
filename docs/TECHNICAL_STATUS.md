@@ -36,6 +36,11 @@ clean offline pip/uv installations. Thus ignored files are not needed by the
 current checkout or distribution. Historical milestone test counts and paths
 in the following sections refer to their original snapshots.
 
+Implementation commit: `182ae0e4fef3c1d3196d19c64933f2414a86dc7a`.
+All eight Windows/Linux validation jobs passed, including Python 3.10, 3.12
+and 3.14 core checks and both independent research audits:
+[cleanup and runtime validation run 40038288061](https://github.com/clay-wood/huevat/actions/runs/40038288061).
+
 ## Private v0.1.0: scoped implementation complete
 
 The user selected retention of the current defaults, including Clearer, with
