@@ -296,6 +296,15 @@ are illustrative, not a large-figure performance guarantee. Full copying/data
 hashing and repeated-channel pair audits remain scaling costs. Usage, coverage
 and reproduction are in `FIGURE_DOCTOR.md` and `METHODS_H4C.md`.
 
+Implementation commit: `6d90d270a29ac08f26facb2411d03330b0a03a3e`.
+All eight cross-platform jobs passed:
+[H4c validation run 40010321553](https://github.com/clay-wood/huevat/actions/runs/40010321553).
+The six core jobs verify Windows/Linux Python 3.10/3.12/3.14, builds and clean
+offline installs. Both Python 3.12 research jobs passed all 279 tests,
+reproduced the earlier milestones and repeated the eight native H4c cases,
+guarded apply/undo and source/artifact hashes. Committed raw Git bytes also
+match all 57 H4c artifact hashes, including JSON and HTML line endings.
+
 ## Boundaries
 
 Roadmap update, October 23, 2026: the user accepted figure doctor with
