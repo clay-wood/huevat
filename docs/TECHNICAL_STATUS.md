@@ -162,6 +162,15 @@ prepared sampling/recipe reloads without optional dependencies.
 
 ## Boundaries
 
+Roadmap update, October 23, 2026: the user accepted figure doctor with
+coordinated encodings, figure-aware assignment and palette negotiation;
+optimized discrete sampling; more general and application-specific gradients;
+and required Matplotlib, Plotly and UltraPlot adapters. `NEXT_STEPS.md` defines
+the expanded H4 slices and acceptance gates. These features are specified,
+not yet implemented. H4a (three adapters plus optimized sampling) is the
+proposed next implementation slice. Numerical verification above remains the
+October 22 record; no numerical or runtime code changed in this roadmap update.
+
 Categorical aesthetic revision: the user selected **Clearer** from the
 appearance study. `categorical()` now uses `h3-categorical-v2`: satisfy the
 original quality floors, then preserve the selected aesthetic targets. All 22

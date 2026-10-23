@@ -215,3 +215,9 @@ The [project review](docs/PROJECT_REVIEW.md) records measured bottlenecks,
 usability improvements and proposed features. Reproduce its operational
 measurements with `tools/profile_project.py`; raw results are retained in
 `research/project-review-v1/benchmarks.json`.
+
+The [next implementation specification](docs/NEXT_STEPS.md) records the
+October 23 requirements: required Matplotlib/Plotly/UltraPlot adapters,
+optimized discrete sampling, a broader general/seismic/terrain/atmospheric
+gradient collection, and an integrated figure doctor. These are planned H4
+features; the document distinguishes their proposed API from current behavior.

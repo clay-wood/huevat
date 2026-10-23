@@ -1,5 +1,11 @@
 # Huevat project review after the Clearer H3 revision
 
+Follow-up, October 23: the user accepted the figure-doctor/optimized-sampling
+direction, required Matplotlib/Plotly/UltraPlot adapters and requested broader
+general and geoscience/atmospheric gradients. [NEXT_STEPS.md](NEXT_STEPS.md)
+turns those choices into the next implementation specification. The measured
+review below remains the October 22 baseline.
+
 October 22, 2026. This review separates implemented changes, measured costs,
 code observations and proposed features. Proposed interfaces do not exist yet.
 Measurements describe this Windows/Python 3.12.14 host, not universal limits.

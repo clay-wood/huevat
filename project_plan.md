@@ -12,12 +12,31 @@ The first release will include:
 - Continuous evaluation and discrete sampling of ordered gradients.
 - Equally reviewed defaults for light and dark backgrounds.
 - A small Python interface, quantitative reports, and a generated comparison gallery.
+- First-class, optional adapters for **Matplotlib, Plotly, and UltraPlot**.
+- Explicit optimized discrete sampling, preserving the continuous path and
+  returning the selected sample positions.
+- A figure doctor that combines inspection, coordinated color/marker/dash
+  design, figure-aware assignment, and palette negotiation.
+- A broader default collection for general work, seismic/subsurface plots,
+  topography/bathymetry, and atmospheric fields.
 
 Supplied colors are preferences that the generator may adjust. Generated results must pass their selected quality profile. Failed searches return an explanation rather than an apparently approved palette.
 
 Create a separate **private** `huevat` repository, subject to confirming repository availability.
 
-Initial exclusions: an interactive designer, CSS theme generation, wide-gamut output, printer-profile guarantees, and universal claims of accessibility.
+Initial exclusions: a standalone general-purpose interactive palette editor,
+CSS theme generation, wide-gamut output, printer-profile guarantees, and
+universal claims of accessibility. Figure-doctor previews and palette
+negotiation are now in scope as optional workflows.
+
+**Scope update, October 23, 2026:** the user accepted the figure-doctor workflow
+and optimized discrete sampling, requested more sequential/diverging defaults
+with general and application-specific aesthetics, and made all three plotting
+adapters required. ColorCET and Fabio Crameri's Scientific colour maps are
+methodological/comparison references. Their exact tables retain attribution;
+new Huevat defaults should develop an independently reviewed appearance rather
+than inherit their aesthetics automatically. Detailed requirements, proposed
+API shapes and acceptance gates are in [NEXT_STEPS.md](docs/NEXT_STEPS.md).
 
 ## 2. Mathematical design and quality criteria
 
@@ -40,6 +59,13 @@ Before optimizing published defaults, establish versioned quality profiles conta
 | Diverging | Join two ordered arms at a shared neutral center. Match their lightness progression and perceptual distance from the center; validate that the arms remain distinguishable. |
 | Multi-hue sequential | Follow an ordered hue route while retaining monotone lightness. Additional hues must not create false boundaries. |
 | Spectral-like diverging | Use two multi-hue arms around a meaningful center. Apply diverging criteria rather than treating it as a rainbow sequential map. |
+
+Application semantics determine the family: signed seismic amplitudes and
+atmospheric anomalies use a declared reference value; velocity/density,
+concentration and magnitude fields use ordered scales. Topography/bathymetry
+needs an explicit sea-level mapping and separate review of any land/water
+transition. Direction/phase data require a cyclic family and its own protocol;
+they must not be presented as ordinary sequential gradients.
 
 This distinction follows [ColorBrewer’s scheme semantics](https://colorbrewer2.org/learnmore/schemes_full.html).
 
@@ -105,6 +131,10 @@ Interface behavior:
 - `categorical()` returns an immutable palette; changing its count may change every color.
 - Ordered constructors return immutable gradient objects supporting `.at(t)`, `.discrete(n)`, and `.reversed()`.
 - `.discrete(n)` validates that particular selection and can reject an excessive count.
+- Optimized discrete sampling is an explicit alternative. It returns colors
+  and sample positions, validates the exact selection, and keeps the existing
+  uniform behavior unchanged. Perceptual sample positions do not silently
+  redefine physical data-bin boundaries.
 - Explicit background colors are supported and validated separately from the reviewed light/dark defaults.
 - Reports expose measured scores, pass/fail criteria, supplied-to-produced color changes, algorithm/profile versions, and reproducibility information.
 - Custom designs serialize to data-only recipes. Accepted defaults have immutable versioned identifiers.
@@ -112,6 +142,20 @@ Interface behavior:
 Provide lightweight loading, sampling, JSON/hex export, and recipe reading in the base package. Put NumPy/SciPy generation dependencies in **`huevat[design]`**. Keep Matplotlib adapters and gallery/research tooling optional.
 
 Use prepared designs for normal plotting; do not run optimization during import, palette lookup, or gradient sampling. CSS gradient exports must use enough stops to meet a measured approximation tolerance rather than assuming endpoint interpolation reproduces Huevat’s path.
+
+Adapters must preserve data normalization, signed centers, category order,
+reversal, missing values and under/over-range behavior, with a measured color
+approximation tolerance. UltraPlot gets dedicated colormap/cycle/normalization
+tests as a supported backend. Plotting imports and global registrations remain
+explicit; base import stays dependency-free.
+
+Figure doctor inspects a supported figure without modifying it, reports the
+actual displayed/composited colors and supported-artist coverage, and returns
+audited proposals. Proposals can jointly assign color, marker and dash using
+figure overlap/adjacency and stable category identities. Palette negotiation
+offers several passing tradeoffs and respects locked colors. Applying a repair
+requires an explicit API call; data, axes scales, physical units and thresholds
+must remain unchanged.
 
 Add a reproducible export/import bridge with source version and hashes; adopt new defaults only after comparative review.
 
@@ -139,6 +183,18 @@ Benchmark core import, default lookup, gradient sampling, generation by family/c
 | H2 | Sequential and diverging construction, continuous/discrete API | Numerical and screening gates pass on both backgrounds; failures are actionable |
 | H3 | Categorical and multi-hue/Spectral construction | Count-specific validation, arm/order checks, repeatable optimization, complete gallery |
 | H4 | Reviewed defaults, exports, packaging | All families represented; independent audits and visual review complete; frozen identifiers and migration documentation |
+
+The expanded H4 work is divided into reviewable slices:
+
+| Slice | Deliverable | Completion gate |
+| --- | --- | --- |
+| H4a | Matplotlib, Plotly and UltraPlot adapters; optimized discrete sampling; concise summaries and count discovery | Real-backend examples/tests; approximation error and normalization verified; exact optimized samples audited; no optional imports during base lookup |
+| H4b | Broader sequential/diverging collection and application gallery | Distinct reviewed hue routes; light/dark variants; seismic, terrain and atmospheric test fields; profiles declared before any new-family optimization |
+| H4c | Figure doctor with coordinated encodings, figure-aware assignment and palette negotiation | Explicit inspection/preview/apply stages; supported/unsupported coverage; stable labels/locks; original figure/data unchanged until apply; model screens and human review kept separate |
+| H4d | Final default adoption, exports, packaging and migration | Cross-backend regression checks, reviewed defaults/identifiers, clean installations and retained old recipes |
+
+H4a is the proposed next implementation slice. Existing H0–H3 numerical
+baselines and the selected Clearer categorical direction remain the foundation.
 
 All families belong to the first release; the ordering above allows earlier methods to inform the harder constructions. A family remains experimental if its gates fail. Record that result explicitly instead of weakening its criteria to declare completion.
 
