@@ -1,8 +1,10 @@
 # Next implementation requirements
 
 Updated October 23, 2026. This document records the user's approved direction
-after the Clearer H3 revision. H4a and the H4b candidate collection are
-implemented; H4c and H4d remain next. H4b appearance review is pending. See
+after the Clearer H3 revision. H4a–H4d are implemented for private v0.1.0.
+The user selected retention of current defaults, including Clearer, with the
+twelve new named routes kept experimental. H4b appearance review remains
+separate from default adoption. See
 [H4a usage and methods](METHODS_H4A.md) and [H4b protocol/usage](METHODS_H4B.md)
 for delivered APIs, evidence and limits.
 
@@ -193,11 +195,23 @@ marker/dash repair, but must retain its failed color-only status.
 
 ## H4d: adoption and release checks
 
+Implemented for the agreed v0.1 policy: 76 immutable IDs and cached prepared
+lookup; compact hashed JSON exchange with labels/orientation/selections;
+CSV/hex and audited explicit-sRGB CSS exports; nearby prepared count advice;
+quick start, migration/API/release notes and runnable native examples. Existing
+defaults/recipes and frozen reports remain unchanged. The named collection is
+still experimental. No PyPI/public release or privacy change is included.
+
 Adopt only reviewed default IDs and keep old recipes loadable. Include concise
 summaries, palette/count discovery, compact exports, adapter examples, clean
 installations, optional-import checks, reproducible methods and migration notes.
 Reduce runtime evidence copying/loading as needed for interactive previews,
 without discarding independent audits or weakening their thresholds.
+
+Future work beyond v0.1 includes broader human comparative review, new collection
+default adoption, cyclic maps, complex layering/region/scalar-map repairs,
+large-figure audit scaling, optimizer progress/derivatives and optional prepared
+optimized caches. These do not block the retained-default private release.
 
 ## Primary references consulted
 

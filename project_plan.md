@@ -200,8 +200,14 @@ routes with light/dark variants, free-knot construction and the application
 gallery in `research/collection-v1`; appearance review is pending. H4c adds the
 explicit figure-doctor workflow, coordinated encodings, stable identities/locks,
 audited tradeoffs and guarded apply/undo for supported native line/scatter
-figures. See `docs/FIGURE_DOCTOR.md` and `research/doctor-v1`. H4d default adoption,
-exports and migration remain. Existing H0–H3 numerical baselines and the selected Clearer categorical
+figures. See `docs/FIGURE_DOCTOR.md` and `research/doctor-v1`. H4d completes the
+private v0.1.0 release with the user's chosen policy: retain the current defaults
+including Clearer and keep all twelve new named routes experimental. It adds
+immutable-ID discovery/cached loading, compact validated JSON exchange, exact
+CSV/hex and audited CSS exports, nearby prepared counts, quick-start/native
+examples and migration documentation. Release role is distinct from the frozen
+reports' original review flags; no human-discrimination certificate is claimed.
+No package or public release is published. Existing H0–H3 numerical baselines and the selected Clearer categorical
 direction remain the foundation. Prepared optimized caches and nearby-count
 search remain follow-up usability work.
 

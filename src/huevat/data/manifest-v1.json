@@ -6,7 +6,8 @@
     "machado-v1.json": "c4d8e9ad439d572b37d2c6e6d3d490c2fd7ae290a180625c458c12c47a591444",
     "ordered-v1.json": "1e0a971c5602f457dd569eab0dbace461214e1b8f6148fb528eafafba45147ab",
     "profiles-v1.json": "0938561bf7e1551814a8ba58c4e883858bcc91a8c84e6051e20559c1e24f318a",
-    "references-v1.json": "6d6dacb6d826a2fc60abb8d217078c39fdf3184593912648254891273eb498bb"
+    "references-v1.json": "6d6dacb6d826a2fc60abb8d217078c39fdf3184593912648254891273eb498bb",
+    "release-v1.json": "34fbe87da03fef12e487c3141a34a35e2a421ec06362eceb4e8e6349ec688d6d"
   },
   "version": "h1-resources-v1"
 }

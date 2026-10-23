@@ -16,6 +16,7 @@ jobs:
       - run: uv sync --locked --python ${{ matrix.python }}
       - run: uv run --locked --python ${{ matrix.python }} pytest
       - run: uv run --locked --python ${{ matrix.python }} python tools/check_provenance.py
+      - run: uv run --locked --python ${{ matrix.python }} python tools/build_release.py --check
       - run: uv build --python ${{ matrix.python }}
       - run: uv run --locked --python ${{ matrix.python }} python tools/check_install.py
 
@@ -38,3 +39,7 @@ jobs:
       - run: uv run --locked --all-extras --python 3.12 python tools/build_adapters.py --check
       - run: uv run --locked --all-extras --python 3.12 python tools/build_collection.py --check
       - run: uv run --locked --all-extras --python 3.12 python tools/build_doctor.py --check
+      - run: uv run --locked --all-extras --python 3.12 python tools/build_release.py --check
+      - run: uv run --locked --all-extras --python 3.12 python examples/quickstart.py --backend matplotlib
+      - run: uv run --locked --all-extras --python 3.12 python examples/quickstart.py --backend plotly
+      - run: uv run --locked --all-extras --python 3.12 python examples/quickstart.py --backend ultraplot

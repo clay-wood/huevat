@@ -48,6 +48,19 @@ import huevat.adapters.ultraplot
 from huevat import doctor
 assert doctor.__all__
 assert len(hv.gradient_names()) == 12
+assert hv.__version__ == md.version('huevat') == '0.1.0'
+assert len(hv.design_ids()) == 76
+assert len(hv.design_ids(role='default')) == 30
+for identifier in hv.design_ids():
+    design = hv.get_design(identifier)
+    loaded = hv.load_export(hv.export(design)).design
+    if isinstance(design, hv.Gradient):
+        assert loaded.at(.37) == design.at(.37)
+    else:
+        assert loaded.colors == design.colors
+assert hv.load_export(hv.export(hv.diverging(), n=7)).design.colors == hv.diverging().discrete(7).colors
+assert hv.nearby_counts(hv.diverging(), 8)[:2] == (7, 9)
+assert hv.export(hv.categorical(4), format='csv').text.startswith('index,label,position,hex,r,g,b')
 assert hv.gradient_info('highland')['orientation'] == 'elevation-lightens'
 for name in hv.gradient_names():
     for background in ('light', 'dark'):
@@ -100,11 +113,13 @@ def main():
         assert set(metadata.get_all("Provides-Extra", [])) == {"design", "research", "matplotlib", "plotly", "ultraplot"}
         for filename in ("__init__.py", "space.py", "vision.py"):
             assert f"huevat/{filename}" in names
+        for filename in ("library.py", "exports.py"):
+            assert f"huevat/{filename}" in names
         for filename in ("matplotlib.py", "plotly.py", "ultraplot.py"):
             assert f"huevat/adapters/{filename}" in names
         for filename in ("__init__.py", "_backends.py", "_audit.py", "_search.py"):
             assert f"huevat/doctor/{filename}" in names
-        for filename in ("references-v1.json", "profiles-v1.json", "machado-v1.json", "manifest-v1.json", "ordered-v1.json", "families-v1.json", "categorical-v2.json", "collection-v1.json"):
+        for filename in ("references-v1.json", "profiles-v1.json", "machado-v1.json", "manifest-v1.json", "ordered-v1.json", "families-v1.json", "categorical-v2.json", "collection-v1.json", "release-v1.json"):
             assert f"huevat/data/{filename}" in names
         for license_name in ("LICENSE", "sketchplot-MIT.txt", "colorspacious-MIT.txt"):
             assert any(n.endswith('/' + license_name) for n in names), license_name
@@ -113,7 +128,8 @@ def main():
     with tarfile.open(sdist) as archive:
         names = archive.getnames()
         for required in ("pyproject.toml", "uv.lock", "project_plan.md", "docs/extraction.json",
-                         "tools/check_install.py", "tests/test_space.py"):
+                         "tools/check_install.py", "tests/test_space.py", "examples/quickstart.py",
+                         "docs/QUICKSTART.md", "docs/MIGRATION.md"):
             assert any(n.endswith('/' + required) for n in names), required
     uv = shutil.which("uv")
     if uv is None:

@@ -1,0 +1,32 @@
+{
+  "artifacts": {
+    "clearer.css": "09869c1f0b88ad708d293fd3ab64182214a0cd1459eb2340dfbb17b65375280a",
+    "clearer.csv": "92f73dca86290d302d6ca42d8dda91f9091261900d07691b2ddcc90f63937e2a",
+    "clearer.json": "b4fa4559eb20616b2bfdc7d145d3ea5d78dbfdd25578493da3149133bc70d381",
+    "clearer.txt": "d95f53b18103a649b45941f121741a70c271b1c619c2c5e03896e6ff47a52a7a",
+    "diverging-dark.css": "c4d30bdaf260a50b0f7bbda445dfb620b55c8b348dd287b169ff39d7a5c974d2",
+    "diverging-light.css": "f766ace49d25f85ddaf1e1d45fd3a04c7de298219fd9973b214ec4805f76ede0",
+    "exports.json": "b0473138a60dd4a03a7e2091d893c0a8ec309cb9fe4b5efd74c94cc3fcadea95",
+    "index.html": "3296be17c1f916e9653b301ff8a161107f7c2d3a36100dff94cdee43fdfe065d",
+    "multihue-dark.css": "5ec5ee148ef552d1b45c0e0ac8c6899537633964d0dd8333050bd5f3de0548af",
+    "multihue-light.css": "fbbb79c1c227846b1d915524b406bbf6444df21cf113fa771e8ff7bfc065f171",
+    "sequential-dark.css": "c5bbe31030efba1eec1b40682a1f9a2a4a3fd99728f0ee80effc02129e7050f8",
+    "sequential-light.css": "4c168506868d0f560946d48502a39a452e0f0e1de6de22e0d1649a6bf3a52a42",
+    "signed-seven.css": "b78c5edfed2039d4a412efbf1aaac45d6193d9187d6a641a65f02d169a2f2d60",
+    "signed-seven.csv": "c4f64f3c3b7cf0a4fedbaec8bcab064ca236388ff21493881fcf073ee883ae2c",
+    "signed-seven.json": "737740353c3b0c204ab1f3ea4b8ef27d1104ceb37e797788420bf4d80a52fae7",
+    "signed-seven.txt": "0a6426006311aecb35f1e753af538926d598ef00971de8103e6313f42578f19e",
+    "signed.json": "4146f365d8ceac892e2dd75d93b2812bad2db1804181af9b10736853118d4847",
+    "spectral-dark.css": "b9885878be29e818962cb99407459ab4806ba28af1e15b4151af1e3a744c7634",
+    "spectral-light.css": "91ab0620e60f0b2413186ae07a431bc05bb694d625aebf0fa4f89da22d7facad"
+  },
+  "implementation_sha256_lf": {
+    "docs/METHODS_H4D.md": "c5f6280237ea7ad3c85fa31ebc4d8cae90c30adc1973f6e2c80bc8f6e1f4135c",
+    "src/huevat/__init__.py": "ea5e0c9739cfc34103bf521033ea170976d7839b6d45c5bacb4cef5a6e159ff6",
+    "src/huevat/exports.py": "8c27c4765438d8915377318a88c4821001c1ff8c543a7b22a2b4da25e9f88656",
+    "src/huevat/library.py": "e129bd6b273f5d21d46310b84f0eae487cc76070bd4d5fc108a9f491d6b45d9a",
+    "tools/build_release.py": "c3788a5e7b3c3be0412fbec3409150a7409378deb0fe84c1498e8b7dea657eff"
+  },
+  "registry_sha256_lf": "34fbe87da03fef12e487c3141a34a35e2a421ec06362eceb4e8e6349ec688d6d",
+  "version": "h4-release-v1"
+}

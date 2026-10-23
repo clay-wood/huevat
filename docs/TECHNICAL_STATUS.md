@@ -2,6 +2,63 @@
 
 Verification date: October 23, 2026. Historical sections retain their milestone records.
 
+## Private v0.1.0: scoped implementation complete
+
+The user selected retention of the current defaults, including Clearer, with
+all twelve new named gradient routes kept experimental. H4d implements that
+policy without changing existing colors, thresholds, recipe IDs or numerical
+reports. The package version is `0.1.0`. No PyPI/public release or repository
+privacy change is included. Human comparative studies and broader experimental
+collection adoption remain separate from this retained-default software release.
+
+The new small registry exposes 76 immutable IDs: 30 default variants, 22 legacy
+categorical variants and 24 experimental collection variants. Identity checks
+cover geometry and orientation separately. `design_ids`/`design_info` load only
+48 KB of metadata; `get_design` caches up to sixteen immutable prepared objects.
+`nearby_counts` advises from existing passing uniform-count evidence, including
+higher counts where appropriate; unknown counts remain unknown.
+
+`export` adds compact hashed JSON with exact recipe, source version/hash,
+orientation, optional uniform/positioned selection and unique labels.
+`load_export` recovers frozen evidence or independently revalidates unknown
+sources; fabricated evidence cannot promote a pass. An ordinary palette needs
+its source gradient for lossless provenance. CSV/hex preserve exact table
+colors; continuous CSS requests encoded-sRGB interpolation and refines stops
+until the finite normal/CVD Oklab error gate passes. Discrete CSS is explicitly
+an equal-width swatch display, never physical bin boundaries.
+
+Local verification: **301 tests pass**, including 22 release tests. All 76 IDs
+and old recipe families roundtrip, both backgrounds/orientations and explicit
+counts retain their colors, and actual native Matplotlib/Plotly/UltraPlot
+exports preserve signed centers. All H0–H4c evidence checks reproduce. The
+release checker repeats the 76 ID/compact-export records, all eight continuous
+default CSS audits and retained source/artifact hashes. CSS measurements and
+stop coordinates reproduce within 1e-8; raster/browser byte identity is not
+claimed. The three runnable backend examples execute and the Matplotlib and
+UltraPlot output images were inspected. Release overview links resolve locally.
+
+Clean offline pip/uv installations of the built wheel pass, including all 76
+IDs/exports without optional packages. Wheel metadata and `__version__` agree
+on 0.1.0, with zero base dependencies and the same five optional extras. The
+wheel is approximately 1.93 MB. The sdist includes the usage/migration guides
+and runnable examples. Prior local development packages are retained under
+`artifacts/pre-v0.1.0`; current v0.1.0 distributions are in `dist/`.
+
+Compact exports of registered designs range from 631 to 4,700 bytes. A small
+sequential example uses 1,010 bytes versus 65,792 bytes with full evidence.
+Three fresh-process host measurements gave approximately 62 ms import, 15 ms
+traced registry discovery (0.71 MB peak traced allocations), 16 ms first
+ordered lookup and 0.08 ms compact export. Cached lookup reuses the immutable
+object instead of rebuilding its report; these illustrative timings are not
+performance gates. Reproduce with `tools/profile_release.py`; raw local timing
+records are `artifacts/release-benchmarks.json`.
+
+The [release overview](../research/release-v1/index.html), `QUICKSTART.md`,
+`API.md`, `MIGRATION.md`, `RELEASE_NOTES.md` and `METHODS_H4D.md` define the
+delivered contract and limitations. Browser rendering/interaction remains
+unverified. Frozen reports keep their original review flags; the explicit
+release registry role records the user's v0.1 policy separately.
+
 ## H0: independent numerical foundation
 
 H0 is complete. Local and cross-platform numerical, packaging, provenance, and
@@ -313,7 +370,8 @@ optimized discrete sampling; more general and application-specific gradients;
 and required Matplotlib, Plotly and UltraPlot adapters. `NEXT_STEPS.md` defines
 the expanded H4 slices and acceptance gates. H4a and the H4b candidate collection
 and the figure-doctor workflow are implemented; H4b appearance review is pending.
-Final adoption/release gates (H4d) remain. H0–H3 numerical implementation/data and the existing
+H4d implements the agreed private v0.1 release with current defaults retained
+and the new collection experimental. H0–H3 numerical implementation/data and the existing
 uniform sampling API remain unchanged.
 
 Categorical aesthetic revision: the user selected **Clearer** from the
@@ -341,8 +399,9 @@ evidence. Core jobs verified clean offline pip/uv installs of both categorical
 styles and all ordered families without optional dependencies:
 [Clearer validation run 39871485468](https://github.com/clay-wood/huevat/actions/runs/39871485468).
 
-H4 remains: reviewed and accepted defaults and the complete export/migration
-layer are later work. All construction families are now represented.
+The private v0.1 export/migration layer is complete under the user's retained-
+default policy. All construction families are represented. Broader adoption of
+the experimental collection and formal human comparative studies remain later work.
 H1 reference sampling remains an explicit finite-grid study adaptation. H2
 certifies numerical properties of complete cubic paths, while perceptual/CVD
 screening remains finite-grid evidence. `design` contains optional generation

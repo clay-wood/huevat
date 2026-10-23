@@ -1,325 +1,133 @@
 # Huevat
 
-Huevat is an independent Python library under development for constrained
-scientific palettes and gradients. **H0 supplies the numerical foundation;
-H1 supplies published references, provisional quality profiles and a baseline
-study; H2 adds sequential/diverging construction; H3 adds count-specific
-categorical, multi-hue sequential and Spectral-like construction.**
-The categorical default uses the user-selected **Clearer** design. Prepared
-designs remain experimental; approved defaults remain H4 in
-[project_plan.md](project_plan.md).
+Scientific palettes, gradients and coordinated figure styles for Python.
+**Private v0.1.0** keeps the current defaults, including the user-selected
+**Clearer** categorical style. Twelve additional named gradient routes remain
+experimental alternatives.
 
-The base package uses only the Python standard library. It needs no browser,
-renderer, NumPy, SciPy, or plotting package.
+The base package uses only the standard library. Prepared lookup, sampling,
+immutable-ID discovery and portable exports need no NumPy, plotting backend or
+browser. Custom design and independent audits live in `huevat[design]`.
 
-H4 now includes native Matplotlib/Plotly/UltraPlot adapters, optimized discrete
-sampling, twelve additional gradient candidates, and **figure doctor**:
+[Quick start](docs/QUICKSTART.md) · [API](docs/API.md) ·
+[Release overview](research/release-v1/index.html) · [Migration](docs/MIGRATION.md)
+
+## Install from this checkout
+
+```powershell
+python -m pip install .
+# Add the plotting backend you use:
+python -m pip install ".[matplotlib]"
+python -m pip install ".[plotly]"
+python -m pip install ".[ultraplot]"
+# Figure doctor and custom generation:
+python -m pip install ".[design,matplotlib]"
+```
+
+Python 3.10+ is supported. A locally built wheel and source distribution are in
+`dist/`; nothing has been published to PyPI or released publicly.
+
+## Choose and plot
+
+```python
+import huevat as hv
+from huevat.adapters import matplotlib as hmpl
+
+palette = hv.categorical(6, background="light")
+gradient = hv.diverging(background="light")
+colors = gradient.discrete(7)
+cmap = hmpl.colormap(gradient)
+norm = hmpl.normalizer(-2, 8, center=0)
+# ax.imshow(data, cmap=cmap, norm=norm)
+```
+
+All construction families are available: categorical, sequential, diverging,
+multi-hue sequential and Spectral-like. Native adapters support **Matplotlib,
+Plotly and UltraPlot**, including explicit centers, category mappings and data
+boundaries. [Runnable examples](examples/quickstart.py) cover all three.
+
+```python
+ids = hv.design_ids(family="sequential", background="light", role="default")
+g = hv.get_design(ids[0])                # exact immutable ID; cached lookup
+print(hv.design_info(ids[0]))
+print(hv.known_counts(g))
+print(hv.nearby_counts(g, 8))
+
+hv.gradient_names(domain="atmosphere")
+experimental = hv.gradient("thermal")
+```
+
+The registry distinguishes 30 retained default variants, 22 legacy categorical
+variants and 24 experimental variants of the twelve new routes. Release role
+is separate from frozen scientific reports and their human-review flags.
+
+`.discrete(n)` keeps uniform sampling. `hv.optimized_discrete(g, n)` explicitly
+searches positions on the same path and audits that selection; it needs
+`[design]`. Neither operation invents physical data-bin boundaries.
+
+## Save and reuse
+
+```python
+hv.export(palette, labels=["Control", "A", "B", "C", "D", "E"]).write("palette.json")
+saved = hv.load_export(open("palette.json", encoding="utf-8").read())
+restored_palette, label_map = saved.design, saved.color_map
+
+hv.export(gradient).write("gradient.json")             # exact path recipe
+hv.export(gradient, n=7, format="csv").write("bins.csv")
+hv.export(palette, format="hex").write("colors.txt")
+css = hv.export(gradient, format="css")                # audited sRGB stops
+css.write("gradient.css")
+```
+
+Compact JSON retains the source version/hash, exact recipe, orientation,
+selection and labels without duplicating the large audit history. Import
+recovers frozen evidence or independently revalidates unknown designs. CSV/hex
+are exact color tables; CSS continuous ramps have measured approximation error.
+Old `.to_json()` recipes remain supported. See [API](docs/API.md) for provenance
+when exporting an ordinary palette already selected from a gradient.
+
+## Work with an existing figure
 
 ```python
 from huevat import doctor
 scene = doctor.inspect(fig)
 closer, separation, simple = doctor.propose(scene)
-copy = doctor.preview(fig, separation)   # original untouched
-change = doctor.apply(fig, separation)  # explicit edit; change.undo() restores
+copy = doctor.preview(fig, separation, condition="grayscale")
+change = doctor.apply(fig, separation)  # explicit edit
+change.undo()
 ```
 
-Figure doctor coordinates colors, markers and dashes, respects locked choices
-and stable category labels, and preserves data/scales/colorbars. It reports
-unsupported content and retains failed color-only screens. Numerical audits need
-`[design]` plus the chosen plotting backend. See the
-[usage and coverage guide](docs/FIGURE_DOCTOR.md) and
-[offline before/after gallery](research/doctor-v1/index.html).
+Figure doctor coordinates colors, markers and dashes for supported Cartesian
+line/scatter figures. It retains labels across panels, honors hard locks and
+saved assignments, previews on native copies and provides guarded undo. Bands,
+scalar maps/colorbars and unsupported content are inventoried and preserved.
+A failed color screen remains failed when markers/dashes offer redundancy.
+[Usage and coverage](docs/FIGURE_DOCTOR.md) · [Before/after gallery](research/doctor-v1/index.html)
 
-## Install and develop
+## Review and reproduce
 
-From a checkout with [uv](https://docs.astral.sh/uv/) installed:
+- [Release overview and portable examples](research/release-v1/index.html)
+- [Geoscience, geography and atmospheric collection](research/collection-v1/index.html)
+- [Three plotting backends and optimized sampling](research/adapters-v1/index.html)
+- [Original study](research/baseline-v1/index.html), [ordered designs](research/ordered-v1/index.html),
+  [categorical revision](research/categorical-v2/index.html)
+- [Technical status](docs/TECHNICAL_STATUS.md), [release notes](docs/RELEASE_NOTES.md),
+  [project plan](project_plan.md), [provenance](docs/PROVENANCE.md)
 
-```powershell
-uv sync --locked
-uv run --locked pytest
-uv run --locked python tools/check_provenance.py
-uv build
-uv run --locked python tools/check_install.py
-```
-
-`uv.lock` pins the development environment; `.python-version` selects Python
-3.12. Python 3.10 or newer is supported. `uv sync --locked --no-dev` installs
-only the base package. For an ordinary pip environment, use `python -m pip
-install .` or install the built wheel. Install `huevat[design]` for custom
-palette/gradient construction and independent audits; normal prepared lookup and
-sampling need no optional dependencies.
-
-## Numerical interface
-
-```python
-import huevat as hv
-
-rgb = hv.from_hex("#0072b2")
-lab = hv.srgb_to_oklab(rgb)
-lch = hv.oklab_to_oklch(lab)
-mapped = hv.gamut_map((0.65, 0.4, 30))
-hex_color = hv.to_hex(mapped)
-contrast = hv.contrast(rgb, hv.from_hex("#ffffff"))
-protan_display = hv.simulate(rgb, "protan")
-```
-
-RGB triples use encoded sRGB channels in [0, 1], Oklab/Oklch use D65 and
-lightness on the 0-1 scale, and hue is in degrees. Conversion to sRGB preserves
-out-of-gamut results. `gamut_map` reduces chroma at fixed lightness/hue;
-`to_hex` rejects out-of-gamut input and rounds to 8-bit channels. Hex input
-accepts exactly `#rrggbb`. `distance` takes **Oklab coordinates**.
-
-`simulate` supports Machado severities 0-100 for `protan`, `deutan`, and `tritan`
-through the optional `severity=` keyword (default 100).
-It applies matrices in linear sRGB, then clips simulated display output.
-Distances and simulated vision are screening tools, with no universal
-distinguishability guarantee.
-
-## Reference study (H1)
-
-```python
-ref = hv.reference("okabe-ito")
-colors = ref.colors(8)                 # Exact published values; immutable tuples
-path = hv.reference("viridis").sample(257)  # Explicit encoded-sRGB study adaptation
-profile = hv.load_profile("filled-fields", "dark")
-```
-
-The standard-library base package contains 13 source references and four
-versioned context/background profiles. It keeps native count-specific
-ColorBrewer tables, the exact Okabe-Ito values, viridis/cividis and representative
-ColorCET maps. These are comparison data, with retained attribution and source
-hashes. They are not approved Huevat defaults.
-
-Install the separate research tools to evaluate or reproduce the study:
-
-```powershell
-uv sync --locked --extra research
-uv run --locked --extra research pytest
-uv run --locked --extra research python tools/freeze_references.py --check
-uv run --locked --extra research python tools/build_baseline.py --check
-# Regenerate the offline gallery and machine report:
-uv run --locked --extra research python tools/build_baseline.py
-```
-
-Open [the offline gallery](research/baseline-v1/index.html) locally. It contains
-300-DPI comparisons on both backgrounds, CVD and grayscale panels, discrete
-legends, known spatial features, and individual pass/fail reasons. The full
-report is compressed JSON; `summary.json` is an uncompressed overview.
-Reproduction needs no network once the optional tools are installed.
-
-```python
-from huevat.evaluation import evaluate  # Requires huevat[research]
-report = evaluate(colors, "categorical", context="data-marks", background="light", encoding="u8")
-```
-
-Criteria separate mathematical requirements from provisional engineering
-screens. Human review remains explicitly pending. The
-[methods protocol](docs/METHODS_H1.md) and thresholds were committed before
-baseline evaluation; no palette was changed or threshold relaxed to make it
-pass. See [reference provenance](docs/REFERENCES_H1.md) for sources, licenses
-and adaptation rules.
-
-See [provenance](docs/PROVENANCE.md) for source versions, hashes, numerical
-conventions, and licensing; see [technical status](docs/TECHNICAL_STATUS.md)
-for milestone evidence and limits.
-
-## Ordered gradients (H2)
-
-```python
-gradient = hv.sequential(color="#0072b2", background="dark")
-diverging = hv.diverging(colors=("#0072b2", "#d55e00"), background="light")
-rgb = gradient.at(0.35)
-colors = diverging.discrete(7)       # Immutable hex-color sequence
-reverse = gradient.reversed()
-report = gradient.report            # Immutable; report.to_dict() makes a copy
-restored = hv.load_recipe(gradient.to_json())
-```
-
-The standard preferences load four experimental prepared paths. Each passes
-the unchanged H1 float and 8-bit profiles, complete-segment numerical checks,
-and a denser CVD ordering audit. They have no accepted H4 default claim.
-`discrete(n)` validates that exact selection; even diverging counts omit the
-center. Some counts fail although a different count passes. A failed selection
-raises `QualityError` with its report and never drops colors.
-
-Custom preferences/backgrounds use optional deterministic SciPy construction:
-
-```powershell
-uv sync --locked --extra design --extra research
-uv run --locked --extra design --extra research python tools/build_ordered.py --check
-```
-
-```python
-custom = hv.sequential(color="#0066aa", background="#171d26",
-                       seed=4402, starts=2, max_seconds=60)
-```
-
-`SearchExhaustedError` means no passing design was found in the stated budget;
-it does not prove infeasibility. `ConstraintConflictError` includes an explicit
-bound for an excessive count on a particular fixed path. Both carry immutable
-reports. Inputs are checked before optional dependency loading.
-
-See the [H2 gallery](research/ordered-v1/index.html) and
-[construction methods](docs/METHODS_H2.md) for limits, count-specific results,
-serialization rules and measured budgets. Unknown custom recipes are
-revalidated by default; `load_recipe(data, validate=False)` permits lightweight
-inspection with an explicitly unvalidated screening status.
-
-## Categorical and multi-hue designs (H3)
-
-```python
-colors = hv.categorical(6, background="light")
-gradient = hv.multihue(background="dark")
-signed = hv.spectral(background="light")
-colors = signed.discrete(5)  # This exact count is independently screened
-restored = hv.load_recipe(signed.to_json())
-```
-
-Categorical counts 2–12 on each standard background are independently optimized
-Clearer prepared designs. They satisfy the numerical requirements, then preserve
-coherent blue/teal/ochre/coral/purple targets. A different count can adjust colors.
-Multi-hue sequential
-and Spectral-like paths pass the same H1 screens as their H2 counterparts; each
-chromatic arm also follows an ordered hue route. Spectral paths have two
-multi-hue arms and a shared neutral at `t=.5`.
-
-These lookups, sampling, reversal, cached bin validation and recipe round trips
-need only the base package. Custom categorical counts (supported search sizes
-2–64), preferences, backgrounds, contexts or search options require `huevat[design]`:
-
-```python
-custom = hv.categorical(4, colors=("#0072b2", "#009e73", "#e69f00", "#d55e00"),
-                        background="#202a30", starts=2, max_seconds=60)
-route = hv.multihue(colors=("#0072b2", "#009e73"), starts=2, max_seconds=60)
-```
-
-Supplied colors are adjustable preferences. Reports record every change, all
-screening criteria, numerical versions, seed and completed optimizer runs.
-Spectral preferences form an even-length sequence: the first half belongs to
-the left arm, the second to the right, in traversal order. A search can fail;
-it never returns an unapproved candidate as a passing design.
-
-The [H3 gallery](research/families-v1/index.html) includes every prepared count,
-matched thin-line/small-marker panels, distance matrices, all screened CVD
-conditions, grayscale and known spatial fields on both backgrounds. See
-[H3 methods](docs/METHODS_H3.md) for construction limits and reproduction:
-
-```powershell
-uv run --locked --extra design --extra research python tools/build_families.py --check
-# Re-optimize and regenerate the experimental tables and offline gallery:
-uv run --locked --extra design --extra research python tools/build_families.py
-```
-
-The user selected **Clearer** after the
-[categorical appearance study](research/categorical-aesthetics-v1/index.html).
-See the [revised H3 gallery](research/categorical-v2/index.html) and
-[Clearer methods and migration notes](docs/METHODS_CATEGORICAL_V2.md).
-The original categorical construction remains available explicitly:
-
-```python
-current = hv.categorical(6)  # Clearer, h3-categorical-v2
-original = hv.categorical(6, style="max-separation")
-```
-
-Saved H2/H3 recipes still load with their original colors. New categorical
-recipes carry a separate algorithm version and immutable identifier. This
-revision preserves all H1 screening thresholds and all H0–H2 implementation/data.
-
-```powershell
-uv run --locked --extra design --extra research python tools/build_clearer.py --check
-```
-
-The [project review](docs/PROJECT_REVIEW.md) records measured bottlenecks,
-usability improvements and proposed features. Reproduce its operational
-measurements with `tools/profile_project.py`; raw results are retained in
-`research/project-review-v1/benchmarks.json`.
-
-The [next implementation specification](docs/NEXT_STEPS.md) records the
-October 23 requirements: required Matplotlib/Plotly/UltraPlot adapters,
-optimized discrete sampling, a broader general/seismic/terrain/atmospheric
-gradient collection, and an integrated figure doctor. H4a is implemented;
-expanded gradients and figure doctor remain later slices.
-
-## Plotting adapters and optimized sampling (H4a)
+Model screens use the frozen H1 normal/CVD Oklab and CAM02-UCS criteria. They
+are provisional engineering screens, not universal human-readability
+certificates. Continuous exports/adapters retain finite-grid approximation
+limits. Experimental collection adoption and human comparative studies remain
+separate. Browser rendering/interaction has not been verified by automation.
 
 ```powershell
 uv sync --locked --all-extras
-```
-
-```python
-import huevat as hv
-from huevat.adapters import matplotlib as hmpl
-from huevat.adapters import plotly as hplotly
-from huevat.adapters import ultraplot as huplt
-
-g = hv.diverging()
-p = hv.optimized_discrete(g, 8)  # Explicit positions; requires huevat[design].
-print(p.positions, hv.summarize(p))
-print(hv.known_counts(g))        # Prepared passing UNIFORM counts only.
-
-cmap = hmpl.colormap(g)
-norm = hmpl.normalizer(-2, 8, center=0)
-plotly_axis = hplotly.coloraxis(g, -2, 8, center=0)
-ultraplot_cmap = huplt.colormap(g)
-```
-
-Install just the extras you need: `huevat[matplotlib]`, `huevat[plotly]` or
-`huevat[ultraplot]`. The base package still has zero dependencies. Adapters
-return native objects, with approximation evidence attached as `huevat_report`.
-Asymmetric signed ranges keep the declared physical center at the neutral.
-Categorical sequences, stable label maps and explicit data-bin mapping are
-supported. Matplotlib and UltraPlot cycles also accept specified markers and
-dashes; automatic coordination remains part of the planned figure doctor.
-
-Optimized sampling preserves the source path, endpoints and diverging arm
-correspondence. The light diverging eight-color selection passes when its
-uniform counterpart fails. `.discrete(n)` retains its existing uniform
-behavior. Optimized positions are color sample locations; supply data class
-boundaries separately. Recipes round-trip with independent revalidation.
-
-See the [native examples and offline Plotly gallery](research/adapters-v1/index.html)
-and [H4a usage, methods and backend limits](docs/METHODS_H4A.md).
-
-```powershell
 uv run --locked --all-extras pytest
-uv run --locked --all-extras python tools/build_adapters.py --check
+uv run --locked --all-extras python tools/build_release.py --check
+uv build
+uv run --locked --all-extras python tools/check_install.py
 ```
 
-## Named gradient candidates (H4b)
-
-```python
-hv.gradient_names(domain="seismic")     # Metadata filters; no optional packages.
-hv.gradient_names(family="sequential")
-g = hv.gradient("lagoon", background="dark")
-info = hv.gradient_info("lagoon")
-restored = hv.load_recipe(g.to_json())
-
-# The same native adapters and explicit optimized sampling apply:
-cmap = hmpl.colormap(g)
-p = hv.optimized_discrete(g, 7)
-```
-
-Twelve independent routes add eight sequential and four diverging choices,
-with screened light/dark variants. They cover general fields, seismic polarity,
-structural properties, water depth, land elevation, atmospheric moisture,
-concentrations and anomalies. Named lookup, metadata, prepared uniform counts
-and recipe reloads use only the standard library.
-
-These are **experimental candidates awaiting appearance review**. Existing
-defaults remain unchanged. Bathymetry darkens with positive depth; Highland
-lightens with elevation on both backgrounds. Domain labels describe the
-illustrated use; choose physical ranges, centers, class boundaries and log/linear
-normalization explicitly.
-
-The [collection gallery](research/collection-v1/index.html) compares all routes,
-normal/CVD/grayscale fields, seismic rasters/wiggles, structural properties,
-terrain with a separate hillshade comparison, atmospheric examples and rejected
-controls. See the [H4b protocol and usage](docs/METHODS_H4B.md).
-
-```powershell
-uv run --locked --all-extras python tools/build_collection.py --check
-# Rebuild gallery images from retained paths:
-uv run --locked --all-extras python tools/build_collection.py
-# Reconstruct the finite searches as well:
-uv run --locked --all-extras python tools/build_collection.py --construct
-```
+CI repeats the core on Windows/Linux with Python 3.10/3.12/3.14 and actual-backend
+research checks on both platforms. Historical data, recipes and numerical
+thresholds remain frozen. The source repository remains independent and private.

@@ -3,6 +3,7 @@ recursive-include docs *.md *.json
 recursive-include licenses *.txt
 recursive-include tests *.py
 recursive-include tools *.py
+recursive-include examples *.py
 recursive-include tools/sources *.json
 recursive-include src/huevat/data *.json
 include uv.lock
