@@ -16,7 +16,7 @@ from huevat.adapters import matplotlib as hmpl, plotly as hplotly, ultraplot as 
 
 
 def write_json(path,value):
-    path.write_text(json.dumps(value,indent=2,sort_keys=True,allow_nan=False)+'\n',encoding='utf-8',newline='\n')
+    path.write_text(json.dumps(value,separators=(',',':'),sort_keys=True,allow_nan=False)+'\n',encoding='utf-8',newline='\n')
 
 
 def source_hashes():

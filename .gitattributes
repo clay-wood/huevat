@@ -6,3 +6,4 @@
 tools/sources/colorbrewer.json -whitespace
 # Generated offline figure includes the upstream Plotly.js bundle.
 research/adapters-v1/plotly.html -diff -whitespace
+research/** linguist-generated=true

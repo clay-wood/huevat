@@ -15,7 +15,7 @@ from huevat.gradients import fingerprint
 
 
 def write_json(path, data):
-    path.write_text(json.dumps(data, indent=2, sort_keys=True, allow_nan=False)+'\n', encoding='utf-8', newline='\n')
+    path.write_text(json.dumps(data, separators=(',', ':'), sort_keys=True, allow_nan=False)+'\n', encoding='utf-8', newline='\n')
 
 
 def digest(path): return hashlib.sha256(path.read_bytes().replace(b'\r\n', b'\n')).hexdigest()

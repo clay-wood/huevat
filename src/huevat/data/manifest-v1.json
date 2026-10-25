@@ -1,13 +1,1 @@
-{
-  "sha256_lf": {
-    "categorical-v2.json": "f690180199f065391752e550ca5ac605c9f1909019570fb67835b66bfdd9e390",
-    "collection-v1.json": "730943253b054d8103f2678c09b714151b6131a5436ef12b26b1413e41d2a4dd",
-    "families-v1.json": "79bb585eceb238f61ba454c5e7e7f5c8195d413077e7aa93d873994c0efddcc0",
-    "machado-v1.json": "c4d8e9ad439d572b37d2c6e6d3d490c2fd7ae290a180625c458c12c47a591444",
-    "ordered-v1.json": "1e0a971c5602f457dd569eab0dbace461214e1b8f6148fb528eafafba45147ab",
-    "profiles-v1.json": "0938561bf7e1551814a8ba58c4e883858bcc91a8c84e6051e20559c1e24f318a",
-    "references-v1.json": "6d6dacb6d826a2fc60abb8d217078c39fdf3184593912648254891273eb498bb",
-    "release-v1.json": "34fbe87da03fef12e487c3141a34a35e2a421ec06362eceb4e8e6349ec688d6d"
-  },
-  "version": "h1-resources-v1"
-}
+{"sha256_lf":{"categorical-v2.json":"6500a5ac2ecde0ff2194705cdf9484ca3fa3f3c6facd2347b204c3d921217f89","collection-v1.json":"8b41ac33ddbdea07df5e6b423660f09d165deb7f9129b7f428b24d86e1f9c60a","families-v1.json":"bbd5d4aa5b53ca7946374451f8ecacd0df84ecc89dd06f37459a0d651b64fda5","machado-v1.json":"793136ddcf7516e098662f0aef243f9baaef7ace93414ca28eb02a44e463749c","ordered-v1.json":"7331342df0f637f6ee6e9b566683c864d1f807858a4153a934bda10243a44614","profiles-v1.json":"b50ae051e78ea1b5a3e98b29f2725a89f28cd430b815b1baa62fb20e8c71afe6","references-v1.json":"8c2760dceeef5611674d0ab3eb8235b7b7b2dffc5ad7f0b4bdea3f36aadfe827","release-v1.json":"19e7768f879c57e0e56d27ea7b127ffe1648606c3ddf804b0bf52464594a7d39"},"version":"h1-resources-v1"}
