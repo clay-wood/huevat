@@ -49,20 +49,41 @@ import matplotlib.pyplot as plt
 import huevat as hv
 from huevat.adapters import matplotlib as hmpl
 
-x = np.linspace(0, 10, 100)
+xx, yy = np.meshgrid(np.linspace(-3, 3, 160), np.linspace(-2, 2, 100))
+field = (8 * np.exp(-((xx - .7)**2 + (yy - .1)**2))
+         - 2 * np.exp(-((xx + 1.1)**2 + (yy + .2)**2) / .4))
+gradient = hv.diverging()
+nine_colors = gradient.discrete()  # default: 9, including the neutral midpoint
+boundaries = [-2, -1.5, -1, -.5, -.1, .1, 1, 2, 4, 8]
 palette = hv.categorical(5)
 
-fig, ax = plt.subplots()
-for i, color in enumerate(palette.colors):
-    ax.plot(x, np.sin(x / 2 + i / 3), color=color, label=f"Series {i + 1}")
-ax.legend()
+fig, axes = plt.subplots(1, 3, figsize=(12, 3.5), layout="constrained")
+continuous = axes[0].imshow(field, cmap=hmpl.colormap(gradient), origin="lower",
+                            norm=hmpl.normalizer(-2, 8, center=0))
+discrete = axes[1].imshow(field, cmap=hmpl.colormap(nine_colors), origin="lower",
+                          norm=hmpl.boundary_normalizer(nine_colors, boundaries))
+axes[0].set_title("Continuous · zero at neutral")
+axes[1].set_title("9 colors · neutral bin around zero")
+fig.colorbar(continuous, ax=axes[0], orientation="horizontal")
+fig.colorbar(discrete, ax=axes[1], orientation="horizontal")
+
+axes[2].set_prop_cycle(hmpl.cycle(palette, markers=["o", "s", "^", "D", "v"],
+                                 linestyles=["-", "--", ":", "-.", "-"]))
+x = np.linspace(0, 1, 25)
+for i, label in enumerate(["Blue", "Teal", "Ochre", "Coral", "Purple"]):
+    axes[2].plot(x, .12 * i + .08 * np.sin(2 * np.pi * x + i / 2),
+                 label=label, markevery=4)
+axes[2].set_title("Clearer · specified markers and dashes")
+axes[2].legend(fontsize=8, loc="upper right")
 plt.show()
 ```
 
 For a field, pass `hmpl.colormap(hv.sequential())` to `imshow` or `pcolormesh`.
 Use `hv.diverging()` with `hmpl.normalizer(vmin, vmax, center=0)` for signed data.
+The discrete example uses nine colors, with zero inside the neutral bin
+from −0.1 to +0.1. Choose bin boundaries to suit your data.
 
-![Examples of continuous and discrete fields and categorical lines](research/adapters-v1/matplotlib-light.png)
+![Continuous signed field, nine-bin diverging field with a neutral center, and categorical lines](research/adapters-v1/matplotlib-light.png)
 
 [See complete examples for all three plotting libraries.](examples/README.md)
 

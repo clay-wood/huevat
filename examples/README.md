@@ -74,8 +74,10 @@ uplt.show()
 ```
 
 Pass `discrete=False` for a continuous field. For separate bins, use
-`gradient.discrete(n)` and the adapter's `boundary_normalizer(palette, edges)`.
-The `edges` are your data thresholds.
+`gradient.discrete()` for the default nine colors and the adapter's
+`boundary_normalizer(palette, edges)`. The `edges` are your data thresholds;
+put zero inside the central bin to display its neutral color. The gallery uses
+`[-2, -1.5, -1, -.5, -.1, .1, 1, 2, 4, 8]`.
 
 ## Run the example script
 

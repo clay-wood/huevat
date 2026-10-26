@@ -6,6 +6,12 @@ adds explicit sampling and optional plotting adapters. Expanded gradients and
 figure doctor are described in [collection methods](METHODS_H4B.md) and the
 [figure doctor guide](FIGURE_DOCTOR.md).
 
+The October 25 README/gallery revision uses the default `g.discrete()`
+nine-color selection. Its central physical bin is −0.1 to +0.1, including zero
+in the neutral class. Displayed fields are complete synthetic arrays; the
+artificial corner mask is restricted to backend checks. Explicit optimized
+eight-color examples remain in the numerical evidence as an optional workflow.
+
 ## Installation and public interface
 
 Install the backend you use, plus `design` when optimizing sample positions:
