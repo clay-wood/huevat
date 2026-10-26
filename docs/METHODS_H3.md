@@ -5,8 +5,8 @@ Version: `h3-families-v1`. Verification date: October 22, 2026.
 H3 adds joint categorical optimization, multi-hue sequential paths and
 Spectral-like diverging paths. The H1 `h1-screening-v1` profiles, reference
 corpus, evaluator and H2 implementation/resources remain frozen. H3 reuses their
-numerical conventions and gates. Passing designs remain experimental; visual
-approval and adoption of defaults belong to H4.
+numerical conventions and gates. Passing prepared designs are supported in v0.1; release roles are recorded
+separately from their original numerical evidence.
 
 ## Categorical construction
 
@@ -41,7 +41,7 @@ closest pairs, simulated clipping and grayscale audit matrices. Grayscale is
 an audit, not an assertion that categories remain distinguishable in grayscale.
 Preferred-to-produced categorical distances use the exported colors.
 
-Prepared experimental tables cover independently optimized counts 2–12 on
+Prepared numerical tables cover independently optimized counts 2–12 on
 white and #121212. Custom searches support 2–64 categories; the upper bound is
 an implementation/resource limit, not an infeasibility theorem. Categorical
 construction uses the data-mark context. For arbitrary backgrounds the search

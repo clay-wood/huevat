@@ -3,7 +3,7 @@
 - Clearer categorical palettes for 2–12 categories.
 - Sequential, diverging, multi-hue and Spectral gradients, with light and dark
   variants.
-- Eighteen experimental gradients for general plots, seismic data, terrain,
+- Eighteen supported gradients for general plots, seismic data, terrain,
   depth and atmospheric fields.
 - Matplotlib, Plotly and UltraPlot adapters.
 - Evenly spaced sampling and optional optimized color selection.

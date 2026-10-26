@@ -22,6 +22,8 @@ artifacts/
 # from the pre-cleanup snapshot and remain available as ignored local files.
 /tools/*
 !/tools/check_install.py
+!/tools/check_extras.py
+!/tools/check_index.py
 !/tools/check_provenance.py
 !/tools/verify.py
 !/tools/build_adapters.py

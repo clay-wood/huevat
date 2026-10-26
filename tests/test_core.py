@@ -1,4 +1,5 @@
 import json
+from importlib.metadata import version
 import subprocess
 import sys
 
@@ -36,6 +37,6 @@ for n in range(2, 60):
 
 
 def test_version_and_stdlib_json_output():
-    assert huevat.__version__ == "0.1.0"
+    assert huevat.__version__ == version("huevat")
     rgb = huevat.from_hex("#0072b2")
     assert tuple(json.loads(json.dumps(rgb))) == rgb

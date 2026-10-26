@@ -3,8 +3,8 @@
 Implemented October 22, 2026. H2 adds single-hue sequential and two-arm
 diverging construction. The H1 reference corpus, evaluator, methods artifacts
 and **h1-screening-v1 thresholds remain unchanged**. The four prepared paths
-are experimental numerically screened designs; accepted, visually reviewed
-default identifiers remain H4 work.
+are numerically screened designs adopted in the supported v0.1 collection.
+Their historical recipe identifiers remain unchanged.
 
 ## User interface and dependency boundary
 
@@ -174,7 +174,7 @@ remains false until the later review stage.
 uv sync --locked --extra design --extra research
 uv run --locked --extra design --extra research pytest
 uv run --locked --extra design --extra research python tools/build_ordered.py --check
-# Intentionally regenerate experimental data and review figures:
+# Intentionally regenerate construction data and review figures:
 uv run --locked --extra design --extra research python tools/build_ordered.py
 ```
 

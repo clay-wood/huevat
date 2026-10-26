@@ -1,7 +1,7 @@
 """Huevat's dependency-free numerical foundation and published reference data.
 
 All construction families and immutable sampling are available.
-v0.1 retains the current defaults; the expanded named collection is experimental.
+v0.1 includes the default designs and the supported named gradient collection.
 Importing this package never loads a renderer or runs optimization.
 """
 
@@ -42,7 +42,7 @@ spectral = _prepared(spectral)
 gradient = _prepared(gradient)
 load_recipe = _loader(load_recipe)
 
-__version__ = "0.1.0"
+from ._version import __version__
 
 __all__ = [
     "contrast", "distance", "encode", "from_hex", "gamut_map", "in_gamut",

@@ -17,13 +17,13 @@ def design_ids(*, family=None, background=None, role=None):
     """Immutable IDs; discovery reads only a small metadata resource.
 
     Roles: ``default`` (retained v0.1 choices), ``legacy`` (original categorical
-    style), ``experimental`` (the new named collection). None means all roles.
+    style), ``collection`` (supported named gradients). None means all roles.
     Release role does not replace the numerical reports' review/approval flags.
     """
     if family not in (None, "categorical", "sequential", "diverging", "multihue", "spectral"):
         raise ValueError("Unknown family")
     if background not in (None, "light", "dark"): raise ValueError("Choose light or dark")
-    if role not in (None, "default", "legacy", "experimental"): raise ValueError("Unknown release role")
+    if role not in (None, "default", "legacy", "collection"): raise ValueError("Unknown release role")
     return tuple(k for k, v in _registry()["designs"].items()
                  if (family is None or v["family"] == family)
                  and (background is None or v["background"] == background)

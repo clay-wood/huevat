@@ -2,6 +2,7 @@
 
 Run after `uv build`. This script never contacts a package index.
 """
+import argparse
 import hashlib
 import json
 import os
@@ -48,7 +49,7 @@ import huevat.adapters.ultraplot
 from huevat import doctor
 assert doctor.__all__
 assert len(hv.gradient_names()) == 18
-assert hv.__version__ == md.version('huevat') == '0.1.0'
+assert hv.__version__ == md.version('huevat')
 assert len(hv.design_ids()) == 94
 assert len(hv.design_ids(role='default')) == 30
 for identifier in hv.design_ids():
@@ -102,6 +103,9 @@ def python_at(env):
 
 
 def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--test-sdist', action='store_true', help='Install all extras and run packaged tests outside the checkout')
+    args = parser.parse_args()
     wheels = sorted((ROOT / "dist").glob("*.whl"))
     sdists = sorted((ROOT / "dist").glob("*.tar.gz"))
     if len(wheels) != 1 or len(sdists) != 1:
@@ -135,7 +139,8 @@ def main():
         assert not any(n.endswith(('/MIGRATION.md', '/MAINTENANCE.md', '/TECHNICAL_STATUS.md',
                                    '/PROJECT_REVIEW.md', '/NEXT_STEPS.md', '/profile_runtime.py'))
                        for n in names)
-        for required in ("pyproject.toml", "project_plan.md", "docs/extraction.json",
+        assert not any(n.endswith(('/project_plan.md', '/docs/PACKAGING_AUDIT.md')) for n in names)
+        for required in ("pyproject.toml", "docs/extraction.json",
                          "tests/test_space.py", "examples/quickstart.py",
                          "docs/QUICKSTART.md", "examples/README.md", "examples/gallery.py",
                          "docs/images/palettes.png", "docs/images/gradients.png"):
@@ -156,6 +161,19 @@ def main():
         run([uv, "venv", "--offline", "--python", sys.executable, uv_env], work)
         run([uv, "pip", "install", "--offline", "--no-deps", "--python", python_at(uv_env), wheel], work)
         records["uv"] = json.loads(run([python_at(uv_env), "-I", "-c", SMOKE], work))
+        if args.test_sdist:
+            source = work/'source'
+            with tarfile.open(sdist) as archive:
+                archive.extractall(source, filter='data')
+            project, = source.iterdir()
+            test_env = work/'test-env'
+            run([uv, 'venv', '--offline', '--python', sys.executable, test_env], work)
+            extras = ','.join(metadata.get_all('Provides-Extra', []))
+            run([uv, 'pip', 'install', '--python', python_at(test_env), f'{wheel}[{extras}]', 'pytest>=8'], work)
+            installed = run([python_at(test_env), '-I', '-c',
+                             'import huevat; assert "site-packages" in huevat.__file__; print(huevat.__file__)'], work)
+            result = run([python_at(test_env), '-I', '-m', 'pytest', '-q', project/'tests'], project)
+            records['packaged_tests'] = {'installed_module': installed, 'result': result}
     record = {
         "wheel": wheel.name, "wheel_sha256": hashlib.sha256(wheel.read_bytes()).hexdigest(),
         "sdist": sdist.name, "sdist_sha256": hashlib.sha256(sdist.read_bytes()).hexdigest(),

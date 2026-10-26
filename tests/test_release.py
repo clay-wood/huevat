@@ -115,12 +115,14 @@ def test_collection_previews_have_no_overlay_lines(monkeypatch):
 
 def test_registry_roles_exact_hashes_and_immutable_cached_objects():
     assert len(hv.design_ids()) == 94
-    assert {role:len(hv.design_ids(role=role)) for role in ('default','legacy','experimental')} == {'default':30,'legacy':28,'experimental':36}
+    assert {role:len(hv.design_ids(role=role)) for role in ('default','legacy','collection')} == {'default':30,'legacy':28,'collection':36}
     for identifier in hv.design_ids():
         info = hv.design_info(identifier); design = hv.get_design(identifier)
         assert info['identifier'] == identifier
         assert hv.get_design(identifier) is design
         assert design.report.screen_pass and not info['human_discrimination_validated']
+        if info['role']=='collection':
+            assert hv.gradient_info(info['name'])['status']=='supported'
         body = design._recipe if isinstance(design, hv.Gradient) else design.report['recipe']
         from huevat.gradients import _thaw
         assert fingerprint(_thaw(body)) == info['recipe_sha256']

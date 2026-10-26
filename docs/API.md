@@ -15,7 +15,7 @@ Start with the [quick start](QUICKSTART.md) or the [palette gallery](../README.m
 | `diverging(background="light")` | Values on either side of a center |
 | `multihue(background="light")` | Ordered values with a wider hue range |
 | `spectral(background="light")` | A diverging gradient with several hues |
-| `gradient(name, background=None)` | One of eighteen experimental gradients; defaults to light, `_d` selects dark, `_r` reverses |
+| `gradient(name, background=None)` | One of eighteen supported gradients; defaults to light, `_d` selects dark, `_r` reverses |
 | `gradient_names(family=None, domain=None)` | List named gradients, optionally filtered |
 | `gradient_info(name)` | Read a named gradient's intended uses and direction |
 
@@ -78,7 +78,7 @@ You can also save with `.to_recipe()` or `.to_json()` and restore with
 
 `design_ids(family=None, background=None, role=None)` lists saved designs.
 `design_info(id)` describes one; `get_design(id)` loads it. Roles are `default`,
-`legacy` and `experimental`. Saving an ID lets you request the same design later.
+`legacy` and `collection`. Saving an ID lets you request the same design later.
 
 ## Plotting and Figure doctor
 

@@ -1,14 +1,15 @@
-# H4d: private v0.1 release protocol
+# H4d: v0.1 release protocol
 
 Declared October 23, 2026, before export implementation. The user selected:
 keep the current defaults, including Clearer; ship the twelve additional named
-gradient routes as experimental alternatives. No PyPI publication, GitHub
-release publication, repository-privacy change or downstream integration is
-part of this work.
+gradient routes as named alternatives. On October 26 the maintainer adopted
+all eighteen named gradients as supported and authorized TestPyPI publication
+followed by PyPI. GitHub Release publication and other package channels are
+outside this release workflow.
 
 Keep all previous recipes, numerical sources, thresholds and evidence intact.
 A separate release registry records immutable identifiers, recipe hashes,
-family/background/count, default/legacy/experimental role and the scope of
+family/background/count, default/legacy/collection role and the scope of
 appearance review. Release inclusion is distinct from a human-discrimination
 certificate. Frozen reports retain their original approval/review flags.
 Discovery reads this small registry without loading large audit resources.

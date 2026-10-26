@@ -1,9 +1,9 @@
 # Quick start
 
-Install from the project folder with your plotting library:
+Install from PyPI with your plotting library:
 
 ```sh
-python -m pip install ".[matplotlib]"
+python -m pip install "huevat[matplotlib]"
 ```
 
 Use `plotly` or `ultraplot` instead of `matplotlib` for those libraries.
@@ -55,7 +55,7 @@ farther in one direction. The other defaults are `hv.multihue()` and
 `hv.spectral()`. Pass `background="dark"` to any palette or gradient factory
 when plotting on a dark background.
 
-The eighteen named alternatives are experimental:
+The eighteen named gradients are supported alternatives:
 
 ```python
 depth = hv.gradient("bathymetry")
@@ -78,7 +78,7 @@ nine_colors = signed.discrete()  # neutral is the fifth color
 `discrete(n=9)` samples evenly and checks the requested count. The odd default
 retains the exact neutral midpoint of diverging and Spectral gradients.
 Explicit even counts omit that midpoint. Not every count
-passes. With `python -m pip install ".[design,matplotlib]"`, you can also use
+passes. With `python -m pip install "huevat[design,matplotlib]"`, you can also use
 `hv.optimized_discrete(signed, 8)` to search for better-spaced colors.
 Choose the data-bin boundaries separately from the color sample positions.
 

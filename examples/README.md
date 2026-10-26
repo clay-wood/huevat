@@ -1,8 +1,8 @@
 # Plotting examples
 
 Use the same Huevat palettes with Matplotlib, Plotly and UltraPlot.
-Install from the project folder with the extra for your plotting library, such
-as `python -m pip install ".[matplotlib]"`.
+Install from PyPI with the extra for your plotting library, such
+as `python -m pip install "huevat[matplotlib]"`.
 
 ## Matplotlib
 

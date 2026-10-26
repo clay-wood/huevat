@@ -1,6 +1,7 @@
-include project_plan.md
+exclude project_plan.md
 exclude uv.lock
 recursive-include docs *.md *.json *.png
+exclude docs/PACKAGING_AUDIT.md
 recursive-include licenses *.txt
 prune tests
 prune tools

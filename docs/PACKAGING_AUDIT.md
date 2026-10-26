@@ -1,9 +1,8 @@
 # Distribution audit — October 25, 2026
 
-Huevat is already an installable Python library and a viable private release
-candidate. A public distribution still needs release engineering and a human
-review of the revised experimental collection. No upload or repository privacy
-change is authorized by this audit.
+Huevat is already an installable Python library and a supported release candidate. The October 26 instruction authorizes release
+engineering and publication to TestPyPI followed by PyPI. All eighteen named
+gradients are supported. Repository visibility is handled separately.
 
 ## Initial repository size
 
@@ -46,7 +45,11 @@ bytes and distribution sizes separately from a developer's full checkout.
 
 ## Findings and release gates
 
-1. **Gradient curation is unfinished.** The named routes are experimental,
+These findings describe the October 25 snapshot. The October 26 release work
+and current account/publication procedure are recorded in [RELEASE.md](RELEASE.md)
+and section 7 of the project plan.
+
+1. **Gradient curation is unfinished.** The named routes were awaiting release adoption at the time of the audit,
    despite older plan wording saying the private release was complete. The
    reported pairs are near duplicates rather than identical tables. Initial
    mean Oklab distances were 0.025/0.019 for Aerosol–Rosewood and 0.018/0.017
@@ -94,7 +97,7 @@ bytes and distribution sizes separately from a developer's full checkout.
 ## Current implementation and validation
 
 This pass implements nine-bin default sampling, composable `_r`/`_d` named
-suffixes, revised lookalike routes, six additional experimental choices,
+suffixes, revised lookalike routes, six additional supported choices,
 retained old IDs, and updated continuous/nine-bin review galleries. There are
 now eighteen named routes and 94 saved designs. All 76 prior designs retain
 their exact recipe and orientation hashes.
@@ -129,7 +132,8 @@ exact byte counts. The environment, Git history and research galleries are
 excluded from the wheel.
 
 The release gates in [project_plan.md](../project_plan.md#6-distribution-audit-and-collection-revision--october-25-2026)
-remain open; no public/private-index upload was performed.
+are being completed for the authorized TestPyPI-to-PyPI release.
+See [release instructions and status](RELEASE.md) for the current procedure.
 
 ## Packaging references
 

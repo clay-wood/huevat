@@ -3,7 +3,7 @@
 ## October 25 collection revision
 
 The original protocol and twelve-route construction are retained below.
-The current experimental catalog has eighteen routes: the original twelve
+The current supported catalog has eighteen routes: the original twelve
 plus Cobalt (blue), Copper (orange), Orchid (purple), Verdant (green),
 Tundra (teal–gold diverging) and Dusk (violet–orange diverging).
 Aerosol now follows a red–magenta–violet route, Bathymetry uses turquoise,
@@ -29,7 +29,7 @@ the audit does not claim those controls were selected without visual iteration.
 
 Protocol declared October 23, 2026, before candidate construction. This pass
 adds twelve independent aesthetic routes, with two background variants each.
-They remain experimental candidates until the user reviews them. No existing
+These routes are supported in the v0.1 release. No existing
 default or historical recipe is replaced. Categorical Clearer is unchanged.
 
 ## Fixed quality criteria
@@ -166,7 +166,7 @@ cmap = hmpl.colormap(g)
 
 `gradient_names` accepts `family="sequential"`/`"diverging"` and domains
 `general`, `seismic`, `structure`, `geography` and `atmosphere`. Names and
-immutable metadata describe screened experimental candidates, not an automatic
+immutable metadata describe screened supported gradients, not an automatic
 recommendation for arbitrary data. `gradient` supports the two declared
 backgrounds and preserves normal reversal, sampling, adapters and serialization.
 Use the existing constructors for custom backgrounds or preferences.

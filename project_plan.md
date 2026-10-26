@@ -22,7 +22,8 @@ The first release will include:
 
 Supplied colors are preferences that the generator may adjust. Generated results must pass their selected quality profile. Failed searches return an explanation rather than an apparently approved palette.
 
-Create a separate **private** `huevat` repository, subject to confirming repository availability.
+Huevat has its own repository. The maintainer authorized public visibility on
+October 26, 2026, for the TestPyPI-to-PyPI release.
 
 Initial exclusions: a standalone general-purpose interactive palette editor,
 CSS theme generation, wide-gamut output, printer-profile guarantees, and
@@ -195,23 +196,24 @@ H4a is implemented: three optional native adapters, explicit optimized sampling,
 compact status summaries and prepared uniform-count discovery. See
 `docs/METHODS_H4A.md` and `research/adapters-v1`. H4b adds twelve named candidate
 routes with light/dark variants, free-knot construction and the application
-gallery in `research/collection-v1`; appearance review is pending. H4c adds the
+gallery in `research/collection-v1`; all eighteen current routes were adopted
+as supported for release on October 26. H4c adds the
 explicit figure-doctor workflow, coordinated encodings, stable identities/locks,
 audited tradeoffs and guarded apply/undo for supported native line/scatter
 figures. See `docs/FIGURE_DOCTOR.md` and `research/doctor-v1`. H4d prepares the
-private v0.1.0 release candidate with the user's chosen policy: retain the current defaults
-including Clearer and keep all twelve new named routes experimental. It adds
+v0.1.0 release with the user's chosen policy: retain the current defaults
+including Clearer. All eighteen named routes are now supported for the v0.1.0 release. It adds
 immutable-ID discovery/cached loading, compact validated JSON exchange, exact
 CSV/hex and audited CSS exports, nearby prepared counts, quick-start/native
 examples and usage guides. Release role is distinct from the frozen
 reports' original review flags; no human-discrimination certificate is claimed.
-No package or public release is published. Existing H0–H3 numerical baselines and the selected Clearer categorical
+Publication status is tracked in `docs/RELEASE.md`. Existing H0–H3 numerical baselines and the selected Clearer categorical
 direction remain the foundation. Prepared optimized caches remain follow-up usability work; nearby prepared-count
 discovery is implemented.
 
-All families belong to the first release; the ordering above allows earlier methods to inform the harder constructions. A family remains experimental if its gates fail. Record that result explicitly instead of weakening its criteria to declare completion.
+All families belong to the first release; the ordering above allows earlier methods to inform the harder constructions. A design that fails its numerical gates is excluded from the supported collection. Record that result explicitly instead of weakening its criteria.
 
-Keep user guides focused on choosing colors and making figures. Do not publish to PyPI or change either repository’s privacy as part of this work.
+Keep user guides focused on choosing colors and making figures. The October 26 instruction authorizes TestPyPI first, followed by PyPI after successful verification. Repository visibility is a separate decision.
 
 ## 6. Distribution audit and collection revision — October 25, 2026
 
@@ -230,18 +232,18 @@ Accepted gradient changes for this pass:
   order. Conflicting background arguments and repeated suffixes are rejected.
 - Revise Aerosol, Bathymetry and Thermal to distinguish the reported
   lookalikes. Keep every old recipe and immutable identifier loadable.
-- Expand the experimental collection with Cobalt, Copper, Dusk, Orchid,
+- Expand the supported collection with Cobalt, Copper, Dusk, Orchid,
   Tundra and Verdant, each with both backgrounds. Repeat the unchanged
   float/8-bit normal/CVD, CAM02-UCS, continuous and count-specific screens.
   Generate continuous and nine-bin galleries. Human appearance review remains
-  pending; these candidates do not become defaults automatically.
+  separate from product support. All eighteen routes are supported; factory defaults remain unchanged.
 
 Remaining distribution work, in priority order:
 
 | Priority | Work | Completion gate |
 | --- | --- | --- |
-| P0 | Review the revised/expanded gradient collection | Human review on both backgrounds, including neutral bins, fields and CVD/grayscale views; curate remaining similar routes or document their relationship |
-| P0 | Decide release audience and ownership | Confirm package/index ownership, version/tag policy and public versus private distribution; preserve the existing no-publication instruction until separately authorized |
+| P0 | Review the revised/expanded gradient collection | Maintainer adopted all eighteen routes as supported on October 26; numerical gates and scope limitations remain intact |
+| P0 | Decide release audience and ownership | Release 0.1.0 to TestPyPI, verify it, then publish the same tested artifacts to PyPI; account ownership/setup is required |
 | P1 | Complete package metadata | Maintainer/contact, source/docs/issues/changelog URLs, useful keywords/classifiers; confirm README rendering and accessible image/link targets on the intended index |
 | P1 | Test distributions independently | Clean wheel installs and a wheel rebuilt from the sdist; execute applicable tests outside the checkout, with no access to repository-only tooling |
 | P1 | Test extras separately | Base, design, research and each plotting backend installed in isolation; resolve dependency gaps hidden by `--all-extras`; check declared lower bounds and supported Python versions, including macOS |
@@ -252,3 +254,29 @@ Remaining distribution work, in priority order:
 The existing CI matrix is configuration, not evidence that every remote job
 passed for this revision. Record the actual tested platforms/interpreters and
 the exact wheel/sdist hashes at the release gate.
+
+## 7. PyPI release preparation — October 26, 2026
+
+The maintainer selected stable version **0.1.0**, public GitHub visibility,
+and publication to **TestPyPI first, then PyPI**. All named gradients and the
+other documented interfaces are supported. Saved recipe IDs and numerical
+audit data retain their historical content and hashes.
+
+- Added Clay Wood (`clayewood@gmail.com`) as author and maintainer, project
+  URLs, classifiers, keywords, public README links and package-index install
+  commands. The version now comes from `src/huevat/_version.py`.
+- Added `docs/RELEASE.md` and a manually dispatched release workflow. It builds
+  once, checks the distributions, tests every extra independently on all three
+  operating systems, uploads to TestPyPI, verifies hashes/installation, then
+  publishes those same archives to PyPI and verifies again.
+- Added macOS to ordinary CI. Local checks passed: 148 tests; all numerical
+  audits; 147 packaged tests with one repository-only skip; five isolated extras
+  on Python 3.12; and all five minimum-dependency cases on Python 3.10.
+- Created `testpypi` and `pypi` GitHub environments restricted to `main`.
+- Removed internal planning/audit documents from source distributions. Product
+  documentation, numerical provenance, examples and tests remain packaged.
+
+PyPI/TestPyPI accounts, email verification, two-factor authentication and the
+two pending Trusted Publisher entries must be completed by the maintainer.
+No package upload should be reported as complete until both index verification
+jobs succeed. The release workflow's final results are the publication record.

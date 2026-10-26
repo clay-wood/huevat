@@ -9,7 +9,7 @@ and dashes. Matplotlib, Plotly and UltraPlot are supported.
 
 ## Compare suggestions
 
-Install from the project folder with `python -m pip install ".[design,matplotlib]"`.
+Install from PyPI with `python -m pip install "huevat[design,matplotlib]"`.
 Replace `matplotlib` with `plotly` or `ultraplot` for those libraries.
 
 ```python

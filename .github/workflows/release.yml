@@ -1,0 +1,154 @@
+name: Release to TestPyPI then PyPI
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: Version in src/huevat/_version.py
+        required: true
+        default: '0.1.0'
+        type: string
+
+permissions:
+  contents: read
+
+concurrency:
+  group: pypi-release
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+        with:
+          enable-cache: true
+      - run: uv python install 3.12
+      - run: uv sync --locked --all-extras --python 3.12
+      - name: Verify release version
+        env:
+          EXPECTED_VERSION: ${{ inputs.version }}
+        run: uv run --locked python -c "import os,huevat; assert huevat.__version__ == os.environ['EXPECTED_VERSION']"
+      - name: Use commit time for reproducible archives
+        run: echo "SOURCE_DATE_EPOCH=$(git show -s --format=%ct HEAD)" >> "$GITHUB_ENV"
+      - run: uv run --locked --all-extras pytest
+      - run: uv run --locked --all-extras python tools/check_provenance.py
+      - run: uv run --locked --all-extras python tools/verify.py --research
+      - run: uv run --locked --all-extras python tools/build_adapters.py --check
+      - run: uv run --locked --all-extras python tools/build_collection.py --check
+      - run: uv run --locked --all-extras python tools/build_doctor.py --check
+      - run: uv run --locked --all-extras python tools/build_release.py --check
+      - run: uv build
+      - run: uv run --locked twine check --strict dist/*
+      - run: uv run --locked python tools/check_install.py --test-sdist
+      - uses: actions/upload-artifact@v4
+        with:
+          name: python-distributions
+          path: dist/*
+          if-no-files-found: error
+          retention-days: 90
+
+  extras:
+    needs: build
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+        extra: [design, research, matplotlib, plotly, ultraplot]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+        with:
+          enable-cache: true
+      - run: uv python install 3.12
+      - run: uv sync --locked --python 3.12
+      - uses: actions/download-artifact@v4
+        with:
+          name: python-distributions
+          path: dist
+      - run: uv run --locked python tools/check_extras.py --extra ${{ matrix.extra }}
+
+  minimum-dependencies:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+        with:
+          enable-cache: true
+      - run: uv python install 3.10
+      - run: uv sync --locked --python 3.10
+      - uses: actions/download-artifact@v4
+        with:
+          name: python-distributions
+          path: dist
+      - run: uv run --locked python tools/check_extras.py --minimum
+
+  testpypi:
+    needs: [build, extras, minimum-dependencies]
+    runs-on: ubuntu-latest
+    environment:
+      name: testpypi
+      url: https://test.pypi.org/project/huevat/
+    permissions:
+      id-token: write
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: python-distributions
+          path: dist
+      - uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          repository-url: https://test.pypi.org/legacy/
+          skip-existing: true
+
+  verify-testpypi:
+    needs: testpypi
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+      - run: uv python install 3.12
+      - run: uv sync --locked --python 3.12
+      - uses: actions/download-artifact@v4
+        with:
+          name: python-distributions
+          path: dist
+      - env:
+          RELEASE_VERSION: ${{ inputs.version }}
+        run: uv run --locked python tools/check_index.py --repository testpypi --version "$RELEASE_VERSION"
+
+  pypi:
+    needs: verify-testpypi
+    runs-on: ubuntu-latest
+    environment:
+      name: pypi
+      url: https://pypi.org/project/huevat/
+    permissions:
+      id-token: write
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: python-distributions
+          path: dist
+      - uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          skip-existing: true
+
+  verify-pypi:
+    needs: pypi
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+      - run: uv python install 3.12
+      - run: uv sync --locked --python 3.12
+      - uses: actions/download-artifact@v4
+        with:
+          name: python-distributions
+          path: dist
+      - env:
+          RELEASE_VERSION: ${{ inputs.version }}
+        run: uv run --locked python tools/check_index.py --repository pypi --version "$RELEASE_VERSION"

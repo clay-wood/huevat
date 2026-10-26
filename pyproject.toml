@@ -1,32 +1,56 @@
 [build-system]
-requires = ["setuptools>=77", "wheel"]
+requires = ["setuptools>=77.0.3", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
 name = "huevat"
-version = "0.1.0"
+dynamic = ["version"]
 description = "Screened scientific palettes, gradients and coordinated figure styles"
 readme = "README.md"
 requires-python = ">=3.10"
 license = "MIT"
 license-files = ["LICENSE", "licenses/*.txt"]
 dependencies = []
+authors = [{name = "Clay Wood", email = "clayewood@gmail.com"}]
+maintainers = [{name = "Clay Wood", email = "clayewood@gmail.com"}]
+keywords = ["color", "colormap", "palette", "scientific-visualization", "matplotlib", "plotly"]
+classifiers = [
+    "Intended Audience :: Science/Research",
+    "Topic :: Scientific/Engineering :: Visualization",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
+]
+
+[project.urls]
+Homepage = "https://pypi.org/project/huevat/"
+Source = "https://github.com/clay-wood/huevat"
+Documentation = "https://github.com/clay-wood/huevat/blob/main/docs/QUICKSTART.md"
+Issues = "https://github.com/clay-wood/huevat/issues"
+Changelog = "https://github.com/clay-wood/huevat/blob/main/docs/RELEASE_NOTES.md"
 
 [project.optional-dependencies]
 design = ["numpy>=1.24", "scipy>=1.10", "colorspacious==1.1.2"]
-research = ["numpy>=1.24", "matplotlib>=3.8", "colorspacious==1.1.2", "colorcet==3.2.1"]
+research = ["numpy>=1.24", "scipy>=1.10", "matplotlib>=3.8", "colorspacious==1.1.2", "colorcet==3.2.1"]
 matplotlib = ["matplotlib>=3.9"]
 plotly = ["plotly>=6,<8"]
 ultraplot = ["ultraplot>=2.7,<3"]
 
 [dependency-groups]
-dev = ["pytest>=8", "build>=1", "pip>=24"]
+dev = ["pytest>=8", "build>=1", "pip>=24", "twine>=6"]
+
+[tool.setuptools.dynamic]
+version = {attr = "huevat._version.__version__"}
 
 [tool.setuptools.packages.find]
 where = ["src"]
 
 [tool.pytest.ini_options]
-testpaths = ["tests/test_core.py", "tests/test_space.py", "tests/test_release.py", "tests/test_doctor.py"]
+testpaths = ["tests"]
 addopts = "-ra"
 markers = ["research: optional reference study and independent-space audit"]
 

@@ -33,7 +33,7 @@ def _entry(name):
 
 
 def gradient_names(*,family=None,domain=None):
-    """Names of experimental candidates; filters are metadata, not rankings."""
+    """Names of supported gradients; filters are metadata, not rankings."""
     if family not in (None,'sequential','diverging'):raise ValueError('Unknown family')
     if domain not in (None,'general','seismic','structure','geography','atmosphere'):raise ValueError('Unknown domain')
     return tuple(name for name,entry in _catalog()['candidates'].items()
@@ -42,7 +42,7 @@ def gradient_names(*,family=None,domain=None):
 
 
 def gradient_info(name):
-    """Immutable route, domain and direction metadata; visual review is pending."""
+    """Immutable route, domain, direction and support metadata."""
     name,_,_=_selection(name)
     return QualityReport(_entry(name)['metadata'])
 

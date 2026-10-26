@@ -6,7 +6,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu-latest, windows-latest]
+        os: [ubuntu-latest, windows-latest, macos-latest]
         python: ['3.10', '3.12', '3.14']
     runs-on: ${{ matrix.os }}
     steps:
@@ -18,13 +18,14 @@ jobs:
       - run: uv run --locked --python ${{ matrix.python }} python tools/check_provenance.py
       - run: uv run --locked --python ${{ matrix.python }} python tools/verify.py
       - run: uv build --python ${{ matrix.python }}
+      - run: uv run --locked --python ${{ matrix.python }} twine check --strict dist/*
       - run: uv run --locked --python ${{ matrix.python }} python tools/check_install.py
 
   research:
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu-latest, windows-latest]
+        os: [ubuntu-latest, windows-latest, macos-latest]
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v4
