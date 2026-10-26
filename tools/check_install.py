@@ -47,9 +47,9 @@ import huevat.adapters.plotly
 import huevat.adapters.ultraplot
 from huevat import doctor
 assert doctor.__all__
-assert len(hv.gradient_names()) == 12
+assert len(hv.gradient_names()) == 18
 assert hv.__version__ == md.version('huevat') == '0.1.0'
-assert len(hv.design_ids()) == 76
+assert len(hv.design_ids()) == 94
 assert len(hv.design_ids(role='default')) == 30
 for identifier in hv.design_ids():
     design = hv.get_design(identifier)
@@ -60,6 +60,8 @@ for identifier in hv.design_ids():
         assert loaded.colors == design.colors
 assert hv.load_export(hv.export(hv.diverging(), n=7)).design.colors == hv.diverging().discrete(7).colors
 assert hv.nearby_counts(hv.diverging(), 8)[:2] == (7, 9)
+assert hv.diverging().discrete().colors[4] == hv.to_hex(hv.diverging().at(.5))
+assert hv.gradient('balance_d_r').at(.25) == hv.gradient('balance',background='dark').at(.75)
 assert hv.export(hv.categorical(4), format='csv').text.startswith('index,label,position,hex,r,g,b')
 assert hv.gradient_info('highland')['orientation'] == 'elevation-lightens'
 for name in hv.gradient_names():

@@ -56,8 +56,9 @@ def get_design(identifier):
         from . import multihue, spectral
         result = {"multihue": multihue, "spectral": spectral}[factory](background=background)
     elif factory == "gradient":
-        from . import gradient
-        result = gradient(info["name"], background=background)
+        from .catalog import _gradient_by_id
+        from ._prepared import view
+        result = view(_gradient_by_id(identifier))
     else: raise ValueError("Unsupported registry factory")
     body = result._recipe if hasattr(result, "_recipe") else result.report["recipe"]
     from .gradients import _thaw

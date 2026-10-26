@@ -198,17 +198,57 @@ routes with light/dark variants, free-knot construction and the application
 gallery in `research/collection-v1`; appearance review is pending. H4c adds the
 explicit figure-doctor workflow, coordinated encodings, stable identities/locks,
 audited tradeoffs and guarded apply/undo for supported native line/scatter
-figures. See `docs/FIGURE_DOCTOR.md` and `research/doctor-v1`. H4d completes the
-private v0.1.0 release with the user's chosen policy: retain the current defaults
+figures. See `docs/FIGURE_DOCTOR.md` and `research/doctor-v1`. H4d prepares the
+private v0.1.0 release candidate with the user's chosen policy: retain the current defaults
 including Clearer and keep all twelve new named routes experimental. It adds
 immutable-ID discovery/cached loading, compact validated JSON exchange, exact
 CSV/hex and audited CSS exports, nearby prepared counts, quick-start/native
 examples and usage guides. Release role is distinct from the frozen
 reports' original review flags; no human-discrimination certificate is claimed.
 No package or public release is published. Existing H0–H3 numerical baselines and the selected Clearer categorical
-direction remain the foundation. Prepared optimized caches and nearby-count
-search remain follow-up usability work.
+direction remain the foundation. Prepared optimized caches remain follow-up usability work; nearby prepared-count
+discovery is implemented.
 
 All families belong to the first release; the ordering above allows earlier methods to inform the harder constructions. A family remains experimental if its gates fail. Record that result explicitly instead of weakening its criteria to declare completion.
 
 Keep user guides focused on choosing colors and making figures. Do not publish to PyPI or change either repository’s privacy as part of this work.
+
+## 6. Distribution audit and collection revision — October 25, 2026
+
+The package already has a `src` layout, PEP 517 builds, PEP 621 metadata,
+SPDX license metadata/notices, hash-checked resources, dependency-free prepared
+lookup, optional plotting/design extras, and Linux/Windows CI. H4d implementation
+completion is **not distribution approval**. The detailed evidence and size
+measurements are in [the packaging audit](docs/PACKAGING_AUDIT.md).
+
+Accepted gradient changes for this pass:
+
+- `discrete()` defaults to nine endpoint-inclusive samples. Diverging and
+  Spectral selections include the exact neutral at position 0.5; an explicit
+  even count remains an explicit choice to omit that neutral.
+- Named gradients accept `_r` (reverse), `_d` (dark), and either combined
+  order. Conflicting background arguments and repeated suffixes are rejected.
+- Revise Aerosol, Bathymetry and Thermal to distinguish the reported
+  lookalikes. Keep every old recipe and immutable identifier loadable.
+- Expand the experimental collection with Cobalt, Copper, Dusk, Orchid,
+  Tundra and Verdant, each with both backgrounds. Repeat the unchanged
+  float/8-bit normal/CVD, CAM02-UCS, continuous and count-specific screens.
+  Generate continuous and nine-bin galleries. Human appearance review remains
+  pending; these candidates do not become defaults automatically.
+
+Remaining distribution work, in priority order:
+
+| Priority | Work | Completion gate |
+| --- | --- | --- |
+| P0 | Review the revised/expanded gradient collection | Human review on both backgrounds, including neutral bins, fields and CVD/grayscale views; curate remaining similar routes or document their relationship |
+| P0 | Decide release audience and ownership | Confirm package/index ownership, version/tag policy and public versus private distribution; preserve the existing no-publication instruction until separately authorized |
+| P1 | Complete package metadata | Maintainer/contact, source/docs/issues/changelog URLs, useful keywords/classifiers; confirm README rendering and accessible image/link targets on the intended index |
+| P1 | Test distributions independently | Clean wheel installs and a wheel rebuilt from the sdist; execute applicable tests outside the checkout, with no access to repository-only tooling |
+| P1 | Test extras separately | Base, design, research and each plotting backend installed in isolation; resolve dependency gaps hidden by `--all-extras`; check declared lower bounds and supported Python versions, including macOS |
+| P1 | Prepare the release workflow | Build once, `twine check --strict`, retain/hash the tested artifacts, gated TestPyPI/private-index rehearsal and then the chosen index; use Trusted Publishing if publishing to PyPI |
+| P2 | Reduce maintenance and download overhead | Measure import/first-lookup time and peak memory; separate optional full audit evidence from compact prepared data if justified; avoid rewriting Git history merely to reduce local size |
+| P2 | Improve routine maintenance | One version source or an enforced equality check; ordinary test discovery; contributor/release instructions and a stated compatibility/deprecation policy |
+
+The existing CI matrix is configuration, not evidence that every remote job
+passed for this revision. Record the actual tested platforms/interpreters and
+the exact wheel/sdist hashes at the release gate.

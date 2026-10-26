@@ -15,6 +15,59 @@ HAS_DESIGN = importlib.util.find_spec('colorspacious') is not None
 research = pytest.mark.skipif(not HAS_DESIGN, reason='requires huevat[design]')
 
 
+@pytest.mark.parametrize('name',['balance','thermal','estuary','strata','tundra','dusk'])
+@pytest.mark.parametrize('background',['light','dark'])
+def test_default_diverging_bins_include_exact_neutral(name,background):
+    g=hv.gradient(name,background=background)
+    for source in (g,g.reversed()):
+        p=source.discrete()
+        assert len(p)==9 and p.colors[4]==hv.to_hex(source.at(.5))
+        assert p.colors==source.discrete(9).colors
+    for factory in (hv.diverging,hv.spectral):
+        source=factory(background=background)
+        assert source.discrete().colors[4]==hv.to_hex(source.at(.5))
+
+
+@pytest.mark.parametrize('name',['balance','aerosol','bathymetry','thermal','dusk'])
+def test_named_suffixes_preserve_background_reversal_and_roundtrip(name):
+    light=hv.gradient(name);dark=hv.gradient(name,background='dark')
+    for suffixed,source in ((name+'_r',light.reversed()),(name+'_d',dark),
+                            (name+'_d_r',dark.reversed()),(name+'_r_d',dark.reversed())):
+        g=hv.gradient(suffixed)
+        assert [g.at(t) for t in (0,.1,.5,.9,1)]==[source.at(t) for t in (0,.1,.5,.9,1)]
+        assert hv.load_recipe(g.to_json()).at(.25)==g.at(.25)
+        assert hv.gradient_info(suffixed)==hv.gradient_info(name)
+    assert hv.gradient(name+'_r',background='dark').at(.25)==dark.at(.75)
+    assert hv.gradient(name+'_d',background='dark').at(.25)==dark.at(.25)
+    for invalid in (name+'_r_r',name+'_d_d',name+'_r_d_r',name+'_unknown'):
+        with pytest.raises(ValueError):hv.gradient(invalid)
+    with pytest.raises(ValueError,match='conflicts'):hv.gradient(name+'_d',background='light')
+
+
+@pytest.mark.parametrize('name',['aerosol','bathymetry','thermal'])
+@pytest.mark.parametrize('background',['light','dark'])
+def test_revised_collection_retains_old_recipe_ids(name,background):
+    old=hv.get_design(f'h4b-{name}-{background}-v1')
+    current=hv.gradient(name,background=background)
+    assert current._recipe['identifier']==f'h4b-{name}-{background}-v2'
+    assert hv.design_info(old._recipe['identifier'])['role']=='legacy'
+    assert hv.load_export(hv.export(old)).design.at(.3)==old.at(.3)
+    assert hv.load_recipe(old.to_json()).at(.3)==old.at(.3)
+
+
+@pytest.mark.parametrize('background',['light','dark'])
+def test_reported_lookalike_routes_have_distinct_revisions(background):
+    # Collection curation guard, separate from the frozen scientific screens.
+    for left,right in (('aerosol','rosewood'),('balance','thermal'),('bathymetry','mineral')):
+        a,b=(hv.gradient(name,background=background) for name in (left,right))
+        lab_a=[hv.srgb_to_oklab(a.at(i/64)) for i in range(65)]
+        lab_b=[hv.srgb_to_oklab(b.at(i/64)) for i in range(65)]
+        # Compare aligned appearances even when physical scalar direction differs.
+        separation=min(sum(hv.distance(x,y) for x,y in zip(lab_a,order))/65
+                       for order in (lab_b,lab_b[::-1]))
+        assert separation>=.045,(left,right,background,separation)
+
+
 def test_reusable_views_preserve_validation_and_nested_immutability():
     for factory in (hv.sequential,hv.diverging,hv.multihue,hv.spectral):
         source=factory();assert factory() is source
@@ -47,14 +100,13 @@ def test_reusable_views_preserve_validation_and_nested_immutability():
 @research
 def test_collection_previews_have_no_overlay_lines(monkeypatch):
     pytest.importorskip('matplotlib')
-    import importlib
     tools=str(Path(__file__).resolve().parents[1]/'tools')
     sys.path.insert(0,tools)
-    try:builder=importlib.import_module('build_collection')
+    try:builder=pytest.importorskip('build_collection',reason='repository-only gallery tooling is excluded from the sdist')
     finally:sys.path.remove(tools)
     import matplotlib.pyplot as plt
     def inspect_figure(fig,name):
-        assert len(fig.axes)==12
+        assert len(fig.axes)==len(hv.gradient_names())
         assert all(not ax.lines and len(ax.images)==1 for ax in fig.axes)
         plt.close(fig)
     monkeypatch.setattr(builder,'save',inspect_figure)
@@ -62,8 +114,8 @@ def test_collection_previews_have_no_overlay_lines(monkeypatch):
 
 
 def test_registry_roles_exact_hashes_and_immutable_cached_objects():
-    assert len(hv.design_ids()) == 76
-    assert {role:len(hv.design_ids(role=role)) for role in ('default','legacy','experimental')} == {'default':30,'legacy':22,'experimental':24}
+    assert len(hv.design_ids()) == 94
+    assert {role:len(hv.design_ids(role=role)) for role in ('default','legacy','experimental')} == {'default':30,'legacy':28,'experimental':36}
     for identifier in hv.design_ids():
         info = hv.design_info(identifier); design = hv.get_design(identifier)
         assert info['identifier'] == identifier
@@ -84,7 +136,7 @@ def test_release_discovery_does_not_load_large_resources():
     code = '''
 import sys
 import huevat as h
-assert len(h.design_ids()) == 76
+assert len(h.design_ids()) == 94
 assert h.design_info(h.design_ids()[0])
 from huevat.gradients import _ordered_data
 from huevat.families import _prepared_data

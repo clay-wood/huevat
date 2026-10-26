@@ -109,7 +109,7 @@ class HueGradient(Gradient):
                     check["name"] = check["name"].replace("route_1/", "route_0/", 1)
         return QualityReport(source)
 
-    def discrete(self, n, *, context=None):
+    def discrete(self, n=9, *, context=None):
         proxy = Gradient(proxy_recipe(self._recipe), self._report, self._discrete_records, self._reverse)
         palette = proxy.discrete(n, context=context)
         report = palette.report.to_dict()

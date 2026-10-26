@@ -15,7 +15,7 @@ Start with the [quick start](QUICKSTART.md) or the [palette gallery](../README.m
 | `diverging(background="light")` | Values on either side of a center |
 | `multihue(background="light")` | Ordered values with a wider hue range |
 | `spectral(background="light")` | A diverging gradient with several hues |
-| `gradient(name, background="light")` | One of the twelve experimental named gradients |
+| `gradient(name, background=None)` | One of eighteen experimental gradients; defaults to light, `_d` selects dark, `_r` reverses |
 | `gradient_names(family=None, domain=None)` | List named gradients, optionally filtered |
 | `gradient_info(name)` | Read a named gradient's intended uses and direction |
 
@@ -28,7 +28,7 @@ strings in `.colors`. A gradient provides RGB tuples through `.at(t)`.
 | --- | --- |
 | `g.at(t)` | Read a color at a position from 0 to 1 |
 | `g.reversed()` | Reverse a gradient |
-| `g.discrete(n, context=None)` | Select evenly spaced colors and check that count |
+| `g.discrete(n=9, context=None)` | Select evenly spaced colors; nine bins include a diverging neutral |
 | `known_counts(g)` | List prepared counts that passed the checks |
 | `nearby_counts(g, n, context=None)` | Find tested counts near the one requested |
 | `optimized_discrete(g, n, context=None, grid=257, max_seconds=10)` | Search for better-spaced positions; requires `design` |
@@ -37,6 +37,12 @@ strings in `.colors`. A gradient provides RGB tuples through `.at(t)`.
 
 Some counts fail the color checks; an unlisted count has not necessarily failed.
 Sample positions do not set physical data-bin boundaries.
+Explicit even counts retain their requested size and omit the neutral midpoint.
+Named suffixes compose in either order: `gradient("balance_d_r")` equals
+`gradient("balance", background="dark").reversed()`. `_d` conflicts with an
+explicit `background="light"`; repeated suffixes are invalid. `gradient_info`
+accepts suffixes and returns the base route's metadata; `gradient_names` lists
+base names.
 
 ## Save and load
 

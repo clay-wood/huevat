@@ -54,3 +54,38 @@ SPECS = {
 SPECS['estuary']['dark_endpoint_factor']=.9
 SPECS['thermal']['dark_endpoint_factor']=.85
 SPECS['balance']['arm_offset_power']=1
+
+# Keep the exact v1 controls reproducible after revising named lookup.
+LEGACY_SPECS = dict(SPECS)
+REVISION_VERSION = 'h4b-free-knots-v2'
+REVISIONS = {
+    'aerosol': sequential('Aerosol','deep red – magenta – pale violet',['atmosphere'],
+        [20,0,345,330,310,295],[.020,.070,.115,.120,.070,.015],
+        [0.,.15,.37,.60,.82,1.],.10),
+    'bathymetry': sequential('Bathymetry','pale cyan – turquoise – deep ocean',['geography'],
+        [205,205,200,195,190,185],[.020,.055,.085,.090,.055,.015],
+        [0.,.13,.34,.58,.81,1.],.03,'depth-darkens'),
+    'thermal': diverging('Thermal','violet – neutral – green',['atmosphere','general'],
+        [305]*6,[150]*6,[0.,.003,.050,.080,.100,.085],.02),
+    'cobalt': sequential('Cobalt','midnight blue – cobalt – ice',['general'],
+        [260]*6,[.020,.060,.110,.130,.070,.015],[0.,.15,.35,.60,.82,1.],.04),
+    'verdant': sequential('Verdant','deep green – emerald – pale mint',['general','geography'],
+        [150]*6,[.020,.055,.090,.110,.065,.015],[0.,.15,.35,.60,.82,1.],.04),
+    'orchid': sequential('Orchid','aubergine – violet – lilac',['general'],
+        [310]*6,[.020,.055,.095,.110,.065,.015],[0.,.15,.35,.60,.82,1.],.04),
+    'copper': sequential('Copper','dark umber – copper – peach',['general','structure'],
+        [55]*6,[.020,.055,.095,.110,.065,.015],[0.,.15,.35,.60,.82,1.],.04),
+    'tundra': diverging('Tundra','teal – neutral – gold',['general','geography'],
+        [195]*6,[85]*6,[0.,.003,.050,.080,.100,.085],.02),
+    'dusk': diverging('Dusk','violet – neutral – orange',['general','atmosphere'],
+        [300]*6,[80,80,75,65,55,45],[0.,.003,.050,.080,.100,.085],-.08),
+}
+for spec in REVISIONS.values():
+    spec.update(version=2,construction_version=REVISION_VERSION)
+SPECS.update(REVISIONS)
+
+
+def specification(name, version=None):
+    if version == 1:
+        return LEGACY_SPECS[name]
+    return SPECS[name]

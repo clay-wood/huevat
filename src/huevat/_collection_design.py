@@ -7,7 +7,7 @@ import time
 import numpy as np
 from scipy.interpolate import PchipInterpolator, CubicHermiteSpline
 
-from ._collection_specs import SPECS, VERSION
+from ._collection_specs import SPECS, VERSION, specification
 from .design import _local_coefficients, _raw_rgb, validate_gradient
 from .evaluation import evaluate
 from .gradients import Gradient, QualityReport, SearchExhaustedError, background_rgb, _finite
@@ -28,8 +28,8 @@ def _coordinates(L,C,hue):
     return np.column_stack((L,C*np.cos(h),C*np.sin(h)))
 
 
-def make_recipe(name, background, scale=1., endpoint_shift=0., balance=1., arm_shift=0., curve_skew=0., range_mode=0):
-    spec=SPECS[name];dark=background=='dark'
+def make_recipe(name, background, scale=1., endpoint_shift=0., balance=1., arm_shift=0., curve_skew=0., range_mode=0, *, spec_version=None):
+    spec=specification(name,spec_version);dark=background=='dark'
     knots=np.array(spec['knots']);nominal_fraction=knots+spec['skew']*knots*(1-knots)
     fraction=knots+(spec['skew']+curve_skew)*knots*(1-knots)
     if spec['family']=='sequential':
@@ -64,7 +64,7 @@ def make_recipe(name, background, scale=1., endpoint_shift=0., balance=1., arm_s
         knots=np.r_[(1-knots[::-1])/2,(1+knots[1:])/2]
     return {'schema_version':1,'algorithm_version':'h2-ordered-v1','family':spec['family'],
         'background':list(background_rgb(background)),'context':'filled-fields','knots':knots.tolist(),
-        'segments':segments,'preferences':preferences,'identifier':f'h4b-{name}-{background}-v1'}
+        'segments':segments,'preferences':preferences,'identifier':f'h4b-{name}-{background}-v{spec.get("version",1)}'}
 
 
 def _lab_samples(recipe):
@@ -83,11 +83,12 @@ def _failure(check):
 def generate(name, background, *, max_seconds=60.):
     """Closest feasible path in a finite, declared parameter grid; no clipping."""
     spec=SPECS[name]
+    version=spec.get('construction_version',VERSION)
     started=time.perf_counter()
     if _finite(max_seconds,'max_seconds')<=0:raise ValueError('max_seconds must be positive')
     def exhausted(rejected,grid_candidates,best):
         raise SearchExhaustedError(f'No passing {name}/{background} candidate in the declared search',
-            {'screen_pass':False,'outcome':'search-exhausted','infeasibility_proven':False,'algorithm_version':VERSION,
+            {'screen_pass':False,'outcome':'search-exhausted','infeasibility_proven':False,'algorithm_version':version,
              'name':name,'background':background,'candidates_tested':len(rejected),'grid_candidates':grid_candidates,
              'deadline_reached':time.perf_counter()-started>max_seconds,'closest_failures':best or [],'rejected':rejected})
     if time.perf_counter()-started>max_seconds:exhausted([],0,None)
@@ -119,8 +120,8 @@ def generate(name, background, *, max_seconds=60.):
             if report['screen_pass']:
                 orientation=spec['orientation']
                 reverse=spec['family']=='sequential' and (orientation=='depth-darkens' or (orientation=='background' and background=='light'))
-                report.update(collection_construction_version=VERSION,collection_name=name,family=spec['family'])
-                report['search']={'algorithm_version':VERSION,'candidates_tested':at+1,'grid_candidates':len(options),
+                report.update(collection_construction_version=spec.get('construction_version',VERSION),collection_name=name,family=spec['family'])
+                report['search']={'algorithm_version':version,'candidates_tested':at+1,'grid_candidates':len(options),
                     'elapsed_seconds':time.perf_counter()-started,'deadline_reached':time.perf_counter()-started>max_seconds,
                     'parameters':dict(zip(('chroma_scale','endpoint_shift','arm_balance','arm_lightness_shift','curve_skew','lightness_range'),params)),
                     'mean_squared_oklab_displacement':error,'rejected':rejected,

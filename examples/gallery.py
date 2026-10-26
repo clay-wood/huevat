@@ -12,7 +12,7 @@ ROOT = Path(__file__).resolve().parents[1]
 os.environ.setdefault("MPLCONFIGDIR", str(ROOT / ".cache/matplotlib"))
 
 
-def draw(rows, path):
+def draw(rows, path, *, discrete=False):
     import matplotlib
     matplotlib.use("Agg")
     import matplotlib.pyplot as plt
@@ -35,7 +35,8 @@ def draw(rows, path):
             panel.text(0.035, y, label, color=fg, fontsize=10, va="center")
             ax = panel.inset_axes((0.30, y - 0.027, 0.665, 0.054))
             source = factory(background)
-            colors = ([hv.from_hex(color) for color in source.colors] if categorical
+            if discrete:source=source.discrete()
+            colors = ([hv.from_hex(color) for color in source.colors] if categorical or discrete
                       else [source.at(i / 1024) for i in range(1025)])
             ax.imshow([colors], aspect="auto", interpolation="nearest")
             ax.set_axis_off()
@@ -61,6 +62,9 @@ def main():
              for name in hv.gradient_names()]
     draw(defaults, args.output / "palettes.png")
     draw(named, args.output / "gradients.png")
+    signed = [(name, lambda bg, name=name: hv.gradient(name, background=bg), False)
+              for name in hv.gradient_names(family='diverging')]
+    draw(signed,args.output / 'gradient-bins.png',discrete=True)
     print(f"Wrote palette galleries to {args.output}")
 
 

@@ -1,7 +1,1 @@
-{
-  "browser": "Plotly native JSON checked; browser interaction not exercised",
-  "layout_review": "44 PNGs checked in light/dark contact sheets; representative normal, grayscale, mixed-content and native UltraPlot views checked at full size; legend marker density and dark backgrounds corrected",
-  "simulation": "Supported marks and backgrounds only; scalar maps/bands retained in mixed examples",
-  "status": "pending",
-  "visual_review": "Human appearance/readability review pending"
-}
+{"browser":"Plotly native JSON checked; browser interaction not exercised","simulation":"Supported marks and backgrounds only; scalar maps/bands retained in mixed examples","status":"pending","visual_review":"Human appearance/readability review pending"}

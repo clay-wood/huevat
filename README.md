@@ -8,7 +8,26 @@ Choose colors for categories, continuous fields, or values above and below a cen
 Clearer is the default categorical palette. Use `background="dark"` for dark figures.
 
 [Quick start](docs/QUICKSTART.md) · [Plotting examples](examples/README.md) ·
-[Figure doctor](docs/FIGURE_DOCTOR.md) · [API guide](docs/API.md)
+[Figure doctor](docs/FIGURE_DOCTOR.md) · [API guide](docs/API.md) ·
+[Release notes](docs/RELEASE_NOTES.md)
+
+## Recent updates
+
+- **18 named gradients**, including six new choices: **Cobalt, Copper, Dusk,
+  Orchid, Tundra and Verdant**, each with light and dark versions.
+- **Revised Aerosol, Bathymetry and Thermal** to distinguish the reported
+  lookalike routes. Earlier versions remain available through their saved
+  recipes and immutable design IDs.
+- **Nine colors by default** with `gradient.discrete()`. Diverging and Spectral
+  gradients include the exact neutral as the fifth color. Explicit even counts
+  are supported and omit the midpoint.
+- **Named suffixes:** `_r` reverses, `_d` selects dark, and `_d_r` or `_r_d`
+  combines both.
+
+The expanded collection remains experimental and needs appearance review.
+See the [distribution audit](docs/PACKAGING_AUDIT.md) and
+[project plan](project_plan.md#6-distribution-audit-and-collection-revision--october-25-2026)
+for package readiness and remaining release work.
 
 ## Install
 
@@ -49,21 +68,47 @@ Use `hv.diverging()` with `hmpl.normalizer(vmin, vmax, center=0)` for signed dat
 
 ## More gradients
 
-Twelve additional gradients cover general plots, seismic data, terrain, depth,
+Eighteen additional gradients cover general plots, seismic data, terrain, depth,
 and atmospheric fields. These alternatives are experimental.
 
-![The twelve named gradients on light and dark backgrounds](docs/images/gradients.png)
+![The eighteen named gradients on light and dark backgrounds](docs/images/gradients.png)
 
 ```python
 gradient = hv.gradient("bathymetry")
-gradient = hv.gradient("thermal", background="dark")
+new_gradient = hv.gradient("verdant")
+reversed_gradient = hv.gradient("thermal_r")
+dark_gradient = hv.gradient("thermal_d")
+dark_reversed_gradient = hv.gradient("thermal_d_r")
 print(hv.gradient_names())
 ```
 
-Use `gradient.reversed()` to change direction. For separate colors, try
-`gradient.discrete(7)`. Check `hv.known_counts(gradient)` for tested counts.
+The revised routes are:
+
+| Gradient | Current route | Previously similar to |
+| --- | --- | --- |
+| Aerosol | Deep red → magenta → pale violet | Rosewood |
+| Bathymetry | Pale cyan → turquoise → deep ocean, darkening with depth | Mineral |
+| Thermal | Violet → neutral → green | Balance |
+
+Append `_r` to reverse a named gradient or `_d` to select its dark version;
+combine them as `_d_r` or `_r_d`. `gradient.reversed()` also changes direction.
+`_d` is equivalent to `background="dark"`; combining it with an explicit
+`background="light"` is an error.
+
+For separate colors, `gradient.discrete()` selects nine bins. Diverging scales
+include their neutral midpoint; explicit even counts remain available.
+
+```python
+signed = hv.diverging()
+nine_colors = signed.discrete()  # neutral is nine_colors.colors[4]
+assert nine_colors.colors[4] == hv.to_hex(signed.at(0.5))
+```
+
+Check `hv.known_counts(gradient)` for tested counts.
 `hv.optimized_discrete(gradient, n)` searches for better-spaced colors and
 requires the `design` extra.
+
+![Nine-bin diverging gradients with a visible neutral midpoint](docs/images/gradient-bins.png)
 
 ## Figure doctor
 

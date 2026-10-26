@@ -48,8 +48,12 @@ def registry():
     for name, value in load_data('collection-v1.json')['candidates'].items():
         for bg, variant in value['variants'].items():
             entry(variant['recipe'], bg, 'gradient', 'experimental', is_reversed=variant['reversed'], name=name, review='appearance review pending; no default adoption')
+    for identifier, variant in load_data('collection-v1.json').get('archived',{}).items():
+        name,bg=identifier.removeprefix('h4b-').rsplit('-v',1)[0].rsplit('-',1)
+        entry(variant['recipe'],bg,'gradient','legacy',is_reversed=variant['reversed'],name=name,
+              review='superseded collection route; exact recipe retained')
     return {'version':'h4-release-v1', 'package_version':'0.1.0',
-        'policy':'keep current defaults including Clearer; twelve named routes remain experimental',
+        'policy':'keep current defaults including Clearer; named routes remain experimental',
         'review_scope':'release inclusion is not a human-readability certificate; frozen reports unchanged',
         'designs':dict(sorted(designs.items()))}
 
@@ -134,7 +138,7 @@ def render(results):
     </style><main><div class="kicker">Huevat</div><h1>Colors for scientific figures.</h1>
     <p>Palettes and gradients for Matplotlib, Plotly and UltraPlot, with a figure doctor for coordinated colors, markers and dashes.</p>
     <div class="swatch" style="background:''' + html.escape(pcss, quote=True) + '''"></div>
-    <p><b>Clearer is the default categorical palette.</b> Choose light or dark variants to suit your figure. The twelve additional named gradients are experimental alternatives.</p>
+    <p><b>Clearer is the default categorical palette.</b> Choose light or dark variants to suit your figure. The eighteen additional named gradients are experimental alternatives.</p>
     <pre>import huevat as hv
 palette = hv.categorical(6)
 gradient = hv.diverging()
@@ -143,7 +147,7 @@ restored = hv.load_export(open("palette.json", encoding="utf-8").read()).design<
     <div class="grid"><div class="card"><b>Make a plot</b><p>Pick a palette, choose your plotting library and follow a short example.</p><a href="../../docs/QUICKSTART.md">Quick start</a> · <a href="../../examples/README.md">Plotting examples</a></div>
     <div class="card"><b>Improve an existing figure</b><p>Compare colors, markers and dashes on a copy, then apply the option you prefer.</p><a href="../../docs/FIGURE_DOCTOR.md">Figure doctor guide</a></div></div>
     <h2>Current gradient defaults</h2><div class="grid">''' + ''.join(routes) + '''</div>
-    <h2>More gradients</h2><img src="../../docs/images/gradients.png" alt="The twelve experimental gradients on light and dark backgrounds">
+    <h2>More gradients</h2><img src="../../docs/images/gradients.png" alt="The eighteen experimental gradients on light and dark backgrounds">
     <p>Additional choices for general plots, seismic data, terrain, depth and atmospheric fields.</p>
     <h2>Save and reuse</h2><p>JSON saves a design and its labels for reuse. CSV and hex give you color lists; CSS gradients are also available.</p>
     <p><a href="clearer.json">Six labeled Clearer colors</a> · <a href="signed.json">Exact signed gradient</a> · <a href="signed-seven.csv">Seven-color CSV</a> · <a href="signed-seven.json">Seven-color recipe</a> · <a href="sequential-light.css">Continuous CSS</a></p>

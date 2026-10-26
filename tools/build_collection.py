@@ -15,7 +15,7 @@ os.environ.setdefault('MPLCONFIGDIR',str(ROOT/'.cache/matplotlib'))
 
 import numpy as np
 import huevat as hv
-from huevat._collection_specs import SPECS, VERSION
+from huevat._collection_specs import SPECS, VERSION, specification
 from huevat._collection_design import generate, make_recipe
 from huevat.gradients import Gradient, QualityReport, fingerprint
 from huevat._discrete import screen_discrete
@@ -39,7 +39,8 @@ def implementation_hashes():
 
 def audit(name,recipe):
     report=validate_gradient(Gradient(recipe,QualityReport({}),{}))
-    report.update(collection_construction_version=VERSION,collection_name=name,family=recipe['family'])
+    version=int(recipe['identifier'].rsplit('-v',1)[1])
+    report.update(collection_construction_version=specification(name,version).get('construction_version',VERSION),collection_name=name,family=recipe['family'])
     return report
 
 
@@ -49,7 +50,7 @@ def discrete_records(g):
 
 
 def construct(refresh=None):
-    data=json.loads(RESOURCE.read_text()) if refresh else {'version':'h4b-collection-v1','construction_version':VERSION,'profile_version':'h1-screening-v1',
+    data=json.loads(RESOURCE.read_text()) if RESOURCE.exists() else {'version':'h4b-collection-v1','construction_version':VERSION,'profile_version':'h1-screening-v1',
         'implementation_sha256_lf':implementation_hashes(),'protocol_commit':'5c101d3',
         'approved_defaults':[],'visual_review':'pending','candidates':{},'failures':{}}
     for name,spec in SPECS.items():
@@ -59,6 +60,9 @@ def construct(refresh=None):
                         recipe_format='h2-ordered-v1',construction_version=VERSION,
                         context='filled-fields',normalization='chosen explicitly from physical data; no implied bin boundaries')
         entry={'metadata':metadata,'variants':{}}
+        metadata['version']=spec.get('version',1)
+        metadata['construction_version']=spec.get('construction_version',VERSION)
+        previous=data['candidates'].get(name,{})
         for bg in ('light','dark'):
             data['failures'].pop(name+'/'+bg,None)
             try:
@@ -67,6 +71,9 @@ def construct(refresh=None):
                                         'discrete':discrete_records(Gradient(g._recipe,g._report,{})),
                                         'reversed':g._reverse}
                 entry['variants'][bg]['recipe'].pop('reversed')
+                old=previous.get('variants',{}).get(bg)
+                if old and old['recipe']['identifier']!=entry['variants'][bg]['recipe']['identifier']:
+                    data.setdefault('archived',{})[old['recipe']['identifier']]=old
                 print(name,bg,'PASS',g.report['search']['candidates_tested'],flush=True)
             except hv.SearchExhaustedError as error:
                 data['failures'][name+'/'+bg]=error.report.to_dict()
@@ -76,9 +83,16 @@ def construct(refresh=None):
     OUTPUT.mkdir(parents=True,exist_ok=True)
     archive=OUTPUT/'construction.json.gz'
     searches=json.loads(gzip.decompress(archive.read_bytes())) if archive.exists() else {}
+    for identifier,v in data.get('archived',{}).items():
+        search=v['report']['search']
+        old_key=identifier.removeprefix('h4b-').rsplit('-v',1)[0].rsplit('-',1)
+        if identifier not in searches:
+            searches[identifier]=searches['/'.join(old_key)].copy()
+        search['rejection_evidence']='research/collection-v1/construction.json.gz#'+identifier
     for name,entry in data['candidates'].items():
         for bg,v in entry['variants'].items():
             search=v['report']['search']
+            search['algorithm_version']=SPECS[name].get('construction_version',VERSION)
             if 'rejected' in search:
                 searches[name+'/'+bg]=search.copy()
                 search['rejected_count']=len(search.pop('rejected'))
@@ -86,6 +100,7 @@ def construct(refresh=None):
     searches['failed_searches']=data['failures']
     archive.write_bytes(gzip.compress(json.dumps(searches,sort_keys=True,allow_nan=False).encode('utf-8'),mtime=0))
     data['implementation_sha256_lf']=implementation_hashes()
+    data['construction_versions']=sorted({entry['metadata']['construction_version'] for entry in data['candidates'].values()})
     write_json(RESOURCE,data)
     manifest=ROOT/'src/huevat/data/manifest-v1.json'
     m=json.loads(manifest.read_text());m['sha256_lf']['collection-v1.json']=digest(RESOURCE);write_json(manifest,m)
@@ -160,7 +175,7 @@ def field_for(name):
 
 def overview(bg):
     import matplotlib.pyplot as plt
-    names=hv.gradient_names();fig,axes=plt.subplots(len(names),1,figsize=(9,8),layout='constrained')
+    names=hv.gradient_names();fig,axes=plt.subplots(len(names),1,figsize=(9,.6*len(names)+.8),layout='constrained')
     fg=style(fig,axes,bg)
     for ax,name in zip(axes,names):
         g=hv.gradient(name,background=bg)
@@ -170,7 +185,7 @@ def overview(bg):
         # The neutral is part of the sampled colors; an overlaid reference
         # line looks like a defect in the palette, especially in the overview.
         ax.set_xticks([]);ax.set_yticks([])
-    fig.suptitle(f'Twelve candidate routes Â· {bg} background Â· appearance review pending',color=fg,fontsize=12)
+    fig.suptitle(f'{len(names)} candidate routes · {bg} background · appearance review pending',color=fg,fontsize=12)
     save(fig,f'overview-{bg}.png')
 
 
@@ -293,7 +308,7 @@ def render(data):
         counts={bg:[int(k.split('/')[1]) for k,r in v['discrete'].items() if k.startswith('filled-fields/') and r['screen_pass']] for bg,v in entry['variants'].items()}
         cards.append(f'<article data-family="{m["family"]}" data-domains="{" ".join(m["domains"])}"><h3>{m["label"]}</h3><p>{m["route"]}</p><p>{m["family"]} Â· {", ".join(m["domains"])} Â· {m["orientation"]}</p><p>{thumbs}</p><p>Prepared passing uniform counts: {counts}</p><code>hv.gradient("{name}", background="light")</code></article>')
     apps=''.join(f'<section><h2>{label}</h2><div class="pair"><img src="{kind}-light.png" alt="{label}, light background" loading="lazy"><img src="{kind}-dark.png" alt="{label}, dark background" loading="lazy"></div></section>' for kind,label in [('seismic','Seismic polarity and weak features'),('structure','Structural properties and weak anomalies'),('terrain','Sea level, terrain and separate hillshade review'),('atmosphere','Moisture, concentration and anomalies')])
-    page='''<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Huevat Â· gradient collection</title><style>body{font:16px/1.55 system-ui;background:#eef0f3;color:#26313d;margin:auto;max-width:1350px;padding:30px}h1{font-size:38px;letter-spacing:-1px}h2{font-size:25px}section,article{background:white;padding:22px;border-radius:12px;margin:20px 0}img{max-width:100%;height:auto}.pair{display:grid;grid-template-columns:1fr 1fr;gap:14px}.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(330px,1fr));gap:16px}article{margin:0;overflow-wrap:anywhere}a{color:#27658f}select{font:inherit;padding:8px;margin:6px}code{font-size:13px}@media(max-width:850px){.pair{grid-template-columns:1fr}}</style><h1>Twelve new routes for scientific figures</h1><p>H4b candidate collection Â· screened numerically Â· appearance review pending</p><p>Eight sequential routes and four diverging routes, each shown on light and dark backgrounds. Existing palettes and defaults are unchanged. Select the appearances you prefer before these become reviewed defaults.</p><section><h2>Compare the complete collection</h2><p>Each row uses its stated low-to-high direction. Diverging neutrals are at the midpoint; the ramps have no marker overlays. Bathymetry darkens with depth; Highland lightens with elevation across both backgrounds.</p><div class="pair"><img src="overview-light.png" alt="All twelve routes, light background"><img src="overview-dark.png" alt="All twelve routes, dark background"></div></section>'''+apps+'''<section><h2>Find a route and inspect its evidence</h2><label>Family <select id="family"><option value="">All</option><option>sequential</option><option>diverging</option></select></label><label>Application <select id="domain"><option value="">All</option><option>general</option><option>seismic</option><option>structure</option><option>geography</option><option>atmosphere</option></select></label></section><div class="cards">'''+''.join(cards)+'''</div><section><h2>Methods and limits</h2><p>Every shipped variant passes unchanged normal/CVD float/8-bit Oklab and CAM02-UCS profiles, complete-segment numerical checks and the denser ordering audit. Sampling counts are screened individually; uniform and optimized sampling remain distinct. A plotted view, shaded composite or domain label has no universal accessibility or scientific-validity guarantee.</p><p><a href="../../docs/METHODS_H4B.md">Construction and application protocol</a> Â· <a href="../../src/huevat/data/collection-v1.json">Full recipes, searches and numeric reports</a> Â· <a href="negative-controls.json">Deliberately bad controls and failed criteria</a> Â· <a href="review.json">Review inventory</a></p></section><script>function filter(){const f=document.getElementById('family').value,d=document.getElementById('domain').value;document.querySelectorAll('article').forEach(a=>a.hidden=Boolean((f&&a.dataset.family!==f)||(d&&!a.dataset.domains.split(' ').includes(d))))}document.querySelectorAll('select').forEach(s=>s.addEventListener('change',filter));</script></html>'''
+    page='''<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Huevat Â· gradient collection</title><style>body{font:16px/1.55 system-ui;background:#eef0f3;color:#26313d;margin:auto;max-width:1350px;padding:30px}h1{font-size:38px;letter-spacing:-1px}h2{font-size:25px}section,article{background:white;padding:22px;border-radius:12px;margin:20px 0}img{max-width:100%;height:auto}.pair{display:grid;grid-template-columns:1fr 1fr;gap:14px}.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(330px,1fr));gap:16px}article{margin:0;overflow-wrap:anywhere}a{color:#27658f}select{font:inherit;padding:8px;margin:6px}code{font-size:13px}@media(max-width:850px){.pair{grid-template-columns:1fr}}</style><h1>Eighteen routes for scientific figures</h1><p>H4b candidate collection Â· screened numerically Â· appearance review pending</p><p>Twelve sequential routes and six diverging routes, each shown on light and dark backgrounds. Existing palettes and defaults are unchanged. Select the appearances you prefer before these become reviewed defaults.</p><section><h2>Compare the complete collection</h2><p>Each row uses its stated low-to-high direction. Diverging neutrals are at the midpoint; the ramps have no marker overlays. Bathymetry darkens with depth; Highland lightens with elevation across both backgrounds.</p><div class="pair"><img src="overview-light.png" alt="All eighteen routes, light background"><img src="overview-dark.png" alt="All eighteen routes, dark background"></div></section>'''+apps+'''<section><h2>Find a route and inspect its evidence</h2><label>Family <select id="family"><option value="">All</option><option>sequential</option><option>diverging</option></select></label><label>Application <select id="domain"><option value="">All</option><option>general</option><option>seismic</option><option>structure</option><option>geography</option><option>atmosphere</option></select></label></section><div class="cards">'''+''.join(cards)+'''</div><section><h2>Methods and limits</h2><p>Every shipped variant passes unchanged normal/CVD float/8-bit Oklab and CAM02-UCS profiles, complete-segment numerical checks and the denser ordering audit. Sampling counts are screened individually; uniform and optimized sampling remain distinct. A plotted view, shaded composite or domain label has no universal accessibility or scientific-validity guarantee.</p><p><a href="../../docs/METHODS_H4B.md">Construction and application protocol</a> Â· <a href="../../src/huevat/data/collection-v1.json">Full recipes, searches and numeric reports</a> Â· <a href="negative-controls.json">Deliberately bad controls and failed criteria</a> Â· <a href="review.json">Review inventory</a></p></section><script>function filter(){const f=document.getElementById('family').value,d=document.getElementById('domain').value;document.querySelectorAll('article').forEach(a=>a.hidden=Boolean((f&&a.dataset.family!==f)||(d&&!a.dataset.domains.split(' ').includes(d))))}document.querySelectorAll('select').forEach(s=>s.addEventListener('change',filter));</script></html>'''
     page=page.replace('<section><h2>Methods and limits</h2>','<section><h2>Deliberately bad controls</h2><img src="negative-controls.png" alt="Three rejected negative controls" loading="lazy"><p>These failures remain visible; they are not candidate palettes.</p></section><section><h2>Methods and limits</h2>')
     (OUTPUT/'index.html').write_text(page,encoding='utf-8',newline='\n')
     write_json(OUTPUT/'review.json',{'status':'pending','approved_defaults':[],
@@ -310,7 +325,7 @@ def render(data):
 def check():
     from huevat._data import load_data
     data=load_data('collection-v1.json');assert data['implementation_sha256_lf']==implementation_hashes()
-    assert len(data['candidates'])==12 and not data['approved_defaults']
+    assert set(data['candidates'])==set(SPECS) and not data['approved_defaults']
     count=0
     for name,entry in data['candidates'].items():
         assert set(entry['variants'])=={'light','dark'},name
@@ -318,7 +333,8 @@ def check():
             params=v['report']['search']['parameters']
             # JSON key sorting changes parameter order; pass explicit fields.
             rebuilt=make_recipe(name,bg,params['chroma_scale'],params['endpoint_shift'],params['arm_balance'],
-                                params['arm_lightness_shift'],params['curve_skew'],params['lightness_range'])
+                                params['arm_lightness_shift'],params['curve_skew'],params['lightness_range'],
+                                spec_version=int(v['recipe']['identifier'].rsplit('-v',1)[1]))
             compact_compare(v['recipe'],rebuilt,path=name+'/'+bg+'/construction')
             old={k:value for k,value in v['report'].items() if k!='search'}
             compact_compare(old,audit(name,v['recipe']))
@@ -328,6 +344,18 @@ def check():
                 fresh=screen_discrete(tuple(g.at(i/(n-1)) for i in range(n)),g.at(.5),g.family,g.background,context)
                 compact_compare(stored,fresh)
             count+=1
+    for identifier,v in data.get('archived',{}).items():
+        name,bg=identifier.removeprefix('h4b-').rsplit('-v',1)[0].rsplit('-',1)
+        params=v['report']['search']['parameters']
+        rebuilt=make_recipe(name,bg,params['chroma_scale'],params['endpoint_shift'],params['arm_balance'],
+                            params['arm_lightness_shift'],params['curve_skew'],params['lightness_range'],spec_version=1)
+        compact_compare(v['recipe'],rebuilt,path=identifier+'/construction')
+        compact_compare({k:value for k,value in v['report'].items() if k!='search'},audit(name,v['recipe']))
+        g=Gradient(v['recipe'],QualityReport(v['report']),{})
+        for key,stored in v['discrete'].items():
+            context,n=key.split('/');n=int(n)
+            compact_compare(stored,screen_discrete(tuple(g.at(i/(n-1)) for i in range(n)),g.at(.5),g.family,g.background,context))
+        count+=1
     negative=json.loads((OUTPUT/'negative-controls.json').read_text())
     compact_compare(negative,controls())
     manifest=json.loads((OUTPUT/'manifest.json').read_text())
@@ -341,11 +369,13 @@ def check():
 def main():
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--construct',action='store_true');parser.add_argument('--check',action='store_true')
+    parser.add_argument('--no-render',action='store_true',help='Construct resources without regenerating the gallery')
     parser.add_argument('--refresh',nargs='+',choices=list(SPECS),help='Regenerate selected routes after a declared control refinement')
     args=parser.parse_args()
     if args.check:return check()
     data=construct(args.refresh) if args.construct or args.refresh or not RESOURCE.exists() else json.loads(RESOURCE.read_text())
     if data['failures']:raise SystemExit('Unresolved variants retained in the resource; finish their search before rendering')
+    if args.no_render:return
     render(data)
     print('Built H4b offline gradient/application gallery',flush=True)
 

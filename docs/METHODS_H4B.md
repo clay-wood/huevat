@@ -1,5 +1,32 @@
 # H4b: named gradient candidates and application review
 
+## October 25 collection revision
+
+The original protocol and twelve-route construction are retained below.
+The current experimental catalog has eighteen routes: the original twelve
+plus Cobalt (blue), Copper (orange), Orchid (purple), Verdant (green),
+Tundra (teal–gold diverging) and Dusk (violet–orange diverging).
+Aerosol now follows a red–magenta–violet route, Bathymetry uses turquoise,
+and Thermal uses violet–green diverging arms. These revisions address
+the reported Aerosol/Rosewood, Bathymetry/Mineral and Balance/Thermal
+lookalikes. Similarity within color families still requires human review.
+
+New controls are declared in `REVISIONS` with construction version
+`h4b-free-knots-v2`. The six new routes and three replacements use `-v2`
+identifiers. All earlier recipes, including the replaced routes' six `-v1`
+background variants, remain loadable by ID and serialized recipe. Frozen
+screening thresholds, count checks and the cubic recipe encoding are unchanged.
+No numeric pass is a certificate of distinct catalog appearance.
+
+`discrete()` selects nine bins by default. Diverging selections contain the
+exact shared neutral; explicit even counts still omit it. Named lookup accepts
+`_r`, `_d`, `_r_d` and `_d_r` suffixes without changing the underlying recipe
+identity. Both continuous and nine-bin galleries are generated for review.
+
+Pilot routes that failed fixed arm-balance or CVD separation checks were
+rejected. The delivered search evidence describes the final declared controls;
+the audit does not claim those controls were selected without visual iteration.
+
 Protocol declared October 23, 2026, before candidate construction. This pass
 adds twelve independent aesthetic routes, with two background variants each.
 They remain experimental candidates until the user reviews them. No existing

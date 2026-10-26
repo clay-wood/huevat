@@ -55,10 +55,11 @@ farther in one direction. The other defaults are `hv.multihue()` and
 `hv.spectral()`. Pass `background="dark"` to any palette or gradient factory
 when plotting on a dark background.
 
-The twelve named alternatives are experimental:
+The eighteen named alternatives are experimental:
 
 ```python
 depth = hv.gradient("bathymetry")
+signed_dark_reversed = hv.gradient("balance_d_r")
 print(hv.gradient_names(domain="atmosphere"))
 ```
 
@@ -71,9 +72,12 @@ RGB color. Positions run from 0 to 1.
 print(hv.known_counts(signed))
 print(hv.nearby_counts(signed, 8))
 seven_colors = signed.discrete(7)
+nine_colors = signed.discrete()  # neutral is the fifth color
 ```
 
-`discrete(n)` samples evenly and checks the requested count. Not every count
+`discrete(n=9)` samples evenly and checks the requested count. The odd default
+retains the exact neutral midpoint of diverging and Spectral gradients.
+Explicit even counts omit that midpoint. Not every count
 passes. With `python -m pip install ".[design,matplotlib]"`, you can also use
 `hv.optimized_discrete(signed, 8)` to search for better-spaced colors.
 Choose the data-bin boundaries separately from the color sample positions.

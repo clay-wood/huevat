@@ -206,8 +206,8 @@ class Gradient:
                     condition["cam02_arms"].reverse()
         return QualityReport(data)
 
-    def discrete(self, n, *, context=None):
-        """Validate exactly n endpoint-inclusive bins and return immutable hex colors."""
+    def discrete(self, n=9, *, context=None):
+        """Validate n endpoint-inclusive bins (nine by default, including neutral)."""
         if isinstance(n, bool) or not isinstance(n, int) or n < 2:
             raise ValueError("n must be an integer of at least two")
         context = self._recipe["context"] if context is None else context

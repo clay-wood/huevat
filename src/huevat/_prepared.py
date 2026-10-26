@@ -38,7 +38,7 @@ class _HueGradient(HueGradient):
         from .gradients import _freeze
         return _view(self, _Gradient, recipe=_freeze(proxy_recipe(self._recipe)))
 
-    def discrete(self, n, *, context=None):
+    def discrete(self, n=9, *, context=None):
         palette = self._proxy.discrete(n, context=context)
         report = palette.report.to_dict()
         report.update(family=self.family, algorithm_version="h3-discrete-v1")
@@ -69,7 +69,7 @@ def prepared(factory):
     def call(*args, **kwargs):
         bound = sig.bind(*args, **kwargs); bound.apply_defaults()
         values = bound.arguments
-        standard = values.get("background") in ("light", "dark")
+        standard = values.get("background") in (None, "light", "dark")
         for name, default in defaults.items():
             if name in ("background", "style"): continue
             standard &= values[name] == default
