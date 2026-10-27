@@ -1,8 +1,8 @@
 # Distribution audit — October 25, 2026
 
-Huevat is already an installable Python library and a supported release candidate. The October 26 instruction authorizes release
-engineering and publication to TestPyPI followed by PyPI. All eighteen named
-gradients are supported. Repository visibility is handled separately.
+Huevat 0.1.0 is published on PyPI after a successful TestPyPI rehearsal.
+The October 26 release completed all P0/P1 distribution gates below; the
+repository is public and all eighteen named gradients are supported.
 
 ## Initial repository size
 
@@ -131,9 +131,15 @@ about 2.01 MiB. Small changes to this report and regenerated evidence affect
 exact byte counts. The environment, Git history and research galleries are
 excluded from the wheel.
 
-The release gates in [project_plan.md](../project_plan.md#6-distribution-audit-and-collection-revision--october-25-2026)
-are being completed for the authorized TestPyPI-to-PyPI release.
-See [release instructions and status](RELEASE.md) for the current procedure.
+The P0/P1 release gates in
+[project_plan.md](../project_plan.md#7-pypi-release-completed--october-26-2026)
+are complete. All 21 release jobs passed, including independent extra installs
+on all three operating systems, minimum dependency versions on Python 3.10,
+and clean installs/hash checks on both indexes. The published wheel is
+1,931,255 bytes and source archive is 2,101,990 bytes. See the
+[release record](RELEASE.md#published-release-010) for exact hashes and source
+commit. Data-size/performance optimization and an explicit compatibility
+policy remain optional maintenance work.
 
 ## Packaging references
 

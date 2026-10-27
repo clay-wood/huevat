@@ -238,7 +238,8 @@ Accepted gradient changes for this pass:
   Generate continuous and nine-bin galleries. Human appearance review remains
   separate from product support. All eighteen routes are supported; factory defaults remain unchanged.
 
-Remaining distribution work, in priority order:
+Distribution work identified by the October 25 audit, in priority order
+(release completion is recorded in section 7):
 
 | Priority | Work | Completion gate |
 | --- | --- | --- |
@@ -255,7 +256,7 @@ The existing CI matrix is configuration, not evidence that every remote job
 passed for this revision. Record the actual tested platforms/interpreters and
 the exact wheel/sdist hashes at the release gate.
 
-## 7. PyPI release preparation — October 26, 2026
+## 7. PyPI release completed — October 26, 2026
 
 The maintainer selected stable version **0.1.0**, public GitHub visibility,
 and publication to **TestPyPI first, then PyPI**. All named gradients and the
@@ -276,7 +277,15 @@ audit data retain their historical content and hashes.
 - Removed internal planning/audit documents from source distributions. Product
   documentation, numerical provenance, examples and tests remain packaged.
 
-PyPI/TestPyPI accounts, email verification, two-factor authentication and the
-two pending Trusted Publisher entries must be completed by the maintainer.
-No package upload should be reported as complete until both index verification
-jobs succeed. The release workflow's final results are the publication record.
+The repository is public, both accounts have verified email and two-factor
+authentication, and both Trusted Publishers are configured. Version **0.1.0**
+was published to TestPyPI, verified, then published unchanged to PyPI. All 21
+jobs in [release run 40424052885](https://github.com/clay-wood/huevat/actions/runs/40424052885)
+passed, including clean index installations and exact artifact hash checks.
+Ordinary CI passed on the release commit as well. The live PyPI README and
+all six product images were checked.
+
+See [the release record](docs/RELEASE.md#published-release-010) for the source
+commit, exact archive sizes and SHA-256 hashes. The P0/P1 distribution gates
+above are complete. Optional P2 data-size/performance and compatibility-policy
+improvements remain maintenance work for later versions.

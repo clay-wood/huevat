@@ -7,6 +7,31 @@ Support status is distinct from the scope of a numerical or human assessment.
 
 Maintainer: **Clay Wood** — **clayewood@gmail.com**.
 
+## Published release: 0.1.0
+
+Published on October 26, 2026 (America/Chicago), first to
+[TestPyPI](https://test.pypi.org/project/huevat/0.1.0/) and then to
+[PyPI](https://pypi.org/project/huevat/0.1.0/).
+[Release workflow run 40424052885](https://github.com/clay-wood/huevat/actions/runs/40424052885)
+completed successfully for source commit
+`39f1ab0a8ae2067b9abe66e657eda53e4dc0e89b`. Both indexes contain the same
+archives. Each index verification matched their hashes to the retained build
+artifacts and installed the published wheel in a clean environment.
+
+| Archive | Bytes | SHA-256 |
+| --- | ---: | --- |
+| `huevat-0.1.0-py3-none-any.whl` | 1,931,255 | `6b81403bea8ad5114c4a818d1ea1e5a6cd06b6a1bfba11decf02a42b4cdf0e09` |
+| `huevat-0.1.0.tar.gz` | 2,101,990 | `2008f3cbb26461b1b98160db28318365c63c75bef5ea55cab0cca07c64438fd3` |
+
+All 21 release jobs passed: build/package checks, fifteen independent extra
+installations across Ubuntu, Windows and macOS, minimum dependency versions
+on Python 3.10, and publication/verification on both indexes. Ordinary CI also
+passed on the release commit. The live PyPI description renders the README
+and loads all six product images.
+
+Both account setups and Trusted Publishers are configured. Future versions
+use the release sequence below; ordinary pushes do not publish.
+
 ## First-time account setup
 
 Create and verify accounts on [PyPI](https://pypi.org/account/register/)
