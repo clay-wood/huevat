@@ -84,7 +84,7 @@ jobs:
         with:
           name: python-distributions
           path: dist
-      - run: uv run --locked python tools/check_extras.py --minimum
+      - run: uv run --locked --python 3.10 python tools/check_extras.py --minimum
 
   testpypi:
     needs: [build, extras, minimum-dependencies]
