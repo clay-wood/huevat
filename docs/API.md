@@ -1,5 +1,7 @@
 # API guide
 
+This guide includes the upcoming 0.2 features, available from the current checkout.
+
 ```python
 import huevat as hv
 ```
@@ -17,7 +19,7 @@ Start with the [quick start](QUICKSTART.md) or the [palette gallery](../README.m
 | `multihue(background="light")` | Ordered values with a wider hue range |
 | `spectral(background="light")` | A diverging gradient with several hues |
 | `cyclic(background="light")` | A closed gradient for directions or phase |
-| `gradient(name, background="light")` | One of the twelve experimental named gradients |
+| `gradient(name, background=None)` | One of the eighteen supported named gradients |
 | `gradient_names(family=None, domain=None)` | List named gradients, optionally filtered |
 | `gradient_info(name)` | Read a named gradient's intended uses and direction |
 

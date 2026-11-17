@@ -47,6 +47,9 @@ dev = ["pytest>=8", "build>=1", "pip>=24", "twine>=6"]
 [tool.setuptools.dynamic]
 version = {attr = "huevat._version.__version__"}
 
+[tool.uv]
+cache-keys = [{file = "pyproject.toml"}, {file = "src/huevat/_version.py"}]
+
 [tool.setuptools.packages.find]
 where = ["src"]
 

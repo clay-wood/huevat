@@ -9,7 +9,8 @@ and dashes. Matplotlib, Plotly and UltraPlot are supported.
 
 ## Compare suggestions
 
-Install from PyPI with `python -m pip install "huevat[design,matplotlib]"`.
+For the new 0.2 features below, install this checkout with
+`python -m pip install ".[design,matplotlib]"`.
 Replace `matplotlib` with `plotly` or `ultraplot` for those libraries.
 
 ```python
