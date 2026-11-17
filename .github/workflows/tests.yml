@@ -33,6 +33,7 @@ jobs:
       - run: uv sync --locked --all-extras --python 3.12
       - run: uv run --locked --all-extras --python 3.12 pytest
       - run: uv run --locked --all-extras --python 3.12 python tools/verify.py --research
+      - run: uv run --locked --all-extras --python 3.12 python tools/build_extensions.py
       - run: uv run --locked --all-extras --python 3.12 python tools/build_adapters.py --check
       - run: uv run --locked --all-extras --python 3.12 python tools/build_collection.py --check
       - run: uv run --locked --all-extras --python 3.12 python tools/build_doctor.py --check
@@ -40,3 +41,19 @@ jobs:
       - run: uv run --locked --all-extras --python 3.12 python examples/quickstart.py --backend matplotlib
       - run: uv run --locked --all-extras --python 3.12 python examples/quickstart.py --backend plotly
       - run: uv run --locked --all-extras --python 3.12 python examples/quickstart.py --backend ultraplot
+      - run: uv run --locked --all-extras --python 3.12 python examples/advanced.py
+
+  julia:
+    runs-on: ubuntu-latest
+    env:
+      GKSwstype: '100'
+      JULIA_NUM_PRECOMPILE_TASKS: '2'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: julia-actions/setup-julia@v2
+        with:
+          version: '1.10'
+      - uses: julia-actions/cache@v2
+      - run: julia --project=julia/examples -e 'using Pkg; Pkg.develop(path="julia/Huevat"); Pkg.instantiate()'
+      - run: julia --project=julia/examples julia/Huevat/test/runtests.jl
+      - run: julia --project=julia/examples julia/examples/render.jl

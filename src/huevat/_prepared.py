@@ -75,6 +75,7 @@ def prepared(factory):
             standard &= values[name] == default
         if "n" in values:
             n = values["n"]
+            if values.get('style') in ('earth','gem'):standard &= isinstance(n,int) and n<=8
             standard &= type(n) is int and 2 <= n <= 12
         if standard:
             key = tuple((name,type(value),value) for name,value in values.items())

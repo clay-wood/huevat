@@ -21,7 +21,10 @@ def write_json(path, data):
 def digest(path): return hashlib.sha256(path.read_bytes().replace(b'\r\n', b'\n')).hexdigest()
 
 
-def registry():
+def registry(*,package_version=None):
+    if package_version is None:
+        # Reproduce the released registry independently of the next source version.
+        package_version=load_data('release-v1.json')['package_version']
     designs = {}
     def entry(recipe, background, factory, role, *, is_reversed=False, **kwargs):
         identifier = recipe['identifier']
@@ -52,14 +55,14 @@ def registry():
         name,bg=identifier.removeprefix('h4b-').rsplit('-v',1)[0].rsplit('-',1)
         entry(variant['recipe'],bg,'gradient','legacy',is_reversed=variant['reversed'],name=name,
               review='superseded collection route; exact recipe retained')
-    return {'version':'h4-release-v1', 'package_version':hv.__version__,
+    return {'version':'h4-release-v1', 'package_version':package_version,
         'policy':'keep current defaults including Clearer; named routes are supported collection designs',
         'review_scope':'release inclusion is not a human-readability certificate; frozen reports unchanged',
         'designs':dict(sorted(designs.items()))}
 
 
 def freeze_registry():
-    write_json(RESOURCE, registry())
+    write_json(RESOURCE, registry(package_version=hv.__version__))
     path = ROOT/'src/huevat/data/manifest-v1.json'
     data = json.loads(path.read_text()); data['sha256_lf'][RESOURCE.name] = digest(RESOURCE)
     write_json(path, data)
@@ -138,7 +141,7 @@ def render(results):
     </style><main><div class="kicker">Huevat</div><h1>Colors for scientific figures.</h1>
     <p>Palettes and gradients for Matplotlib, Plotly and UltraPlot, with a figure doctor for coordinated colors, markers and dashes.</p>
     <div class="swatch" style="background:''' + html.escape(pcss, quote=True) + '''"></div>
-    <p><b>Clearer is the default categorical palette.</b> Choose light or dark variants to suit your figure. The eighteen additional named gradients are supported alternatives.</p>
+    <p><b>Core is the default categorical palette.</b> Choose light or dark variants to suit your figure. The eighteen additional named gradients are supported alternatives.</p>
     <pre>import huevat as hv
 palette = hv.categorical(6)
 gradient = hv.diverging()
@@ -150,7 +153,7 @@ restored = hv.load_export(open("palette.json", encoding="utf-8").read()).design<
     <h2>More gradients</h2><img src="../../docs/images/gradients.png" alt="The eighteen supported gradients on light and dark backgrounds">
     <p>Additional choices for general plots, seismic data, terrain, depth and atmospheric fields.</p>
     <h2>Save and reuse</h2><p>JSON saves a design and its labels for reuse. CSV and hex give you color lists; CSS gradients are also available.</p>
-    <p><a href="clearer.json">Six labeled Clearer colors</a> · <a href="signed.json">Exact signed gradient</a> · <a href="signed-seven.csv">Seven-color CSV</a> · <a href="signed-seven.json">Seven-color recipe</a> · <a href="sequential-light.css">Continuous CSS</a></p>
+    <p><a href="clearer.json">Six labeled Core colors</a> · <a href="signed.json">Exact signed gradient</a> · <a href="signed-seven.csv">Seven-color CSV</a> · <a href="signed-seven.json">Seven-color recipe</a> · <a href="sequential-light.css">Continuous CSS</a></p>
     <p><a href="../../README.md">Palette gallery</a> · <a href="../../docs/API.md">API guide</a> · <a href="../../docs/RELEASE_NOTES.md">Release notes</a></p>
     <small>Review your figures at their intended size.</small></main></html>'''
     (OUTPUT/'index.html').write_text(page, encoding='utf-8', newline='\n'); assets.append('index.html')

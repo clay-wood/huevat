@@ -37,14 +37,20 @@ def main():
             gradients+=1
             recipe=dict(source._recipe)
             if source.family in ('multihue','spectral'):recipe=proxy_recipe(recipe)
-            assert certify(recipe)['passed'],identifier
+            if source.family=='cyclic':
+                from huevat.cyclic import validate
+                assert validate(recipe,measure=args.research)['screen_pass'],identifier
+            else:assert certify(recipe)['passed'],identifier
             assert all(source.at(t)==loaded.at(t) for t in (0,.125,.5,.875,1)),identifier
             assert source.reversed().at(.25)==source.at(.75),identifier
             for context in ('filled-fields','data-marks'):
                 for n in hv.known_counts(source,context=context):
                     assert source.discrete(n,context=context).report.screen_pass,(identifier,context,n)
             if args.research:
-                if source.family in ('multihue','spectral'):
+                if source.family=='cyclic':
+                    from huevat.cyclic import validate
+                    report=validate(recipe)
+                elif source.family in ('multihue','spectral'):
                     from huevat.design_h3 import validate_ordered
                     report=validate_ordered(source)
                 else:
@@ -55,7 +61,9 @@ def main():
             palettes+=1
             assert loaded.colors==source.colors and len(set(source.colors))==len(source),identifier
             if args.research:
-                if source.report.get('style')=='clearer':
+                if source.report.get('style') in ('earth','gem'):
+                    from huevat.styles import validate as validate_categorical
+                elif source.report.get('style')=='clearer':
                     from huevat.design_categorical import validate_categorical
                 else:
                     from huevat.design_h3 import validate_categorical

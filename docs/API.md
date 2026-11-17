@@ -10,12 +10,14 @@ Start with the [quick start](QUICKSTART.md) or the [palette gallery](../README.m
 
 | Function | Use |
 | --- | --- |
-| `categorical(n, background="light", style="clearer")` | Distinct categories; default palettes cover 2–12 colors |
+| `categorical(n, background="light", style="core")` | Core covers 2–12 colors; Earth and Gem cover 2–8 |
+| `categorical_names()` | List categorical styles; `clearer` remains an alias for Core |
 | `sequential(background="light")` | Ordered values from low to high |
 | `diverging(background="light")` | Values on either side of a center |
 | `multihue(background="light")` | Ordered values with a wider hue range |
 | `spectral(background="light")` | A diverging gradient with several hues |
-| `gradient(name, background=None)` | One of eighteen supported gradients; defaults to light, `_d` selects dark, `_r` reverses |
+| `cyclic(background="light")` | A closed gradient for directions or phase |
+| `gradient(name, background="light")` | One of the twelve experimental named gradients |
 | `gradient_names(family=None, domain=None)` | List named gradients, optionally filtered |
 | `gradient_info(name)` | Read a named gradient's intended uses and direction |
 
@@ -28,21 +30,19 @@ strings in `.colors`. A gradient provides RGB tuples through `.at(t)`.
 | --- | --- |
 | `g.at(t)` | Read a color at a position from 0 to 1 |
 | `g.reversed()` | Reverse a gradient |
-| `g.discrete(n=9, context=None)` | Select evenly spaced colors; nine bins include a diverging neutral |
+| `g.discrete(n=9, context=None)` | Select evenly spaced colors and check that count |
 | `known_counts(g)` | List prepared counts that passed the checks |
 | `nearby_counts(g, n, context=None)` | Find tested counts near the one requested |
-| `optimized_discrete(g, n, context=None, grid=257, max_seconds=10)` | Search for better-spaced positions; requires `design` |
+| `optimized_discrete(g, n, context=None, grid=257, max_seconds=10)` | Prepared optimized colors, or a new search with `design` |
+| `count_options(g, n, radius=2, context=None, max_seconds=10)` | Check nearby uniform/optimized counts; unknown results stay distinct from failures |
 | `summarize(source)` | Read a short summary of the color checks |
 | `source.report` | Read the full numerical results |
 
 Some counts fail the color checks; an unlisted count has not necessarily failed.
 Sample positions do not set physical data-bin boundaries.
-Explicit even counts retain their requested size and omit the neutral midpoint.
-Named suffixes compose in either order: `gradient("balance_d_r")` equals
-`gradient("balance", background="dark").reversed()`. `_d` conflicts with an
-explicit `background="light"`; repeated suffixes are invalid. `gradient_info`
-accepts suffixes and returns the base route's metadata; `gradient_names` lists
-base names.
+Optimized counts 5, 7 and 8 for the four original families are prepared for
+both backgrounds and need no `design` extra. Cyclic selections are evenly
+spaced around the loop and omit its repeated endpoint.
 
 ## Save and load
 
@@ -78,7 +78,7 @@ You can also save with `.to_recipe()` or `.to_json()` and restore with
 
 `design_ids(family=None, background=None, role=None)` lists saved designs.
 `design_info(id)` describes one; `get_design(id)` loads it. Roles are `default`,
-`legacy` and `collection`. Saving an ID lets you request the same design later.
+`legacy`, `collection` and `experimental`. Saving an ID lets you request the same design later.
 
 ## Plotting and Figure doctor
 
@@ -89,6 +89,24 @@ Figure doctor provides `inspect`, `diagnose`, `propose`, `preview`, `apply` and
 `load_proposal`. Its suggestions require the `design` extra. See the
 [Figure doctor guide](FIGURE_DOCTOR.md).
 
+## Custom searches with progress and cancellation
+
+```python
+job = hv.start_search("categorical", n=6, colors=preferred_colors,
+                      progress=lambda p: print(p["stage"], p["elapsed_seconds"]))
+palette = job.result(timeout=60)
+```
+
+`start_search` also accepts `sequential`, `diverging`, `multihue`, `spectral`
+and `optimized`. Pass the corresponding factory options; optimized searches
+take `gradient=g, n=8`. Use `job.poll()` to read progress, `job.cancel()` to
+stop the separate search process, and `job.result()` to retrieve the checked
+design. A timeout leaves the job running; cancel it explicitly or use the job
+as a context manager. Progress shows the stage and elapsed time, not a guessed
+percentage. Custom generation still requires `design`.
+
+Native Julia plotting is described in the [Julia guide](JULIA.md).
+
 ## Errors
 
 `ValueError` indicates an invalid argument. `QualityError` means a color check
@@ -98,3 +116,6 @@ search ended without finding a passing result. Color-check errors include
 their numerical report.
 
 The [methods notes](METHODS_H1.md) describe the checks and their limits.
+
+Named gradients accept `_r`, `_d`, `_d_r` and `_r_d` suffixes for reversal
+and dark variants. A dark suffix conflicts with `background="light"`.

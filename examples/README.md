@@ -94,3 +94,7 @@ To redraw the README's palette images, run `python examples/gallery.py`.
 
 [Palette gallery](../README.md) · [Quick start](../docs/QUICKSTART.md) ·
 [Figure doctor](../docs/FIGURE_DOCTOR.md)
+
+The [extended example](advanced.py) covers scalar recoloring, cyclic phase,
+paired uncertainty bands and proof sheets. Native [Makie and Plots examples](../docs/JULIA.md)
+are included in the Julia package.

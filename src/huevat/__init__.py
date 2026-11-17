@@ -25,9 +25,12 @@ from .gradients import (Gradient, Palette, QualityReport, QualityError,
                         SearchExhaustedError, ConstraintConflictError,
                         sequential, diverging)
 from .families import multihue, spectral
-from .categorical import categorical
+from .styles import categorical, categorical_names
 from .sampling import SampledPalette, optimized_discrete, known_counts, summarize
-from .catalog import gradient, gradient_names, gradient_info, load_recipe
+from .catalog import gradient, gradient_names, gradient_info
+from .cyclic import cyclic, load_recipe
+from .selections import optimized_discrete, known_counts, count_options
+from .search import start_search, SearchJob
 from .library import design_ids, design_info, get_design, nearby_counts
 from .exports import Export, LoadedExport, export, load_export
 from ._prepared import prepared as _prepared, loader as _loader
@@ -51,7 +54,7 @@ __all__ = [
     "reference", "references", "load_profile",
     "Gradient", "Palette", "QualityReport", "QualityError", "SearchExhaustedError",
     "ConstraintConflictError", "sequential", "diverging", "categorical", "multihue",
-    "spectral", "load_recipe",
+    "spectral", "load_recipe", "categorical_names", "cyclic", "count_options", "start_search", "SearchJob",
     "SampledPalette", "optimized_discrete", "known_counts", "summarize",
     "gradient", "gradient_names", "gradient_info",
     "design_ids", "design_info", "get_design", "nearby_counts",

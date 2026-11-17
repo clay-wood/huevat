@@ -17,6 +17,7 @@ artifacts/
 !/tests/test_space.py
 !/tests/test_release.py
 !/tests/test_doctor.py
+!/tests/test_extensions.py
 
 # Current maintenance commands only. Old builders/profilers are reproducible
 # from the pre-cleanup snapshot and remain available as ignored local files.
@@ -31,6 +32,10 @@ artifacts/
 !/tools/collection_fields.py
 !/tools/build_doctor.py
 !/tools/build_release.py
+!/tools/build_extensions.py
+
+# Julia package resolution and compiled caches are local.
+/julia/**/Manifest.toml
 
 # Keep the current product galleries; bulky historical trials are local artifacts.
 /research/*

@@ -104,6 +104,7 @@ def _selection(design, n, context, source):
 
 def _positions(palette, selection):
     if isinstance(palette, SampledPalette): return tuple(palette.positions)
+    if selection and palette.report.get('family')=='cyclic':return tuple(i/len(palette) for i in range(len(palette)))
     if selection: return tuple(i/(len(palette)-1) for i in range(len(palette)))
     return (None,)*len(palette)
 
@@ -205,7 +206,7 @@ def load_export(value, *, validate=True):
             raise ValueError("Invalid selection count/context")
         if validate: design = source.discrete(n, context=context)
         else:
-            design = Palette(tuple(to_hex(source.at(i/(n-1))) for i in range(n)),
+            design = Palette(tuple(to_hex(source.at(i/(n if source.family=='cyclic' else n-1))) for i in range(n)),
                 QualityReport({"screen_pass": False, "outcome": "unvalidated-export-selection", "context": context,
                                "approved_default": False, "background": source.background}))
     if isinstance(design, Palette):

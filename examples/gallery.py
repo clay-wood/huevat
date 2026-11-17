@@ -50,13 +50,15 @@ def main():
     args = parser.parse_args()
     args.output.mkdir(parents=True, exist_ok=True)
     defaults = [
-        (f"Clearer · {n} colors", lambda bg, n=n: hv.categorical(n, background=bg), True)
+        (f"Core · {n} colors", lambda bg, n=n: hv.categorical(n, background=bg), True)
         for n in (4, 6, 8)
     ]
+    defaults.extend((f'{style.title()} · 6 colors',lambda bg,style=style:hv.categorical(6,style=style,background=bg),True)
+                    for style in ('earth','gem'))
     defaults.extend(
         (label, lambda bg, factory=factory: factory(background=bg), False)
         for label, factory in (("Sequential", hv.sequential), ("Diverging", hv.diverging),
-                               ("Multi-hue", hv.multihue), ("Spectral", hv.spectral))
+                               ("Multi-hue", hv.multihue), ("Spectral", hv.spectral), ('Cyclic',hv.cyclic))
     )
     named = [(name, lambda bg, name=name: hv.gradient(name, background=bg), False)
              for name in hv.gradient_names()]

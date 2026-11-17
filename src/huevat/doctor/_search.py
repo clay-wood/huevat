@@ -37,6 +37,7 @@ def hypothetical(scene, assignments):
         if m["line_visible"] and style["dash"] == "none": raise ValueError("Repair cannot remove an existing line")
         if m["kind"] == "scatter" and style["marker"] == "none": raise ValueError("Repair cannot remove scatter markers")
         for c in m["channels"]: c["rgb"] = list(from_hex(style["color"]))
+        if m['kind'] in ('region','band','bar'):continue
         if style["marker"] != "none" and not m["marker_visible"]:
             m["channels"].append({"kind": "face", "rgb": list(from_hex(style["color"])), "alpha": m["channels"][0]["alpha"]})
         m["marker"], m["marker_visible"] = style["marker"], style["marker"] != "none"
@@ -44,7 +45,7 @@ def hypothetical(scene, assignments):
     return result
 
 
-def negotiate(scene, locked, assignments):
+def negotiate(scene, locked, assignments, palette=None):
     data = scene.to_dict()
     if not scene.marks: raise ValueError("No supported visible line/scatter marks to repair; inspect coverage")
     reserved, locks = _preferences(locked, assignments)
@@ -54,7 +55,22 @@ def negotiate(scene, locked, assignments):
     # Prepared palette selection only. Actual panel backgrounds are audited
     # independently; this choice is not a custom-background certification.
     bg = "dark" if sum(srgb_to_oklab(b)[0] for b in backgrounds)/len(backgrounds) < .55 else "light"
-    palette = list(categorical(max(2, len(categories)), background=bg))
+    if palette is None:
+        palette = list(categorical(max(2, len(categories)), background=bg))
+    else:
+        from .. import categorical as choose
+        from ..gradients import Palette
+        if isinstance(palette,str):
+            if palette=='custom':
+                preferences=[]
+                for key in categories:
+                    channels=[c for m in data['marks'] if m['category']==key for c in m['channels']]
+                    preferences.append(to_hex(channels[0]['rgb']) if channels else locks[key].get('color','#4379a3'))
+                palette=choose(max(2,len(categories)),colors=preferences if len(preferences)>1 else preferences*2,background=bg)
+            else:palette=choose(max(2,len(categories)),style=palette,background=bg)
+        if not isinstance(palette,Palette) or len(palette)!=max(2,len(categories)) or not palette.report.screen_pass:
+            raise ValueError('Supply a checked palette with one color per reserved category')
+        palette=list(palette.colors)
     originals = {}
     for key in categories:
         colors = [c["rgb"] for m in data["marks"] if m["category"] == key for c in m["channels"]]
@@ -84,6 +100,9 @@ def negotiate(scene, locked, assignments):
         change = sum(math.dist(originals[k], points[v][0]) for k, v in colors.items())
         separation = sum(e["weight"]*distance(colors[e["categories"][0]], colors[e["categories"][1]]) for e in edges)
         return change if name in ("closer", "simple") else -separation+.1*change
+    if data.get('includes_fills'):
+        from ._filled import audit as audit_scene
+    else:audit_scene=audit
     results = []
     for name in ("closer", "separation", "simple"):
         colors = initial.copy()
@@ -101,7 +120,7 @@ def negotiate(scene, locked, assignments):
             # First inspect color/grayscale conflicts with minimal encodings.
             for k in scatter: styles[k]["marker"] = "circle"
             for k, fields in locks.items(): styles[k].update(fields)
-            report = audit(hypothetical(data, styles))
+            report = audit_scene(hypothetical(data, styles))
             adjacency = {k: set() for k in categories}
             for pair in report["pairs"]:
                 if pair["color_confusable"] or pair["grayscale_confusable"]:
@@ -120,7 +139,7 @@ def negotiate(scene, locked, assignments):
                 styles[k].update(marker=MARKERS[i % 6], dash=DASHES[(i//6+i) % 4])
         for k, fields in locks.items(): styles[k].update(fields)
         hypothetical_scene = hypothetical(data, styles)
-        report = audit(hypothetical_scene)
+        report = audit_scene(hypothetical_scene)
         report.update(status="color-screen-passing; visual review pending" if report["color_screen_pass"] else "color screen failed; review redundant encodings",
                       objective=name, search="deterministic prepared-palette permutations; at most 12 local-swap passes",
                       locked=locks, reserved_categories=categories,

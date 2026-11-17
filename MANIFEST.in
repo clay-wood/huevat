@@ -6,7 +6,12 @@ recursive-include licenses *.txt
 prune tests
 prune tools
 include tests/test_core.py tests/test_space.py tests/test_release.py tests/test_doctor.py
+include tests/test_extensions.py
 recursive-include examples *.py *.md
+recursive-include julia *.jl *.toml *.json *.md
+include julia/Huevat/LICENSE
+recursive-include julia/Huevat/licenses *.txt
+global-exclude Manifest.toml
 prune research
 prune artifacts
 recursive-include src/huevat/data *.json

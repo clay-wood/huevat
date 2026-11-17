@@ -1,0 +1,9 @@
+[deps]
+Huevat = "38a98fb1-e2e9-4c2f-8faf-70cc374c7f42"
+CairoMakie = "13f3f980-e62b-5c42-98c6-ff1f3baf88f0"
+Plots = "91a5bcdd-55d7-5caf-9e0b-520d859cae80"
+
+[compat]
+julia = "1.10"
+CairoMakie = "0.15"
+Plots = "1"

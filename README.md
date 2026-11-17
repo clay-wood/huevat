@@ -1,14 +1,29 @@
 # Huevat
 
-Scientific color palettes and gradients for **Matplotlib, Plotly and UltraPlot**.
+Scientific color palettes and gradients for **Matplotlib, Plotly, UltraPlot, Makie.jl and Plots.jl**.
 Choose colors for categories, continuous fields, or values above and below a center.
 
-![Clearer categorical palettes and the four default gradients on light and dark backgrounds](https://raw.githubusercontent.com/clay-wood/huevat/main/docs/images/palettes.png)
+![Core, Earth and Gem palettes and continuous gradients on light and dark backgrounds](https://raw.githubusercontent.com/clay-wood/huevat/main/docs/images/palettes.png)
 
-Clearer is the default categorical palette. Use `background="dark"` for dark figures.
+`core` is the default categorical palette, with the same colors previously
+called Clearer. Use `background="dark"` for dark figures.
+
+| Set | Appearance | Prepared counts |
+| --- | --- | --- |
+| `core` | Balanced blue, teal, ochre, coral and purple | 2–12 |
+| `earth` | Muted rust, blue, olive, plum and green | 2–8 |
+| `gem` | Indigo, rose, teal, gold and violet | 2–8 |
+
+Each count is checked separately on both backgrounds. Earth and Gem are new
+alternatives; `style="clearer"` continues to work for saved code.
+
+```python
+import huevat as hv
+palette = hv.categorical(6, style="earth")  # or "core" or "gem"
+```
 
 [Quick start](https://github.com/clay-wood/huevat/blob/main/docs/QUICKSTART.md) · [Plotting examples](https://github.com/clay-wood/huevat/blob/main/examples/README.md) ·
-[Figure doctor](https://github.com/clay-wood/huevat/blob/main/docs/FIGURE_DOCTOR.md) · [API guide](https://github.com/clay-wood/huevat/blob/main/docs/API.md) ·
+[Figure doctor](https://github.com/clay-wood/huevat/blob/main/docs/FIGURE_DOCTOR.md) · [API guide](https://github.com/clay-wood/huevat/blob/main/docs/API.md) · [Julia](https://github.com/clay-wood/huevat/blob/main/docs/JULIA.md) ·
 [Release notes](https://github.com/clay-wood/huevat/blob/main/docs/RELEASE_NOTES.md)
 
 ## Recent updates
@@ -31,15 +46,15 @@ and [installation and release guide](https://github.com/clay-wood/huevat/blob/ma
 
 ## Install
 
-Install Huevat from PyPI with your plotting library:
+The new styles and figure extensions are in the upcoming 0.2 source version. From this checkout, install with your plotting library:
 
 ```sh
-python -m pip install "huevat[matplotlib]"
-python -m pip install "huevat[plotly]"
-python -m pip install "huevat[ultraplot]"
+python -m pip install ".[matplotlib]"
+python -m pip install ".[plotly]"
+python -m pip install ".[ultraplot]"
 ```
 
-Requires Python 3.10+. For colors alone, use `python -m pip install huevat`.
+Requires Python 3.10+. The published 0.1 release remains available with `python -m pip install huevat`; the new styles and figure extensions require this checkout.
 
 ## Make a plot
 
@@ -73,7 +88,7 @@ x = np.linspace(0, 1, 25)
 for i, label in enumerate(["Blue", "Teal", "Ochre", "Coral", "Purple"]):
     axes[2].plot(x, .12 * i + .08 * np.sin(2 * np.pi * x + i / 2),
                  label=label, markevery=4)
-axes[2].set_title("Clearer · specified markers and dashes")
+axes[2].set_title("Core · specified markers and dashes")
 axes[2].legend(fontsize=8, loc="upper right")
 plt.show()
 ```
@@ -126,8 +141,9 @@ assert nine_colors.colors[4] == hv.to_hex(signed.at(0.5))
 ```
 
 Check `hv.known_counts(gradient)` for tested counts.
-`hv.optimized_discrete(gradient, n)` searches for better-spaced colors and
-requires the `design` extra.
+`hv.optimized_discrete(gradient, n)` chooses better-spaced colors. Counts 5, 7 and 8 for the original four families are prepared; other requests need `design`. `hv.count_options(gradient, n)` checks nearby counts.
+
+For directions and phase, use `hv.cyclic()`. Its ends join smoothly, and discrete colors omit the duplicate endpoint.
 
 ![Nine-bin diverging gradients with a visible neutral midpoint](https://raw.githubusercontent.com/clay-wood/huevat/main/docs/images/gradient-bins.png)
 
@@ -140,7 +156,7 @@ keep the same style across panels.
 | --- | --- |
 | ![Original figure with similar colors](https://raw.githubusercontent.com/clay-wood/huevat/main/research/doctor-v1/matplotlib-light-before.png) | ![Figure doctor proposal with distinct colors, markers and dashes](https://raw.githubusercontent.com/clay-wood/huevat/main/research/doctor-v1/matplotlib-light-separation.png) |
 
-Install with `python -m pip install "huevat[design,matplotlib]"`, or replace
+Install with `python -m pip install ".[design,matplotlib]"`, or replace
 `matplotlib` with `plotly` or `ultraplot`.
 
 ```python
@@ -155,6 +171,38 @@ change.undo()
 
 [Figure doctor guide](https://github.com/clay-wood/huevat/blob/main/docs/FIGURE_DOCTOR.md) explains previews, fixed colors and
 keeping styles across figures. Review the result at the size you intend to use.
+
+It can also compare palette sets, recolor scalar fields and produce proof sheets:
+
+```python
+options = doctor.propose(scene, palettes=("core", "earth", "gem"))
+doctor.proof_sheet(fig, "proof.pdf", width_mm=85)
+```
+
+Use `doctor.inspect(fig, fills=True)` to include uniform bars, regions and bands.
+Use `doctor.field_preview(fig, gradient, center=0)` to preview a signed field.
+The [extended examples](https://github.com/clay-wood/huevat/blob/main/examples/advanced.py) cover these operations and paired
+line/band styles. Custom searches can run with progress and cancellation through
+`hv.start_search(...)`; see the [API guide](https://github.com/clay-wood/huevat/blob/main/docs/API.md).
+
+## Julia
+
+The native Julia package uses the same colors and gradients without Python.
+
+![Native Makie figure with a signed field and the three categorical sets](https://raw.githubusercontent.com/clay-wood/huevat/main/docs/images/makie.png)
+
+```julia
+using Huevat, CairoMakie
+
+colors = Huevat.categorical(6; style=:earth)
+g = Huevat.gradient(:diverging)
+data = [sin(x) * cos(y) for x in -3:0.1:3, y in -2:0.1:2]
+fig = Figure()
+ax = Axis(fig[1, 1])
+heatmap!(ax, data; Huevat.makie(g; limits=(-2, 8), center=0)...)
+```
+
+[Julia installation and Makie/Plots examples](https://github.com/clay-wood/huevat/blob/main/docs/JULIA.md).
 
 ## Save colors
 

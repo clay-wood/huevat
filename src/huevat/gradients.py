@@ -48,6 +48,13 @@ class SearchExhaustedError(QualityError):
 
 @dataclass(frozen=True)
 class QualityReport(Mapping):
+    def __deepcopy__(self,memo):
+        # Native figure copies cannot pickle MappingProxyType. Thaw first and
+        # also copy any non-JSON extension values supplied by callers.
+        from copy import deepcopy
+        result=QualityReport(deepcopy(_thaw(self._values),memo))
+        memo[id(self)]=result
+        return result
     _values: Mapping
 
     def __post_init__(self):

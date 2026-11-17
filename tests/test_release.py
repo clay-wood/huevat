@@ -114,8 +114,8 @@ def test_collection_previews_have_no_overlay_lines(monkeypatch):
 
 
 def test_registry_roles_exact_hashes_and_immutable_cached_objects():
-    assert len(hv.design_ids()) == 94
-    assert {role:len(hv.design_ids(role=role)) for role in ('default','legacy','collection')} == {'default':30,'legacy':28,'collection':36}
+    assert len(hv.design_ids()) == 124
+    assert {role:len(hv.design_ids(role=role)) for role in ('default','legacy','collection','experimental')} == {'default':30,'legacy':28,'collection':36,'experimental':30}
     for identifier in hv.design_ids():
         info = hv.design_info(identifier); design = hv.get_design(identifier)
         assert info['identifier'] == identifier
@@ -128,7 +128,8 @@ def test_registry_roles_exact_hashes_and_immutable_cached_objects():
         assert fingerprint(_thaw(body)) == info['recipe_sha256']
         assert info['reversed'] == getattr(design,'_reverse',False)
         with pytest.raises(TypeError): info['role'] = 'invented'
-    for kwargs in ({'family':'cyclic'},{'background':'blue'},{'role':'best'}):
+    assert len(hv.design_ids(family='cyclic'))==2
+    for kwargs in ({'family':'invalid'},{'background':'blue'},{'role':'best'}):
         with pytest.raises(ValueError): hv.design_ids(**kwargs)
     for identifier in ('missing', None):
         with pytest.raises(ValueError): hv.get_design(identifier)
@@ -138,7 +139,7 @@ def test_release_discovery_does_not_load_large_resources():
     code = '''
 import sys
 import huevat as h
-assert len(h.design_ids()) == 94
+assert len(h.design_ids()) == 124
 assert h.design_info(h.design_ids()[0])
 from huevat.gradients import _ordered_data
 from huevat.families import _prepared_data

@@ -4,7 +4,7 @@ import json
 
 from .gradients import (Gradient,Palette,QualityReport,QualityError,ConstraintConflictError,
                         _finite,_arc_bound,_freeze,_thaw,fingerprint)
-from .categorical import load_recipe as _load_previous
+from .styles import load_recipe as _load_previous
 from .space import to_hex
 
 

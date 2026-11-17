@@ -190,7 +190,7 @@ def main():
     a{color:#246b7c}footer{font-size:13px;color:#5e6870}@media(max-width:850px){.grid{grid-template-columns:1fr}h1{font-size:34px}}
     </style><main><header><div class="eyebrow">Huevat · H4c</div><h1>Give a figure a clearer voice.</h1>
     <p>Inspect the existing plot. Compare three color, marker and dash choices. Preview on a copy. Apply only when you choose.</p>
-    <p>Repeated labels keep their identity across panels, including when categories are reordered or absent. The selected Clearer palette remains the starting point.</p></header>
+    <p>Repeated labels keep their identity across panels, including when categories are reordered or absent. The selected Core palette remains the starting point.</p></header>
     <pre>from huevat import doctor
 scene = doctor.inspect(fig)
 closer, separation, simple = doctor.propose(scene)

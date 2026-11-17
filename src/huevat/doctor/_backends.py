@@ -350,7 +350,7 @@ def _target(fig, mark):
     bits = mark["key"].split("/")
     if bits[0] == "trace": return fig.data[int(bits[1])]
     ax = fig.axes[int(bits[1])]
-    return (ax.lines if bits[2] == "line" else ax.collections)[int(bits[3])]
+    return (ax.lines if bits[2] == "line" else ax.patches if bits[2]=='patch' else ax.collections)[int(bits[3])]
 
 
 def _set_mpl(obj, mark, style):
@@ -358,6 +358,8 @@ def _set_mpl(obj, mark, style):
     color = style["color"]
     channels = {c["kind"]: c for c in mark["channels"]}
     def rgba(kind): return (*from_hex(color), channels.get(kind, mark["channels"][0])["alpha"])
+    if mark['kind'] in ('region','band','bar'):
+        obj.set_facecolor(rgba('face'));return
     if mark["kind"] == "line":
         if "line" in channels: obj.set_color(rgba("line"))
         if mark["line_visible"]:
@@ -389,6 +391,11 @@ def _legend(fig, scene, assignments):
             if marks and label in assignments:
                 from matplotlib.lines import Line2D
                 from matplotlib.collections import PathCollection
+                from matplotlib.patches import Patch
+                if isinstance(obj,Patch):
+                    from matplotlib.colors import to_rgba
+                    old=to_rgba(obj.get_facecolor())
+                    obj.set_facecolor((*from_hex(assignments[label]['color']),old[3]));continue
                 if isinstance(obj, (Line2D, PathCollection)):
                     mark = deepcopy(marks[0]); mark["kind"] = "line" if isinstance(obj, Line2D) else "scatter"
                     _set_mpl(obj, mark, assignments[label])
@@ -404,6 +411,8 @@ def mutate(fig, scene, assignments):
                 alpha = channels.get(kind, m["channels"][0]).get("color_alpha", 1.)
                 rgb = [round(v*255) for v in from_hex(style["color"])]
                 return f"rgba({rgb[0]},{rgb[1]},{rgb[2]},{alpha})"
+            if m['kind']=='bar':obj.marker.color=color('face');continue
+            if m['kind']=='band':obj.fillcolor=color('face');continue
             if m["line_visible"]:
                 if style["dash"] == "none": raise ValueError("Repair cannot remove an existing line")
                 obj.line.update(color=color("line"), dash=style["dash"])
@@ -427,7 +436,7 @@ def snapshot(fig, scene):
         states = [(obj, deepcopy(obj.to_plotly_json())) for obj in [_target(fig, m) for m in scene["marks"]]]
         def restore():
             for obj, data in states:
-                for field in ("line", "marker", "mode"):
+                for field in (("marker",) if obj.type=='bar' else ("line", "marker", "mode", "fillcolor")):
                     obj[field] = deepcopy(data.get(field))
         return restore
     objects = [_target(fig, m) for m in scene["marks"]]
@@ -436,6 +445,8 @@ def snapshot(fig, scene):
         if legend: objects.extend(getattr(legend, "legend_handles", []))
     from matplotlib.lines import Line2D
     from matplotlib.collections import PathCollection
+    from matplotlib.collections import PolyCollection,PatchCollection
+    from matplotlib.patches import Patch
     states = []
     for obj in objects:
         if isinstance(obj, Line2D):
@@ -451,6 +462,8 @@ def snapshot(fig, scene):
         elif isinstance(obj, PathCollection):
             states.append((obj, {"paths": deepcopy(obj.get_paths()), "facecolor": obj.get_facecolors().copy(),
                                  "edgecolor": obj.get_edgecolors().copy()}))
+        elif isinstance(obj,(PolyCollection,PatchCollection,Patch)):
+            states.append((obj,{'facecolor':deepcopy(obj.get_facecolor()),'edgecolor':deepcopy(obj.get_edgecolor()),'alpha':obj.get_alpha()}))
     def restore():
         for obj, data in states:
             for name, value in data.items(): getattr(obj, "set_"+name)(deepcopy(value))
@@ -482,7 +495,9 @@ def simulate_copy(fig, scene, condition, report):
                     rgb = [v*c["alpha"]+b*(1-c["alpha"]) for v, b in zip(c["rgb"], m["background"])]
                     color = to_hex(transform(rgb))
                     if c["kind"] == "line": obj.line.color = color
-                    elif c["kind"] == "face": obj.marker.color = color
+                    elif c["kind"] == "face":
+                        if m['kind']=='band':obj.fillcolor=color
+                        else:obj.marker.color = color
                     else: obj.marker.line.color = color
                 obj.opacity = 1.; obj.marker.opacity = 1.
         else:

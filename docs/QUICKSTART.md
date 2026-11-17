@@ -1,9 +1,9 @@
 # Quick start
 
-Install from PyPI with your plotting library:
+Install from the project folder with your plotting library:
 
 ```sh
-python -m pip install "huevat[matplotlib]"
+python -m pip install ".[matplotlib]"
 ```
 
 Use `plotly` or `ultraplot` instead of `matplotlib` for those libraries.
@@ -30,7 +30,9 @@ ax.legend()
 series_fig.savefig("six-series.png", dpi=180)
 ```
 
-Clearer is the default style, with palettes for 2–12 categories. Changing the
+Core is the default style, with palettes for 2–12 categories. Earth and Gem
+provide alternatives for 2–8 categories through `style="earth"` or `style="gem"`.
+Changing the
 category count can change all the colors. Save your labels with the palette
 when you want to use the same colors in another figure.
 
@@ -55,11 +57,10 @@ farther in one direction. The other defaults are `hv.multihue()` and
 `hv.spectral()`. Pass `background="dark"` to any palette or gradient factory
 when plotting on a dark background.
 
-The eighteen named gradients are supported alternatives:
+The eighteen named gradients are supported:
 
 ```python
 depth = hv.gradient("bathymetry")
-signed_dark_reversed = hv.gradient("balance_d_r")
 print(hv.gradient_names(domain="atmosphere"))
 ```
 
@@ -72,14 +73,12 @@ RGB color. Positions run from 0 to 1.
 print(hv.known_counts(signed))
 print(hv.nearby_counts(signed, 8))
 seven_colors = signed.discrete(7)
-nine_colors = signed.discrete()  # neutral is the fifth color
 ```
 
-`discrete(n=9)` samples evenly and checks the requested count. The odd default
-retains the exact neutral midpoint of diverging and Spectral gradients.
-Explicit even counts omit that midpoint. Not every count
-passes. With `python -m pip install "huevat[design,matplotlib]"`, you can also use
-`hv.optimized_discrete(signed, 8)` to search for better-spaced colors.
+`discrete(n)` samples evenly and checks the requested count. Not every count
+passes. Use `hv.optimized_discrete(signed, 8)` to choose better-spaced colors. Counts 5, 7
+and 8 for the four original gradient families are prepared and need no extra
+packages. Other optimized requests need `design`.
 Choose the data-bin boundaries separately from the color sample positions.
 
 ## Save and reuse

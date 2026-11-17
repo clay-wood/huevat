@@ -1,6 +1,7 @@
 # Huevat 0.1.0
 
-- Clearer categorical palettes for 2–12 categories.
+- Core categorical palettes for 2–12 categories; `clearer` remains an alias.
+- Earth and Gem alternatives for 2–8 categories on both backgrounds.
 - Sequential, diverging, multi-hue and Spectral gradients, with light and dark
   variants.
 - Eighteen supported gradients for general plots, seismic data, terrain,
@@ -14,6 +15,12 @@
 - Figure doctor suggestions for colors, markers and dashes, with previews,
   fixed styles, shared labels and undo.
 - JSON designs for reuse, CSV and hex color lists, and CSS gradients.
+- Cyclic gradients for phase and directions, with checked periodic sampling.
+- Prepared optimized selections, nearby-count searches and cancellable custom
+  generation with progress reporting.
+- Optional filled-region repairs, comparisons across palette sets, scalar
+  recoloring, paired uncertainty styles and actual-size proof sheets.
+- A native Julia package with Makie.jl and Plots.jl adapters.
 
 Requires Python 3.10+. Color selection needs no additional packages; plotting
 and custom design use optional extras.

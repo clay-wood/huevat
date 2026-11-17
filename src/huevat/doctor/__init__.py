@@ -93,20 +93,27 @@ def load_proposal(value):
     return Proposal(data["proposal"])
 
 
-def inspect(figure):
+def inspect(figure, *, fills=False):
     """Inspect a private copy, including lazy backend state, without drawing."""
     from ._backends import extract, clone
-    return Scene(extract(clone(figure)))
+    if not isinstance(fills,bool):raise ValueError('fills must be boolean')
+    copied=clone(figure);data=extract(copied)
+    if fills:
+        from ._filled import extract as filled
+        data=filled(copied,data)
+    return Scene(data)
 
 
 def diagnose(scene):
     """Audit actual composited mark colors; never certify human readability."""
     from ._audit import audit
     if not isinstance(scene, Scene): raise TypeError("Expected doctor.inspect(figure)")
+    if scene._data.get('includes_fills'):
+        from ._filled import audit
     return _freeze(audit(scene.to_dict()))
 
 
-def propose(scene, *, locked=None, assignments=None):
+def propose(scene, *, locked=None, assignments=None, palette=None, palettes=None):
     """Return three audited tradeoffs. Retain assignments to reserve absent labels.
 
     ``locked={'label': {'color': '#4379a3'}}`` fixes any supplied style fields.
@@ -116,13 +123,33 @@ def propose(scene, *, locked=None, assignments=None):
     """
     from ._search import negotiate
     if not isinstance(scene, Scene): raise TypeError("Expected doctor.inspect(figure)")
-    return tuple(Proposal(item) for item in negotiate(scene, locked, assignments))
+    if palette is not None and palettes is not None:raise ValueError('Choose palette or palettes')
+    if palettes is None:return tuple(Proposal(item) for item in negotiate(scene,locked,assignments,palette))
+    if not isinstance(palettes,(list,tuple)) or not 1<=len(palettes)<=8:raise ValueError('Supply 1–8 candidate palettes')
+    candidates=[]
+    for candidate in palettes:
+        try:
+            options=negotiate(scene,locked,assignments,candidate)
+            for item in options:item['report']['palette']=candidate if isinstance(candidate,str) else 'supplied'
+            candidates.append(options)
+        except (ValueError,ImportError):
+            # Invalid user inputs should remain actionable, not vanish.
+            raise
+    from ..space import from_hex,srgb_to_oklab
+    import math
+    originals={k:[srgb_to_oklab(c['rgb']) for m in scene.marks if m['category']==k for c in m['channels']] for k in scene.categories}
+    def rank(item):
+        changes=sum(math.dist(srgb_to_oklab(from_hex(item['assignments'][k]['color'])),c) for k,colors in originals.items() for c in colors)
+        distance=min((p['minimum_ratio'] for p in item['report']['pairs'] if p['minimum_ratio'] is not None),default=1.)
+        extras=sum(s['marker']!='none' or s['dash'] not in ('none','solid') for s in item['assignments'].values())
+        return (not item['report']['color_screen_pass'], -distance if item['name']=='separation' else extras if item['name']=='simple' else changes,changes)
+    return tuple(Proposal(min((c[i] for c in candidates),key=rank)) for i in range(3))
 
 
 def _prepare(figure, proposal):
     from ._backends import mutate, clone
     if not isinstance(proposal, Proposal): raise TypeError("Expected a Proposal")
-    scene = inspect(figure)
+    scene = inspect(figure,fills=proposal.report.get('includes_fills',False))
     if scene.fingerprint != proposal._data["scene_sha256"]:
         raise ValueError("Stale proposal: figure data, styles or modeled layout changed; inspect again")
     if not set(scene.categories) <= set(proposal.assignments): raise ValueError("Missing category assignments")
@@ -130,7 +157,7 @@ def _prepare(figure, proposal):
     mutate(copied, scene.to_dict(), _thaw(proposal.assignments))
     # Re-extraction verifies native rendering properties rather than trusting
     # the saved report or just substituting hypothetical RGB into a scene.
-    after = inspect(copied)
+    after = inspect(copied,fills=proposal.report.get('includes_fills',False))
     report = diagnose(after)
     return copied, scene, after, report
 
@@ -163,7 +190,7 @@ class Change:
 
     def undo(self):
         if self._undone: raise ValueError("This change was already undone")
-        if inspect(self._figure).fingerprint != self.after.fingerprint:
+        if inspect(self._figure,fills=self.report.get('includes_fills',False)).fingerprint != self.after.fingerprint:
             raise ValueError("Figure changed after apply; undo would overwrite newer styles")
         self._restore()
         self._undone = True
@@ -181,7 +208,7 @@ def apply(figure, proposal):
     restore = snapshot(figure, before.to_dict())
     try:
         mutate(figure, before.to_dict(), _thaw(proposal.assignments))
-        after = inspect(figure)
+        after = inspect(figure,fills=proposal.report.get('includes_fills',False))
         report = diagnose(after)
     except Exception:
         restore()
@@ -189,5 +216,7 @@ def apply(figure, proposal):
     return Change(before, after, report, figure, restore)
 
 
-__all__ = ["inspect", "diagnose", "propose", "preview", "apply", "load_proposal",
+from .fields import recolor, field_preview, fields, band_styles, proof_sheet
+
+__all__ = ["inspect", "diagnose", "propose", "preview", "apply", "load_proposal", "recolor", "field_preview", "fields", "band_styles", "proof_sheet",
            "Scene", "Proposal", "Change"]

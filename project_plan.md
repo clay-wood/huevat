@@ -289,3 +289,23 @@ See [the release record](docs/RELEASE.md#published-release-010) for the source
 commit, exact archive sizes and SHA-256 hashes. The P0/P1 distribution gates
 above are complete. Optional P2 data-size/performance and compatibility-policy
 improvements remain maintenance work for later versions.
+
+## 6. November 17 extension
+
+The user chose `core`, `earth` and `gem` as categorical names. Core retains
+the original Clearer colors and alias. Earth and Gem provide independent
+count-specific, light/dark designs under the unchanged existing checks.
+
+This extension adds cyclic paths; prepared optimized colors and bounded
+nearby-count searches; cancellable custom generation with elapsed progress;
+Figure doctor palette comparisons, opt-in filled-region support, scalar
+recoloring, paired uncertainty styles and publication-size proof sheets.
+The native Julia package shares Python's checked colors and cubic coefficients,
+with optional Makie and Plots adapters and cross-language tests.
+
+The interactive palette editor remains deferred. New designs remain subject
+to visual review; the eighteen supported gradients retain their released status.
+Complex shading/occlusion and unsupported specialized artists do not receive
+a whole-figure readability claim. Julia supports native plotting and prepared
+colors; custom optimization and Figure doctor remain Python features. Details
+and checks are in [the extension methods](docs/METHODS_H5.md).

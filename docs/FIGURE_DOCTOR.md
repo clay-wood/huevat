@@ -81,3 +81,54 @@ trace modes and colors. Not every legend or custom artist can be updated.
 Color checks cover the supported marks. They do not assess the whole figure;
 crossing detection can miss small features. Review the preview at the intended
 figure size. The [methods notes](METHODS_H4C.md) give detailed coverage.
+
+## Compare different palettes
+
+Pass `palette="earth"`, `palette="gem"`, or a checked Huevat palette to
+`doctor.propose`. With `palettes=("core", "earth", "gem")`, it compares the
+sets and chooses a candidate for each of the three suggestions. Fixed styles
+and saved assignments still take priority. `palette="custom"` searches for a
+new palette near the figure's original colors and can fail its color checks.
+
+## Filled bars, regions and uncertainty bands
+
+Use `scene = doctor.inspect(fig, fills=True)` to include uniform Matplotlib
+and UltraPlot bars, patches and filled bands. Plotly supports vertical bars
+and explicitly colored filled scatter traces on the primary Cartesian axes.
+The same label can connect a line with its uncertainty band. Data, geometry
+and transparency are preserved. Filled regions use the filled-field color
+checks; overlapping layers and shading are still outside those checks.
+
+`doctor.band_styles(palette, labels, alpha=.2)` returns paired `color`, `fill`
+and `edge` choices under `["styles"]`, plus a color-check report. Pale
+fills may fail separation checks even when their lines pass; the report keeps
+that distinction. See the [runnable example](../examples/advanced.py).
+
+## Recolor a scalar field
+
+`doctor.fields(fig)` lists supported images, heatmaps and scalar collections.
+`doctor.field_preview(fig, gradient, center=0)` returns a recolored copy.
+`change = doctor.recolor(fig, gradient, center=0)` edits the figure;
+`change.undo()` restores it.
+
+Existing data limits and normalizers are preserved unless you explicitly
+provide new limits or a center. Existing discrete boundaries stay fixed and
+their number of colors must pass. Use `keys=[...]` to choose fields from the
+list. Plotly supports heatmap/contour traces and shared color axes; all fields
+sharing an axis must be selected together. Supply an explicit center for a
+signed Plotly field. Data and missing-value masks are preserved.
+
+## Export a proof sheet
+
+```python
+doctor.proof_sheet(fig, "proof.pdf", width_mm=85, dpi=200)
+```
+
+This saves normal, simulated deuteranopia and grayscale views, with each panel
+at the requested figure width. Individual PNGs and a short settings file are
+saved beside the combined PNG/PDF. Other supported conditions can be supplied
+with `conditions=(...)`. Simulations transform the entire rendered image,
+including colorbars and fills. The original figure and plotting settings are
+unchanged. Plotly proofs need `python -m pip install ".[proof]"` and Chrome or
+another Kaleido-supported browser. These previews support visual review;
+they do not certify readability.

@@ -50,7 +50,7 @@ from huevat import doctor
 assert doctor.__all__
 assert len(hv.gradient_names()) == 18
 assert hv.__version__ == md.version('huevat')
-assert len(hv.design_ids()) == 94
+assert len(hv.design_ids()) == 124
 assert len(hv.design_ids(role='default')) == 30
 for identifier in hv.design_ids():
     design = hv.get_design(identifier)
@@ -116,24 +116,26 @@ def main():
         metadata = BytesParser().parsebytes(archive.read(next(n for n in names if n.endswith('.dist-info/METADATA'))))
         requirements = metadata.get_all("Requires-Dist", [])
         assert all("extra ==" in requirement for requirement in requirements), requirements
-        assert set(metadata.get_all("Provides-Extra", [])) == {"design", "research", "matplotlib", "plotly", "ultraplot"}
+        assert set(metadata.get_all("Provides-Extra", [])) == {"design", "research", "matplotlib", "plotly", "ultraplot", "proof"}
         for filename in ("__init__.py", "space.py", "vision.py"):
             assert f"huevat/{filename}" in names
-        for filename in ("library.py", "exports.py", "_prepared.py"):
+        for filename in ("library.py", "exports.py", "_prepared.py", "styles.py", "cyclic.py", "search.py", "selections.py"):
             assert f"huevat/{filename}" in names
         for filename in ("matplotlib.py", "plotly.py", "ultraplot.py"):
             assert f"huevat/adapters/{filename}" in names
-        for filename in ("__init__.py", "_backends.py", "_audit.py", "_search.py"):
+        for filename in ("__init__.py", "_backends.py", "_audit.py", "_search.py", "_filled.py", "fields.py"):
             assert f"huevat/doctor/{filename}" in names
         for filename in ("references-v1.json", "profiles-v1.json", "machado-v1.json", "manifest-v1.json", "ordered-v1.json", "families-v1.json", "categorical-v2.json", "collection-v1.json", "release-v1.json"):
             assert f"huevat/data/{filename}" in names
+        for filename in ('categorical-v3.json','cyclic-v1.json','optimized-v1.json','registry-v2.json'):
+            assert f'huevat/data/{filename}' in names
         for license_name in ("LICENSE", "sketchplot-MIT.txt", "colorspacious-MIT.txt"):
             assert any(n.endswith('/' + license_name) for n in names), license_name
         assert not any(any(part in n.lower() for part in
                            ('renderer', 'playwright', '.venv', 'sketchplot/')) or n.endswith('.js') for n in names)
     with tarfile.open(sdist) as archive:
         names = archive.getnames()
-        allowed_tests={'test_space.py','test_core.py','test_release.py','test_doctor.py'}
+        allowed_tests={'test_space.py','test_core.py','test_release.py','test_doctor.py','test_extensions.py'}
         assert all(Path(n).name in allowed_tests for n in names if '/tests/' in n and n.endswith('.py'))
         assert not any('/research/' in n or '/artifacts/' in n or '/tools/' in n or n.endswith('/uv.lock') for n in names)
         assert not any(n.endswith(('/MIGRATION.md', '/MAINTENANCE.md', '/TECHNICAL_STATUS.md',
@@ -143,7 +145,8 @@ def main():
         for required in ("pyproject.toml", "docs/extraction.json",
                          "tests/test_space.py", "examples/quickstart.py",
                          "docs/QUICKSTART.md", "examples/README.md", "examples/gallery.py",
-                         "docs/images/palettes.png", "docs/images/gradients.png"):
+                         "docs/images/palettes.png", "docs/images/gradients.png", "docs/JULIA.md", "examples/advanced.py",
+                         "julia/Huevat/Project.toml", "julia/Huevat/src/Huevat.jl", "julia/Huevat/data/palettes.json"):
             assert any(n.endswith('/' + required) for n in names), required
     uv = shutil.which("uv")
     if uv is None:
