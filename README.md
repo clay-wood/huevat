@@ -176,7 +176,7 @@ It can also compare palette sets, recolor scalar fields and produce proof sheets
 
 ```python
 options = doctor.propose(scene, palettes=("core", "earth", "gem"))
-doctor.proof_sheet(fig, "proof.pdf", width_mm=85)
+doctor.proof_sheet(fig, "proof.pdf", width_mm=180)
 ```
 
 Use `doctor.inspect(fig, fills=True)` to include uniform bars, regions and bands.

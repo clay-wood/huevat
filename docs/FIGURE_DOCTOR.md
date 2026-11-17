@@ -133,3 +133,6 @@ including colorbars and fills. The original figure and plotting settings are
 unchanged. Plotly proofs need `python -m pip install ".[proof]"` and Chrome or
 another Kaleido-supported browser. These previews support visual review;
 they do not certify readability.
+
+Choose the width for the whole figure: for example, 85 mm for a small
+single-panel figure or 180 mm for a wider figure with several panels.
